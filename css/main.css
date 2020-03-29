@@ -1879,7 +1879,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #e28fb6;
+  background: #9cd65c;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2736,4 +2736,63 @@ embed {
   padding: 25px;
   -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
+}
+.my-post-time {
+  position: absolute;
+  color: #fff;
+  background-color: #49b1f5;
+  border-radius: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-left: 15px;
+}
+.mypost {
+  position: relative;
+  margin-bottom: 1rem;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+a.my-post-title-link:before {
+  top: 10px;
+  width: 18px;
+  height: 18px;
+  content: "\f073";
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: 18px;
+  line-height: 18px;
+}
+a.my-post-title-link {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 400;
+}
+.my-post-title {
+  display: block;
+  margin-left: 5rem;
+  color: #4c4948;
+  text-decoration: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.my-post-header {
+  position: top;
+  margin-bottom: 1rem;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.my-post-title-link {
+  font-size: 16px;
+  font-weight: 500;
+}
+.my-post-meta {
+  position: absolute;
+  color: #99a9bf;
+  width: 80px;
+  color: #114142;
 }
