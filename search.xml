@@ -1,0 +1,3256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Cluster Analysis</title>
+    <url>/2020/06/05/Cluster-Analysis/</url>
+    <content><![CDATA[<p><strong>摘要：</strong></p>
+<a id="more"></a>
+
+<h2 id="K-Mean-Clustering"><a href="#K-Mean-Clustering" class="headerlink" title="K-Mean Clustering"></a>K-Mean Clustering</h2><h3 id="算法概述"><a href="#算法概述" class="headerlink" title="算法概述"></a>算法概述</h3><p><strong>聚类特点</strong></p>
+<ul>
+<li>非监督分类</li>
+<li>聚类：相似的东西分一组</li>
+<li>难点：如何评估，如何调参</li>
+</ul>
+<p><strong>K-Mean基本概念</strong></p>
+<ul>
+<li>要得到簇的个数，指定K值</li>
+<li>质心：均值，即向量各维度取平均</li>
+<li>距离的度量：常用欧式距离（先标准化）</li>
+<li>优化目标：$\min\sum^K_{i=1}{\sum_{x\in{C_i}}{dist(c_i, x)^2}}$ ，其中 $c_i$ 表示质心。</li>
+</ul>
+<h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><ol>
+<li>随机确定k个质心，根据距离进行分类；</li>
+<li>对分类结果的所有点进行计算新的质心；</li>
+<li>再根据新的质心进行分类，一直到不能再更新为止。</li>
+</ol>
+<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><ul>
+<li>简单，快速，适合常规数据集</li>
+</ul>
+<h3 id="劣势"><a href="#劣势" class="headerlink" title="劣势"></a>劣势</h3><ul>
+<li>K值难确定</li>
+<li>复杂度与样本呈线性关系</li>
+<li>很难发现任意形状点的簇</li>
+</ul>
+<h3 id="迭代可视化展示"><a href="#迭代可视化展示" class="headerlink" title="迭代可视化展示"></a>迭代可视化展示</h3><p><strong>网址：</strong><span class="exturl" data-url="aHR0cHM6Ly93d3cubmFmdGFsaWhhcnJpcy5jb20vYmxvZy92aXN1YWxpemluZy1rLW1lYW5zLWNsdXN0ZXJpbmcv">https://www.naftaliharris.com/blog/visualizing-k-means-clustering/<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="DBSCAN-Clustering"><a href="#DBSCAN-Clustering" class="headerlink" title="DBSCAN Clustering"></a>DBSCAN Clustering</h2><h2 id="算法概论"><a href="#算法概论" class="headerlink" title="算法概论"></a>算法概论</h2><h2 id="工作流程-1"><a href="#工作流程-1" class="headerlink" title="工作流程"></a>工作流程</h2><h3 id="迭代可视化展示-1"><a href="#迭代可视化展示-1" class="headerlink" title="迭代可视化展示"></a>迭代可视化展示</h3><p><strong>网址：</strong><span class="exturl" data-url="aHR0cHM6Ly93d3cubmFmdGFsaWhhcnJpcy5jb20vYmxvZy92aXN1YWxpemluZy1kYnNjYW4tY2x1c3RlcmluZy8=">https://www.naftaliharris.com/blog/visualizing-dbscan-clustering/<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Machine Learning</category>
+      </categories>
+      <tags>
+        <tag>K-Mean Clustering</tag>
+        <tag>Dbsacn Clustering</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Notes_02|Mysql Related Concept</title>
+    <url>/2020/05/14/MySQL/</url>
+    <content><![CDATA[<p>黑马授课视频笔记</p>
+<a id="more"></a>
+<h3 id="数据库特点"><a href="#数据库特点" class="headerlink" title="数据库特点"></a>数据库特点</h3><ul>
+<li>持久化存储</li>
+<li>读写速度极高</li>
+<li>保证数据的有效性</li>
+<li>对程序支持性非常好，容易扩展</li>
+</ul>
+<h2 id="关系型数据库的核心"><a href="#关系型数据库的核心" class="headerlink" title="关系型数据库的核心"></a>关系型数据库的核心</h2><ul>
+<li>数据行（记录）</li>
+<li>数据列（字段）</li>
+<li>数据表（数据行的集合）</li>
+<li>数据库（数据表的集合）</li>
+</ul>
+<p><strong>举例：</strong> Excel文件(数据库) —-&gt;  Sheet(数据表) —&gt; 行、列(数据行、列)  </p>
+<h2 id="MySQL、redis、MongoDB常用范围"><a href="#MySQL、redis、MongoDB常用范围" class="headerlink" title="MySQL、redis、MongoDB常用范围"></a>MySQL、redis、MongoDB常用范围</h2><ul>
+<li>MySQL常用于建设网站</li>
+<li>redis存贮缓存</li>
+<li>MongoDB用于存贮不相关的数据（例如不同网站信息的爬取）  </li>
+</ul>
+<h2 id="SQL语句、MySQL（数据库管理工具-数据库）"><a href="#SQL语句、MySQL（数据库管理工具-数据库）" class="headerlink" title="SQL语句、MySQL（数据库管理工具+数据库）"></a>SQL语句、MySQL（数据库管理工具+数据库）</h2><h3 id="SQL语句主要分为"><a href="#SQL语句主要分为" class="headerlink" title="SQL语句主要分为"></a>SQL语句主要分为</h3><ul>
+<li><strong>DQL：数据查询语句，用于对数据进行查询，如select</strong>  </li>
+<li><strong>DML：数据操作语句，对数据进行增加、删除、修改，如insert、update、delete</strong>  </li>
+<li>TPL：事务处理语言，对事物进行处理，包括begin transaction、commit、rollback  </li>
+<li>DCL：数据控制语言，进行授权与权限回收，如grant、revoke  </li>
+<li>DDL：数据定义语句，进行数据库、表的管理等，如create、drop  </li>
+<li>CCL：指针控制语句，通过控制指针完成表的操作，如declare cursor  </li>
+</ul>
+<p>对于web程序员来说，重点是数据的crud(增删改查)，必须熟练编辑DQL、DML，能够编写DDL完成数据库、表的操作，其他语言如TPL、DCL、CCL了解即可  </p>
+<p>不区分大小写</p>
+]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>Studying</tag>
+        <tag>Notebook</tag>
+        <tag>Data analysis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>QG实验1——地理数据统计预处理</title>
+    <url>/2020/04/18/QG01-Geographic_data_preprocessing/</url>
+    <content><![CDATA[<h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><ol>
+<li>掌握用Excel、Python进行<strong>数据统计描述</strong>的方法；</li>
+<li>掌握用Excel、Python进行<strong>数据标准化</strong>的基本方法；</li>
+<li>掌握用Excel、Python进行<strong>常用数据可视化</strong>的方法；</li>
+<li>掌握用Excel、Python进行<strong>数据连接</strong>和<strong>数据透视</strong>的方法。<a id="more"></a>
+
+</li>
+</ol>
+<hr>
+<h2 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h2><blockquote>
+<h3 id="１-目录"><a href="#１-目录" class="headerlink" title="１.目录"></a>１.目录</h3><ol>
+<li>统计数据描述；  </li>
+<li>统计数据标准化；</li>
+<li>统计数据可视化；  </li>
+<li>数据连接(VLOOKUP)；  </li>
+<li>数据透视(Pivot)。  </li>
+</ol>
+</blockquote>
+<hr>
+<h3 id="2-统计数据描述"><a href="#2-统计数据描述" class="headerlink" title="2. 统计数据描述"></a>2. 统计数据描述</h3><p>1&gt;  集中趋势:  </p>
+<table>
+<thead>
+<tr>
+<th align="center">特征</th>
+<th align="center">Excel</th>
+<th align="center">Python</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">平均数</td>
+<td align="center">Average函数</td>
+<td align="center">np.mean(array)</td>
+</tr>
+<tr>
+<td align="center">中位数</td>
+<td align="center">Median函数</td>
+<td align="center">np.median(array)</td>
+</tr>
+<tr>
+<td align="center">众数</td>
+<td align="center">Mode函数</td>
+<td align="center">stats.mode(array)</td>
+</tr>
+<tr>
+<td align="center">2&gt;  离中趋势：</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">特征</th>
+<th align="center">Excel</th>
+<th align="center">Python</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">极差</td>
+<td align="center">Max-Min</td>
+<td align="center">np.ptp(array)</td>
+</tr>
+<tr>
+<td align="center">方差和标准差</td>
+<td align="center">Var和Stdev函数</td>
+<td align="center">np.std(array)和 np.var(array)</td>
+</tr>
+<tr>
+<td align="center">变异系数</td>
+<td align="center">Stdev/Average</td>
+<td align="center">std(array) / mean(array)</td>
+</tr>
+<tr>
+<td align="center">四分位差</td>
+<td align="center">Quartile3- Quartile1</td>
+<td align="center">np.percentile(array,75)-np.percentile(array,25))</td>
+</tr>
+</tbody></table>
+<p>3&gt; 数据分布特征：  </p>
+<table>
+<thead>
+<tr>
+<th align="center">特征</th>
+<th align="center">Excel</th>
+<th align="center">Python</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">偏度系数</td>
+<td align="center">Skew函数</td>
+<td align="center">st.skew(array)</td>
+</tr>
+<tr>
+<td align="center">峰度系数</td>
+<td align="center">Kurt函数</td>
+<td align="center">st.kurtosis(array)</td>
+</tr>
+</tbody></table>
+<h3 id="3-统计数据标准化"><a href="#3-统计数据标准化" class="headerlink" title="3. 统计数据标准化"></a>3. 统计数据标准化</h3><p>1&gt; 归一化法  </p>
+<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/normalization1.png" width="80%"/>  
+
+<p>2&gt; 线性比例法/相对值法</p>
+<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/normalization2.png" width="85%"/>
+3> 
+
+<p>3&gt; 极差法</p>
+<p>![Max-Min1](E:/bw_ch/Pictures/Saved Pictures/计量地理学/实验1/Max-Min1.png)</p>
+<p> <img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/Max-Min2.png" alt=""></p>
+<p>4&gt; 均值法  </p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/mean.png" alt="mean"></p>
+<p>5&gt; 标准差法  </p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/std1.png" alt="std1"></p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/std2.png" alt="std2"></p>
+<p>6&gt; 功效系数法</p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/ec.png" alt="ec"><br><strong>Python实现：</strong><br>以极差标准化为例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据准备</span></span><br><span class="line">arr = np.random.randint(<span class="number">0</span>,<span class="number">100</span>,size=<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据处理</span></span><br><span class="line">arr_nor = (arr-np.min(arr))/(np.max(arr)-np.min(arr))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据展示</span></span><br><span class="line">print(<span class="string">"原始array：&#123;&#125;\n"</span>.format(arr))</span><br><span class="line">print(<span class="string">"归一化array：&#123;&#125;\n"</span>.format(arr_1))</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-统计数据可视化"><a href="#4-统计数据可视化" class="headerlink" title="4. 统计数据可视化"></a>4. 统计数据可视化</h3><ol>
+<li>描述数据<strong>分布</strong>：直方图、箱线图；</li>
+<li>描述数据<strong>构成</strong>：饼状图、雷达图；</li>
+<li>描述数据<strong>联系</strong>：散点图、相关系数矩阵；</li>
+<li>描述数据<strong>比较</strong>：柱状图/条形图、折线图。</li>
+</ol>
+<h4 id="Excel操作"><a href="#Excel操作" class="headerlink" title="Excel操作"></a>Excel操作</h4><p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/Excel.png" alt="Excel"></p>
+<h4 id="Python操作"><a href="#Python操作" class="headerlink" title="Python操作"></a>Python操作</h4><p>以直方图为例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据准备</span></span><br><span class="line">np.random.seed(<span class="number">19680801</span>)</span><br><span class="line"></span><br><span class="line">mu, sigma = <span class="number">100</span>, <span class="number">15</span></span><br><span class="line">x = mu + sigma * np.random.randn(<span class="number">10000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置直方图参数以及展示</span></span><br><span class="line">n, bins, patches = plt.hist(x, <span class="number">50</span>, density=<span class="literal">True</span>, facecolor=<span class="string">'g'</span>, alpha=<span class="number">0.75</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'Smarts'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Probability'</span>)</span><br><span class="line">plt.title(<span class="string">'Histogram of IQ'</span>)</span><br><span class="line">plt.text(<span class="number">60</span>, <span class="number">.025</span>, <span class="string">r'$\mu=100,\ \sigma=15$'</span>)    <span class="comment"># 添加文本到（60，0.025）</span></span><br><span class="line">plt.axis([<span class="number">40</span>, <span class="number">160</span>, <span class="number">0</span>, <span class="number">0.03</span>])</span><br><span class="line">plt.grid(<span class="literal">True</span>)   <span class="comment"># 配置网格线</span></span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 箱线图：</span></span><br><span class="line">seaborn.boxplot() 或 plot.box()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 饼状图：</span></span><br><span class="line">matplotlib.pyplot.pie()</span><br><span class="line"><span class="comment"># 雷达图：</span></span><br><span class="line">matplotlib.pyplot.polar()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 散点图：</span></span><br><span class="line">matplotlib.pyplot.scatter()</span><br><span class="line"><span class="comment"># 热力图：</span></span><br><span class="line">seaborn.heatmap()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 条形图：</span></span><br><span class="line">matplotlib.pyplot.bar()   <span class="comment"># 水平</span></span><br><span class="line">matplotlib.pyplot.barh()  <span class="comment"># 垂直</span></span><br><span class="line"><span class="comment"># 折线图：</span></span><br><span class="line">matplotlib.pyplot.plot()</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-数据连接（vlookup"><a href="#5-数据连接（vlookup" class="headerlink" title="5.数据连接（vlookup)"></a>5.数据连接（vlookup)</h3><h4 id="Excel-操作"><a href="#Excel-操作" class="headerlink" title="Excel  操作"></a>Excel  操作</h4><p>直接使用 = VLOOKUP （你想要查找的内容，要查找的位置，包含要返回的值的区域中的列号，返回近似或精确匹配-表示为 1/TRUE 或 0/假）<br><strong>使用方式：</strong><br>1、选中要连接单元格；<br>2、点击 公式-查找和引用-VLOOKUP 或者 直接 键入=VLOOKUP( ；<br>3、点选要查找的值、包含要返回的值的区域中的列号、返回近似或精确匹配-表示为 1/TRUE 或 0/假。</p>
+<h4 id="Python-操作"><a href="#Python-操作" class="headerlink" title="Python 操作"></a>Python 操作</h4><p>这个方法就很多了。<br>举几个思路：  </p>
+<ol>
+<li>借助字典方法 dict.get()</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = &#123;<span class="string">'A'</span>:<span class="number">1</span>, <span class="string">'D'</span>:<span class="number">4</span>, <span class="string">'E'</span>:<span class="number">5</span>&#125;</span><br><span class="line">b = &#123;<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>&#125;</span><br><span class="line"></span><br><span class="line">c = &#123;k:a.get(k) <span class="keyword">for</span> k <span class="keyword">in</span> b&#125;</span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line">&#123;<span class="string">'A'</span>: <span class="number">1</span>, <span class="string">'E'</span>: <span class="number">5</span>, <span class="string">'C'</span>: <span class="literal">None</span>, <span class="string">'D'</span>: <span class="number">4</span>, <span class="string">'B'</span>: <span class="literal">None</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>使用pandas空值填充dataframe.fillna()  </li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据准备</span></span><br><span class="line">frame1 = pd.DataFrame([[<span class="number">1</span>, <span class="number">5.1</span>],[<span class="number">2</span>, <span class="number">5.7</span>],[<span class="number">3</span>, np.nan]],columns=[<span class="string">'id'</span>,<span class="string">'num'</span>])</span><br><span class="line">frame2 = pd.DataFrame([[<span class="number">1</span>, <span class="number">5.1</span>],[<span class="number">2</span>, <span class="number">5.7</span>],[<span class="number">4</span>, <span class="number">9.9</span>],[<span class="number">3</span>,<span class="number">8.8</span>]],columns=[<span class="string">'id'</span>,<span class="string">'num'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 操作准备</span></span><br><span class="line">frame1 = frame1.set_index(<span class="string">'id'</span>)</span><br><span class="line">frame2 = frame2.set_index(<span class="string">'id'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据连接</span></span><br><span class="line">frame3 = frame1.fillna(frame2)</span><br></pre></td></tr></table></figure>
+
+<p>这里需要注意操作准备中设置索引是功能实现的关键，fillna是按索引来填充的。没有的话，对比下面6，7，8行输出：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">1</span>]: <span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">In [<span class="number">2</span>]: <span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: frame1 = pd.DataFrame([[<span class="number">1</span>, <span class="number">5.1</span>],[<span class="number">2</span>, <span class="number">5.7</span>],[<span class="number">3</span>, np.nan]],columns=[<span class="string">'id'</span>,<span class="string">'num'</span>])</span><br><span class="line">In [<span class="number">4</span>]: frame2 = pd.DataFrame([[<span class="number">1</span>, <span class="number">5.1</span>],[<span class="number">2</span>, <span class="number">5.7</span>],[<span class="number">4</span>, <span class="number">9.9</span>],[<span class="number">3</span>,<span class="number">8.8</span>]],columns=[<span class="string">'id'</span>,<span class="string">'num'</span>])</span><br><span class="line">In [<span class="number">5</span>]: frame3 = frame1.fillna(frame2)</span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: frame1</span><br><span class="line">Out[<span class="number">6</span>]:</span><br><span class="line">   id  num</span><br><span class="line"><span class="number">0</span>   <span class="number">1</span>  <span class="number">5.1</span></span><br><span class="line"><span class="number">1</span>   <span class="number">2</span>  <span class="number">5.7</span></span><br><span class="line"><span class="number">2</span>   <span class="number">3</span>  NaN</span><br><span class="line">In [<span class="number">7</span>]: frame2</span><br><span class="line">Out[<span class="number">7</span>]:</span><br><span class="line">   id  num</span><br><span class="line"><span class="number">0</span>   <span class="number">1</span>  <span class="number">5.1</span></span><br><span class="line"><span class="number">1</span>   <span class="number">2</span>  <span class="number">5.7</span></span><br><span class="line"><span class="number">2</span>   <span class="number">4</span>  <span class="number">9.9</span></span><br><span class="line"><span class="number">3</span>   <span class="number">3</span>  <span class="number">8.8</span></span><br><span class="line">In [<span class="number">8</span>]: frame3</span><br><span class="line">Out[<span class="number">8</span>]:</span><br><span class="line">   id  num</span><br><span class="line"><span class="number">0</span>   <span class="number">1</span>  <span class="number">5.1</span></span><br><span class="line"><span class="number">1</span>   <span class="number">2</span>  <span class="number">5.7</span></span><br><span class="line"><span class="number">2</span>   <span class="number">3</span>  <span class="number">9.9</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: frame1 = frame1.set_index(<span class="string">'id'</span>)</span><br><span class="line">In [<span class="number">10</span>]: frame2 = frame2.set_index(<span class="string">'id'</span>)</span><br><span class="line">In [<span class="number">11</span>]: frame3 = frame1.fillna(frame2)</span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: frame3</span><br><span class="line">Out[<span class="number">12</span>]:</span><br><span class="line">id   num</span><br><span class="line"><span class="number">1</span>    <span class="number">5.1</span></span><br><span class="line"><span class="number">2</span>    <span class="number">5.7</span></span><br><span class="line"><span class="number">3</span>    <span class="number">8.8</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-数据透视（pivot"><a href="#6-数据透视（pivot" class="headerlink" title="6.数据透视（pivot)"></a>6.数据透视（pivot)</h3><p>借助pandas中的pivot_table(dataframe)</p>
+]]></content>
+      <categories>
+        <category>计量地理学</category>
+      </categories>
+      <tags>
+        <tag>Excel</tag>
+        <tag>Python</tag>
+        <tag>地理空间分析</tag>
+        <tag>数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>图像融合质量评价指标</title>
+    <url>/2020/04/21/RS02-Evaluation_of_image_fusion/</url>
+    <content><![CDATA[<h2 id="1-图像融合"><a href="#1-图像融合" class="headerlink" title="1 图像融合"></a>1 图像融合</h2><p><strong>图像融合：</strong> 是指把对同一目标或同一场景经多个传感器的成像或单一传感器的多次成像进行一定的处理，生成一幅新的图像，这幅新的图像能够准确地综合反映源图像的信息，更适合于人眼观察或计算机处理。</p>
+<a id="more"></a>
+
+<h3 id="2-图像融合质量评价"><a href="#2-图像融合质量评价" class="headerlink" title="2 图像融合质量评价"></a>2 图像融合质量评价</h3><p>目前评定图像融合算法性能的方法可分为两类，即主观的评定方法和客观的评定方法。</p>
+<h4 id="2-1-主观评价方法"><a href="#2-1-主观评价方法" class="headerlink" title="2.1 主观评价方法"></a>2.1 主观评价方法</h4><p><strong>主观评价方法</strong>：<br>就是依靠人眼对融合图像效果进行主观判断。<br><strong>客观评价方法</strong>：<br>根据不同评定方法的条件不同，对客观评价指标做了以下分类研究8。</p>
+<ol>
+<li><p>无参考图像情况下的评价方法  </p>
+<p>  <strong>单一图像特征统计的评价方法</strong>  </p>
+<ul>
+<li><p>均值:图像中所有像素的灰度值的算术平均值，对人眼表现为图像的平均亮度。  </p>
+</li>
+<li><p>标准差:图像灰度相对于均值的离散情况，用于评价图像反差的大小。  </p>
+</li>
+<li><p>信息熵:熵值大小反映其包含信息量的多少，熵值越大融合效果越好。  </p>
+</li>
+<li><p>平均梯度:可灵敏地反映图像对微小细节反差表达的水平，用于评价图像的模糊程度。平均梯度值与图像清晰程度成正比关系。  </p>
+</li>
+<li><p>空间频率:反映图像在空间域的整体活跃程度，空间频率大小与图像融合效果成正比。  </p>
+<p><strong>源图像与融合图像之间关系的评价方法</strong>  </p>
+</li>
+<li><p>互信息之和:表示融合图像F从源图像A、B中获取的信息，互信息之和的值与融合效果成正比。  </p>
+</li>
+<li><p>交叉熵:反映了源图像和融合图像对应像素的差异。交叉熵越小，代表两幅图像的差异越小，即意味着该融合方法从源图像获取的信息量越多，融合效果越好。  </p>
+</li>
+<li><p>联合熵:源图像和融合图像之间相关性的量度,反映源图像和融合图像之间的联合信息。两幅图像联合熵的值与图像所包含的信息量的大小成正比关系。  </p>
+</li>
+<li><p>偏差与相对偏差:偏差表示两幅图像光谱特性变化的平均程度和光谱信息上的差异，值越小意味着两幅图像的差异越小;相对偏差反映两幅图像在光谱信息上的匹配程度,同时也反映该方法将原图像高空间的分辨率细节传递给融合图像的能力。  </p>
+</li>
+</ul>
+</li>
+<li><p>有参考图情况下的评价方法</p>
+<ul>
+<li>通过对比标准参考图像与融合图像之间的关系来分析融合图像的质量和融合效果的好坏。  </li>
+<li>均方根误差:显示了参考图像与融合图像之间的差异对比程度，其值与接近程度成反比，值越小代表融合效果越好。  </li>
+<li>信噪比和峰值信噪比:比值越高，融合质量越好。  </li>
+<li>信息熵差ER-EF:EF和ER分别为融合图像和参考图像的信息熵。  </li>
+<li>互信息:代表图像中包含的信息，互信息值越大，包含的信息越多，融合效果越好。  </li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>RS</category>
+      </categories>
+      <tags>
+        <tag>Image Processing</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>QG实验2-经典统计分析1</title>
+    <url>/2020/05/12/QG2-Classical_statistical_analysis/</url>
+    <content><![CDATA[<p>用Python实现经典统计分析中的相关分析，本文是ipynb转化生成</p>
+<a id="more"></a>
+<p><strong>内容概述:</strong></p>
+<ol>
+<li>相关分析Spearman、Pearson系数的计算；</li>
+<li>一元线性回归；</li>
+<li>多元线性回归。</li>
+</ol>
+<h1 id="1-相关分析——Spearman、Pearson系数"><a href="#1-相关分析——Spearman、Pearson系数" class="headerlink" title="1 相关分析——Spearman、Pearson系数"></a>1 相关分析——Spearman、Pearson系数</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">    <span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    !pip3 install pandas numpy matplotlib</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Data = &#123;</span><br><span class="line">    <span class="string">'平均气温x'</span>: [<span class="number">3.80</span>, <span class="number">4.00</span>, <span class="number">5.80</span>, <span class="number">8.00</span>, <span class="number">11.30</span>, <span class="number">14.40</span>, <span class="number">16.50</span>, <span class="number">16.20</span>, <span class="number">13.80</span>, <span class="number">10.80</span>, <span class="number">6.70</span>, <span class="number">4.70</span>],</span><br><span class="line">    <span class="string">'降雨量y'</span>: [<span class="number">77.70</span>, <span class="number">51.20</span>, <span class="number">60.10</span>, <span class="number">54.10</span>, <span class="number">55.40</span>, <span class="number">56.80</span>, <span class="number">45.00</span>, <span class="number">55.30</span>, <span class="number">67.50</span>, <span class="number">73.30</span>, <span class="number">76.60</span>, <span class="number">79.60</span>]</span><br><span class="line">&#125;</span><br><span class="line">data = pd.DataFrame(Data)</span><br><span class="line">data</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>平均气温x</th>
+      <th>降雨量y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3.8</td>
+      <td>77.7</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.0</td>
+      <td>51.2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>5.8</td>
+      <td>60.1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>8.0</td>
+      <td>54.1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>11.3</td>
+      <td>55.4</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>14.4</td>
+      <td>56.8</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>16.5</td>
+      <td>45.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>16.2</td>
+      <td>55.3</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>13.8</td>
+      <td>67.5</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10.8</td>
+      <td>73.3</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>6.7</td>
+      <td>76.6</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>4.7</td>
+      <td>79.6</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Pearson相关系数</span></span><br><span class="line">data.corr(<span class="string">'pearson'</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>平均气温x</th>
+      <th>降雨量y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>平均气温x</th>
+      <td>1.000000</td>
+      <td>-0.489495</td>
+    </tr>
+    <tr>
+      <th>降雨量y</th>
+      <td>-0.489495</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<p><strong>Spearman相关系数看下面 2 pandas–read_excel最后。</strong><br>前面的部分是Python打开Excel常用的操作</p>
+<h1 id="2-pandas——read-excel"><a href="#2-pandas——read-excel" class="headerlink" title="2 pandas——read_excel"></a>2 pandas——read_excel</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pandas.read_excel(io, sheet_name&#x3D;0, header&#x3D;0, names&#x3D;None, index_col&#x3D;None, usecols&#x3D;None, squeeze&#x3D;False, dtype&#x3D;None, engine&#x3D;None, converters&#x3D;None, true_values&#x3D;None, false_values&#x3D;None, skiprows&#x3D;None, nrows&#x3D;None, na_values&#x3D;None, keep_default_na&#x3D;True, verbose&#x3D;False, parse_dates&#x3D;False, date_parser&#x3D;None, thousands&#x3D;None, comment&#x3D;None, skipfooter&#x3D;0, convert_float&#x3D;True, mangle_dupe_cols&#x3D;True, **kwds)</span><br></pre></td></tr></table></figure>
+<p>用途：Read an Excel file into a pandas DataFrame<br>支持格式：xls、xlsx、xlsm、xlsb和odf，可以是来自本地，也可以来自网络UR。<br>支持读入单个或多个工作表。   </p>
+<p>API参考：<span class="exturl" data-url="aHR0cHM6Ly9wYW5kYXMucHlkYXRhLm9yZy9kb2NzL3JlZmVyZW5jZS9hcGkvcGFuZGFzLnJlYWRfZXhjZWwuaHRtbCNwYW5kYXMucmVhZF9leGNlbA==">https://pandas.pydata.org/docs/reference/api/pandas.read_excel.html#pandas.read_excel<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="2-1-数据准备"><a href="#2-1-数据准备" class="headerlink" title="2.1 数据准备"></a>2.1 数据准备</h2><pre><code>定位到工作表</code></pre><p><strong>内容：</strong>  </p>
+<ol>
+<li>路径io：接受任何的字符串路径，不论是本地的file还是其他的ftp、http、s3等等。</li>
+<li>工作表sheet_name：接受 str、int、list，or None, defult 0<ol>
+<li>字符串对应工作表名称；</li>
+<li>整型对应工作表索引；</li>
+<li>包含字符串或者整型的列表对应多个工作表；</li>
+<li>None 表示解析所有工作表；</li>
+</ol>
+</li>
+</ol>
+<p> 注：如果使用解析多个工作表，将以字典的形式输出</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># sheet_name表明需要解析那张表格，默认为0（第一张）</span></span><br><span class="line">data1 = pd.read_excel(<span class="string">'/home/Ubuntu/Documents/test.xlsx'</span>, sheet_name=<span class="number">2</span>)</span><br><span class="line">data1</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>省市</th>
+      <th>GDP(x)(亿元)</th>
+      <th>GDP位次R1</th>
+      <th>总人口(Y)(万人)</th>
+      <th>总人口位次R2</th>
+      <th>位次差的平方</th>
+      <th>Unnamed: 6</th>
+      <th>Unnamed: 7</th>
+      <th>Unnamed: 8</th>
+      <th>Unnamed: 9</th>
+      <th>n</th>
+      <th>显著水平α</th>
+      <th>Unnamed: 12</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>广东</td>
+      <td>13625.866128</td>
+      <td>1.0</td>
+      <td>7954.22</td>
+      <td>4.0</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>秩相关系数</td>
+      <td>0.784677</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.050</td>
+      <td>0.010</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>江苏</td>
+      <td>12460.830000</td>
+      <td>2.0</td>
+      <td>7405.82</td>
+      <td>5.0</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>1.000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>山东</td>
+      <td>12435.930000</td>
+      <td>3.0</td>
+      <td>9125.00</td>
+      <td>2.0</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>0.900</td>
+      <td>1.000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>浙江</td>
+      <td>9395.000000</td>
+      <td>4.0</td>
+      <td>4679.55</td>
+      <td>11.0</td>
+      <td>49</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6.0</td>
+      <td>0.829</td>
+      <td>0.943</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>河北</td>
+      <td>7098.560000</td>
+      <td>5.0</td>
+      <td>6769.44</td>
+      <td>6.0</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.0</td>
+      <td>0.714</td>
+      <td>0.893</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>河南</td>
+      <td>7048.590000</td>
+      <td>6.0</td>
+      <td>9667.00</td>
+      <td>1.0</td>
+      <td>25</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8.0</td>
+      <td>0.643</td>
+      <td>0.833</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>上海</td>
+      <td>6250.810000</td>
+      <td>7.0</td>
+      <td>1711.00</td>
+      <td>25.0</td>
+      <td>324</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9.0</td>
+      <td>0.600</td>
+      <td>0.783</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>辽宁</td>
+      <td>6002.540000</td>
+      <td>8.0</td>
+      <td>4210.00</td>
+      <td>14.0</td>
+      <td>36</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10.0</td>
+      <td>0.564</td>
+      <td>0.746</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>四川</td>
+      <td>5456.320000</td>
+      <td>9.0</td>
+      <td>8700.40</td>
+      <td>3.0</td>
+      <td>36</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>12.0</td>
+      <td>0.456</td>
+      <td>0.712</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>湖北</td>
+      <td>5401.710000</td>
+      <td>10.0</td>
+      <td>6001.70</td>
+      <td>9.0</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>14.0</td>
+      <td>0.456</td>
+      <td>0.645</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>福建</td>
+      <td>5232.170000</td>
+      <td>11.0</td>
+      <td>3488.00</td>
+      <td>18.0</td>
+      <td>49</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>16.0</td>
+      <td>0.425</td>
+      <td>0.601</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>湖南</td>
+      <td>4638.730000</td>
+      <td>12.0</td>
+      <td>6662.80</td>
+      <td>7.0</td>
+      <td>25</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>18.0</td>
+      <td>0.399</td>
+      <td>0.564</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>黑龙江</td>
+      <td>4430.000000</td>
+      <td>13.0</td>
+      <td>3815.00</td>
+      <td>16.0</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>20.0</td>
+      <td>0.377</td>
+      <td>0.534</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>安徽</td>
+      <td>3972.380000</td>
+      <td>14.0</td>
+      <td>6410.00</td>
+      <td>8.0</td>
+      <td>36</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>22.0</td>
+      <td>0.359</td>
+      <td>0.508</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>北京</td>
+      <td>3663.100000</td>
+      <td>15.0</td>
+      <td>1456.40</td>
+      <td>26.0</td>
+      <td>121</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>24.0</td>
+      <td>0.343</td>
+      <td>0.485</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>江西</td>
+      <td>2830.460000</td>
+      <td>16.0</td>
+      <td>4254.23</td>
+      <td>13.0</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>26.0</td>
+      <td>0.329</td>
+      <td>0.465</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>广西</td>
+      <td>2735.130000</td>
+      <td>17.0</td>
+      <td>4857.00</td>
+      <td>10.0</td>
+      <td>49</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>28.0</td>
+      <td>0.317</td>
+      <td>0.448</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>吉林</td>
+      <td>2522.620000</td>
+      <td>18.0</td>
+      <td>2703.70</td>
+      <td>21.0</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>30.0</td>
+      <td>0.306</td>
+      <td>0.432</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>云南</td>
+      <td>2465.290000</td>
+      <td>19.0</td>
+      <td>4375.60</td>
+      <td>12.0</td>
+      <td>49</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>山西</td>
+      <td>2456.590000</td>
+      <td>20.0</td>
+      <td>3314.29</td>
+      <td>19.0</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>天津</td>
+      <td>2447.660000</td>
+      <td>21.0</td>
+      <td>1011.30</td>
+      <td>27.0</td>
+      <td>36</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>陕西</td>
+      <td>2398.580000</td>
+      <td>22.0</td>
+      <td>3689.50</td>
+      <td>17.0</td>
+      <td>25</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>重庆</td>
+      <td>2250.560000</td>
+      <td>23.0</td>
+      <td>3130.00</td>
+      <td>20.0</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>内蒙古</td>
+      <td>2150.414897</td>
+      <td>24.0</td>
+      <td>2379.61</td>
+      <td>23.0</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>新疆</td>
+      <td>1877.610000</td>
+      <td>25.0</td>
+      <td>1933.95</td>
+      <td>24.0</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>贵州</td>
+      <td>1356.110000</td>
+      <td>26.0</td>
+      <td>3869.66</td>
+      <td>15.0</td>
+      <td>121</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>甘肃</td>
+      <td>1304.600000</td>
+      <td>27.0</td>
+      <td>2603.34</td>
+      <td>22.0</td>
+      <td>25</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>海南</td>
+      <td>670.930000</td>
+      <td>28.0</td>
+      <td>810.52</td>
+      <td>28.0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>青海</td>
+      <td>390.210000</td>
+      <td>29.0</td>
+      <td>533.80</td>
+      <td>30.0</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>宁夏</td>
+      <td>385.340000</td>
+      <td>30.0</td>
+      <td>580.30</td>
+      <td>29.0</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>西藏</td>
+      <td>184.500000</td>
+      <td>31.0</td>
+      <td>270.17</td>
+      <td>31.0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1068</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<p><strong>内容：</strong><br>   3. 列标签header: 默认defult 0，可以接受一个整数或者一个整数列表，整数所在的行作为列标签，整数列表则是表示多重标签。如果不需要列名，使用None。<br>   4. 自定义列名names:<br>      1. 基于header的基础上，接收列表，定义列名；<br>      2. 不能与header=None同时使用；<br>      3. names的长度必须和Excel列长度一致。<br>   5. 行标签index_col: 与header类似。<br>   6. 强制规定列数据类型converters，传入字典{列：类型}，dtype类似。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 列标签header</span></span><br><span class="line">data2 = pd.read_excel(<span class="string">'/home/Ubuntu/Documents/test.xlsx'</span>, <span class="number">2</span>, header=<span class="literal">None</span>)</span><br><span class="line">data2</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>省市</td>
+      <td>GDP(x)(亿元)</td>
+      <td>GDP位次R1</td>
+      <td>总人口(Y)(万人)</td>
+      <td>总人口位次R2</td>
+      <td>位次差的平方</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>n</td>
+      <td>显著水平α</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>广东</td>
+      <td>13625.9</td>
+      <td>1</td>
+      <td>7954.22</td>
+      <td>4</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>秩相关系数</td>
+      <td>0.784677</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.05</td>
+      <td>0.010</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>江苏</td>
+      <td>12460.8</td>
+      <td>2</td>
+      <td>7405.82</td>
+      <td>5</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>1</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>山东</td>
+      <td>12435.9</td>
+      <td>3</td>
+      <td>9125</td>
+      <td>2</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>0.9</td>
+      <td>1.000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>浙江</td>
+      <td>9395</td>
+      <td>4</td>
+      <td>4679.55</td>
+      <td>11</td>
+      <td>49</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6</td>
+      <td>0.829</td>
+      <td>0.943</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>河北</td>
+      <td>7098.56</td>
+      <td>5</td>
+      <td>6769.44</td>
+      <td>6</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7</td>
+      <td>0.714</td>
+      <td>0.893</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>河南</td>
+      <td>7048.59</td>
+      <td>6</td>
+      <td>9667</td>
+      <td>1</td>
+      <td>25</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8</td>
+      <td>0.643</td>
+      <td>0.833</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>上海</td>
+      <td>6250.81</td>
+      <td>7</td>
+      <td>1711</td>
+      <td>25</td>
+      <td>324</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>0.6</td>
+      <td>0.783</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>辽宁</td>
+      <td>6002.54</td>
+      <td>8</td>
+      <td>4210</td>
+      <td>14</td>
+      <td>36</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10</td>
+      <td>0.564</td>
+      <td>0.746</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>四川</td>
+      <td>5456.32</td>
+      <td>9</td>
+      <td>8700.4</td>
+      <td>3</td>
+      <td>36</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>12</td>
+      <td>0.456</td>
+      <td>0.712</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>湖北</td>
+      <td>5401.71</td>
+      <td>10</td>
+      <td>6001.7</td>
+      <td>9</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>14</td>
+      <td>0.456</td>
+      <td>0.645</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>福建</td>
+      <td>5232.17</td>
+      <td>11</td>
+      <td>3488</td>
+      <td>18</td>
+      <td>49</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>16</td>
+      <td>0.425</td>
+      <td>0.601</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>湖南</td>
+      <td>4638.73</td>
+      <td>12</td>
+      <td>6662.8</td>
+      <td>7</td>
+      <td>25</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>18</td>
+      <td>0.399</td>
+      <td>0.564</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>黑龙江</td>
+      <td>4430</td>
+      <td>13</td>
+      <td>3815</td>
+      <td>16</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>20</td>
+      <td>0.377</td>
+      <td>0.534</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>安徽</td>
+      <td>3972.38</td>
+      <td>14</td>
+      <td>6410</td>
+      <td>8</td>
+      <td>36</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>22</td>
+      <td>0.359</td>
+      <td>0.508</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>北京</td>
+      <td>3663.1</td>
+      <td>15</td>
+      <td>1456.4</td>
+      <td>26</td>
+      <td>121</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>24</td>
+      <td>0.343</td>
+      <td>0.485</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>江西</td>
+      <td>2830.46</td>
+      <td>16</td>
+      <td>4254.23</td>
+      <td>13</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>26</td>
+      <td>0.329</td>
+      <td>0.465</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>广西</td>
+      <td>2735.13</td>
+      <td>17</td>
+      <td>4857</td>
+      <td>10</td>
+      <td>49</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>28</td>
+      <td>0.317</td>
+      <td>0.448</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>吉林</td>
+      <td>2522.62</td>
+      <td>18</td>
+      <td>2703.7</td>
+      <td>21</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>30</td>
+      <td>0.306</td>
+      <td>0.432</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>云南</td>
+      <td>2465.29</td>
+      <td>19</td>
+      <td>4375.6</td>
+      <td>12</td>
+      <td>49</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>山西</td>
+      <td>2456.59</td>
+      <td>20</td>
+      <td>3314.29</td>
+      <td>19</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>天津</td>
+      <td>2447.66</td>
+      <td>21</td>
+      <td>1011.3</td>
+      <td>27</td>
+      <td>36</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>陕西</td>
+      <td>2398.58</td>
+      <td>22</td>
+      <td>3689.5</td>
+      <td>17</td>
+      <td>25</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>重庆</td>
+      <td>2250.56</td>
+      <td>23</td>
+      <td>3130</td>
+      <td>20</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>内蒙古</td>
+      <td>2150.41</td>
+      <td>24</td>
+      <td>2379.61</td>
+      <td>23</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>新疆</td>
+      <td>1877.61</td>
+      <td>25</td>
+      <td>1933.95</td>
+      <td>24</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>贵州</td>
+      <td>1356.11</td>
+      <td>26</td>
+      <td>3869.66</td>
+      <td>15</td>
+      <td>121</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>甘肃</td>
+      <td>1304.6</td>
+      <td>27</td>
+      <td>2603.34</td>
+      <td>22</td>
+      <td>25</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>海南</td>
+      <td>670.93</td>
+      <td>28</td>
+      <td>810.52</td>
+      <td>28</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>青海</td>
+      <td>390.21</td>
+      <td>29</td>
+      <td>533.8</td>
+      <td>30</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>宁夏</td>
+      <td>385.34</td>
+      <td>30</td>
+      <td>580.3</td>
+      <td>29</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>西藏</td>
+      <td>184.5</td>
+      <td>31</td>
+      <td>270.17</td>
+      <td>31</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1068</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 自定义列名names</span></span><br><span class="line">data3 = pd.read_excel(<span class="string">'/home/Ubuntu/Documents/test.xlsx'</span>, <span class="number">2</span>, names=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>])</span><br><span class="line">data3</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+      <th>13</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>广东</td>
+      <td>13625.866128</td>
+      <td>1.0</td>
+      <td>7954.22</td>
+      <td>4.0</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>秩相关系数</td>
+      <td>0.784677</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.050</td>
+      <td>0.010</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>江苏</td>
+      <td>12460.830000</td>
+      <td>2.0</td>
+      <td>7405.82</td>
+      <td>5.0</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>1.000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>山东</td>
+      <td>12435.930000</td>
+      <td>3.0</td>
+      <td>9125.00</td>
+      <td>2.0</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>0.900</td>
+      <td>1.000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>浙江</td>
+      <td>9395.000000</td>
+      <td>4.0</td>
+      <td>4679.55</td>
+      <td>11.0</td>
+      <td>49</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6.0</td>
+      <td>0.829</td>
+      <td>0.943</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>河北</td>
+      <td>7098.560000</td>
+      <td>5.0</td>
+      <td>6769.44</td>
+      <td>6.0</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.0</td>
+      <td>0.714</td>
+      <td>0.893</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>河南</td>
+      <td>7048.590000</td>
+      <td>6.0</td>
+      <td>9667.00</td>
+      <td>1.0</td>
+      <td>25</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8.0</td>
+      <td>0.643</td>
+      <td>0.833</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>上海</td>
+      <td>6250.810000</td>
+      <td>7.0</td>
+      <td>1711.00</td>
+      <td>25.0</td>
+      <td>324</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9.0</td>
+      <td>0.600</td>
+      <td>0.783</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>辽宁</td>
+      <td>6002.540000</td>
+      <td>8.0</td>
+      <td>4210.00</td>
+      <td>14.0</td>
+      <td>36</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10.0</td>
+      <td>0.564</td>
+      <td>0.746</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>四川</td>
+      <td>5456.320000</td>
+      <td>9.0</td>
+      <td>8700.40</td>
+      <td>3.0</td>
+      <td>36</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>12.0</td>
+      <td>0.456</td>
+      <td>0.712</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>湖北</td>
+      <td>5401.710000</td>
+      <td>10.0</td>
+      <td>6001.70</td>
+      <td>9.0</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>14.0</td>
+      <td>0.456</td>
+      <td>0.645</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>福建</td>
+      <td>5232.170000</td>
+      <td>11.0</td>
+      <td>3488.00</td>
+      <td>18.0</td>
+      <td>49</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>16.0</td>
+      <td>0.425</td>
+      <td>0.601</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>湖南</td>
+      <td>4638.730000</td>
+      <td>12.0</td>
+      <td>6662.80</td>
+      <td>7.0</td>
+      <td>25</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>18.0</td>
+      <td>0.399</td>
+      <td>0.564</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>黑龙江</td>
+      <td>4430.000000</td>
+      <td>13.0</td>
+      <td>3815.00</td>
+      <td>16.0</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>20.0</td>
+      <td>0.377</td>
+      <td>0.534</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>安徽</td>
+      <td>3972.380000</td>
+      <td>14.0</td>
+      <td>6410.00</td>
+      <td>8.0</td>
+      <td>36</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>22.0</td>
+      <td>0.359</td>
+      <td>0.508</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>北京</td>
+      <td>3663.100000</td>
+      <td>15.0</td>
+      <td>1456.40</td>
+      <td>26.0</td>
+      <td>121</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>24.0</td>
+      <td>0.343</td>
+      <td>0.485</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>江西</td>
+      <td>2830.460000</td>
+      <td>16.0</td>
+      <td>4254.23</td>
+      <td>13.0</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>26.0</td>
+      <td>0.329</td>
+      <td>0.465</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>广西</td>
+      <td>2735.130000</td>
+      <td>17.0</td>
+      <td>4857.00</td>
+      <td>10.0</td>
+      <td>49</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>28.0</td>
+      <td>0.317</td>
+      <td>0.448</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>吉林</td>
+      <td>2522.620000</td>
+      <td>18.0</td>
+      <td>2703.70</td>
+      <td>21.0</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>30.0</td>
+      <td>0.306</td>
+      <td>0.432</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>云南</td>
+      <td>2465.290000</td>
+      <td>19.0</td>
+      <td>4375.60</td>
+      <td>12.0</td>
+      <td>49</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>山西</td>
+      <td>2456.590000</td>
+      <td>20.0</td>
+      <td>3314.29</td>
+      <td>19.0</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>天津</td>
+      <td>2447.660000</td>
+      <td>21.0</td>
+      <td>1011.30</td>
+      <td>27.0</td>
+      <td>36</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>陕西</td>
+      <td>2398.580000</td>
+      <td>22.0</td>
+      <td>3689.50</td>
+      <td>17.0</td>
+      <td>25</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>重庆</td>
+      <td>2250.560000</td>
+      <td>23.0</td>
+      <td>3130.00</td>
+      <td>20.0</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>内蒙古</td>
+      <td>2150.414897</td>
+      <td>24.0</td>
+      <td>2379.61</td>
+      <td>23.0</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>新疆</td>
+      <td>1877.610000</td>
+      <td>25.0</td>
+      <td>1933.95</td>
+      <td>24.0</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>贵州</td>
+      <td>1356.110000</td>
+      <td>26.0</td>
+      <td>3869.66</td>
+      <td>15.0</td>
+      <td>121</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>甘肃</td>
+      <td>1304.600000</td>
+      <td>27.0</td>
+      <td>2603.34</td>
+      <td>22.0</td>
+      <td>25</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>海南</td>
+      <td>670.930000</td>
+      <td>28.0</td>
+      <td>810.52</td>
+      <td>28.0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>青海</td>
+      <td>390.210000</td>
+      <td>29.0</td>
+      <td>533.80</td>
+      <td>30.0</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>宁夏</td>
+      <td>385.340000</td>
+      <td>30.0</td>
+      <td>580.30</td>
+      <td>29.0</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>西藏</td>
+      <td>184.500000</td>
+      <td>31.0</td>
+      <td>270.17</td>
+      <td>31.0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1068</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h2 id="2-2-数据筛选"><a href="#2-2-数据筛选" class="headerlink" title="2.2 数据筛选"></a>2.2 数据筛选</h2><pre><code>定位到某一区域</code></pre><h3 id="2-2-1-解析特定列usecols"><a href="#2-2-1-解析特定列usecols" class="headerlink" title="2.2.1 解析特定列usecols"></a>2.2.1 解析特定列usecols</h3><p>可传入 str、list</p>
+<p>其中，</p>
+<ol>
+<li>如果是str，表示Excel列字母和列范围的列表（如：”A:E” 或 “A,C,E:F”)；</li>
+<li>列表可以是字符串或整型，字符串表示列名称，整型表示列索引。</li>
+</ol>
+<p>注：解析特定行用nrows参数。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data4 = pd.read_excel(<span class="string">'/home/Ubuntu/Documents/test.xlsx'</span>, sheet_name=<span class="number">2</span>, usecols=[<span class="string">'GDP(x)(亿元)'</span>, <span class="string">'总人口(Y)(万人)'</span>])</span><br><span class="line">data4</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GDP(x)(亿元)</th>
+      <th>总人口(Y)(万人)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>13625.866128</td>
+      <td>7954.22</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>12460.830000</td>
+      <td>7405.82</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>12435.930000</td>
+      <td>9125.00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>9395.000000</td>
+      <td>4679.55</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>7098.560000</td>
+      <td>6769.44</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>7048.590000</td>
+      <td>9667.00</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>6250.810000</td>
+      <td>1711.00</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>6002.540000</td>
+      <td>4210.00</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>5456.320000</td>
+      <td>8700.40</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>5401.710000</td>
+      <td>6001.70</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>5232.170000</td>
+      <td>3488.00</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>4638.730000</td>
+      <td>6662.80</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>4430.000000</td>
+      <td>3815.00</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>3972.380000</td>
+      <td>6410.00</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>3663.100000</td>
+      <td>1456.40</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2830.460000</td>
+      <td>4254.23</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>2735.130000</td>
+      <td>4857.00</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>2522.620000</td>
+      <td>2703.70</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>2465.290000</td>
+      <td>4375.60</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>2456.590000</td>
+      <td>3314.29</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>2447.660000</td>
+      <td>1011.30</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>2398.580000</td>
+      <td>3689.50</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>2250.560000</td>
+      <td>3130.00</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>2150.414897</td>
+      <td>2379.61</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>1877.610000</td>
+      <td>1933.95</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>1356.110000</td>
+      <td>3869.66</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>1304.600000</td>
+      <td>2603.34</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>670.930000</td>
+      <td>810.52</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>390.210000</td>
+      <td>533.80</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>385.340000</td>
+      <td>580.30</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>184.500000</td>
+      <td>270.17</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h3 id="2-2-2-跳过开头结尾的的行"><a href="#2-2-2-跳过开头结尾的的行" class="headerlink" title="2.2.2 跳过开头结尾的的行"></a>2.2.2 跳过开头结尾的的行</h3><p>  以哪行开始、以哪行结束  </p>
+<p>skiprows：list-like  </p>
+<ul>
+<li>Rows to skip at the beginning (0-indexed).  </li>
+</ul>
+<p>skipfooterint, default 0  </p>
+<ul>
+<li>Rows at the end to skip (0-indexed).</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data5 = pd.read_excel(<span class="string">'/home/Ubuntu/Documents/test.xlsx'</span>, sheet_name=<span class="number">2</span>, usecols=[<span class="string">'GDP(x)(亿元)'</span>, <span class="string">'总人口(Y)(万人)'</span>], skipfooter=<span class="number">1</span>)</span><br><span class="line">data5</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GDP(x)(亿元)</th>
+      <th>总人口(Y)(万人)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>13625.866128</td>
+      <td>7954.22</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>12460.830000</td>
+      <td>7405.82</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>12435.930000</td>
+      <td>9125.00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>9395.000000</td>
+      <td>4679.55</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>7098.560000</td>
+      <td>6769.44</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>7048.590000</td>
+      <td>9667.00</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>6250.810000</td>
+      <td>1711.00</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>6002.540000</td>
+      <td>4210.00</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>5456.320000</td>
+      <td>8700.40</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>5401.710000</td>
+      <td>6001.70</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>5232.170000</td>
+      <td>3488.00</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>4638.730000</td>
+      <td>6662.80</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>4430.000000</td>
+      <td>3815.00</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>3972.380000</td>
+      <td>6410.00</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>3663.100000</td>
+      <td>1456.40</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2830.460000</td>
+      <td>4254.23</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>2735.130000</td>
+      <td>4857.00</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>2522.620000</td>
+      <td>2703.70</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>2465.290000</td>
+      <td>4375.60</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>2456.590000</td>
+      <td>3314.29</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>2447.660000</td>
+      <td>1011.30</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>2398.580000</td>
+      <td>3689.50</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>2250.560000</td>
+      <td>3130.00</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>2150.414897</td>
+      <td>2379.61</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>1877.610000</td>
+      <td>1933.95</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>1356.110000</td>
+      <td>3869.66</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>1304.600000</td>
+      <td>2603.34</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>670.930000</td>
+      <td>810.52</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>390.210000</td>
+      <td>533.80</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>385.340000</td>
+      <td>580.30</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>184.500000</td>
+      <td>270.17</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 计算 spearman 相关系数</span></span><br><span class="line">data5.corr(<span class="string">'spearman'</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GDP(x)(亿元)</th>
+      <th>总人口(Y)(万人)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>GDP(x)(亿元)</th>
+      <td>1.000000</td>
+      <td>0.784677</td>
+    </tr>
+    <tr>
+      <th>总人口(Y)(万人)</th>
+      <td>0.784677</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h1 id="3-回归分析"><a href="#3-回归分析" class="headerlink" title="3 回归分析"></a>3 回归分析</h1><h2 id="3-1-一元线性回归"><a href="#3-1-一元线性回归" class="headerlink" title="3.1 一元线性回归"></a>3.1 一元线性回归</h2><p><strong>建立模型：</strong>  </p>
+<ol>
+<li><strong>选取</strong> 一元线性回归模型的 <strong>变量</strong> ；</li>
+<li>绘制计算表和拟合散点图;</li>
+<li>计算变量间的回归系数及其相关的显著性；</li>
+<li>回归分析结果的应用。</li>
+</ol>
+<p><strong>模型的检验</strong>:  </p>
+<ol>
+<li>经济意义检验：就是根据模型中各个参数的经济含义，分析各参数的值是否与分析对象的经济含义相符；</li>
+<li>回归标准差检验；</li>
+<li>拟合优度检验；</li>
+<li>回归系数的显著性检验。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line">%config InlineBackend.figure_format = <span class="string">'svg'</span>  <span class="comment"># 转化成矢量图，提高清晰度</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 完整sheet在pandas中查看</span></span><br><span class="line">data6 = pd.read_excel(<span class="string">'/home/Ubuntu/Documents/test.xlsx'</span>, sheet_name=<span class="number">1</span>)</span><br><span class="line">data6</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>台站</th>
+      <th>经度x/度</th>
+      <th>纬度y/度</th>
+      <th>海拔a/m</th>
+      <th>年降水量p/mm</th>
+      <th>年蒸发量v/mm</th>
+      <th>Unnamed: 6</th>
+      <th>Unnamed: 7</th>
+      <th>相关系数</th>
+      <th>Unnamed: 9</th>
+      <th>Unnamed: 10</th>
+      <th>Unnamed: 11</th>
+      <th>Unnamed: 12</th>
+      <th>Unnamed: 13</th>
+      <th>Unnamed: 14</th>
+      <th>Unnamed: 15</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>安西</td>
+      <td>95.92</td>
+      <td>40.50</td>
+      <td>1170.8</td>
+      <td>48.25</td>
+      <td>2835.57</td>
+      <td>NaN</td>
+      <td>py</td>
+      <td>-0.903529</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>白银</td>
+      <td>104.53</td>
+      <td>36.60</td>
+      <td>1707.2</td>
+      <td>193.72</td>
+      <td>1947.97</td>
+      <td>NaN</td>
+      <td>vy</td>
+      <td>0.880732</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>定西</td>
+      <td>104.63</td>
+      <td>35.53</td>
+      <td>1908.8</td>
+      <td>413.94</td>
+      <td>1538.10</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>古浪</td>
+      <td>102.90</td>
+      <td>37.48</td>
+      <td>2072.4</td>
+      <td>358.60</td>
+      <td>1756.79</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>和政</td>
+      <td>103.35</td>
+      <td>35.43</td>
+      <td>2136.4</td>
+      <td>615.04</td>
+      <td>1317.64</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Coefficients</td>
+      <td>标准误差</td>
+      <td>t Stat</td>
+      <td>P-value</td>
+      <td>Lower 95%</td>
+      <td>Upper 95%</td>
+      <td>下限 95.0%</td>
+      <td>上限 95.0%</td>
+    </tr>
+    <tr>
+      <th>59</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Intercept</td>
+      <td>3295.13</td>
+      <td>205.455</td>
+      <td>16.0382</td>
+      <td>2.37198e-21</td>
+      <td>2882.46</td>
+      <td>3707.8</td>
+      <td>2882.46</td>
+      <td>3707.8</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>X Variable 1</td>
+      <td>-81.1737</td>
+      <td>5.38605</td>
+      <td>-15.0711</td>
+      <td>3.15159e-20</td>
+      <td>-91.9919</td>
+      <td>-70.3555</td>
+      <td>-91.9919</td>
+      <td>-70.3555</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>X Variable 2</td>
+      <td>0.036214</td>
+      <td>0.0208951</td>
+      <td>1.73313</td>
+      <td>0.0892358</td>
+      <td>-0.00575503</td>
+      <td>0.078183</td>
+      <td>-0.00575503</td>
+      <td>0.078183</td>
+    </tr>
+  </tbody>
+</table>
+<p>62 rows × 16 columns</p>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 数据筛选</span></span><br><span class="line">data7 = pd.read_excel(<span class="string">'/home/Ubuntu/Documents/test.xlsx'</span>, sheet_name=<span class="number">1</span>, usecols=[<span class="string">'纬度y/度'</span>, <span class="string">'年降水量p/mm'</span>], skipfooter=<span class="number">9</span>)</span><br><span class="line"><span class="comment"># 观察前后五行</span></span><br><span class="line">print(data7.head(<span class="number">5</span>))</span><br><span class="line">print(data7.tail(<span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+
+<pre><code>   纬度y/度  年降水量p/mm
+0  40.50     48.25
+1  36.60    193.72
+2  35.53    413.94
+3  37.48    358.60
+4  35.43    615.04
+    纬度y/度  年降水量p/mm
+48  34.70    515.02
+49  35.00    545.72
+50  34.21    786.75
+51  35.43    584.89
+52  36.14    574.00</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 散点图观察趋势</span></span><br><span class="line">plt.scatter(</span><br><span class="line">    data7[<span class="string">'纬度y/度'</span>],</span><br><span class="line">    data7[<span class="string">'年降水量p/mm'</span>],</span><br><span class="line">)</span><br><span class="line">plt.xlabel(<span class="string">'latitud'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'amount of precipitation'</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>Text(0, 0.5, &apos;amount of precipitation&apos;)</code></pre><p><img data-src="QG%E5%AE%9E%E9%AA%8C2-%E7%BB%8F%E5%85%B8%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%901%EF%BC%88Excel%E3%80%81Python%29_files/QG%E5%AE%9E%E9%AA%8C2-%E7%BB%8F%E5%85%B8%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%901%EF%BC%88Excel%E3%80%81Python%29_19_1.svg" alt="svg"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 计算参数</span></span><br><span class="line">x = data7[<span class="string">'纬度y/度'</span>].values</span><br><span class="line">y = data7[<span class="string">'年降水量p/mm'</span>].values</span><br><span class="line"></span><br><span class="line"><span class="comment">#############参数说明#############</span></span><br><span class="line"><span class="comment"># slope：斜率                    #</span></span><br><span class="line"><span class="comment"># intercept：截距                #</span></span><br><span class="line"><span class="comment"># r_value：相关系数              #</span></span><br><span class="line"><span class="comment"># p_value：假设检验P值           #</span></span><br><span class="line"><span class="comment"># sts_err：标准误差              #</span></span><br><span class="line"><span class="comment">##################################</span></span><br><span class="line"></span><br><span class="line">slope, intercept, r_value, p_value, std_err = stats.linregress(x,y)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 曲线拟合</span></span><br><span class="line">plt.scatter(</span><br><span class="line">    data7[<span class="string">'纬度y/度'</span>],</span><br><span class="line">    data7[<span class="string">'年降水量p/mm'</span>],</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">predictions = slope*data7[<span class="string">'纬度y/度'</span>] + intercept</span><br><span class="line">plt.plot(</span><br><span class="line">    data7[<span class="string">'纬度y/度'</span>],</span><br><span class="line">    predictions,</span><br><span class="line">    c=<span class="string">'black'</span>,</span><br><span class="line">    linewidth=<span class="number">2</span></span><br><span class="line">)</span><br><span class="line">plt.xlabel(<span class="string">'纬度y/度'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'年降水量p/mm'</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>Text(0, 0.5, &apos;年降水量p/mm&apos;)</code></pre><p><img data-src="QG%E5%AE%9E%E9%AA%8C2-%E7%BB%8F%E5%85%B8%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%901%EF%BC%88Excel%E3%80%81Python%29_files/QG%E5%AE%9E%E9%AA%8C2-%E7%BB%8F%E5%85%B8%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%901%EF%BC%88Excel%E3%80%81Python%29_21_1.svg" alt="svg"></p>
+<p><strong>显著性检验参数有：</strong>   </p>
+<ol>
+<li>回归系数检验（t-检验）</li>
+<li>拟合优度R<sup>2</sup></li>
+<li>模型检验(F检验）</li>
+</ol>
+<p>在一元线性回归分析中，三者可以转化、检验效果基本一致。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 显著性检验 R²</span></span><br><span class="line">print(<span class="string">"The linear model is: y = &#123;:.5&#125;x + &#123;:.5&#125;"</span>.format(slope, intercept))</span><br><span class="line">print(<span class="string">"r-squared:"</span>, r_value**<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>The linear model is: y = -82.188x + 3395.6
+r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Python实现一元线性回归的8种方法：</p>
+<ol>
+<li>Simple matrix inverse;</li>
+<li>Stats.linregress;</li>
+<li>Numpy.linalg.lstsq;</li>
+<li>Moore-Penrose inverse;</li>
+<li>sklearn.linear_model;</li>
+<li>Polyfit;</li>
+<li>Statsmodels.OLS;</li>
+<li>Optimize.curve_fit。</li>
+</ol>
+<p>排名按速度快慢的顺序，其中Statsmodels.OLS()结果像R或Julia等统计语言一样丰富。所以你也可以搭配使用，你可以用sklearn。linalg_model来进行训练预测，用statsmodel.OLS来进行模型评估的。</p>
+<p>参考文章：<br><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RNYjhaOVZkbTY2d0g2OFZYMS9hcnRpY2xlL2RldGFpbHMvNzkxMDI0MjU=">https://blog.csdn.net/tMb8Z9Vdm66wH68VX1/article/details/79102425<i class="fa fa-external-link-alt"></i></span><br>原文地址：<br><span class="exturl" data-url="aHR0cHM6Ly9tZWRpdW0uZnJlZWNvZGVjYW1wLm9yZy9kYXRhLXNjaWVuY2Utd2l0aC1weXRob24tOC13YXlzLXRvLWRvLWxpbmVhci1yZWdyZXNzaW9uLWFuZC1tZWFzdXJlLXRoZWlyLXNwZWVkLWI1NTc3ZDc1Zjhi">https://medium.freecodecamp.org/data-science-with-python-8-ways-to-do-linear-regression-and-measure-their-speed-b5577d75f8b<i class="fa fa-external-link-alt"></i></span>  </p>
+<h2 id="3-2-多元线性分析"><a href="#3-2-多元线性分析" class="headerlink" title="3.2 多元线性分析"></a>3.2 多元线性分析</h2><p>多元与一元基本一致，基本过程有选取变量、建模、检验。  </p>
+<p><strong>Tip：</strong> 进行多元线性回归分析时就不能再用Stats.linregress了，它只能进行一元线性回归分析。进行多元线性回归以及非线性关系的线性化都可以用sklearn.linear_modle，<span class="exturl" data-url="aHR0cHM6Ly9zY2lraXQtbGVhcm4ub3JnL3N0YWJsZS9tb2R1bGVzL2NsYXNzZXMuaHRtbCNtb2R1bGUtc2tsZWFybi5saW5lYXJfbW9kZWw=">API参考<i class="fa fa-external-link-alt"></i></span></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据清洗</span></span><br><span class="line">data8 = pd.read_excel(<span class="string">'/home/Ubuntu/Documents/test.xlsx'</span>, sheet_name=<span class="number">1</span>, usecols=[<span class="string">'纬度y/度'</span>, <span class="string">'海拔a/m'</span>, <span class="string">'年降水量p/mm'</span>], skipfooter=<span class="number">9</span>)</span><br><span class="line"><span class="comment"># 清洗结果查看</span></span><br><span class="line">print(data8.head())</span><br><span class="line">print(data8.tail())</span><br></pre></td></tr></table></figure>
+
+<pre><code>   纬度y/度   海拔a/m  年降水量p/mm
+0  40.50  1170.8     48.25
+1  36.60  1707.2    193.72
+2  35.53  1908.8    413.94
+3  37.48  2072.4    358.60
+4  35.43  2136.4    615.04
+    纬度y/度   海拔a/m  年降水量p/mm
+48  34.70  2810.2    515.02
+49  35.00  2915.7    545.72
+50  34.21  3362.7    786.75
+51  35.43  1221.2    584.89
+52  36.14  1111.7    574.00</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 选取变量</span></span><br><span class="line">x = data8.drop([<span class="string">'年降水量p/mm'</span>], axis=<span class="number">1</span>)</span><br><span class="line">y = data8.drop([<span class="string">'纬度y/度'</span>, <span class="string">'海拔a/m'</span>], axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建线性回归对象</span></span><br><span class="line">regr = linear_model.LinearRegression()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用数据训练模型</span></span><br><span class="line">regr.fit(x, y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拟合模型</span></span><br><span class="line">print(<span class="string">"The linear model is: Y = &#123;:.5&#125; + &#123;:.5&#125;*维度 + &#123;:.5&#125;*海拔"</span>.format(regr.intercept_[<span class="number">0</span>], regr.coef_[<span class="number">0</span>][<span class="number">0</span>], regr.coef_[<span class="number">0</span>][<span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
+
+<pre><code>The linear model is: Y = 3295.1 + -81.174*维度 + 0.036214*海拔</code></pre><p>之后，可以直接调用regr实例的Methods，获取想要的相关数据：</p>
+<ol>
+<li>get_params()   获取预测（计算模型用的）参数  </li>
+<li>predict()     获取预测值</li>
+<li>score()       可决系数R<sup>2<sup></li>
+</ol>
+<p>标准误差可以用sklearn.metrics.mean_squared_error()获取    </p>
+<p><strong>再者:</strong> 如果需要更多参数可以使用statsmodel库，也一样几行代码完成回归计算。<span class="exturl" data-url="aHR0cHM6Ly93d3cuc3RhdHNtb2RlbHMub3JnL3N0YWJsZS9hcGkuaHRtbA==">statsmodel库API<i class="fa fa-external-link-alt"></i></span></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> statsmodels.api <span class="keyword">as</span> sm</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">X2 = sm.add_constant(x)</span><br><span class="line">regr1 = sm.OLS(y, X2).fit()</span><br><span class="line"><span class="comment"># 总结</span></span><br><span class="line">regr1.summary()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>        <td>年降水量p/mm</td>     <th>  R-squared:         </th> <td>   0.827</td>
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.820</td>
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   119.3</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Tue, 12 May 2020</td> <th>  Prob (F-statistic):</th> <td>9.24e-20</td>
+</tr>
+<tr>
+  <th>Time:</th>                 <td>16:49:37</td>     <th>  Log-Likelihood:    </th> <td> -312.86</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>    53</td>      <th>  AIC:               </th> <td>   631.7</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>    50</td>      <th>  BIC:               </th> <td>   637.6</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     2</td>      <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+    <td></td>       <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>const</th> <td> 3295.1279</td> <td>  205.455</td> <td>   16.038</td> <td> 0.000</td> <td> 2882.460</td> <td> 3707.796</td>
+</tr>
+<tr>
+  <th>纬度y/度</th> <td>  -81.1737</td> <td>    5.386</td> <td>  -15.071</td> <td> 0.000</td> <td>  -91.992</td> <td>  -70.355</td>
+</tr>
+<tr>
+  <th>海拔a/m</th> <td>    0.0362</td> <td>    0.021</td> <td>    1.733</td> <td> 0.089</td> <td>   -0.006</td> <td>    0.078</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td> 1.809</td> <th>  Durbin-Watson:     </th> <td>   1.347</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.405</td> <th>  Jarque-Bera (JB):  </th> <td>   1.677</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td> 0.330</td> <th>  Prob(JB):          </th> <td>   0.432</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 2.431</td> <th>  Cond. No.          </th> <td>3.03e+04</td>
+</tr>
+</table><br/><br/>Warnings:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br/>[2] The condition number is large, 3.03e+04. This might indicate that there are<br/>strong multicollinearity or other numerical problems.]]></content>
+      <categories>
+        <category>计量地理学</category>
+      </categories>
+      <tags>
+        <tag>Excel</tag>
+        <tag>Python</tag>
+        <tag>地理空间分析</tag>
+        <tag>数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Time Series Pandas</title>
+    <url>/2020/06/04/Time-Series-Pandas/</url>
+    <content><![CDATA[<p><strong>摘要：</strong>利用Python进行时间序列分析,  主要记录ARIMA模型相关知识。</p>
+<a id="more"></a>
+
+
+
+<h2 id="生成时间序列"><a href="#生成时间序列" class="headerlink" title="生成时间序列"></a>生成时间序列</h2><ol>
+<li>pd.date_range()</li>
+<li>truncate()过滤</li>
+<li>pd.Timestamp()时间戳</li>
+<li>pd.Period()时间周期</li>
+<li>pd.datelta()间隔</li>
+</ol>
+<h2 id="差分法"><a href="#差分法" class="headerlink" title="差分法"></a>差分法</h2><p>​    改进数据平稳性</p>
+<p><code>.diff(num)</code>: num阶差分，一般一阶就可以了。</p>
+<h2 id="ARIMA模型"><a href="#ARIMA模型" class="headerlink" title="ARIMA模型"></a>ARIMA模型</h2><p>​        <strong>ARIMA模型</strong>（英语：<strong>A</strong>uto<strong>r</strong>egressive <strong>I</strong>ntegrated <strong>M</strong>oving <strong>A</strong>verage model），差分整合移动平均自回归模型，又称整合移动平均自回归模型（移动也可称作滑动），是<span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS/ml7bpl7Tluo/liJc=">时间序列<i class="fa fa-external-link-alt"></i></span>预测分析方法之一。</p>
+<p>​        ARIMA(p，d，q)中，AR是“自回归模型”，p为自回归项数；MA为“滑动平均模型”，q为滑动平均项数，d为使之成为平稳序列所做的差分次数（阶数）。“差分”一词虽未出现在ARIMA的英文名称中，却是关键步骤。</p>
+<h3 id="AR模型"><a href="#AR模型" class="headerlink" title="AR模型"></a>AR模型</h3><ul>
+<li><p>描述当前值与历史值之间的关系，用变量自身的历史时间数据对自身进行预测</p>
+</li>
+<li><p>p阶自回归过程的公式定义：$y_t = \mu + \sum^{p}<em>{i=1}{\gamma_iy</em>{t-i}} + \epsilon_t$, </p>
+</li>
+<li><p>其中 $y_t$ 是当前值、$\mu$ 是常数项、p 是阶数、 $\gamma_i$ 是自相关系数、 $\epsilon_t$ 是误差</p>
+</li>
+</ul>
+<ul>
+<li><p>自回归模型是用自身的数据来进行预测</p>
+</li>
+<li><p>必须具有平稳性</p>
+</li>
+<li><p>必须具有自相关，如果自相关系数小于0.5，则不宜采用</p>
+</li>
+<li><p>自回归只适用于预测与自身前期相关的现象</p>
+</li>
+</ul>
+<h3 id="MA模型"><a href="#MA模型" class="headerlink" title="MA模型"></a>MA模型</h3><ul>
+<li>移动平均模型关注的是自回归模型中误差项的累加</li>
+<li>q阶移动平均模型：$y_t = \mu + \epsilon_t + \sum^q_{i=1}{\theta_i\epsilon_{t-i}}$ </li>
+<li>移动平均模型能够消除预测中的随机波动</li>
+</ul>
+<ul>
+<li><code>ARMA = AR + MA</code> 、<code>ARMA + 差分 = ARIMA</code></li>
+</ul>
+<h3 id="ARIMA模型原理"><a href="#ARIMA模型原理" class="headerlink" title="ARIMA模型原理"></a>ARIMA模型原理</h3><p>​        将非平稳时间序列转化为平稳时间序列，然后将因变量对它的滞后值以及随机误差项的现值和滞后值进行回归所建立的模型</p>
+<h3 id="p、q值的确定"><a href="#p、q值的确定" class="headerlink" title="p、q值的确定"></a>p、q值的确定</h3><p>自相关系数ACF、偏相关系数PACF</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>ACF</th>
+<th>PACF</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AR(p)</td>
+<td>衰减趋于零（几何型或振荡型）</td>
+<td>p阶后截尾</td>
+</tr>
+<tr>
+<td>MA(q)</td>
+<td>q阶后截尾</td>
+<td>衰减趋于零（几何型或振荡型）</td>
+</tr>
+<tr>
+<td>ARMA(p, q)</td>
+<td>q阶后衰减趋于零（几何型或振荡型）</td>
+<td>p阶后衰减趋于零（几何型或振荡型）</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>截尾：落在置信区间内（95%的点都符合该规则）</p>
+</li>
+<li><p>Python方法：</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> statsmodels.graphocs.tsaplots <span class="keyword">import</span> plot_acf, plot_pacf</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h2 id="数据重采样"><a href="#数据重采样" class="headerlink" title="数据重采样"></a>数据重采样</h2><ol>
+<li><code>.resample(freq)</code> 例如：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rng = pd.date_range(<span class="string">'1/1/2020'</span>, periods=<span class="number">90</span>, freq=<span class="string">'D'</span>)</span><br><span class="line">ts = pd.Series(np.random.randn(len(rng)), index=rng)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 降采样</span></span><br><span class="line">ts = resample(<span class="string">'M'</span>).mean()</span><br><span class="line">ts = resmaple(<span class="string">'M'</span>).sum()</span><br><span class="line">ts = resmaple(<span class="string">'3D'</span>).sum()</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>升采样插值<ul>
+<li><code>.fill(位数)</code>，向后填充，空值取前面的值</li>
+<li><code>.bfill()</code>, 向前填充</li>
+<li><code>.interpolate()</code>, 线性填充</li>
+</ul>
+</li>
+</ol>
+<h2 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h2><p>在较长时间区间上，用来观测某个时间点、区间相关情况的方法。</p>
+<p>使用<code>.rolling(windowSize)</code></p>
+<h2 id="额外收获"><a href="#额外收获" class="headerlink" title="额外收获"></a>额外收获</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B5ZGF0YS9wYW5kYXMtZGF0YXJlYWRlcg==">pandasdatareade<i class="fa fa-external-link-alt"></i></span>: 直接获取网络上的数据到<code>dataframe</code></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2JsdWUteW9uZGVyL3RzZnJlc2g=">tsfresh<i class="fa fa-external-link-alt"></i></span>: 提取时间序列的特征</p>
+<h2 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h2><ol>
+<li>时间序列分类</li>
+<li>EDA</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Machine Learning</category>
+      </categories>
+      <tags>
+        <tag>Time Series</tag>
+        <tag>Data Analysis</tag>
+        <tag>Pandas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Unit-6-Innovation(TF).md</title>
+    <url>/2020/05/15/Unit-6-Innovation(TF)/</url>
+    <content><![CDATA[<p><strong>Record the words and example sentences</strong>  </p>
+<a id="more"></a>
+
+<ol>
+<li><p><strong>word：</strong><br>urban planner(城市规划师)<br><strong>sentences:</strong><br>An urban planner is a person who works on the efficient organization of a city’s features.</p>
+</li>
+<li><p><strong>word：</strong><br>interrelated<br>adj. 相关的；互相联系的；v. 使相互联系（interrelate的过去式）<br>interact<br>v. 互相影响；互相作用<br><strong>sentences:</strong><br>All things are interrelated and interact with each other.<br>一切事物都是相互联系、相互作用的。</p>
+</li>
+<li><p><strong>word：</strong><br>commuter<br>n. 通勤者，经常乘公共车辆往返者；[交] 月季票乘客<br><strong>sentences：</strong><br>A commuter is someone who travels a long distance to work every day.<br>通勤族是指每天都要长途跋涉去上班的人。 </p>
+</li>
+<li><p><strong>word:</strong><br>imprisonment　　监禁　　　　　　　　　option　　选项<br>fine　　n. 罚款    　<br>adj. 好的；优良的；细小的，精美的；健康的；晴朗的<br><strong>sentences:</strong><br>He was given one month’s imprisonment without the option of a fine.  他被判处一个月徒刑，没有罚款的选择。  </p>
+</li>
+<li><p><strong>word:</strong><br>stationary<br>adj. 固定的；静止的；定居的；常备军的<br>n. 不动的人；驻军<br><strong>sentences:</strong><br>A traffic jam is a long line of vehicles that is either stationary or moving very slowly.<br>交通堵塞就是指一排排固定不动或行驶缓慢的车辆。  </p>
+</li>
+<li><p><strong>drop</strong><br>v.When someone drops you off, he or she lets you alight from the vehicle.（让⋯）下车，卸下（乘客） </p>
+</li>
+<li><p><strong>for one thing</strong><br>When you say “for one thing,” you indicate that you are talking about one of the factors involved in the situation. 首先，一则  </p>
+</li>
+<li><p><strong>not to mention</strong><br>You will use “not to mention” when you want to indicate that you’re about to provide additional information to support your point. 更不用说，此外  </p>
+</li>
+<li><p><strong>conference</strong><br>n.A conference is a meeting, usually held over the course of a few days, where a particular subject is discussed. （正式）会议  </p>
+</li>
+<li><p><strong>demonstrate</strong><br>v.To demonstrate is to show how something works, or how something should be done. 示范操作，演示  </p>
+</li>
+<li><p><strong>revolution</strong><br>n.A revolution refers to a swift and dramatic change in society. 重大变革  </p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Studying-English</category>
+      </categories>
+      <tags>
+        <tag>Notebook</tag>
+        <tag>English Though Films</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Notes_01|&quot;alias&quot; Knowledge</title>
+    <url>/2020/05/30/alias/</url>
+    <content><![CDATA[<p>  转载自知乎：乃乎。因为 WSL2 Access Windows Proxy 中命令用到了alias方法，就在知乎找到乃乎的分享。</p>
+<a id="more"></a>
+
+<p>alias (别名)，一般用来用一个短的简单的命令来代替长的复杂的命令</p>
+<h2 id="查看-alias"><a href="#查看-alias" class="headerlink" title="查看 alias"></a>查看 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Ubuntu@DESKTOP-J51JGI8:~$ <span class="built_in">alias</span></span><br><span class="line"><span class="built_in">alias</span> alert=<span class="string">'notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$(history|tail -n1|sed -e '</span>\<span class="string">''</span>s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//<span class="string">'\'</span><span class="string">')"'</span></span><br><span class="line"><span class="built_in">alias</span> egrep=<span class="string">'egrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> fgrep=<span class="string">'fgrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> grep=<span class="string">'grep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> l=<span class="string">'ls -CF'</span></span><br><span class="line"><span class="built_in">alias</span> la=<span class="string">'ls -A'</span></span><br><span class="line"><span class="built_in">alias</span> ll=<span class="string">'ls -alF'</span></span><br><span class="line"><span class="built_in">alias</span> ls=<span class="string">'ls --color=auto'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="临时定义-alias"><a href="#临时定义-alias" class="headerlink" title="临时定义 alias"></a>临时定义 alias</h2><p>使用 <code>ll</code> 代替 <code>ls -al</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="持久定义-alias"><a href="#持久定义-alias" class="headerlink" title="持久定义 alias"></a>持久定义 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>shell 启动的时候会读取配置文件，~/.bashrc 或者 ～/.zshrc。在配置文件中加入 alias 定义的命令就可以在每次启动 shell 后都存在定义好的 alias</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># custom aliases are listed below</span></span><br><span class="line">$ <span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy93d3cudGVjbWludC5jb20vY3JlYXRlLWFsaWFzLWluLWxpbnV4Lw==">https://www.tecmint.com/create-alias-in-linux/<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>WSL2</category>
+      </categories>
+      <tags>
+        <tag>Notebook - Bash - Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/06/06/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo<i class="fa fa-external-link-alt"></i></span>! This is your very first post. Check <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv">documentation<i class="fa fa-external-link-alt"></i></span> for more info. If you get any problems when using Hexo, you can find the answer in <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdHJvdWJsZXNob290aW5nLmh0bWw=">troubleshooting<i class="fa fa-external-link-alt"></i></span> or you can ask me on <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL2lzc3Vlcw==">GitHub<i class="fa fa-external-link-alt"></i></span>.</p>
+<a id="more"></a>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvd3JpdGluZy5odG1s">Writing<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvc2VydmVyLmh0bWw=">Server<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZ2VuZXJhdGluZy5odG1s">Generating<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvb25lLWNvbW1hbmQtZGVwbG95bWVudC5odG1s">Deployment<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>demo</category>
+      </categories>
+      <tags>
+        <tag>Studying</tag>
+        <tag>Test</tag>
+        <tag>Share</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WSL2 Access Windows Proxy</title>
+    <url>/2020/05/30/wsl2_access_windows_proxy/</url>
+    <content><![CDATA[<h2 id="IP设置"><a href="#IP设置" class="headerlink" title="IP设置"></a>IP设置</h2><p>IP要使用主机局域网IP，例如192.168.123.176。127.0.0.1不行。再者，就是host.deocker.internal在安装docker的时候进行了重定向，所以使用这个也是可以的。</p>
+<a id="more"></a>
+
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ol>
+<li><p>使用<code>proxychains</code>。安装就是<code>sudo apt install proxychains</code>，然后再进去<code>/etc/proxychains.conf</code>进行ip设置，使用直接在命令前面加proxychains。<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxychains.conf.png" alt="image-20200606150558949">![image-20200606102952207](<span class="exturl" data-url="aHR0cHM6Ly9naXRlZS5jb20vUnN3ZWF0ZXJfYWRtaW4vQmxvZ19JbWFnZXMvcmF3L21hc3Rlci9pbWcvd3Ns">https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/wsl<i class="fa fa-external-link-alt"></i></span> proxy1.png)</p>
+<p>这个方法可能会出现dns无法解析的问题，要装依赖tor,使用<code>sudo apt install tor</code>即可。</p>
+</li>
+<li><p>使用修改<code>.bashrc</code>, 在<code>.bashrc</code>中写代理和取消代理函数, 使用直接输入proxy、noproxy即可。<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxy.bashrc.png" alt="image-20200606151542147"></p>
+</li>
+</ol>
+<figure class="highlight plain"><figcaption><span>>>> proxy setting >>></span></figcaption><table><tr><td class="code"><pre><span class="line">proxy () &#123;</span><br><span class="line">        export ALL_PROXY&#x3D;&quot;socks5:&#x2F;&#x2F;192.168.123.176:10808&quot;</span><br><span class="line">        export all_proxy&#x3D;&quot;socks5:&#x2F;&#x2F;192.168.123.176:10808&quot;</span><br><span class="line">        echo -e &quot;Acquire::http::Proxy \&quot;http:&#x2F;&#x2F;192.168.123.176:10809\&quot;;&quot; | sudo tee -a &#x2F;etc&#x2F;apt&#x2F;apt.c</span><br><span class="line">onf &gt; &#x2F;dev&#x2F;null</span><br><span class="line">        echo -e &quot;Acquire::https::Proxy \&quot;http:&#x2F;&#x2F;192.168.123.176:10809\&quot;;&quot; | sudo tee -a &#x2F;etc&#x2F;apt&#x2F;apt.</span><br><span class="line">conf &gt; &#x2F;dev&#x2F;null</span><br><span class="line">        curl myip.ipip.net</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><figcaption><span><<< proxy setting <<<</span></figcaption><table><tr><td class="code"><pre><span class="line">noproxy () &#123;</span><br><span class="line">        unset ALL_PROXY</span><br><span class="line">        unset all_proxy</span><br><span class="line">        sudo sed -i -e &#39;&#x2F;Acquire::http::Proxy&#x2F;d&#39; &#x2F;etc&#x2F;apt&#x2F;apt.conf</span><br><span class="line">        sudo sed -i -e &#39;&#x2F;Acquire::https::Proxy&#x2F;d&#39; &#x2F;etc&#x2F;apt&#x2F;apt.conf</span><br><span class="line">        curl myip.ipip.net</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果图：</strong></p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxy_.bashrc.png" alt="image-20200606151800543"></p>
+<ol start="3">
+<li>就是使用<code>alias</code>将<code>export http_proxy=socks5://192.168.123.176:10808</code>做成段命令，直接在需要代理命令之前加别名即可。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>WSL2</category>
+      </categories>
+      <tags>
+        <tag>Proxy</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+</search>
