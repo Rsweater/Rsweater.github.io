@@ -269,17 +269,6 @@ dd {
   margin: 0;
   padding: 0;
 }
-kbd {
-  background-color: #f5f5f5;
-  background-image: linear-gradient(#eee, #fff, #eee);
-  border: 1px solid #ccc;
-  border-radius: 0.2em;
-  box-shadow: 0.1em 0.1em 0.2em rgba(0,0,0,0.1);
-  color: #555;
-  font-family: inherit;
-  padding: 0.1em 0.3em;
-  white-space: nowrap;
-}
 .table-container {
   overflow: auto;
 }
@@ -505,10 +494,15 @@ Original highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
   right: 4px;
   top: 8px;
 }
+code,
+kbd,
 .highlight,
 pre {
   background: var(--highlight-background);
   color: var(--highlight-foreground);
+}
+.highlight,
+pre {
   line-height: 1.6;
   margin: 0 auto 20px;
 }
@@ -517,12 +511,18 @@ code {
   font-family: consolas, Menlo, monospace, "PingFang SC", "Microsoft YaHei";
 }
 code {
-  background: #eee;
   border-radius: 3px;
-  color: #555;
   padding: 2px 4px;
   overflow-wrap: break-word;
   word-wrap: break-word;
+}
+kbd {
+  border: 1px solid #ccc;
+  border-radius: 0.2em;
+  box-shadow: 0.1em 0.1em 0.2em rgba(0,0,0,0.1);
+  font-family: inherit;
+  padding: 0.1em 0.3em;
+  white-space: nowrap;
 }
 .highlight {
   position: relative;
@@ -590,7 +590,6 @@ pre {
 }
 pre code {
   background: none;
-  color: var(--highlight-foreground);
   font-size: 0.875em;
   padding: 0;
   text-shadow: none;
@@ -1067,10 +1066,8 @@ pre code {
 .pagination .page-number,
 .pagination .space {
   display: inline-block;
-  margin: 0 10px;
-  padding: 0 11px;
-  position: relative;
-  top: -1px;
+  margin: -1px 10px 0 10px;
+  padding: 0 10px;
 }
 @media (max-width: 767px) {
   .pagination .prev,
@@ -1100,38 +1097,32 @@ pre code {
 .pagination .page-number:hover {
   border-top-color: var(--link-hover-color);
 }
-.pagination .space {
-  margin: 0;
-  padding: 0;
-}
-.pagination .prev {
-  margin-left: 0;
-}
-.pagination .next {
-  margin-right: 0;
-}
-.pagination .page-number.current {
-  background: #ccc;
-  border-top-color: #ccc;
-  color: var(--content-bg-color);
-}
 @media (max-width: 767px) {
   .pagination {
-    border-top: none;
+    border-top: 0;
+    margin-bottom: 10px;
   }
   .pagination .prev,
   .pagination .next,
   .pagination .page-number {
     border-bottom: 1px solid #eee;
     border-top: 0;
-    margin-bottom: 10px;
-    padding: 0 10px;
   }
   .pagination .prev:hover,
   .pagination .next:hover,
   .pagination .page-number:hover {
     border-bottom-color: var(--link-hover-color);
   }
+}
+.pagination .space {
+  margin: 0;
+  padding: 0;
+}
+.pagination .page-number.current,
+.algolia-pagination .current .page-number {
+  background: #ccc;
+  border-color: #ccc;
+  color: var(--content-bg-color);
 }
 .comments {
   margin-top: 60px;
@@ -1224,6 +1215,14 @@ pre code {
 @media (max-width: 767px) {
   .site-meta {
     text-align: center;
+  }
+}
+.custom-logo-image {
+  margin-top: 20px;
+}
+@media (max-width: 991px) {
+  .custom-logo-image {
+    display: none;
   }
 }
 .brand {
@@ -1363,6 +1362,11 @@ pre code {
   position: fixed;
   top: 0;
 }
+@media (max-width: 991px) {
+  .sidebar {
+    display: none;
+  }
+}
 .sidebar-inner {
   color: #999;
   padding: 18px 10px;
@@ -1370,7 +1374,6 @@ pre code {
 }
 .cc-license {
   margin-top: 10px;
-  text-align: center;
 }
 .cc-license .cc-opacity {
   border-bottom: none;
@@ -1394,13 +1397,11 @@ pre code {
   color: #f5f5f5;
   font-weight: normal;
   margin: 5px 0 0;
-  text-align: center;
 }
 .site-description {
   color: #999;
   font-size: 1em;
   margin-top: 5px;
-  text-align: center;
 }
 .links-of-author {
   margin-top: 15px;
@@ -1416,7 +1417,7 @@ pre code {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #7cd9a8;
+  background: #1dff4d;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1535,6 +1536,7 @@ pre code {
   .sidebar-toggle {
     left: 20px;
     opacity: 0.8;
+    display: none;
   }
 }
 .sidebar-toggle:hover .toggle-line {
@@ -1592,23 +1594,20 @@ pre code {
   line-height: 1.4;
   margin-top: 10px;
   overflow: hidden;
-  text-align: center;
   white-space: nowrap;
-}
-.site-state-item {
-  padding: 0 15px;
 }
 .site-state-item:not(:first-child) {
   border-left: 1px solid #333;
 }
 .site-state-item a {
   border-bottom: none;
+  display: block;
+  padding: 0 15px;
 }
 .site-state-item-count {
   display: block;
   font-size: 1.25em;
   font-weight: 600;
-  text-align: center;
 }
 .site-state-item-name {
   color: inherit;
@@ -1725,7 +1724,6 @@ pre code {
 }
 .back-to-top {
   font-size: 12px;
-  text-align: center;
   transition-delay: 0s;
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
@@ -1773,14 +1771,7 @@ pre code {
   margin-top: 40px;
   text-align: center;
 }
-.use-motion .post-block {
-  opacity: 0;
-  margin-top: 60px;
-  margin-bottom: 60px;
-  padding: 25px;
-  -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
-  -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
-}
+.use-motion .post-block,
 .use-motion .pagination,
 .use-motion .comments {
   opacity: 0;
@@ -1910,7 +1901,6 @@ pre code {
   background: #ccc;
   height: 1px;
   margin: 80px auto 60px;
-  text-align: center;
   width: 8%;
 }
 .post-block:last-of-type .post-eof {
@@ -2398,7 +2388,6 @@ ul.breadcrumb {
   list-style: none;
   margin: 1em 0;
   padding: 0 2em;
-  text-align: center;
 }
 ul.breadcrumb li {
   display: inline;
@@ -2531,6 +2520,65 @@ ul.breadcrumb li + li:last-child {
 .search-popup input.search-input::-webkit-search-cancel-button {
   display: none;
 }
+.search-input-container {
+  flex-grow: 1;
+}
+.search-input-container form {
+  padding: 2px;
+}
+.algolia-powered {
+  float: right;
+}
+.algolia-powered img {
+  display: inline-block;
+  height: 18px;
+  vertical-align: middle;
+}
+.algolia-results {
+  height: calc(100% - 55px);
+  overflow: auto;
+  padding: 5px 30px;
+}
+.algolia-results hr {
+  margin: 10px 0;
+}
+.algolia-hit-item {
+  margin: 15px 0;
+}
+.algolia-hit-item-link {
+  border-bottom: 1px dashed #ccc;
+  display: block;
+  transition-delay: 0s;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+.algolia-pagination .pagination {
+  border-top: none;
+  margin: 40px 0;
+  opacity: 1;
+  padding: 0;
+}
+.algolia-pagination .pagination-item {
+  display: inline-block;
+}
+.algolia-pagination .page-number {
+  border-top: 1px solid transparent;
+  transition-delay: 0s;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+.algolia-pagination .page-number:hover {
+  border-top: 1px solid #222;
+}
+.algolia-pagination .current .page-number {
+  cursor: default;
+}
+.algolia-pagination .current .page-number:hover {
+  border-top-color: #ccc;
+}
+.algolia-pagination .disabled-item {
+  visibility: hidden;
+}
 .search-popup .search-input-container {
   flex-grow: 1;
   padding: 2px;
@@ -2599,19 +2647,9 @@ embed {
   display: block;
   margin: 0 auto 25px auto;
 }
-.custom-logo .site-meta-headline {
-  text-align: center;
-}
-.custom-logo .site-title {
-  color: #222;
-  margin: 10px auto 0;
-}
-.custom-logo .site-title a {
-  border: 0;
-}
 .custom-logo-image {
   background: #fff;
-  margin: 0 auto;
+  margin: 0 auto 10px;
   max-width: 150px;
   padding: 5px;
 }
