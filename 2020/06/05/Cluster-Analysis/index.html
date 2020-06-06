@@ -27,18 +27,21 @@
     var CONFIG = {"hostname":"bwchen1223.xyz","root":"/","scheme":"Muse","version":"8.0.0-rc.3","exturl":true,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="这里有Python、GIS相关的小笔记！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Rsweater&#39;s Blog">
-<meta property="og:url" content="https://bwchen1223.xyz/archives/index.html">
+  <meta name="description" content="摘要：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cluster Analysis">
+<meta property="og:url" content="https://bwchen1223.xyz/2020/06/05/Cluster-Analysis/index.html">
 <meta property="og:site_name" content="Rsweater&#39;s Blog">
-<meta property="og:description" content="这里有Python、GIS相关的小笔记！">
+<meta property="og:description" content="摘要：">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-05T09:14:52.000Z">
+<meta property="article:modified_time" content="2020-06-06T07:42:49.156Z">
 <meta property="article:author" content="一线毛衣">
-<meta property="article:tag" content="Python GiS GDAL 爬虫 数据分析 机器学习 日常笔记">
+<meta property="article:tag" content="K-Mean Clustering">
+<meta property="article:tag" content="Dbsacn Clustering">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://bwchen1223.xyz/archives/">
+<link rel="canonical" href="https://bwchen1223.xyz/2020/06/05/Cluster-Analysis/">
 
 
 <script id="page-configurations">
@@ -46,12 +49,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | Rsweater's Blog</title>
+  <title>Cluster Analysis | Rsweater's Blog</title>
   
 
 
@@ -192,236 +195,196 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bwchen1223.xyz/2020/06/05/Cluster-Analysis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="一线毛衣">
+      <meta itemprop="description" content="这里有Python、GIS相关的小笔记！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rsweater's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Cluster Analysis
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-05 17:14:52" itemprop="dateCreated datePublished" datetime="2020-06-05T17:14:52+08:00">2020-06-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-06 15:42:49" itemprop="dateModified" datetime="2020-06-06T15:42:49+08:00">2020-06-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
+                </span>
+            </span>
+
+          
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 10 篇日志。 继续努力。</span>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/06/05/Cluster-Analysis/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/05/Cluster-Analysis/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+        <p><strong>摘要：</strong></p>
+<a id="more"></a>
+
+<h2 id="K-Mean-Clustering"><a href="#K-Mean-Clustering" class="headerlink" title="K-Mean Clustering"></a>K-Mean Clustering</h2><h3 id="算法概述"><a href="#算法概述" class="headerlink" title="算法概述"></a>算法概述</h3><p><strong>聚类特点</strong></p>
+<ul>
+<li>非监督分类</li>
+<li>聚类：相似的东西分一组</li>
+<li>难点：如何评估，如何调参</li>
+</ul>
+<p><strong>K-Mean基本概念</strong></p>
+<ul>
+<li>要得到簇的个数，指定K值</li>
+<li>质心：均值，即向量各维度取平均</li>
+<li>距离的度量：常用欧式距离（先标准化）</li>
+<li>优化目标：$\min\sum^K_{i=1}{\sum_{x\in{C_i}}{dist(c_i, x)^2}}$ ，其中 $c_i$ 表示质心。</li>
+</ul>
+<h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><ol>
+<li>随机确定k个质心，根据距离进行分类；</li>
+<li>对分类结果的所有点进行计算新的质心；</li>
+<li>再根据新的质心进行分类，一直到不能再更新为止。</li>
+</ol>
+<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><ul>
+<li>简单，快速，适合常规数据集</li>
+</ul>
+<h3 id="劣势"><a href="#劣势" class="headerlink" title="劣势"></a>劣势</h3><ul>
+<li>K值难确定</li>
+<li>复杂度与样本呈线性关系</li>
+<li>很难发现任意形状点的簇</li>
+</ul>
+<h3 id="迭代可视化展示"><a href="#迭代可视化展示" class="headerlink" title="迭代可视化展示"></a>迭代可视化展示</h3><p><strong>网址：</strong><span class="exturl" data-url="aHR0cHM6Ly93d3cubmFmdGFsaWhhcnJpcy5jb20vYmxvZy92aXN1YWxpemluZy1rLW1lYW5zLWNsdXN0ZXJpbmcv">https://www.naftaliharris.com/blog/visualizing-k-means-clustering/<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="DBSCAN-Clustering"><a href="#DBSCAN-Clustering" class="headerlink" title="DBSCAN Clustering"></a>DBSCAN Clustering</h2><h2 id="算法概论"><a href="#算法概论" class="headerlink" title="算法概论"></a>算法概论</h2><h2 id="工作流程-1"><a href="#工作流程-1" class="headerlink" title="工作流程"></a>工作流程</h2><h3 id="迭代可视化展示-1"><a href="#迭代可视化展示-1" class="headerlink" title="迭代可视化展示"></a>迭代可视化展示</h3><p><strong>网址：</strong><span class="exturl" data-url="aHR0cHM6Ly93d3cubmFmdGFsaWhhcnJpcy5jb20vYmxvZy92aXN1YWxpemluZy1kYnNjYW4tY2x1c3RlcmluZy8=">https://www.naftaliharris.com/blog/visualizing-dbscan-clustering/<i class="fa fa-external-link-alt"></i></span></p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
+        
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-06T23:15:11+08:00"
-              content="2020-06-06">
-          06-06
-        </time>
-      </div>
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>一线毛衣
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://bwchen1223.xyz/2020/06/05/Cluster-Analysis/" title="Cluster Analysis">https://bwchen1223.xyz/2020/06/05/Cluster-Analysis/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/06/06/hello-world/" itemprop="url">
-            <span itemprop="name">Hello World</span>
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://zhuanlan.zhihu.com/Rsweater-Python">
+            <span class="icon">
+              <i class="fab fa-zhihu"></i>
+            </span>
+
+            <span class="label">Zhihu</span>
           </a>
-      </div>
+        </div>
 
-    </header>
-  </article>
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-05T17:14:52+08:00"
-              content="2020-06-05">
-          06-05
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/06/05/Cluster-Analysis/" itemprop="url">
-            <span itemprop="name">Cluster Analysis</span>
+            <span class="label">RSS</span>
           </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-04T09:34:15+08:00"
-              content="2020-06-04">
-          06-04
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/06/04/Time-Series-Pandas/" itemprop="url">
-            <span itemprop="name">Time Series Pandas</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-05-30T10:46:00+08:00"
-              content="2020-05-30">
-          05-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/05/30/alias/" itemprop="url">
-            <span itemprop="name">Notes_01|"alias" Knowledge</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-05-30T09:08:00+08:00"
-              content="2020-05-30">
-          05-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/05/30/wsl2_access_windows_proxy/" itemprop="url">
-            <span itemprop="name">WSL2 Access Windows Proxy</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-05-15T21:42:00+08:00"
-              content="2020-05-15">
-          05-15
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/05/15/Unit-6-Innovation(TF)/" itemprop="url">
-            <span itemprop="name">Unit-6-Innovation(TF).md</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-05-14T19:06:00+08:00"
-              content="2020-05-14">
-          05-14
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/05/14/MySQL/" itemprop="url">
-            <span itemprop="name">Notes_02|Mysql Related Concept</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-05-12T18:38:07+08:00"
-              content="2020-05-12">
-          05-12
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/05/12/QG2-Classical_statistical_analysis/" itemprop="url">
-            <span itemprop="name">QG实验2-经典统计分析1</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-21T11:04:00+08:00"
-              content="2020-04-21">
-          04-21
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/04/21/RS02-Evaluation_of_image_fusion/" itemprop="url">
-            <span itemprop="name">图像融合质量评价指标</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-18T14:35:00+08:00"
-              content="2020-04-18">
-          04-18
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/04/18/QG01-Geographic_data_preprocessing/" itemprop="url">
-            <span itemprop="name">QG实验1——地理数据统计预处理</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-
+        </div>
     </div>
   </div>
-  
-  
-  
 
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/K-Mean-Clustering/" rel="tag"><i class="fa fa-tag"></i> K-Mean Clustering</a>
+              <a href="/tags/Dbsacn-Clustering/" rel="tag"><i class="fa fa-tag"></i> Dbsacn Clustering</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/04/Time-Series-Pandas/" rel="prev" title="Time Series Pandas">
+      <i class="fa fa-chevron-left"></i> Time Series Pandas
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/06/hello-world/" rel="next" title="Hello World">
+      Hello World <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -468,6 +431,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#K-Mean-Clustering"><span class="nav-number">1.</span> <span class="nav-text">K-Mean Clustering</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法概述"><span class="nav-number">1.1.</span> <span class="nav-text">算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作流程"><span class="nav-number">1.2.</span> <span class="nav-text">工作流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优势"><span class="nav-number">1.3.</span> <span class="nav-text">优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#劣势"><span class="nav-number">1.4.</span> <span class="nav-text">劣势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代可视化展示"><span class="nav-number">1.5.</span> <span class="nav-text">迭代可视化展示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DBSCAN-Clustering"><span class="nav-number">2.</span> <span class="nav-text">DBSCAN Clustering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法概论"><span class="nav-number">3.</span> <span class="nav-text">算法概论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作流程-1"><span class="nav-number">4.</span> <span class="nav-text">工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代可视化展示-1"><span class="nav-number">4.1.</span> <span class="nav-text">迭代可视化展示</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

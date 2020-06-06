@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="ldO35SQfctgFBF_4YWDeSfdS80zngpp5RipOUOWXKtY">
+  <meta name="msvalidate.01" content="49D31365176B2E4D0D1BA7E809F665E0">
+  <meta name="baidu-site-verification" content="Qu82x3LWJM">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"bwchen1223.xyz","root":"/","scheme":"Muse","version":"8.0.0-rc.3","exturl":true,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="实验目的 掌握用Excel、Python进行数据统计描述的方法； 掌握用Excel、Python进行数据标准化的基本方法； 掌握用Excel、Python进行常用数据可视化的方法； 掌握用Excel、Python进行数据连接和数据透视的方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QG实验1——地理数据统计预处理">
+<meta property="og:url" content="https://bwchen1223.xyz/2020/04/18/QG01-Geographic_data_preprocessing/index.html">
+<meta property="og:site_name" content="Rsweater&#39;s Blog">
+<meta property="og:description" content="实验目的 掌握用Excel、Python进行数据统计描述的方法； 掌握用Excel、Python进行数据标准化的基本方法； 掌握用Excel、Python进行常用数据可视化的方法； 掌握用Excel、Python进行数据连接和数据透视的方法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/normalization1.png">
+<meta property="og:image" content="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/normalization2.png">
+<meta property="og:image" content="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/Max-Min2.png">
+<meta property="og:image" content="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/mean.png">
+<meta property="og:image" content="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/std1.png">
+<meta property="og:image" content="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/std2.png">
+<meta property="og:image" content="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/ec.png">
+<meta property="og:image" content="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/Excel.png">
+<meta property="article:published_time" content="2020-04-18T06:35:00.000Z">
+<meta property="article:modified_time" content="2020-06-06T07:35:42.449Z">
+<meta property="article:author" content="一线毛衣">
+<meta property="article:tag" content="Excel">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="地理空间分析">
+<meta property="article:tag" content="数据分析">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/normalization1.png">
+
+<link rel="canonical" href="https://bwchen1223.xyz/2020/04/18/QG01-Geographic_data_preprocessing/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>QG实验1——地理数据统计预处理 | Rsweater's Blog</title>
+  
+
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e2c701b7194c8cece405996462a08694";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Rsweater's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">最好的状态来源于好的作息！最高的效率来源于好的资源配置！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bwchen1223.xyz/2020/04/18/QG01-Geographic_data_preprocessing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="一线毛衣">
+      <meta itemprop="description" content="这里有Python、GIS相关的小笔记！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rsweater's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          QG实验1——地理数据统计预处理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-18 14:35:00" itemprop="dateCreated datePublished" datetime="2020-04-18T14:35:00+08:00">2020-04-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-06 15:35:42" itemprop="dateModified" datetime="2020-06-06T15:35:42+08:00">2020-06-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E9%87%8F%E5%9C%B0%E7%90%86%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">计量地理学</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/04/18/QG01-Geographic_data_preprocessing/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/04/18/QG01-Geographic_data_preprocessing/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><ol>
+<li>掌握用Excel、Python进行<strong>数据统计描述</strong>的方法；</li>
+<li>掌握用Excel、Python进行<strong>数据标准化</strong>的基本方法；</li>
+<li>掌握用Excel、Python进行<strong>常用数据可视化</strong>的方法；</li>
+<li>掌握用Excel、Python进行<strong>数据连接</strong>和<strong>数据透视</strong>的方法。<a id="more"></a>
+
+</li>
+</ol>
+<hr>
+<h2 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h2><blockquote>
+<h3 id="１-目录"><a href="#１-目录" class="headerlink" title="１.目录"></a>１.目录</h3><ol>
+<li>统计数据描述；  </li>
+<li>统计数据标准化；</li>
+<li>统计数据可视化；  </li>
+<li>数据连接(VLOOKUP)；  </li>
+<li>数据透视(Pivot)。  </li>
+</ol>
+</blockquote>
+<hr>
+<h3 id="2-统计数据描述"><a href="#2-统计数据描述" class="headerlink" title="2. 统计数据描述"></a>2. 统计数据描述</h3><p>1&gt;  集中趋势:  </p>
+<table>
+<thead>
+<tr>
+<th align="center">特征</th>
+<th align="center">Excel</th>
+<th align="center">Python</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">平均数</td>
+<td align="center">Average函数</td>
+<td align="center">np.mean(array)</td>
+</tr>
+<tr>
+<td align="center">中位数</td>
+<td align="center">Median函数</td>
+<td align="center">np.median(array)</td>
+</tr>
+<tr>
+<td align="center">众数</td>
+<td align="center">Mode函数</td>
+<td align="center">stats.mode(array)</td>
+</tr>
+<tr>
+<td align="center">2&gt;  离中趋势：</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">特征</th>
+<th align="center">Excel</th>
+<th align="center">Python</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">极差</td>
+<td align="center">Max-Min</td>
+<td align="center">np.ptp(array)</td>
+</tr>
+<tr>
+<td align="center">方差和标准差</td>
+<td align="center">Var和Stdev函数</td>
+<td align="center">np.std(array)和 np.var(array)</td>
+</tr>
+<tr>
+<td align="center">变异系数</td>
+<td align="center">Stdev/Average</td>
+<td align="center">std(array) / mean(array)</td>
+</tr>
+<tr>
+<td align="center">四分位差</td>
+<td align="center">Quartile3- Quartile1</td>
+<td align="center">np.percentile(array,75)-np.percentile(array,25))</td>
+</tr>
+</tbody></table>
+<p>3&gt; 数据分布特征：  </p>
+<table>
+<thead>
+<tr>
+<th align="center">特征</th>
+<th align="center">Excel</th>
+<th align="center">Python</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">偏度系数</td>
+<td align="center">Skew函数</td>
+<td align="center">st.skew(array)</td>
+</tr>
+<tr>
+<td align="center">峰度系数</td>
+<td align="center">Kurt函数</td>
+<td align="center">st.kurtosis(array)</td>
+</tr>
+</tbody></table>
+<h3 id="3-统计数据标准化"><a href="#3-统计数据标准化" class="headerlink" title="3. 统计数据标准化"></a>3. 统计数据标准化</h3><p>1&gt; 归一化法  </p>
+<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/normalization1.png" width="80%"/>  
+
+<p>2&gt; 线性比例法/相对值法</p>
+<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/normalization2.png" width="85%"/>
+3> 
+
+<p>3&gt; 极差法</p>
+<p>![Max-Min1](E:/bw_ch/Pictures/Saved Pictures/计量地理学/实验1/Max-Min1.png)</p>
+<p> <img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/Max-Min2.png" alt=""></p>
+<p>4&gt; 均值法  </p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/mean.png" alt="mean"></p>
+<p>5&gt; 标准差法  </p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/std1.png" alt="std1"></p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/std2.png" alt="std2"></p>
+<p>6&gt; 功效系数法</p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/ec.png" alt="ec"><br><strong>Python实现：</strong><br>以极差标准化为例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据准备</span></span><br><span class="line">arr = np.random.randint(<span class="number">0</span>,<span class="number">100</span>,size=<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据处理</span></span><br><span class="line">arr_nor = (arr-np.min(arr))/(np.max(arr)-np.min(arr))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据展示</span></span><br><span class="line">print(<span class="string">"原始array：&#123;&#125;\n"</span>.format(arr))</span><br><span class="line">print(<span class="string">"归一化array：&#123;&#125;\n"</span>.format(arr_1))</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-统计数据可视化"><a href="#4-统计数据可视化" class="headerlink" title="4. 统计数据可视化"></a>4. 统计数据可视化</h3><ol>
+<li>描述数据<strong>分布</strong>：直方图、箱线图；</li>
+<li>描述数据<strong>构成</strong>：饼状图、雷达图；</li>
+<li>描述数据<strong>联系</strong>：散点图、相关系数矩阵；</li>
+<li>描述数据<strong>比较</strong>：柱状图/条形图、折线图。</li>
+</ol>
+<h4 id="Excel操作"><a href="#Excel操作" class="headerlink" title="Excel操作"></a>Excel操作</h4><p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/Excel.png" alt="Excel"></p>
+<h4 id="Python操作"><a href="#Python操作" class="headerlink" title="Python操作"></a>Python操作</h4><p>以直方图为例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据准备</span></span><br><span class="line">np.random.seed(<span class="number">19680801</span>)</span><br><span class="line"></span><br><span class="line">mu, sigma = <span class="number">100</span>, <span class="number">15</span></span><br><span class="line">x = mu + sigma * np.random.randn(<span class="number">10000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置直方图参数以及展示</span></span><br><span class="line">n, bins, patches = plt.hist(x, <span class="number">50</span>, density=<span class="literal">True</span>, facecolor=<span class="string">'g'</span>, alpha=<span class="number">0.75</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'Smarts'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Probability'</span>)</span><br><span class="line">plt.title(<span class="string">'Histogram of IQ'</span>)</span><br><span class="line">plt.text(<span class="number">60</span>, <span class="number">.025</span>, <span class="string">r'$\mu=100,\ \sigma=15$'</span>)    <span class="comment"># 添加文本到（60，0.025）</span></span><br><span class="line">plt.axis([<span class="number">40</span>, <span class="number">160</span>, <span class="number">0</span>, <span class="number">0.03</span>])</span><br><span class="line">plt.grid(<span class="literal">True</span>)   <span class="comment"># 配置网格线</span></span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 箱线图：</span></span><br><span class="line">seaborn.boxplot() 或 plot.box()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 饼状图：</span></span><br><span class="line">matplotlib.pyplot.pie()</span><br><span class="line"><span class="comment"># 雷达图：</span></span><br><span class="line">matplotlib.pyplot.polar()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 散点图：</span></span><br><span class="line">matplotlib.pyplot.scatter()</span><br><span class="line"><span class="comment"># 热力图：</span></span><br><span class="line">seaborn.heatmap()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 条形图：</span></span><br><span class="line">matplotlib.pyplot.bar()   <span class="comment"># 水平</span></span><br><span class="line">matplotlib.pyplot.barh()  <span class="comment"># 垂直</span></span><br><span class="line"><span class="comment"># 折线图：</span></span><br><span class="line">matplotlib.pyplot.plot()</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-数据连接（vlookup"><a href="#5-数据连接（vlookup" class="headerlink" title="5.数据连接（vlookup)"></a>5.数据连接（vlookup)</h3><h4 id="Excel-操作"><a href="#Excel-操作" class="headerlink" title="Excel  操作"></a>Excel  操作</h4><p>直接使用 = VLOOKUP （你想要查找的内容，要查找的位置，包含要返回的值的区域中的列号，返回近似或精确匹配-表示为 1/TRUE 或 0/假）<br><strong>使用方式：</strong><br>1、选中要连接单元格；<br>2、点击 公式-查找和引用-VLOOKUP 或者 直接 键入=VLOOKUP( ；<br>3、点选要查找的值、包含要返回的值的区域中的列号、返回近似或精确匹配-表示为 1/TRUE 或 0/假。</p>
+<h4 id="Python-操作"><a href="#Python-操作" class="headerlink" title="Python 操作"></a>Python 操作</h4><p>这个方法就很多了。<br>举几个思路：  </p>
+<ol>
+<li>借助字典方法 dict.get()</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;<span class="string">'A'</span>:<span class="number">1</span>, <span class="string">'D'</span>:<span class="number">4</span>, <span class="string">'E'</span>:<span class="number">5</span>&#125;</span><br><span class="line">b = &#123;<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>&#125;</span><br><span class="line"></span><br><span class="line">c = &#123;k:a.get(k) <span class="keyword">for</span> k <span class="keyword">in</span> b&#125;</span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line">&#123;<span class="string">'A'</span>: <span class="number">1</span>, <span class="string">'E'</span>: <span class="number">5</span>, <span class="string">'C'</span>: <span class="literal">None</span>, <span class="string">'D'</span>: <span class="number">4</span>, <span class="string">'B'</span>: <span class="literal">None</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>使用pandas空值填充dataframe.fillna()  </li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据准备</span></span><br><span class="line">frame1 = pd.DataFrame([[<span class="number">1</span>, <span class="number">5.1</span>],[<span class="number">2</span>, <span class="number">5.7</span>],[<span class="number">3</span>, np.nan]],columns=[<span class="string">'id'</span>,<span class="string">'num'</span>])</span><br><span class="line">frame2 = pd.DataFrame([[<span class="number">1</span>, <span class="number">5.1</span>],[<span class="number">2</span>, <span class="number">5.7</span>],[<span class="number">4</span>, <span class="number">9.9</span>],[<span class="number">3</span>,<span class="number">8.8</span>]],columns=[<span class="string">'id'</span>,<span class="string">'num'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 操作准备</span></span><br><span class="line">frame1 = frame1.set_index(<span class="string">'id'</span>)</span><br><span class="line">frame2 = frame2.set_index(<span class="string">'id'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据连接</span></span><br><span class="line">frame3 = frame1.fillna(frame2)</span><br></pre></td></tr></table></figure>
+
+<p>这里需要注意操作准备中设置索引是功能实现的关键，fillna是按索引来填充的。没有的话，对比下面6，7，8行输出：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">1</span>]: <span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">In [<span class="number">2</span>]: <span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: frame1 = pd.DataFrame([[<span class="number">1</span>, <span class="number">5.1</span>],[<span class="number">2</span>, <span class="number">5.7</span>],[<span class="number">3</span>, np.nan]],columns=[<span class="string">'id'</span>,<span class="string">'num'</span>])</span><br><span class="line">In [<span class="number">4</span>]: frame2 = pd.DataFrame([[<span class="number">1</span>, <span class="number">5.1</span>],[<span class="number">2</span>, <span class="number">5.7</span>],[<span class="number">4</span>, <span class="number">9.9</span>],[<span class="number">3</span>,<span class="number">8.8</span>]],columns=[<span class="string">'id'</span>,<span class="string">'num'</span>])</span><br><span class="line">In [<span class="number">5</span>]: frame3 = frame1.fillna(frame2)</span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: frame1</span><br><span class="line">Out[<span class="number">6</span>]:</span><br><span class="line">   id  num</span><br><span class="line"><span class="number">0</span>   <span class="number">1</span>  <span class="number">5.1</span></span><br><span class="line"><span class="number">1</span>   <span class="number">2</span>  <span class="number">5.7</span></span><br><span class="line"><span class="number">2</span>   <span class="number">3</span>  NaN</span><br><span class="line">In [<span class="number">7</span>]: frame2</span><br><span class="line">Out[<span class="number">7</span>]:</span><br><span class="line">   id  num</span><br><span class="line"><span class="number">0</span>   <span class="number">1</span>  <span class="number">5.1</span></span><br><span class="line"><span class="number">1</span>   <span class="number">2</span>  <span class="number">5.7</span></span><br><span class="line"><span class="number">2</span>   <span class="number">4</span>  <span class="number">9.9</span></span><br><span class="line"><span class="number">3</span>   <span class="number">3</span>  <span class="number">8.8</span></span><br><span class="line">In [<span class="number">8</span>]: frame3</span><br><span class="line">Out[<span class="number">8</span>]:</span><br><span class="line">   id  num</span><br><span class="line"><span class="number">0</span>   <span class="number">1</span>  <span class="number">5.1</span></span><br><span class="line"><span class="number">1</span>   <span class="number">2</span>  <span class="number">5.7</span></span><br><span class="line"><span class="number">2</span>   <span class="number">3</span>  <span class="number">9.9</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: frame1 = frame1.set_index(<span class="string">'id'</span>)</span><br><span class="line">In [<span class="number">10</span>]: frame2 = frame2.set_index(<span class="string">'id'</span>)</span><br><span class="line">In [<span class="number">11</span>]: frame3 = frame1.fillna(frame2)</span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: frame3</span><br><span class="line">Out[<span class="number">12</span>]:</span><br><span class="line">id   num</span><br><span class="line"><span class="number">1</span>    <span class="number">5.1</span></span><br><span class="line"><span class="number">2</span>    <span class="number">5.7</span></span><br><span class="line"><span class="number">3</span>    <span class="number">8.8</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-数据透视（pivot"><a href="#6-数据透视（pivot" class="headerlink" title="6.数据透视（pivot)"></a>6.数据透视（pivot)</h3><p>借助pandas中的pivot_table(dataframe)</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>一线毛衣
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://bwchen1223.xyz/2020/04/18/QG01-Geographic_data_preprocessing/" title="QG实验1——地理数据统计预处理">https://bwchen1223.xyz/2020/04/18/QG01-Geographic_data_preprocessing/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://zhuanlan.zhihu.com/Rsweater-Python">
+            <span class="icon">
+              <i class="fab fa-zhihu"></i>
+            </span>
+
+            <span class="label">Zhihu</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Excel/" rel="tag"><i class="fa fa-tag"></i> Excel</a>
+              <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+              <a href="/tags/%E5%9C%B0%E7%90%86%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90/" rel="tag"><i class="fa fa-tag"></i> 地理空间分析</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" rel="tag"><i class="fa fa-tag"></i> 数据分析</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/21/RS02-Evaluation_of_image_fusion/" rel="next" title="图像融合质量评价指标">
+      图像融合质量评价指标 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#实验目的"><span class="nav-number">1.</span> <span class="nav-text">实验目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验内容"><span class="nav-number">2.</span> <span class="nav-text">实验内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#１-目录"><span class="nav-number">2.1.</span> <span class="nav-text">１.目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-统计数据描述"><span class="nav-number">2.2.</span> <span class="nav-text">2. 统计数据描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-统计数据标准化"><span class="nav-number">2.3.</span> <span class="nav-text">3. 统计数据标准化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-统计数据可视化"><span class="nav-number">2.4.</span> <span class="nav-text">4. 统计数据可视化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Excel操作"><span class="nav-number">2.4.1.</span> <span class="nav-text">Excel操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Python操作"><span class="nav-number">2.4.2.</span> <span class="nav-text">Python操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-数据连接（vlookup"><span class="nav-number">2.5.</span> <span class="nav-text">5.数据连接（vlookup)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Excel-操作"><span class="nav-number">2.5.1.</span> <span class="nav-text">Excel  操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Python-操作"><span class="nav-number">2.5.2.</span> <span class="nav-text">Python 操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-数据透视（pivot"><span class="nav-number">2.6.</span> <span class="nav-text">6.数据透视（pivot)</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="一线毛衣"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">一线毛衣</p>
+  <div class="site-description" itemprop="description">这里有Python、GIS相关的小笔记！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Jzd2VhdGVy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;rsweater"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmJ3X2NoZW4xMjIzQGZveG1haWwuY29t" title="E-Mail → mailto:bw_chen1223@foxmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一线毛衣</span>
+</div>
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9tdXNlLw==">NexT.Muse</span> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/next-theme/pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lozad.js/1.14.0/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+
+
+  
+  <script data-pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el         : '#valine-comments',
+      path       : location.pathname,
+    }, {"enable":true,"appId":"n0m507S9Q3hGB7na3rXQO8bH-gzGzoHsz","appKey":"nBz9lyUQ5ooRmJcE8qaIVUym","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"language":"zh-cn","visitor":false,"comment_count":false,"recordIP":false,"serverURLs":null}
+    ));
+  }, window.Valine);
+});
+</script>
+
+    </div>
+</body>
+</html>
