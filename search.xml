@@ -3,7 +3,7 @@
   <entry>
     <title>Cluster Analysis</title>
     <url>/2020/06/05/Cluster-Analysis/</url>
-    <content><![CDATA[<p><strong>摘要：</strong>传统的 K-Mean Clustering、DBSCAN Clustering、以及Python实现思路。</p>
+    <content><![CDATA[<p><strong>摘要：</strong> K-Mean Clustering、DBSCAN Clustering、以及Python实现思路（包括空间聚类）。</p>
 <a id="more"></a>
 
 <h2 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h2><p><strong>聚类：</strong> 将物理或抽象对象的集合分成由类似的对象组成的多个类的过程被称为聚类。</p>
@@ -72,17 +72,13 @@
 </ul>
 <h3 id="迭代可视化展示-1"><a href="#迭代可视化展示-1" class="headerlink" title="迭代可视化展示"></a>迭代可视化展示</h3><p><strong>网址：</strong><span class="exturl" data-url="aHR0cHM6Ly93d3cubmFmdGFsaWhhcnJpcy5jb20vYmxvZy92aXN1YWxpemluZy1kYnNjYW4tY2x1c3RlcmluZy8=">https://www.naftaliharris.com/blog/visualizing-dbscan-clustering/<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="Python实现"><a href="#Python实现" class="headerlink" title="Python实现"></a>Python实现</h2><ul>
-<li><p>pandas读数据</p>
-</li>
-<li><p>sklearn.cluster进行聚类分析</p>
-</li>
-<li><p>pandas添加新的Series类别</p>
-</li>
-<li><p>groupby(‘cluster’).mean()等可以看各类的均值等指标</p>
-</li>
-<li><p>可以取出中心点画图</p>
-</li>
+<li>pandas读数据</li>
+<li>sklearn.cluster进行聚类分析</li>
+<li>pandas添加新的Series类别</li>
+<li>groupby(‘cluster’).mean()等可以看各类的均值等指标</li>
+<li>可以取出中心点画图</li>
 </ul>
+<h3 id="空间聚类分析"><a href="#空间聚类分析" class="headerlink" title="空间聚类分析"></a>空间聚类分析</h3><p>​    可以借助ArcGIS、Fiona、Shapely、<strong>geopandas</strong>等提取中心点之后，转化成了传统的聚类分析。</p>
 ]]></content>
       <categories>
         <category>Machine Learning</category>
