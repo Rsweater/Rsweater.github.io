@@ -25,22 +25,25 @@
     var CONFIG = {"hostname":"bwchen1223.xyz","root":"/","scheme":"Muse","version":"8.0.0-rc.3","exturl":true,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":true,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="摘要：利用Python进行时间序列分析,  主要记录ARIMA模型相关知识。">
+  <meta name="description" content="IP设置IP要使用主机局域网IP，例如192.168.123.176。127.0.0.1不行。再者，就是host.deocker.internal在安装docker的时候进行了重定向，所以使用这个也是可以的。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Time Series Pandas">
-<meta property="og:url" content="https://bwchen1223.xyz/posts/38536/index.html">
+<meta property="og:title" content="WSL2 Access Windows Proxy">
+<meta property="og:url" content="https://bwchen1223.xyz/2020/05/30/wsl2_access_windows_proxy/index.html">
 <meta property="og:site_name" content="Rsweater&#39;s Blog">
-<meta property="og:description" content="摘要：利用Python进行时间序列分析,  主要记录ARIMA模型相关知识。">
+<meta property="og:description" content="IP设置IP要使用主机局域网IP，例如192.168.123.176。127.0.0.1不行。再者，就是host.deocker.internal在安装docker的时候进行了重定向，所以使用这个也是可以的。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-06-04T01:34:15.000Z">
-<meta property="article:modified_time" content="2020-06-05T09:17:05.463Z">
+<meta property="og:image" content="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxychains.conf.png">
+<meta property="og:image" content="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxy.bashrc.png">
+<meta property="og:image" content="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxy_.bashrc.png">
+<meta property="article:published_time" content="2020-05-30T01:08:00.000Z">
+<meta property="article:modified_time" content="2020-06-06T07:19:49.982Z">
 <meta property="article:author" content="一线毛衣">
-<meta property="article:tag" content="Time Series">
-<meta property="article:tag" content="Data Analysis">
-<meta property="article:tag" content="Pandas">
+<meta property="article:tag" content="Proxy">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxychains.conf.png">
 
-<link rel="canonical" href="https://bwchen1223.xyz/posts/38536/">
+<link rel="canonical" href="https://bwchen1223.xyz/2020/05/30/wsl2_access_windows_proxy/">
 
 
 <script id="page-configurations">
@@ -53,7 +56,7 @@
   };
 </script>
 
-  <title>Time Series Pandas | Rsweater's Blog</title>
+  <title>WSL2 Access Windows Proxy | Rsweater's Blog</title>
   
 
 
@@ -201,7 +204,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://bwchen1223.xyz/posts/38536/">
+    <link itemprop="mainEntityOfPage" href="https://bwchen1223.xyz/2020/05/30/wsl2_access_windows_proxy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -214,7 +217,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Time Series Pandas
+          WSL2 Access Windows Proxy
         </h1>
 
         <div class="post-meta">
@@ -224,14 +227,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-06-04 09:34:15" itemprop="dateCreated datePublished" datetime="2020-06-04T09:34:15+08:00">2020-06-04</time>
+              <time title="创建时间：2020-05-30 09:08:00" itemprop="dateCreated datePublished" datetime="2020-05-30T09:08:00+08:00">2020-05-30</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-05 17:17:05" itemprop="dateModified" datetime="2020-06-05T17:17:05+08:00">2020-06-05</time>
+                <time title="修改时间：2020-06-06 15:19:49" itemprop="dateModified" datetime="2020-06-06T15:19:49+08:00">2020-06-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -239,7 +242,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
+                  <a href="/categories/WSL2/" itemprop="url" rel="index"><span itemprop="name">WSL2</span></a>
                 </span>
             </span>
 
@@ -252,8 +255,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/posts/38536/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/38536/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/05/30/wsl2_access_windows_proxy/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/05/30/wsl2_access_windows_proxy/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -263,7 +266,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
+              <span>947</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -282,104 +285,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><strong>摘要：</strong>利用Python进行时间序列分析,  主要记录ARIMA模型相关知识。</p>
+        <h2 id="IP设置"><a href="#IP设置" class="headerlink" title="IP设置"></a>IP设置</h2><p>IP要使用主机局域网IP，例如192.168.123.176。127.0.0.1不行。再者，就是host.deocker.internal在安装docker的时候进行了重定向，所以使用这个也是可以的。</p>
 <a id="more"></a>
 
-
-
-<h2 id="生成时间序列"><a href="#生成时间序列" class="headerlink" title="生成时间序列"></a>生成时间序列</h2><ol>
-<li>pd.date_range()</li>
-<li>truncate()过滤</li>
-<li>pd.Timestamp()时间戳</li>
-<li>pd.Period()时间周期</li>
-<li>pd.datelta()间隔</li>
-</ol>
-<h2 id="差分法"><a href="#差分法" class="headerlink" title="差分法"></a>差分法</h2><p>​    改进数据平稳性</p>
-<p><code>.diff(num)</code>: num阶差分，一般一阶就可以了。</p>
-<h2 id="ARIMA模型"><a href="#ARIMA模型" class="headerlink" title="ARIMA模型"></a>ARIMA模型</h2><p>​        <strong>ARIMA模型</strong>（英语：<strong>A</strong>uto<strong>r</strong>egressive <strong>I</strong>ntegrated <strong>M</strong>oving <strong>A</strong>verage model），差分整合移动平均自回归模型，又称整合移动平均自回归模型（移动也可称作滑动），是<span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS/ml7bpl7Tluo/liJc=">时间序列<i class="fa fa-external-link-alt"></i></span>预测分析方法之一。</p>
-<p>​        ARIMA(p，d，q)中，AR是“自回归模型”，p为自回归项数；MA为“滑动平均模型”，q为滑动平均项数，d为使之成为平稳序列所做的差分次数（阶数）。“差分”一词虽未出现在ARIMA的英文名称中，却是关键步骤。</p>
-<h3 id="AR模型"><a href="#AR模型" class="headerlink" title="AR模型"></a>AR模型</h3><ul>
-<li><p>描述当前值与历史值之间的关系，用变量自身的历史时间数据对自身进行预测</p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ol>
+<li><p>使用<code>proxychains</code>。安装就是<code>sudo apt install proxychains</code>，然后再进去<code>/etc/proxychains.conf</code>进行ip设置，使用直接在命令前面加proxychains。<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxychains.conf.png" alt="image-20200606150558949">![image-20200606102952207](<span class="exturl" data-url="aHR0cHM6Ly9naXRlZS5jb20vUnN3ZWF0ZXJfYWRtaW4vQmxvZ19JbWFnZXMvcmF3L21hc3Rlci9pbWcvd3Ns">https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/wsl<i class="fa fa-external-link-alt"></i></span> proxy1.png)</p>
+<p>这个方法可能会出现dns无法解析的问题，要装依赖tor,使用<code>sudo apt install tor</code>即可。</p>
 </li>
-<li><p>p阶自回归过程的公式定义：$y_t = \mu + \sum^{p}<em>{i=1}{\gamma_iy</em>{t-i}} + \epsilon_t$, </p>
-</li>
-<li><p>其中 $y_t$ 是当前值、$\mu$ 是常数项、p 是阶数、 $\gamma_i$ 是自相关系数、 $\epsilon_t$ 是误差</p>
-</li>
-</ul>
-<ul>
-<li><p>自回归模型是用自身的数据来进行预测</p>
-</li>
-<li><p>必须具有平稳性</p>
-</li>
-<li><p>必须具有自相关，如果自相关系数小于0.5，则不宜采用</p>
-</li>
-<li><p>自回归只适用于预测与自身前期相关的现象</p>
-</li>
-</ul>
-<h3 id="MA模型"><a href="#MA模型" class="headerlink" title="MA模型"></a>MA模型</h3><ul>
-<li>移动平均模型关注的是自回归模型中误差项的累加</li>
-<li>q阶移动平均模型：$y_t = \mu + \epsilon_t + \sum^q_{i=1}{\theta_i\epsilon_{t-i}}$ </li>
-<li>移动平均模型能够消除预测中的随机波动</li>
-</ul>
-<ul>
-<li><code>ARMA = AR + MA</code> 、<code>ARMA + 差分 = ARIMA</code></li>
-</ul>
-<h3 id="ARIMA模型原理"><a href="#ARIMA模型原理" class="headerlink" title="ARIMA模型原理"></a>ARIMA模型原理</h3><p>​        将非平稳时间序列转化为平稳时间序列，然后将因变量对它的滞后值以及随机误差项的现值和滞后值进行回归所建立的模型</p>
-<h3 id="p、q值的确定"><a href="#p、q值的确定" class="headerlink" title="p、q值的确定"></a>p、q值的确定</h3><p>自相关系数ACF、偏相关系数PACF</p>
-<table>
-<thead>
-<tr>
-<th>模型</th>
-<th>ACF</th>
-<th>PACF</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>AR(p)</td>
-<td>衰减趋于零（几何型或振荡型）</td>
-<td>p阶后截尾</td>
-</tr>
-<tr>
-<td>MA(q)</td>
-<td>q阶后截尾</td>
-<td>衰减趋于零（几何型或振荡型）</td>
-</tr>
-<tr>
-<td>ARMA(p, q)</td>
-<td>q阶后衰减趋于零（几何型或振荡型）</td>
-<td>p阶后衰减趋于零（几何型或振荡型）</td>
-</tr>
-</tbody></table>
-<ul>
-<li><p>截尾：落在置信区间内（95%的点都符合该规则）</p>
-</li>
-<li><p>Python方法：</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> statsmodels.graphocs.tsaplots <span class="keyword">import</span> plot_acf, plot_pacf</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h2 id="数据重采样"><a href="#数据重采样" class="headerlink" title="数据重采样"></a>数据重采样</h2><ol>
-<li><code>.resample(freq)</code> 例如：</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">rng = pd.date_range(<span class="string">'1/1/2020'</span>, periods=<span class="number">90</span>, freq=<span class="string">'D'</span>)</span><br><span class="line">ts = pd.Series(np.random.randn(len(rng)), index=rng)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 降采样</span></span><br><span class="line">ts = resample(<span class="string">'M'</span>).mean()</span><br><span class="line">ts = resmaple(<span class="string">'M'</span>).sum()</span><br><span class="line">ts = resmaple(<span class="string">'3D'</span>).sum()</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>升采样插值<ul>
-<li><code>.fill(位数)</code>，向后填充，空值取前面的值</li>
-<li><code>.bfill()</code>, 向前填充</li>
-<li><code>.interpolate()</code>, 线性填充</li>
-</ul>
+<li><p>使用修改<code>.bashrc</code>, 在<code>.bashrc</code>中写代理和取消代理函数, 使用直接输入proxy、noproxy即可。<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxy.bashrc.png" alt="image-20200606151542147"></p>
 </li>
 </ol>
-<h2 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h2><p>在较长时间区间上，用来观测某个时间点、区间相关情况的方法。</p>
-<p>使用<code>.rolling(windowSize)</code></p>
-<h2 id="额外收获"><a href="#额外收获" class="headerlink" title="额外收获"></a>额外收获</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B5ZGF0YS9wYW5kYXMtZGF0YXJlYWRlcg==">pandasdatareade<i class="fa fa-external-link-alt"></i></span>: 直接获取网络上的数据到<code>dataframe</code></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2JsdWUteW9uZGVyL3RzZnJlc2g=">tsfresh<i class="fa fa-external-link-alt"></i></span>: 提取时间序列的特征</p>
-<h2 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h2><ol>
-<li>时间序列分类</li>
-<li>EDA</li>
+<figure class="highlight plain"><figcaption><span>>>> proxy setting >>></span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">proxy () &#123;</span><br><span class="line">        export ALL_PROXY&#x3D;&quot;socks5:&#x2F;&#x2F;192.168.123.176:10808&quot;</span><br><span class="line">        export all_proxy&#x3D;&quot;socks5:&#x2F;&#x2F;192.168.123.176:10808&quot;</span><br><span class="line">        echo -e &quot;Acquire::http::Proxy \&quot;http:&#x2F;&#x2F;192.168.123.176:10809\&quot;;&quot; | sudo tee -a &#x2F;etc&#x2F;apt&#x2F;apt.c</span><br><span class="line">onf &gt; &#x2F;dev&#x2F;null</span><br><span class="line">        echo -e &quot;Acquire::https::Proxy \&quot;http:&#x2F;&#x2F;192.168.123.176:10809\&quot;;&quot; | sudo tee -a &#x2F;etc&#x2F;apt&#x2F;apt.</span><br><span class="line">conf &gt; &#x2F;dev&#x2F;null</span><br><span class="line">        curl myip.ipip.net</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><figcaption><span><<< proxy setting <<<</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">noproxy () &#123;</span><br><span class="line">        unset ALL_PROXY</span><br><span class="line">        unset all_proxy</span><br><span class="line">        sudo sed -i -e &#39;&#x2F;Acquire::http::Proxy&#x2F;d&#39; &#x2F;etc&#x2F;apt&#x2F;apt.conf</span><br><span class="line">        sudo sed -i -e &#39;&#x2F;Acquire::https::Proxy&#x2F;d&#39; &#x2F;etc&#x2F;apt&#x2F;apt.conf</span><br><span class="line">        curl myip.ipip.net</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果图：</strong></p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxy_.bashrc.png" alt="image-20200606151800543"></p>
+<ol start="3">
+<li>就是使用<code>alias</code>将<code>export http_proxy=socks5://192.168.123.176:10808</code>做成段命令，直接在需要代理命令之前加别名即可。</li>
 </ol>
 
     </div>
@@ -396,7 +319,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://bwchen1223.xyz/posts/38536/" title="Time Series Pandas">https://bwchen1223.xyz/posts/38536/</a>
+    <a href="https://bwchen1223.xyz/2020/05/30/wsl2_access_windows_proxy/" title="WSL2 Access Windows Proxy">https://bwchen1223.xyz/2020/05/30/wsl2_access_windows_proxy/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -436,9 +359,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Time-Series/" rel="tag"><i class="fa fa-tag"></i> Time Series</a>
-              <a href="/tags/Data-Analysis/" rel="tag"><i class="fa fa-tag"></i> Data Analysis</a>
-              <a href="/tags/Pandas/" rel="tag"><i class="fa fa-tag"></i> Pandas</a>
+              <a href="/tags/Proxy/" rel="tag"><i class="fa fa-tag"></i> Proxy</a>
+              <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
           </div>
 
         
@@ -447,12 +369,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/posts/61720/" rel="prev" title="Notes_01|"alias" Knowledge">
-      <i class="fa fa-chevron-left"></i> Notes_01|"alias" Knowledge
+    <a href="/2020/05/15/Unit-6-Innovation(TF)/" rel="prev" title="Unit-6-Innovation(TF).md">
+      <i class="fa fa-chevron-left"></i> Unit-6-Innovation(TF).md
     </a></div>
       <div class="post-nav-item">
-    <a href="/posts/18403/" rel="next" title="Cluster Analysis">
-      Cluster Analysis <i class="fa fa-chevron-right"></i>
+    <a href="/2020/05/30/alias/" rel="next" title="Notes_01|"alias" Knowledge">
+      Notes_01|"alias" Knowledge <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -513,7 +435,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#生成时间序列"><span class="nav-number">1.</span> <span class="nav-text">生成时间序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#差分法"><span class="nav-number">2.</span> <span class="nav-text">差分法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARIMA模型"><span class="nav-number">3.</span> <span class="nav-text">ARIMA模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AR模型"><span class="nav-number">3.1.</span> <span class="nav-text">AR模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MA模型"><span class="nav-number">3.2.</span> <span class="nav-text">MA模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARIMA模型原理"><span class="nav-number">3.3.</span> <span class="nav-text">ARIMA模型原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#p、q值的确定"><span class="nav-number">3.4.</span> <span class="nav-text">p、q值的确定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据重采样"><span class="nav-number">4.</span> <span class="nav-text">数据重采样</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滑动窗口"><span class="nav-number">5.</span> <span class="nav-text">滑动窗口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#额外收获"><span class="nav-number">6.</span> <span class="nav-text">额外收获</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关知识"><span class="nav-number">7.</span> <span class="nav-text">相关知识</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#IP设置"><span class="nav-number">1.</span> <span class="nav-text">IP设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法"><span class="nav-number">2.</span> <span class="nav-text">使用方法</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
