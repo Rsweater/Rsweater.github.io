@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Cluster Analysis</title>
-    <url>/2020/06/05/Cluster-Analysis/</url>
+    <url>/posts/18403/</url>
     <content><![CDATA[<p><strong>摘要：</strong> K-Mean Clustering、DBSCAN Clustering、以及Python实现思路（包括空间聚类）。</p>
 <a id="more"></a>
 
@@ -90,7 +90,7 @@
   </entry>
   <entry>
     <title>Notes_02|Mysql Related Concept</title>
-    <url>/2020/05/14/MySQL/</url>
+    <url>/posts/9977/</url>
     <content><![CDATA[<p>黑马授课视频笔记</p>
 <a id="more"></a>
 <h3 id="数据库特点"><a href="#数据库特点" class="headerlink" title="数据库特点"></a>数据库特点</h3><ul>
@@ -133,7 +133,7 @@
   </entry>
   <entry>
     <title>QG实验1——地理数据统计预处理</title>
-    <url>/2020/04/18/QG01-Geographic_data_preprocessing/</url>
+    <url>/posts/60550/</url>
     <content><![CDATA[<h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><ol>
 <li>掌握用Excel、Python进行<strong>数据统计描述</strong>的方法；</li>
 <li>掌握用Excel、Python进行<strong>数据标准化</strong>的基本方法；</li>
@@ -290,7 +290,7 @@
   </entry>
   <entry>
     <title>图像融合质量评价指标</title>
-    <url>/2020/04/21/RS02-Evaluation_of_image_fusion/</url>
+    <url>/posts/60549/</url>
     <content><![CDATA[<h2 id="1-图像融合"><a href="#1-图像融合" class="headerlink" title="1 图像融合"></a>1 图像融合</h2><p><strong>图像融合：</strong> 是指把对同一目标或同一场景经多个传感器的成像或单一传感器的多次成像进行一定的处理，生成一幅新的图像，这幅新的图像能够准确地综合反映源图像的信息，更适合于人眼观察或计算机处理。</p>
 <a id="more"></a>
 
@@ -341,7 +341,7 @@
   </entry>
   <entry>
     <title>QG实验2-经典统计分析1</title>
-    <url>/2020/05/12/QG2-Classical_statistical_analysis/</url>
+    <url>/posts/10772/</url>
     <content><![CDATA[<p>用Python实现经典统计分析中的相关分析，本文是ipynb转化生成</p>
 <a id="more"></a>
 <p><strong>内容概述:</strong></p>
@@ -3062,7 +3062,7 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
   </entry>
   <entry>
     <title>Time Series Pandas</title>
-    <url>/2020/06/04/Time-Series-Pandas/</url>
+    <url>/posts/38536/</url>
     <content><![CDATA[<p><strong>摘要：</strong>利用Python进行时间序列分析,  主要记录ARIMA模型相关知识。</p>
 <a id="more"></a>
 
@@ -3174,7 +3174,7 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
   </entry>
   <entry>
     <title>Unit-6-Innovation(TF).md</title>
-    <url>/2020/05/15/Unit-6-Innovation(TF)/</url>
+    <url>/posts/60549/</url>
     <content><![CDATA[<p><strong>Record the words and example sentences</strong>  </p>
 <a id="more"></a>
 
@@ -3213,7 +3213,7 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
   </entry>
   <entry>
     <title>Notes_01|&quot;alias&quot; Knowledge</title>
-    <url>/2020/05/30/alias/</url>
+    <url>/posts/61720/</url>
     <content><![CDATA[<p>  转载自知乎：乃乎。因为 WSL2 Access Windows Proxy 中命令用到了alias方法，就在知乎找到乃乎的分享。</p>
 <a id="more"></a>
 
@@ -3241,7 +3241,7 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/2020/03/29/hello-world/</url>
+    <url>/posts/16107/</url>
     <content><![CDATA[<p>Welcome to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo<i class="fa fa-external-link-alt"></i></span>! This is your very first post. Check <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv">documentation<i class="fa fa-external-link-alt"></i></span> for more info. If you get any problems when using Hexo, you can find the answer in <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdHJvdWJsZXNob290aW5nLmh0bWw=">troubleshooting<i class="fa fa-external-link-alt"></i></span> or you can ask me on <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL2lzc3Vlcw==">GitHub<i class="fa fa-external-link-alt"></i></span>.</p>
 <a id="more"></a>
 
@@ -3269,7 +3269,7 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
   </entry>
   <entry>
     <title>WSL2 Access Windows Proxy</title>
-    <url>/2020/05/30/wsl2_access_windows_proxy/</url>
+    <url>/posts/47923/</url>
     <content><![CDATA[<h2 id="IP设置"><a href="#IP设置" class="headerlink" title="IP设置"></a>IP设置</h2><p>IP要使用主机局域网IP，例如192.168.123.176。127.0.0.1不行。再者，就是host.deocker.internal在安装docker的时候进行了重定向，所以使用这个也是可以的。</p>
 <a id="more"></a>
 
@@ -3300,7 +3300,7 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
   </entry>
   <entry>
     <title>File Hash Verification</title>
-    <url>/2020/06/10/File-Hash-Verification/</url>
+    <url>/posts/undefined/</url>
     <content><![CDATA[<p><strong>摘要：</strong>利用PowerShell以及win10自带Hash工具，对文件进行hash验证，添加到右击菜单中。</p>
 <a id="more"></a>
 
