@@ -78,7 +78,7 @@
 <li>groupby(‘cluster’).mean()等可以看各类的均值等指标</li>
 <li>可以取出中心点画图</li>
 </ul>
-<h3 id="空间聚类分析"><a href="#空间聚类分析" class="headerlink" title="空间聚类分析"></a>空间聚类分析</h3><p>​    可以借助ArcGIS、Fiona、Shapely、<strong>geopandas</strong>等提取中心点之后，转化成了传统的聚类分析。</p>
+<h3 id="空间聚类分析"><a href="#空间聚类分析" class="headerlink" title="空间聚类分析"></a>空间聚类分析</h3><p>​    可以借助ArcPy、Fiona、Shapely、<strong>geopandas</strong>等提取中心点之后，转化成了传统的聚类分析。</p>
 ]]></content>
       <categories>
         <category>Machine Learning</category>
