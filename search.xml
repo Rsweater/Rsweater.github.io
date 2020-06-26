@@ -3321,4 +3321,29 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
         <tag>PowerShell</tag>
       </tags>
   </entry>
+  <entry>
+    <title>jupyter env</title>
+    <url>/2020/06/26/jupyter-env/</url>
+    <content><![CDATA[<p>​        记录jupyter notebook中使用conda 环境。</p>
+<a id="more"></a>
+
+<h2 id="jupyter-conda环境"><a href="#jupyter-conda环境" class="headerlink" title="jupyter conda环境"></a>jupyter conda环境</h2><p>​        只需要安装一个nb_conda</p>
+<p>da即可进行管理，然后重新启动jupyter notebook，在服务中找改变服务（en: kernel –&gt; change kernel）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">conda install nb_conda</span><br></pre></td></tr></table></figure>
+
+<p>​        如果在jupyter中没有找到已有的环境，需要激活已有环境(e.g <code>conda activate ee</code>)，然后在该环境中安装ipykernel即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">conda install ipykernel</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果图：</strong></p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/jupyter_env1.png" alt="image-20200626110902535"></p>
+<p><img data-src="C:/Users/bw_ch/AppData/Roaming/Typora/typora-user-images/image-20200626111035589.png" alt="image-20200626111035589"></p>
+]]></content>
+      <categories>
+        <category>jupyter</category>
+      </categories>
+      <tags>
+        <tag>env</tag>
+        <tag>themes</tag>
+      </tags>
+  </entry>
 </search>
