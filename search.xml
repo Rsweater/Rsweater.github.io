@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Notes_02|Mysql Related Concept</title>
+    <url>/2020/05/14/MySQL/</url>
+    <content><![CDATA[<p>黑马授课视频笔记</p>
+<a id="more"></a>
+<h3 id="数据库特点"><a href="#数据库特点" class="headerlink" title="数据库特点"></a>数据库特点</h3><ul>
+<li>持久化存储</li>
+<li>读写速度极高</li>
+<li>保证数据的有效性</li>
+<li>对程序支持性非常好，容易扩展</li>
+</ul>
+<h2 id="关系型数据库的核心"><a href="#关系型数据库的核心" class="headerlink" title="关系型数据库的核心"></a>关系型数据库的核心</h2><ul>
+<li>数据行（记录）</li>
+<li>数据列（字段）</li>
+<li>数据表（数据行的集合）</li>
+<li>数据库（数据表的集合）</li>
+</ul>
+<p><strong>举例：</strong> Excel文件(数据库) —-&gt;  Sheet(数据表) —&gt; 行、列(数据行、列)  </p>
+<h2 id="MySQL、redis、MongoDB常用范围"><a href="#MySQL、redis、MongoDB常用范围" class="headerlink" title="MySQL、redis、MongoDB常用范围"></a>MySQL、redis、MongoDB常用范围</h2><ul>
+<li>MySQL常用于建设网站</li>
+<li>redis存贮缓存</li>
+<li>MongoDB用于存贮不相关的数据（例如不同网站信息的爬取）  </li>
+</ul>
+<h2 id="SQL语句、MySQL（数据库管理工具-数据库）"><a href="#SQL语句、MySQL（数据库管理工具-数据库）" class="headerlink" title="SQL语句、MySQL（数据库管理工具+数据库）"></a>SQL语句、MySQL（数据库管理工具+数据库）</h2><h3 id="SQL语句主要分为"><a href="#SQL语句主要分为" class="headerlink" title="SQL语句主要分为"></a>SQL语句主要分为</h3><ul>
+<li><strong>DQL：数据查询语句，用于对数据进行查询，如select</strong>  </li>
+<li><strong>DML：数据操作语句，对数据进行增加、删除、修改，如insert、update、delete</strong>  </li>
+<li>TPL：事务处理语言，对事物进行处理，包括begin transaction、commit、rollback  </li>
+<li>DCL：数据控制语言，进行授权与权限回收，如grant、revoke  </li>
+<li>DDL：数据定义语句，进行数据库、表的管理等，如create、drop  </li>
+<li>CCL：指针控制语句，通过控制指针完成表的操作，如declare cursor  </li>
+</ul>
+<p>对于web程序员来说，重点是数据的crud(增删改查)，必须熟练编辑DQL、DML，能够编写DDL完成数据库、表的操作，其他语言如TPL、DCL、CCL了解即可  </p>
+<p>不区分大小写</p>
+]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>Studying</tag>
+        <tag>Notebook</tag>
+        <tag>Data analysis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Cluster Analysis</title>
     <url>/2020/06/05/Cluster-Analysis/</url>
     <content><![CDATA[<p><strong>摘要：</strong> K-Mean Clustering、DBSCAN Clustering、以及Python实现思路（包括空间聚类）。</p>
@@ -86,49 +129,6 @@
       <tags>
         <tag>K-Mean Clustering</tag>
         <tag>Dbsacn Clustering</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Notes_02|Mysql Related Concept</title>
-    <url>/2020/05/14/MySQL/</url>
-    <content><![CDATA[<p>黑马授课视频笔记</p>
-<a id="more"></a>
-<h3 id="数据库特点"><a href="#数据库特点" class="headerlink" title="数据库特点"></a>数据库特点</h3><ul>
-<li>持久化存储</li>
-<li>读写速度极高</li>
-<li>保证数据的有效性</li>
-<li>对程序支持性非常好，容易扩展</li>
-</ul>
-<h2 id="关系型数据库的核心"><a href="#关系型数据库的核心" class="headerlink" title="关系型数据库的核心"></a>关系型数据库的核心</h2><ul>
-<li>数据行（记录）</li>
-<li>数据列（字段）</li>
-<li>数据表（数据行的集合）</li>
-<li>数据库（数据表的集合）</li>
-</ul>
-<p><strong>举例：</strong> Excel文件(数据库) —-&gt;  Sheet(数据表) —&gt; 行、列(数据行、列)  </p>
-<h2 id="MySQL、redis、MongoDB常用范围"><a href="#MySQL、redis、MongoDB常用范围" class="headerlink" title="MySQL、redis、MongoDB常用范围"></a>MySQL、redis、MongoDB常用范围</h2><ul>
-<li>MySQL常用于建设网站</li>
-<li>redis存贮缓存</li>
-<li>MongoDB用于存贮不相关的数据（例如不同网站信息的爬取）  </li>
-</ul>
-<h2 id="SQL语句、MySQL（数据库管理工具-数据库）"><a href="#SQL语句、MySQL（数据库管理工具-数据库）" class="headerlink" title="SQL语句、MySQL（数据库管理工具+数据库）"></a>SQL语句、MySQL（数据库管理工具+数据库）</h2><h3 id="SQL语句主要分为"><a href="#SQL语句主要分为" class="headerlink" title="SQL语句主要分为"></a>SQL语句主要分为</h3><ul>
-<li><strong>DQL：数据查询语句，用于对数据进行查询，如select</strong>  </li>
-<li><strong>DML：数据操作语句，对数据进行增加、删除、修改，如insert、update、delete</strong>  </li>
-<li>TPL：事务处理语言，对事物进行处理，包括begin transaction、commit、rollback  </li>
-<li>DCL：数据控制语言，进行授权与权限回收，如grant、revoke  </li>
-<li>DDL：数据定义语句，进行数据库、表的管理等，如create、drop  </li>
-<li>CCL：指针控制语句，通过控制指针完成表的操作，如declare cursor  </li>
-</ul>
-<p>对于web程序员来说，重点是数据的crud(增删改查)，必须熟练编辑DQL、DML，能够编写DDL完成数据库、表的操作，其他语言如TPL、DCL、CCL了解即可  </p>
-<p>不区分大小写</p>
-]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>Studying</tag>
-        <tag>Notebook</tag>
-        <tag>Data analysis</tag>
       </tags>
   </entry>
   <entry>
@@ -337,6 +337,239 @@
       </categories>
       <tags>
         <tag>Image Processing</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>File Hash Verification</title>
+    <url>/2020/06/10/File-Hash-Verification/</url>
+    <content><![CDATA[<p><strong>摘要：</strong>利用PowerShell以及win10自带Hash工具，对文件进行hash验证，添加到右击菜单中。</p>
+<a id="more"></a>
+
+<p><strong>思路：</strong>直接利用<code>.reg</code>文件的方式添加注册表信息。</p>
+<p><strong>文件内容（添加）：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\*\shell\File Hash Verification]</span><br><span class="line"></span><br><span class="line">&quot;SubCommands&quot;&#x3D;&quot;MACTripleDES;MD5;RIPEMD160;SHA1;SHA256;SHA384;SHA512&quot;</span><br><span class="line"></span><br><span class="line">&quot;MUIVerb&quot;&#x3D;&quot;File Hash Verification&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MACTripleDES&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MACTripleDES \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;RIPEMD160&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm RIPEMD160 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA1&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA1 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA256&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA256 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA384&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA384 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA512&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA512 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>删除</strong>只需要在<code>[]</code>中最前面加<code>-</code>, 例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 以MD5删除为例：</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Regedit</category>
+      </categories>
+      <tags>
+        <tag>win10</tag>
+        <tag>Right click on the menu</tag>
+        <tag>PowerShell</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Unit-6-Innovation(TF).md</title>
+    <url>/2020/05/15/Unit-6-Innovation(TF)/</url>
+    <content><![CDATA[<p><strong>Record the words and example sentences</strong>  </p>
+<a id="more"></a>
+
+<ol>
+<li><p><strong>word：</strong><br>urban planner(城市规划师)<br><strong>sentences:</strong><br>An urban planner is a person who works on the efficient organization of a city’s features.</p>
+</li>
+<li><p><strong>word：</strong><br>interrelated<br>adj. 相关的；互相联系的；v. 使相互联系（interrelate的过去式）<br>interact<br>v. 互相影响；互相作用<br><strong>sentences:</strong><br>All things are interrelated and interact with each other.<br>一切事物都是相互联系、相互作用的。</p>
+</li>
+<li><p><strong>word：</strong><br>commuter<br>n. 通勤者，经常乘公共车辆往返者；[交] 月季票乘客<br><strong>sentences：</strong><br>A commuter is someone who travels a long distance to work every day.<br>通勤族是指每天都要长途跋涉去上班的人。 </p>
+</li>
+<li><p><strong>word:</strong><br>imprisonment　　监禁　　　　　　　　　option　　选项<br>fine　　n. 罚款    　<br>adj. 好的；优良的；细小的，精美的；健康的；晴朗的<br><strong>sentences:</strong><br>He was given one month’s imprisonment without the option of a fine.  他被判处一个月徒刑，没有罚款的选择。  </p>
+</li>
+<li><p><strong>word:</strong><br>stationary<br>adj. 固定的；静止的；定居的；常备军的<br>n. 不动的人；驻军<br><strong>sentences:</strong><br>A traffic jam is a long line of vehicles that is either stationary or moving very slowly.<br>交通堵塞就是指一排排固定不动或行驶缓慢的车辆。  </p>
+</li>
+<li><p><strong>drop</strong><br>v.When someone drops you off, he or she lets you alight from the vehicle.（让⋯）下车，卸下（乘客） </p>
+</li>
+<li><p><strong>for one thing</strong><br>When you say “for one thing,” you indicate that you are talking about one of the factors involved in the situation. 首先，一则  </p>
+</li>
+<li><p><strong>not to mention</strong><br>You will use “not to mention” when you want to indicate that you’re about to provide additional information to support your point. 更不用说，此外  </p>
+</li>
+<li><p><strong>conference</strong><br>n.A conference is a meeting, usually held over the course of a few days, where a particular subject is discussed. （正式）会议  </p>
+</li>
+<li><p><strong>demonstrate</strong><br>v.To demonstrate is to show how something works, or how something should be done. 示范操作，演示  </p>
+</li>
+<li><p><strong>revolution</strong><br>n.A revolution refers to a swift and dramatic change in society. 重大变革  </p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Studying-English</category>
+      </categories>
+      <tags>
+        <tag>Notebook</tag>
+        <tag>English Though Films</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Notes_01|&quot;alias&quot; Knowledge</title>
+    <url>/2020/05/30/alias/</url>
+    <content><![CDATA[<p>  转载自知乎：乃乎。因为 WSL2 Access Windows Proxy 中命令用到了alias方法，就在知乎找到乃乎的分享。</p>
+<a id="more"></a>
+
+<p>alias (别名)，一般用来用一个短的简单的命令来代替长的复杂的命令</p>
+<h2 id="查看-alias"><a href="#查看-alias" class="headerlink" title="查看 alias"></a>查看 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Ubuntu@DESKTOP-J51JGI8:~$ <span class="built_in">alias</span></span><br><span class="line"><span class="built_in">alias</span> alert=<span class="string">'notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$(history|tail -n1|sed -e '</span>\<span class="string">''</span>s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//<span class="string">'\'</span><span class="string">')"'</span></span><br><span class="line"><span class="built_in">alias</span> egrep=<span class="string">'egrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> fgrep=<span class="string">'fgrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> grep=<span class="string">'grep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> l=<span class="string">'ls -CF'</span></span><br><span class="line"><span class="built_in">alias</span> la=<span class="string">'ls -A'</span></span><br><span class="line"><span class="built_in">alias</span> ll=<span class="string">'ls -alF'</span></span><br><span class="line"><span class="built_in">alias</span> ls=<span class="string">'ls --color=auto'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="临时定义-alias"><a href="#临时定义-alias" class="headerlink" title="临时定义 alias"></a>临时定义 alias</h2><p>使用 <code>ll</code> 代替 <code>ls -al</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="持久定义-alias"><a href="#持久定义-alias" class="headerlink" title="持久定义 alias"></a>持久定义 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>shell 启动的时候会读取配置文件，~/.bashrc 或者 ～/.zshrc。在配置文件中加入 alias 定义的命令就可以在每次启动 shell 后都存在定义好的 alias</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># custom aliases are listed below</span></span><br><span class="line">$ <span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy93d3cudGVjbWludC5jb20vY3JlYXRlLWFsaWFzLWluLWxpbnV4Lw==">https://www.tecmint.com/create-alias-in-linux/<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>WSL2</category>
+      </categories>
+      <tags>
+        <tag>Notebook - Bash - Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WSL2 Access Windows Proxy</title>
+    <url>/2020/05/30/wsl2_access_windows_proxy/</url>
+    <content><![CDATA[<h2 id="IP设置"><a href="#IP设置" class="headerlink" title="IP设置"></a>IP设置</h2><p>IP要使用主机局域网IP，例如192.168.123.176。127.0.0.1不行。再者，就是host.deocker.internal在安装docker的时候进行了重定向，所以使用这个也是可以的。</p>
+<a id="more"></a>
+
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ol>
+<li><p>使用<code>proxychains</code>。安装就是<code>sudo apt install proxychains</code>，然后再进去<code>/etc/proxychains.conf</code>进行ip设置，使用直接在命令前面加proxychains。<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxychains.conf.png" alt="image-20200606150558949">![image-20200606102952207](<span class="exturl" data-url="aHR0cHM6Ly9naXRlZS5jb20vUnN3ZWF0ZXJfYWRtaW4vQmxvZ19JbWFnZXMvcmF3L21hc3Rlci9pbWcvd3Ns">https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/wsl<i class="fa fa-external-link-alt"></i></span> proxy1.png)</p>
+<p>这个方法可能会出现dns无法解析的问题，要装依赖tor,使用<code>sudo apt install tor</code>即可。</p>
+</li>
+<li><p>使用修改<code>.bashrc</code>, 在<code>.bashrc</code>中写代理和取消代理函数, 使用直接输入proxy、noproxy即可。<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxy.bashrc.png" alt="image-20200606151542147"></p>
+</li>
+</ol>
+<figure class="highlight plain"><figcaption><span>>>> proxy setting >>></span></figcaption><table><tr><td class="code"><pre><span class="line">proxy () &#123;</span><br><span class="line">        export ALL_PROXY&#x3D;&quot;socks5:&#x2F;&#x2F;192.168.123.176:10808&quot;</span><br><span class="line">        export all_proxy&#x3D;&quot;socks5:&#x2F;&#x2F;192.168.123.176:10808&quot;</span><br><span class="line">        echo -e &quot;Acquire::http::Proxy \&quot;http:&#x2F;&#x2F;192.168.123.176:10809\&quot;;&quot; | sudo tee -a &#x2F;etc&#x2F;apt&#x2F;apt.c</span><br><span class="line">onf &gt; &#x2F;dev&#x2F;null</span><br><span class="line">        echo -e &quot;Acquire::https::Proxy \&quot;http:&#x2F;&#x2F;192.168.123.176:10809\&quot;;&quot; | sudo tee -a &#x2F;etc&#x2F;apt&#x2F;apt.</span><br><span class="line">conf &gt; &#x2F;dev&#x2F;null</span><br><span class="line">        curl myip.ipip.net</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><figcaption><span><<< proxy setting <<<</span></figcaption><table><tr><td class="code"><pre><span class="line">noproxy () &#123;</span><br><span class="line">        unset ALL_PROXY</span><br><span class="line">        unset all_proxy</span><br><span class="line">        sudo sed -i -e &#39;&#x2F;Acquire::http::Proxy&#x2F;d&#39; &#x2F;etc&#x2F;apt&#x2F;apt.conf</span><br><span class="line">        sudo sed -i -e &#39;&#x2F;Acquire::https::Proxy&#x2F;d&#39; &#x2F;etc&#x2F;apt&#x2F;apt.conf</span><br><span class="line">        curl myip.ipip.net</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果图：</strong></p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxy_.bashrc.png" alt="image-20200606151800543"></p>
+<ol start="3">
+<li>就是使用<code>alias</code>将<code>export http_proxy=socks5://192.168.123.176:10808</code>做成段命令，直接在需要代理命令之前加别名即可。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>WSL2</category>
+      </categories>
+      <tags>
+        <tag>Proxy</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Time Series Pandas</title>
+    <url>/2020/06/04/Time-Series-Pandas/</url>
+    <content><![CDATA[<p><strong>摘要：</strong>利用Python进行时间序列分析,  主要记录ARIMA模型相关知识。</p>
+<a id="more"></a>
+
+
+
+<h2 id="生成时间序列"><a href="#生成时间序列" class="headerlink" title="生成时间序列"></a>生成时间序列</h2><ol>
+<li>pd.date_range()</li>
+<li>truncate()过滤</li>
+<li>pd.Timestamp()时间戳</li>
+<li>pd.Period()时间周期</li>
+<li>pd.datelta()间隔</li>
+</ol>
+<h2 id="差分法"><a href="#差分法" class="headerlink" title="差分法"></a>差分法</h2><p>​    改进数据平稳性</p>
+<p><code>.diff(num)</code>: num阶差分，一般一阶就可以了。</p>
+<h2 id="ARIMA模型"><a href="#ARIMA模型" class="headerlink" title="ARIMA模型"></a>ARIMA模型</h2><p>​        <strong>ARIMA模型</strong>（英语：<strong>A</strong>uto<strong>r</strong>egressive <strong>I</strong>ntegrated <strong>M</strong>oving <strong>A</strong>verage model），差分整合移动平均自回归模型，又称整合移动平均自回归模型（移动也可称作滑动），是<span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS/ml7bpl7Tluo/liJc=">时间序列<i class="fa fa-external-link-alt"></i></span>预测分析方法之一。</p>
+<p>​        ARIMA(p，d，q)中，AR是“自回归模型”，p为自回归项数；MA为“滑动平均模型”，q为滑动平均项数，d为使之成为平稳序列所做的差分次数（阶数）。“差分”一词虽未出现在ARIMA的英文名称中，却是关键步骤。</p>
+<h3 id="AR模型"><a href="#AR模型" class="headerlink" title="AR模型"></a>AR模型</h3><ul>
+<li><p>描述当前值与历史值之间的关系，用变量自身的历史时间数据对自身进行预测</p>
+</li>
+<li><p>p阶自回归过程的公式定义：$y_t = \mu + \sum^{p}<em>{i=1}{\gamma_iy</em>{t-i}} + \epsilon_t$, </p>
+</li>
+<li><p>其中 $y_t$ 是当前值、$\mu$ 是常数项、p 是阶数、 $\gamma_i$ 是自相关系数、 $\epsilon_t$ 是误差</p>
+</li>
+</ul>
+<ul>
+<li><p>自回归模型是用自身的数据来进行预测</p>
+</li>
+<li><p>必须具有平稳性</p>
+</li>
+<li><p>必须具有自相关，如果自相关系数小于0.5，则不宜采用</p>
+</li>
+<li><p>自回归只适用于预测与自身前期相关的现象</p>
+</li>
+</ul>
+<h3 id="MA模型"><a href="#MA模型" class="headerlink" title="MA模型"></a>MA模型</h3><ul>
+<li>移动平均模型关注的是自回归模型中误差项的累加</li>
+<li>q阶移动平均模型：$y_t = \mu + \epsilon_t + \sum^q_{i=1}{\theta_i\epsilon_{t-i}}$ </li>
+<li>移动平均模型能够消除预测中的随机波动</li>
+</ul>
+<ul>
+<li><code>ARMA = AR + MA</code> 、<code>ARMA + 差分 = ARIMA</code></li>
+</ul>
+<h3 id="ARIMA模型原理"><a href="#ARIMA模型原理" class="headerlink" title="ARIMA模型原理"></a>ARIMA模型原理</h3><p>​        将非平稳时间序列转化为平稳时间序列，然后将因变量对它的滞后值以及随机误差项的现值和滞后值进行回归所建立的模型</p>
+<h3 id="p、q值的确定"><a href="#p、q值的确定" class="headerlink" title="p、q值的确定"></a>p、q值的确定</h3><p>自相关系数ACF、偏相关系数PACF</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>ACF</th>
+<th>PACF</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AR(p)</td>
+<td>衰减趋于零（几何型或振荡型）</td>
+<td>p阶后截尾</td>
+</tr>
+<tr>
+<td>MA(q)</td>
+<td>q阶后截尾</td>
+<td>衰减趋于零（几何型或振荡型）</td>
+</tr>
+<tr>
+<td>ARMA(p, q)</td>
+<td>q阶后衰减趋于零（几何型或振荡型）</td>
+<td>p阶后衰减趋于零（几何型或振荡型）</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>截尾：落在置信区间内（95%的点都符合该规则）</p>
+</li>
+<li><p>Python方法：</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> statsmodels.graphocs.tsaplots <span class="keyword">import</span> plot_acf, plot_pacf</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h2 id="数据重采样"><a href="#数据重采样" class="headerlink" title="数据重采样"></a>数据重采样</h2><ol>
+<li><code>.resample(freq)</code> 例如：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rng = pd.date_range(<span class="string">'1/1/2020'</span>, periods=<span class="number">90</span>, freq=<span class="string">'D'</span>)</span><br><span class="line">ts = pd.Series(np.random.randn(len(rng)), index=rng)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 降采样</span></span><br><span class="line">ts = resample(<span class="string">'M'</span>).mean()</span><br><span class="line">ts = resmaple(<span class="string">'M'</span>).sum()</span><br><span class="line">ts = resmaple(<span class="string">'3D'</span>).sum()</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>升采样插值<ul>
+<li><code>.fill(位数)</code>，向后填充，空值取前面的值</li>
+<li><code>.bfill()</code>, 向前填充</li>
+<li><code>.interpolate()</code>, 线性填充</li>
+</ul>
+</li>
+</ol>
+<h2 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h2><p>在较长时间区间上，用来观测某个时间点、区间相关情况的方法。</p>
+<p>使用<code>.rolling(windowSize)</code></p>
+<h2 id="额外收获"><a href="#额外收获" class="headerlink" title="额外收获"></a>额外收获</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B5ZGF0YS9wYW5kYXMtZGF0YXJlYWRlcg==">pandasdatareade<i class="fa fa-external-link-alt"></i></span>: 直接获取网络上的数据到<code>dataframe</code></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2JsdWUteW9uZGVyL3RzZnJlc2g=">tsfresh<i class="fa fa-external-link-alt"></i></span>: 提取时间序列的特征</p>
+<h2 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h2><ol>
+<li>时间序列分类</li>
+<li>EDA</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Machine Learning</category>
+      </categories>
+      <tags>
+        <tag>Time Series</tag>
+        <tag>Data Analysis</tag>
+        <tag>Pandas</tag>
       </tags>
   </entry>
   <entry>
@@ -3061,185 +3294,6 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
       </tags>
   </entry>
   <entry>
-    <title>Time Series Pandas</title>
-    <url>/2020/06/04/Time-Series-Pandas/</url>
-    <content><![CDATA[<p><strong>摘要：</strong>利用Python进行时间序列分析,  主要记录ARIMA模型相关知识。</p>
-<a id="more"></a>
-
-
-
-<h2 id="生成时间序列"><a href="#生成时间序列" class="headerlink" title="生成时间序列"></a>生成时间序列</h2><ol>
-<li>pd.date_range()</li>
-<li>truncate()过滤</li>
-<li>pd.Timestamp()时间戳</li>
-<li>pd.Period()时间周期</li>
-<li>pd.datelta()间隔</li>
-</ol>
-<h2 id="差分法"><a href="#差分法" class="headerlink" title="差分法"></a>差分法</h2><p>​    改进数据平稳性</p>
-<p><code>.diff(num)</code>: num阶差分，一般一阶就可以了。</p>
-<h2 id="ARIMA模型"><a href="#ARIMA模型" class="headerlink" title="ARIMA模型"></a>ARIMA模型</h2><p>​        <strong>ARIMA模型</strong>（英语：<strong>A</strong>uto<strong>r</strong>egressive <strong>I</strong>ntegrated <strong>M</strong>oving <strong>A</strong>verage model），差分整合移动平均自回归模型，又称整合移动平均自回归模型（移动也可称作滑动），是<span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS/ml7bpl7Tluo/liJc=">时间序列<i class="fa fa-external-link-alt"></i></span>预测分析方法之一。</p>
-<p>​        ARIMA(p，d，q)中，AR是“自回归模型”，p为自回归项数；MA为“滑动平均模型”，q为滑动平均项数，d为使之成为平稳序列所做的差分次数（阶数）。“差分”一词虽未出现在ARIMA的英文名称中，却是关键步骤。</p>
-<h3 id="AR模型"><a href="#AR模型" class="headerlink" title="AR模型"></a>AR模型</h3><ul>
-<li><p>描述当前值与历史值之间的关系，用变量自身的历史时间数据对自身进行预测</p>
-</li>
-<li><p>p阶自回归过程的公式定义：$y_t = \mu + \sum^{p}<em>{i=1}{\gamma_iy</em>{t-i}} + \epsilon_t$, </p>
-</li>
-<li><p>其中 $y_t$ 是当前值、$\mu$ 是常数项、p 是阶数、 $\gamma_i$ 是自相关系数、 $\epsilon_t$ 是误差</p>
-</li>
-</ul>
-<ul>
-<li><p>自回归模型是用自身的数据来进行预测</p>
-</li>
-<li><p>必须具有平稳性</p>
-</li>
-<li><p>必须具有自相关，如果自相关系数小于0.5，则不宜采用</p>
-</li>
-<li><p>自回归只适用于预测与自身前期相关的现象</p>
-</li>
-</ul>
-<h3 id="MA模型"><a href="#MA模型" class="headerlink" title="MA模型"></a>MA模型</h3><ul>
-<li>移动平均模型关注的是自回归模型中误差项的累加</li>
-<li>q阶移动平均模型：$y_t = \mu + \epsilon_t + \sum^q_{i=1}{\theta_i\epsilon_{t-i}}$ </li>
-<li>移动平均模型能够消除预测中的随机波动</li>
-</ul>
-<ul>
-<li><code>ARMA = AR + MA</code> 、<code>ARMA + 差分 = ARIMA</code></li>
-</ul>
-<h3 id="ARIMA模型原理"><a href="#ARIMA模型原理" class="headerlink" title="ARIMA模型原理"></a>ARIMA模型原理</h3><p>​        将非平稳时间序列转化为平稳时间序列，然后将因变量对它的滞后值以及随机误差项的现值和滞后值进行回归所建立的模型</p>
-<h3 id="p、q值的确定"><a href="#p、q值的确定" class="headerlink" title="p、q值的确定"></a>p、q值的确定</h3><p>自相关系数ACF、偏相关系数PACF</p>
-<table>
-<thead>
-<tr>
-<th>模型</th>
-<th>ACF</th>
-<th>PACF</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>AR(p)</td>
-<td>衰减趋于零（几何型或振荡型）</td>
-<td>p阶后截尾</td>
-</tr>
-<tr>
-<td>MA(q)</td>
-<td>q阶后截尾</td>
-<td>衰减趋于零（几何型或振荡型）</td>
-</tr>
-<tr>
-<td>ARMA(p, q)</td>
-<td>q阶后衰减趋于零（几何型或振荡型）</td>
-<td>p阶后衰减趋于零（几何型或振荡型）</td>
-</tr>
-</tbody></table>
-<ul>
-<li><p>截尾：落在置信区间内（95%的点都符合该规则）</p>
-</li>
-<li><p>Python方法：</p>
-  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> statsmodels.graphocs.tsaplots <span class="keyword">import</span> plot_acf, plot_pacf</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h2 id="数据重采样"><a href="#数据重采样" class="headerlink" title="数据重采样"></a>数据重采样</h2><ol>
-<li><code>.resample(freq)</code> 例如：</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rng = pd.date_range(<span class="string">'1/1/2020'</span>, periods=<span class="number">90</span>, freq=<span class="string">'D'</span>)</span><br><span class="line">ts = pd.Series(np.random.randn(len(rng)), index=rng)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 降采样</span></span><br><span class="line">ts = resample(<span class="string">'M'</span>).mean()</span><br><span class="line">ts = resmaple(<span class="string">'M'</span>).sum()</span><br><span class="line">ts = resmaple(<span class="string">'3D'</span>).sum()</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>升采样插值<ul>
-<li><code>.fill(位数)</code>，向后填充，空值取前面的值</li>
-<li><code>.bfill()</code>, 向前填充</li>
-<li><code>.interpolate()</code>, 线性填充</li>
-</ul>
-</li>
-</ol>
-<h2 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h2><p>在较长时间区间上，用来观测某个时间点、区间相关情况的方法。</p>
-<p>使用<code>.rolling(windowSize)</code></p>
-<h2 id="额外收获"><a href="#额外收获" class="headerlink" title="额外收获"></a>额外收获</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B5ZGF0YS9wYW5kYXMtZGF0YXJlYWRlcg==">pandasdatareade<i class="fa fa-external-link-alt"></i></span>: 直接获取网络上的数据到<code>dataframe</code></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2JsdWUteW9uZGVyL3RzZnJlc2g=">tsfresh<i class="fa fa-external-link-alt"></i></span>: 提取时间序列的特征</p>
-<h2 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h2><ol>
-<li>时间序列分类</li>
-<li>EDA</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Machine Learning</category>
-      </categories>
-      <tags>
-        <tag>Time Series</tag>
-        <tag>Data Analysis</tag>
-        <tag>Pandas</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Unit-6-Innovation(TF).md</title>
-    <url>/2020/05/15/Unit-6-Innovation(TF)/</url>
-    <content><![CDATA[<p><strong>Record the words and example sentences</strong>  </p>
-<a id="more"></a>
-
-<ol>
-<li><p><strong>word：</strong><br>urban planner(城市规划师)<br><strong>sentences:</strong><br>An urban planner is a person who works on the efficient organization of a city’s features.</p>
-</li>
-<li><p><strong>word：</strong><br>interrelated<br>adj. 相关的；互相联系的；v. 使相互联系（interrelate的过去式）<br>interact<br>v. 互相影响；互相作用<br><strong>sentences:</strong><br>All things are interrelated and interact with each other.<br>一切事物都是相互联系、相互作用的。</p>
-</li>
-<li><p><strong>word：</strong><br>commuter<br>n. 通勤者，经常乘公共车辆往返者；[交] 月季票乘客<br><strong>sentences：</strong><br>A commuter is someone who travels a long distance to work every day.<br>通勤族是指每天都要长途跋涉去上班的人。 </p>
-</li>
-<li><p><strong>word:</strong><br>imprisonment　　监禁　　　　　　　　　option　　选项<br>fine　　n. 罚款    　<br>adj. 好的；优良的；细小的，精美的；健康的；晴朗的<br><strong>sentences:</strong><br>He was given one month’s imprisonment without the option of a fine.  他被判处一个月徒刑，没有罚款的选择。  </p>
-</li>
-<li><p><strong>word:</strong><br>stationary<br>adj. 固定的；静止的；定居的；常备军的<br>n. 不动的人；驻军<br><strong>sentences:</strong><br>A traffic jam is a long line of vehicles that is either stationary or moving very slowly.<br>交通堵塞就是指一排排固定不动或行驶缓慢的车辆。  </p>
-</li>
-<li><p><strong>drop</strong><br>v.When someone drops you off, he or she lets you alight from the vehicle.（让⋯）下车，卸下（乘客） </p>
-</li>
-<li><p><strong>for one thing</strong><br>When you say “for one thing,” you indicate that you are talking about one of the factors involved in the situation. 首先，一则  </p>
-</li>
-<li><p><strong>not to mention</strong><br>You will use “not to mention” when you want to indicate that you’re about to provide additional information to support your point. 更不用说，此外  </p>
-</li>
-<li><p><strong>conference</strong><br>n.A conference is a meeting, usually held over the course of a few days, where a particular subject is discussed. （正式）会议  </p>
-</li>
-<li><p><strong>demonstrate</strong><br>v.To demonstrate is to show how something works, or how something should be done. 示范操作，演示  </p>
-</li>
-<li><p><strong>revolution</strong><br>n.A revolution refers to a swift and dramatic change in society. 重大变革  </p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Studying-English</category>
-      </categories>
-      <tags>
-        <tag>Notebook</tag>
-        <tag>English Though Films</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Notes_01|&quot;alias&quot; Knowledge</title>
-    <url>/2020/05/30/alias/</url>
-    <content><![CDATA[<p>  转载自知乎：乃乎。因为 WSL2 Access Windows Proxy 中命令用到了alias方法，就在知乎找到乃乎的分享。</p>
-<a id="more"></a>
-
-<p>alias (别名)，一般用来用一个短的简单的命令来代替长的复杂的命令</p>
-<h2 id="查看-alias"><a href="#查看-alias" class="headerlink" title="查看 alias"></a>查看 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Ubuntu@DESKTOP-J51JGI8:~$ <span class="built_in">alias</span></span><br><span class="line"><span class="built_in">alias</span> alert=<span class="string">'notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$(history|tail -n1|sed -e '</span>\<span class="string">''</span>s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//<span class="string">'\'</span><span class="string">')"'</span></span><br><span class="line"><span class="built_in">alias</span> egrep=<span class="string">'egrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> fgrep=<span class="string">'fgrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> grep=<span class="string">'grep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> l=<span class="string">'ls -CF'</span></span><br><span class="line"><span class="built_in">alias</span> la=<span class="string">'ls -A'</span></span><br><span class="line"><span class="built_in">alias</span> ll=<span class="string">'ls -alF'</span></span><br><span class="line"><span class="built_in">alias</span> ls=<span class="string">'ls --color=auto'</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="临时定义-alias"><a href="#临时定义-alias" class="headerlink" title="临时定义 alias"></a>临时定义 alias</h2><p>使用 <code>ll</code> 代替 <code>ls -al</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="持久定义-alias"><a href="#持久定义-alias" class="headerlink" title="持久定义 alias"></a>持久定义 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure>
-
-<p>shell 启动的时候会读取配置文件，~/.bashrc 或者 ～/.zshrc。在配置文件中加入 alias 定义的命令就可以在每次启动 shell 后都存在定义好的 alias</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># custom aliases are listed below</span></span><br><span class="line">$ <span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy93d3cudGVjbWludC5jb20vY3JlYXRlLWFsaWFzLWluLWxpbnV4Lw==">https://www.tecmint.com/create-alias-in-linux/<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-]]></content>
-      <categories>
-        <category>WSL2</category>
-      </categories>
-      <tags>
-        <tag>Notebook - Bash - Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2020/03/29/hello-world/</url>
     <content><![CDATA[<p>Welcome to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo<i class="fa fa-external-link-alt"></i></span>! This is your very first post. Check <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv">documentation<i class="fa fa-external-link-alt"></i></span> for more info. If you get any problems when using Hexo, you can find the answer in <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdHJvdWJsZXNob290aW5nLmh0bWw=">troubleshooting<i class="fa fa-external-link-alt"></i></span> or you can ask me on <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL2lzc3Vlcw==">GitHub<i class="fa fa-external-link-alt"></i></span>.</p>
@@ -3268,60 +3322,6 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
       </tags>
   </entry>
   <entry>
-    <title>WSL2 Access Windows Proxy</title>
-    <url>/2020/05/30/wsl2_access_windows_proxy/</url>
-    <content><![CDATA[<h2 id="IP设置"><a href="#IP设置" class="headerlink" title="IP设置"></a>IP设置</h2><p>IP要使用主机局域网IP，例如192.168.123.176。127.0.0.1不行。再者，就是host.deocker.internal在安装docker的时候进行了重定向，所以使用这个也是可以的。</p>
-<a id="more"></a>
-
-<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ol>
-<li><p>使用<code>proxychains</code>。安装就是<code>sudo apt install proxychains</code>，然后再进去<code>/etc/proxychains.conf</code>进行ip设置，使用直接在命令前面加proxychains。<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxychains.conf.png" alt="image-20200606150558949">![image-20200606102952207](<span class="exturl" data-url="aHR0cHM6Ly9naXRlZS5jb20vUnN3ZWF0ZXJfYWRtaW4vQmxvZ19JbWFnZXMvcmF3L21hc3Rlci9pbWcvd3Ns">https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/wsl<i class="fa fa-external-link-alt"></i></span> proxy1.png)</p>
-<p>这个方法可能会出现dns无法解析的问题，要装依赖tor,使用<code>sudo apt install tor</code>即可。</p>
-</li>
-<li><p>使用修改<code>.bashrc</code>, 在<code>.bashrc</code>中写代理和取消代理函数, 使用直接输入proxy、noproxy即可。<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxy.bashrc.png" alt="image-20200606151542147"></p>
-</li>
-</ol>
-<figure class="highlight plain"><figcaption><span>>>> proxy setting >>></span></figcaption><table><tr><td class="code"><pre><span class="line">proxy () &#123;</span><br><span class="line">        export ALL_PROXY&#x3D;&quot;socks5:&#x2F;&#x2F;192.168.123.176:10808&quot;</span><br><span class="line">        export all_proxy&#x3D;&quot;socks5:&#x2F;&#x2F;192.168.123.176:10808&quot;</span><br><span class="line">        echo -e &quot;Acquire::http::Proxy \&quot;http:&#x2F;&#x2F;192.168.123.176:10809\&quot;;&quot; | sudo tee -a &#x2F;etc&#x2F;apt&#x2F;apt.c</span><br><span class="line">onf &gt; &#x2F;dev&#x2F;null</span><br><span class="line">        echo -e &quot;Acquire::https::Proxy \&quot;http:&#x2F;&#x2F;192.168.123.176:10809\&quot;;&quot; | sudo tee -a &#x2F;etc&#x2F;apt&#x2F;apt.</span><br><span class="line">conf &gt; &#x2F;dev&#x2F;null</span><br><span class="line">        curl myip.ipip.net</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><figcaption><span><<< proxy setting <<<</span></figcaption><table><tr><td class="code"><pre><span class="line">noproxy () &#123;</span><br><span class="line">        unset ALL_PROXY</span><br><span class="line">        unset all_proxy</span><br><span class="line">        sudo sed -i -e &#39;&#x2F;Acquire::http::Proxy&#x2F;d&#39; &#x2F;etc&#x2F;apt&#x2F;apt.conf</span><br><span class="line">        sudo sed -i -e &#39;&#x2F;Acquire::https::Proxy&#x2F;d&#39; &#x2F;etc&#x2F;apt&#x2F;apt.conf</span><br><span class="line">        curl myip.ipip.net</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果图：</strong></p>
-<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxy_.bashrc.png" alt="image-20200606151800543"></p>
-<ol start="3">
-<li>就是使用<code>alias</code>将<code>export http_proxy=socks5://192.168.123.176:10808</code>做成段命令，直接在需要代理命令之前加别名即可。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>WSL2</category>
-      </categories>
-      <tags>
-        <tag>Proxy</tag>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>File Hash Verification</title>
-    <url>/2020/06/10/File-Hash-Verification/</url>
-    <content><![CDATA[<p><strong>摘要：</strong>利用PowerShell以及win10自带Hash工具，对文件进行hash验证，添加到右击菜单中。</p>
-<a id="more"></a>
-
-<p><strong>思路：</strong>直接利用<code>.reg</code>文件的方式添加注册表信息。</p>
-<p><strong>文件内容（添加）：</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\*\shell\File Hash Verification]</span><br><span class="line"></span><br><span class="line">&quot;SubCommands&quot;&#x3D;&quot;MACTripleDES;MD5;RIPEMD160;SHA1;SHA256;SHA384;SHA512&quot;</span><br><span class="line"></span><br><span class="line">&quot;MUIVerb&quot;&#x3D;&quot;File Hash Verification&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MACTripleDES&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MACTripleDES \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;RIPEMD160&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm RIPEMD160 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA1&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA1 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA256&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA256 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA384&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA384 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA512&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA512 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>删除</strong>只需要在<code>[]</code>中最前面加<code>-</code>, 例如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 以MD5删除为例：</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Regedit</category>
-      </categories>
-      <tags>
-        <tag>win10</tag>
-        <tag>Right click on the menu</tag>
-        <tag>PowerShell</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>jupyter env</title>
     <url>/2020/06/26/jupyter-env/</url>
     <content><![CDATA[<p>​        记录jupyter notebook中使用conda 环境。</p>
@@ -3336,7 +3336,7 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
 
 <p><strong>效果图：</strong></p>
 <p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/jupyter_env1.png" alt="image-20200626110902535"></p>
-<p><img data-src="C:/Users/bw_ch/AppData/Roaming/Typora/typora-user-images/image-20200626111035589.png" alt="image-20200626111035589"></p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/jupyter_env2.png" alt="image-20200626111035589"></p>
 ]]></content>
       <categories>
         <category>jupyter</category>
