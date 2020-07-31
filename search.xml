@@ -1,26 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>File Hash Verification</title>
-    <url>/2020/06/10/File-Hash-Verification/</url>
-    <content><![CDATA[<p><strong>摘要：</strong>利用PowerShell以及win10自带Hash工具，对文件进行hash验证，添加到右击菜单中。</p>
+    <title>Cluster Analysis</title>
+    <url>/2020/06/05/Cluster-Analysis/</url>
+    <content><![CDATA[<p><strong>摘要：</strong> K-Mean Clustering、DBSCAN Clustering、以及Python实现思路（包括空间聚类）。</p>
 <a id="more"></a>
 
-<p><strong>思路：</strong>直接利用<code>.reg</code>文件的方式添加注册表信息。</p>
-<p><strong>文件内容（添加）：</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\*\shell\File Hash Verification]</span><br><span class="line"></span><br><span class="line">&quot;SubCommands&quot;&#x3D;&quot;MACTripleDES;MD5;RIPEMD160;SHA1;SHA256;SHA384;SHA512&quot;</span><br><span class="line"></span><br><span class="line">&quot;MUIVerb&quot;&#x3D;&quot;File Hash Verification&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MACTripleDES&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MACTripleDES \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;RIPEMD160&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm RIPEMD160 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA1&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA1 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA256&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA256 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA384&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA384 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA512&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA512 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h2><p><strong>聚类：</strong> 将物理或抽象对象的集合分成由类似的对象组成的多个类的过程被称为聚类。</p>
+<h3 id="Clustering-特点"><a href="#Clustering-特点" class="headerlink" title="Clustering 特点"></a>Clustering 特点</h3><ul>
+<li>非监督分类</li>
+<li>聚类：相似的东西分一组</li>
+<li>难点：如何评估，如何调参</li>
+</ul>
+<p><strong>K-Mean基本概念</strong></p>
+<h2 id="K-Mean-Clustering"><a href="#K-Mean-Clustering" class="headerlink" title="K-Mean Clustering"></a>K-Mean Clustering</h2><h3 id="算法概述"><a href="#算法概述" class="headerlink" title="算法概述"></a>算法概述</h3><ul>
+<li>要得到簇的个数，指定K值</li>
+<li>质心：均值，即向量各维度取平均</li>
+<li>距离的度量：常用欧式距离（先标准化）</li>
+<li>优化目标：$\min\sum^K_{i=1}{\sum_{x\in{C_i}}{dist(c_i, x)^2}}$ ，其中 $c_i$ 表示质心。</li>
+</ul>
+<h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><ol>
+<li>随机确定k个质心，根据距离进行分类；</li>
+<li>对分类结果的所有点进行计算新的质心；</li>
+<li>再根据新的质心进行分类，一直到不能再更新为止。</li>
+</ol>
+<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><ul>
+<li>简单，快速，适合常规数据集</li>
+</ul>
+<h3 id="劣势"><a href="#劣势" class="headerlink" title="劣势"></a>劣势</h3><ul>
+<li>K值难确定</li>
+<li>复杂度与样本呈线性关系</li>
+<li>很难发现任意形状点的簇</li>
+</ul>
+<h3 id="迭代可视化展示"><a href="#迭代可视化展示" class="headerlink" title="迭代可视化展示"></a>迭代可视化展示</h3><p><strong>网址：</strong><span class="exturl" data-url="aHR0cHM6Ly93d3cubmFmdGFsaWhhcnJpcy5jb20vYmxvZy92aXN1YWxpemluZy1rLW1lYW5zLWNsdXN0ZXJpbmcv">https://www.naftaliharris.com/blog/visualizing-k-means-clustering/<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="DBSCAN-Clustering"><a href="#DBSCAN-Clustering" class="headerlink" title="DBSCAN Clustering"></a>DBSCAN Clustering</h2><h3 id="算法概论"><a href="#算法概论" class="headerlink" title="算法概论"></a>算法概论</h3><ul>
+<li><p><strong>英文全称</strong>：Density-Based Spatial Clustering of Applications with Noise</p>
+</li>
+<li><p><strong>核心对象：</strong> 若某个点的密度达到算法设定的阈值，则认为是核心点</p>
+<p>  （即 r 邻域内的点的数量不小于 <strong>minPts</strong>）</p>
+</li>
+<li><p><strong>$\epsilon$-邻域的距离阈值</strong>：设定的半径 <strong>r</strong></p>
+</li>
+<li><p><strong>直接密度可达：</strong>若某点p在<strong>核心点q</strong>的r邻域内，则p-q直接密度可达。</p>
+</li>
+<li><p><strong>密度可达：</strong>若一个点的序列$q_0、q_1、…、q_k$，对任意$q_i-q_{i-1}$是直接密度可达的，则称从$q_0-q_k$密度可达，这实际上是直接密度可达的“传播”。</p>
+</li>
+<li><p><strong>边界点：</strong> 核心点的邻域范围内没有其他点了（除本身的核心点外）</p>
+</li>
+<li><p><strong>噪声点：</strong> 不属于任何一类簇的点。从任何一个核心点出发都是密度不可达的</p>
+</li>
+</ul>
+<h3 id="工作流程-1"><a href="#工作流程-1" class="headerlink" title="工作流程"></a>工作流程</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 到核心点密度可达的点为一个簇</span><br><span class="line"></span><br><span class="line">标记 所有对象为 unvisited；</span><br><span class="line">Do </span><br><span class="line">随机选择 一个unvisited对象p；</span><br><span class="line">标记 p 为visited；</span><br><span class="line">If p的邻域至少有MinPts个对象</span><br><span class="line">	创建一个新簇C，并把p添加到C；</span><br><span class="line">	令 N为p的邻域中的对象集合</span><br><span class="line">	For N中的每个点</span><br><span class="line">		If p是unvisited；</span><br><span class="line">		标记 p为visited；</span><br><span class="line">		If p的邻域至少有MinPts个对象，把这些对象添加到N；</span><br><span class="line">		如果 p 还不是任何簇的成员，把p添加到C；</span><br><span class="line">	End for；</span><br><span class="line">	输出 C；</span><br><span class="line">Else 标记p为噪声；</span><br><span class="line">Until 没有标记的为unvisited的对象；</span><br></pre></td></tr></table></figure>
 
-<p><strong>删除</strong>只需要在<code>[]</code>中最前面加<code>-</code>, 例如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 以MD5删除为例：</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
-
+<ul>
+<li>参数选择：<ul>
+<li>半径 r，可以根据 K距离 来设定：找突变点</li>
+<li>MinPts：K-距离中k的值，一般取小一些</li>
+</ul>
+</li>
+</ul>
+<h3 id="优势-1"><a href="#优势-1" class="headerlink" title="优势"></a>优势</h3><ul>
+<li>不需要指定簇个数</li>
+<li>可以发现任意形状的簇</li>
+<li>擅长找到离群点（检测任务）</li>
+<li>参数少（r、MinPts）</li>
+</ul>
+<h3 id="劣势-1"><a href="#劣势-1" class="headerlink" title="劣势"></a>劣势</h3><ul>
+<li>高维数据困难（可以降维）</li>
+<li>参数难选择（参数对结果应该影响大）</li>
+<li>Sklearn中效率很慢（可以采用个别数据消减策略）</li>
+</ul>
+<h3 id="迭代可视化展示-1"><a href="#迭代可视化展示-1" class="headerlink" title="迭代可视化展示"></a>迭代可视化展示</h3><p><strong>网址：</strong><span class="exturl" data-url="aHR0cHM6Ly93d3cubmFmdGFsaWhhcnJpcy5jb20vYmxvZy92aXN1YWxpemluZy1kYnNjYW4tY2x1c3RlcmluZy8=">https://www.naftaliharris.com/blog/visualizing-dbscan-clustering/<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="Python实现"><a href="#Python实现" class="headerlink" title="Python实现"></a>Python实现</h2><ul>
+<li>pandas读数据</li>
+<li>sklearn.cluster进行聚类分析</li>
+<li>pandas添加新的Series类别</li>
+<li>groupby(‘cluster’).mean()等可以看各类的均值等指标</li>
+<li>可以取出中心点画图</li>
+</ul>
+<h3 id="空间聚类分析"><a href="#空间聚类分析" class="headerlink" title="空间聚类分析"></a>空间聚类分析</h3><p>​    可以借助ArcPy、Fiona、Shapely、<strong>geopandas</strong>等提取中心点之后，转化成了传统的聚类分析。</p>
 ]]></content>
       <categories>
-        <category>Regedit</category>
+        <category>Machine Learning</category>
       </categories>
       <tags>
-        <tag>win10</tag>
-        <tag>Right click on the menu</tag>
-        <tag>PowerShell</tag>
+        <tag>K-Mean Clustering</tag>
+        <tag>Dbsacn Clustering</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Notes_02|Mysql Related Concept</title>
+    <url>/2020/05/14/MySQL/</url>
+    <content><![CDATA[<p>黑马授课视频笔记</p>
+<a id="more"></a>
+<h3 id="数据库特点"><a href="#数据库特点" class="headerlink" title="数据库特点"></a>数据库特点</h3><ul>
+<li>持久化存储</li>
+<li>读写速度极高</li>
+<li>保证数据的有效性</li>
+<li>对程序支持性非常好，容易扩展</li>
+</ul>
+<h2 id="关系型数据库的核心"><a href="#关系型数据库的核心" class="headerlink" title="关系型数据库的核心"></a>关系型数据库的核心</h2><ul>
+<li>数据行（记录）</li>
+<li>数据列（字段）</li>
+<li>数据表（数据行的集合）</li>
+<li>数据库（数据表的集合）</li>
+</ul>
+<p><strong>举例：</strong> Excel文件(数据库) —-&gt;  Sheet(数据表) —&gt; 行、列(数据行、列)  </p>
+<h2 id="MySQL、redis、MongoDB常用范围"><a href="#MySQL、redis、MongoDB常用范围" class="headerlink" title="MySQL、redis、MongoDB常用范围"></a>MySQL、redis、MongoDB常用范围</h2><ul>
+<li>MySQL常用于建设网站</li>
+<li>redis存贮缓存</li>
+<li>MongoDB用于存贮不相关的数据（例如不同网站信息的爬取）  </li>
+</ul>
+<h2 id="SQL语句、MySQL（数据库管理工具-数据库）"><a href="#SQL语句、MySQL（数据库管理工具-数据库）" class="headerlink" title="SQL语句、MySQL（数据库管理工具+数据库）"></a>SQL语句、MySQL（数据库管理工具+数据库）</h2><h3 id="SQL语句主要分为"><a href="#SQL语句主要分为" class="headerlink" title="SQL语句主要分为"></a>SQL语句主要分为</h3><ul>
+<li><strong>DQL：数据查询语句，用于对数据进行查询，如select</strong>  </li>
+<li><strong>DML：数据操作语句，对数据进行增加、删除、修改，如insert、update、delete</strong>  </li>
+<li>TPL：事务处理语言，对事物进行处理，包括begin transaction、commit、rollback  </li>
+<li>DCL：数据控制语言，进行授权与权限回收，如grant、revoke  </li>
+<li>DDL：数据定义语句，进行数据库、表的管理等，如create、drop  </li>
+<li>CCL：指针控制语句，通过控制指针完成表的操作，如declare cursor  </li>
+</ul>
+<p>对于web程序员来说，重点是数据的crud(增删改查)，必须熟练编辑DQL、DML，能够编写DDL完成数据库、表的操作，其他语言如TPL、DCL、CCL了解即可  </p>
+<p>不区分大小写</p>
+]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>Studying</tag>
+        <tag>Notebook</tag>
+        <tag>Data analysis</tag>
       </tags>
   </entry>
   <entry>
@@ -181,94 +289,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Cluster Analysis</title>
-    <url>/2020/06/05/Cluster-Analysis/</url>
-    <content><![CDATA[<p><strong>摘要：</strong> K-Mean Clustering、DBSCAN Clustering、以及Python实现思路（包括空间聚类）。</p>
-<a id="more"></a>
-
-<h2 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h2><p><strong>聚类：</strong> 将物理或抽象对象的集合分成由类似的对象组成的多个类的过程被称为聚类。</p>
-<h3 id="Clustering-特点"><a href="#Clustering-特点" class="headerlink" title="Clustering 特点"></a>Clustering 特点</h3><ul>
-<li>非监督分类</li>
-<li>聚类：相似的东西分一组</li>
-<li>难点：如何评估，如何调参</li>
-</ul>
-<p><strong>K-Mean基本概念</strong></p>
-<h2 id="K-Mean-Clustering"><a href="#K-Mean-Clustering" class="headerlink" title="K-Mean Clustering"></a>K-Mean Clustering</h2><h3 id="算法概述"><a href="#算法概述" class="headerlink" title="算法概述"></a>算法概述</h3><ul>
-<li>要得到簇的个数，指定K值</li>
-<li>质心：均值，即向量各维度取平均</li>
-<li>距离的度量：常用欧式距离（先标准化）</li>
-<li>优化目标：$\min\sum^K_{i=1}{\sum_{x\in{C_i}}{dist(c_i, x)^2}}$ ，其中 $c_i$ 表示质心。</li>
-</ul>
-<h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><ol>
-<li>随机确定k个质心，根据距离进行分类；</li>
-<li>对分类结果的所有点进行计算新的质心；</li>
-<li>再根据新的质心进行分类，一直到不能再更新为止。</li>
-</ol>
-<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><ul>
-<li>简单，快速，适合常规数据集</li>
-</ul>
-<h3 id="劣势"><a href="#劣势" class="headerlink" title="劣势"></a>劣势</h3><ul>
-<li>K值难确定</li>
-<li>复杂度与样本呈线性关系</li>
-<li>很难发现任意形状点的簇</li>
-</ul>
-<h3 id="迭代可视化展示"><a href="#迭代可视化展示" class="headerlink" title="迭代可视化展示"></a>迭代可视化展示</h3><p><strong>网址：</strong><span class="exturl" data-url="aHR0cHM6Ly93d3cubmFmdGFsaWhhcnJpcy5jb20vYmxvZy92aXN1YWxpemluZy1rLW1lYW5zLWNsdXN0ZXJpbmcv">https://www.naftaliharris.com/blog/visualizing-k-means-clustering/<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="DBSCAN-Clustering"><a href="#DBSCAN-Clustering" class="headerlink" title="DBSCAN Clustering"></a>DBSCAN Clustering</h2><h3 id="算法概论"><a href="#算法概论" class="headerlink" title="算法概论"></a>算法概论</h3><ul>
-<li><p><strong>英文全称</strong>：Density-Based Spatial Clustering of Applications with Noise</p>
-</li>
-<li><p><strong>核心对象：</strong> 若某个点的密度达到算法设定的阈值，则认为是核心点</p>
-<p>  （即 r 邻域内的点的数量不小于 <strong>minPts</strong>）</p>
-</li>
-<li><p><strong>$\epsilon$-邻域的距离阈值</strong>：设定的半径 <strong>r</strong></p>
-</li>
-<li><p><strong>直接密度可达：</strong>若某点p在<strong>核心点q</strong>的r邻域内，则p-q直接密度可达。</p>
-</li>
-<li><p><strong>密度可达：</strong>若一个点的序列$q_0、q_1、…、q_k$，对任意$q_i-q_{i-1}$是直接密度可达的，则称从$q_0-q_k$密度可达，这实际上是直接密度可达的“传播”。</p>
-</li>
-<li><p><strong>边界点：</strong> 核心点的邻域范围内没有其他点了（除本身的核心点外）</p>
-</li>
-<li><p><strong>噪声点：</strong> 不属于任何一类簇的点。从任何一个核心点出发都是密度不可达的</p>
-</li>
-</ul>
-<h3 id="工作流程-1"><a href="#工作流程-1" class="headerlink" title="工作流程"></a>工作流程</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 到核心点密度可达的点为一个簇</span><br><span class="line"></span><br><span class="line">标记 所有对象为 unvisited；</span><br><span class="line">Do </span><br><span class="line">随机选择 一个unvisited对象p；</span><br><span class="line">标记 p 为visited；</span><br><span class="line">If p的邻域至少有MinPts个对象</span><br><span class="line">	创建一个新簇C，并把p添加到C；</span><br><span class="line">	令 N为p的邻域中的对象集合</span><br><span class="line">	For N中的每个点</span><br><span class="line">		If p是unvisited；</span><br><span class="line">		标记 p为visited；</span><br><span class="line">		If p的邻域至少有MinPts个对象，把这些对象添加到N；</span><br><span class="line">		如果 p 还不是任何簇的成员，把p添加到C；</span><br><span class="line">	End for；</span><br><span class="line">	输出 C；</span><br><span class="line">Else 标记p为噪声；</span><br><span class="line">Until 没有标记的为unvisited的对象；</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>参数选择：<ul>
-<li>半径 r，可以根据 K距离 来设定：找突变点</li>
-<li>MinPts：K-距离中k的值，一般取小一些</li>
-</ul>
-</li>
-</ul>
-<h3 id="优势-1"><a href="#优势-1" class="headerlink" title="优势"></a>优势</h3><ul>
-<li>不需要指定簇个数</li>
-<li>可以发现任意形状的簇</li>
-<li>擅长找到离群点（检测任务）</li>
-<li>参数少（r、MinPts）</li>
-</ul>
-<h3 id="劣势-1"><a href="#劣势-1" class="headerlink" title="劣势"></a>劣势</h3><ul>
-<li>高维数据困难（可以降维）</li>
-<li>参数难选择（参数对结果应该影响大）</li>
-<li>Sklearn中效率很慢（可以采用个别数据消减策略）</li>
-</ul>
-<h3 id="迭代可视化展示-1"><a href="#迭代可视化展示-1" class="headerlink" title="迭代可视化展示"></a>迭代可视化展示</h3><p><strong>网址：</strong><span class="exturl" data-url="aHR0cHM6Ly93d3cubmFmdGFsaWhhcnJpcy5jb20vYmxvZy92aXN1YWxpemluZy1kYnNjYW4tY2x1c3RlcmluZy8=">https://www.naftaliharris.com/blog/visualizing-dbscan-clustering/<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="Python实现"><a href="#Python实现" class="headerlink" title="Python实现"></a>Python实现</h2><ul>
-<li>pandas读数据</li>
-<li>sklearn.cluster进行聚类分析</li>
-<li>pandas添加新的Series类别</li>
-<li>groupby(‘cluster’).mean()等可以看各类的均值等指标</li>
-<li>可以取出中心点画图</li>
-</ul>
-<h3 id="空间聚类分析"><a href="#空间聚类分析" class="headerlink" title="空间聚类分析"></a>空间聚类分析</h3><p>​    可以借助ArcPy、Fiona、Shapely、<strong>geopandas</strong>等提取中心点之后，转化成了传统的聚类分析。</p>
-]]></content>
-      <categories>
-        <category>Machine Learning</category>
-      </categories>
-      <tags>
-        <tag>K-Mean Clustering</tag>
-        <tag>Dbsacn Clustering</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>图像融合质量评价指标</title>
     <url>/2020/04/21/RS02-Evaluation_of_image_fusion/</url>
     <content><![CDATA[<h2 id="1-图像融合"><a href="#1-图像融合" class="headerlink" title="1 图像融合"></a>1 图像融合</h2><p><strong>图像融合：</strong> 是指把对同一目标或同一场景经多个传感器的成像或单一传感器的多次成像进行一定的处理，生成一幅新的图像，这幅新的图像能够准确地综合反映源图像的信息，更适合于人眼观察或计算机处理。</p>
@@ -317,49 +337,6 @@
       </categories>
       <tags>
         <tag>Image Processing</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Notes_02|Mysql Related Concept</title>
-    <url>/2020/05/14/MySQL/</url>
-    <content><![CDATA[<p>黑马授课视频笔记</p>
-<a id="more"></a>
-<h3 id="数据库特点"><a href="#数据库特点" class="headerlink" title="数据库特点"></a>数据库特点</h3><ul>
-<li>持久化存储</li>
-<li>读写速度极高</li>
-<li>保证数据的有效性</li>
-<li>对程序支持性非常好，容易扩展</li>
-</ul>
-<h2 id="关系型数据库的核心"><a href="#关系型数据库的核心" class="headerlink" title="关系型数据库的核心"></a>关系型数据库的核心</h2><ul>
-<li>数据行（记录）</li>
-<li>数据列（字段）</li>
-<li>数据表（数据行的集合）</li>
-<li>数据库（数据表的集合）</li>
-</ul>
-<p><strong>举例：</strong> Excel文件(数据库) —-&gt;  Sheet(数据表) —&gt; 行、列(数据行、列)  </p>
-<h2 id="MySQL、redis、MongoDB常用范围"><a href="#MySQL、redis、MongoDB常用范围" class="headerlink" title="MySQL、redis、MongoDB常用范围"></a>MySQL、redis、MongoDB常用范围</h2><ul>
-<li>MySQL常用于建设网站</li>
-<li>redis存贮缓存</li>
-<li>MongoDB用于存贮不相关的数据（例如不同网站信息的爬取）  </li>
-</ul>
-<h2 id="SQL语句、MySQL（数据库管理工具-数据库）"><a href="#SQL语句、MySQL（数据库管理工具-数据库）" class="headerlink" title="SQL语句、MySQL（数据库管理工具+数据库）"></a>SQL语句、MySQL（数据库管理工具+数据库）</h2><h3 id="SQL语句主要分为"><a href="#SQL语句主要分为" class="headerlink" title="SQL语句主要分为"></a>SQL语句主要分为</h3><ul>
-<li><strong>DQL：数据查询语句，用于对数据进行查询，如select</strong>  </li>
-<li><strong>DML：数据操作语句，对数据进行增加、删除、修改，如insert、update、delete</strong>  </li>
-<li>TPL：事务处理语言，对事物进行处理，包括begin transaction、commit、rollback  </li>
-<li>DCL：数据控制语言，进行授权与权限回收，如grant、revoke  </li>
-<li>DDL：数据定义语句，进行数据库、表的管理等，如create、drop  </li>
-<li>CCL：指针控制语句，通过控制指针完成表的操作，如declare cursor  </li>
-</ul>
-<p>对于web程序员来说，重点是数据的crud(增删改查)，必须熟练编辑DQL、DML，能够编写DDL完成数据库、表的操作，其他语言如TPL、DCL、CCL了解即可  </p>
-<p>不区分大小写</p>
-]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>Studying</tag>
-        <tag>Notebook</tag>
-        <tag>Data analysis</tag>
       </tags>
   </entry>
   <entry>
@@ -475,6 +452,34 @@
       </tags>
   </entry>
   <entry>
+    <title>Notes_01|&quot;alias&quot; Knowledge</title>
+    <url>/2020/05/30/alias/</url>
+    <content><![CDATA[<p>  转载自知乎：乃乎。因为 WSL2 Access Windows Proxy 中命令用到了alias方法，就在知乎找到乃乎的分享。</p>
+<a id="more"></a>
+
+<p>alias (别名)，一般用来用一个短的简单的命令来代替长的复杂的命令</p>
+<h2 id="查看-alias"><a href="#查看-alias" class="headerlink" title="查看 alias"></a>查看 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Ubuntu@DESKTOP-J51JGI8:~$ <span class="built_in">alias</span></span><br><span class="line"><span class="built_in">alias</span> alert=<span class="string">'notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$(history|tail -n1|sed -e '</span>\<span class="string">''</span>s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//<span class="string">'\'</span><span class="string">')"'</span></span><br><span class="line"><span class="built_in">alias</span> egrep=<span class="string">'egrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> fgrep=<span class="string">'fgrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> grep=<span class="string">'grep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> l=<span class="string">'ls -CF'</span></span><br><span class="line"><span class="built_in">alias</span> la=<span class="string">'ls -A'</span></span><br><span class="line"><span class="built_in">alias</span> ll=<span class="string">'ls -alF'</span></span><br><span class="line"><span class="built_in">alias</span> ls=<span class="string">'ls --color=auto'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="临时定义-alias"><a href="#临时定义-alias" class="headerlink" title="临时定义 alias"></a>临时定义 alias</h2><p>使用 <code>ll</code> 代替 <code>ls -al</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="持久定义-alias"><a href="#持久定义-alias" class="headerlink" title="持久定义 alias"></a>持久定义 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>shell 启动的时候会读取配置文件，~/.bashrc 或者 ～/.zshrc。在配置文件中加入 alias 定义的命令就可以在每次启动 shell 后都存在定义好的 alias</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># custom aliases are listed below</span></span><br><span class="line">$ <span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy93d3cudGVjbWludC5jb20vY3JlYXRlLWFsaWFzLWluLWxpbnV4Lw==">https://www.tecmint.com/create-alias-in-linux/<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>WSL2</category>
+      </categories>
+      <tags>
+        <tag>Notebook - Bash - Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Unit-6-Innovation(TF).md</title>
     <url>/2020/05/15/Unit-6-Innovation(TF)/</url>
     <content><![CDATA[<p><strong>Record the words and example sentences</strong>  </p>
@@ -514,6 +519,34 @@
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2020/03/29/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo<i class="fa fa-external-link-alt"></i></span>! This is your very first post. Check <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv">documentation<i class="fa fa-external-link-alt"></i></span> for more info. If you get any problems when using Hexo, you can find the answer in <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdHJvdWJsZXNob290aW5nLmh0bWw=">troubleshooting<i class="fa fa-external-link-alt"></i></span> or you can ask me on <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL2lzc3Vlcw==">GitHub<i class="fa fa-external-link-alt"></i></span>.</p>
+<a id="more"></a>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvd3JpdGluZy5odG1s">Writing<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvc2VydmVyLmh0bWw=">Server<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZ2VuZXJhdGluZy5odG1s">Generating<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvb25lLWNvbW1hbmQtZGVwbG95bWVudC5odG1s">Deployment<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Demo</category>
+      </categories>
+      <tags>
+        <tag>Studying</tag>
+        <tag>Test</tag>
+        <tag>Share</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>jupyter env</title>
     <url>/2020/06/26/jupyter-env/</url>
     <content><![CDATA[<p>​        记录jupyter notebook中使用conda 环境。</p>
@@ -536,34 +569,6 @@
       <tags>
         <tag>env</tag>
         <tag>themes</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Notes_01|&quot;alias&quot; Knowledge</title>
-    <url>/2020/05/30/alias/</url>
-    <content><![CDATA[<p>  转载自知乎：乃乎。因为 WSL2 Access Windows Proxy 中命令用到了alias方法，就在知乎找到乃乎的分享。</p>
-<a id="more"></a>
-
-<p>alias (别名)，一般用来用一个短的简单的命令来代替长的复杂的命令</p>
-<h2 id="查看-alias"><a href="#查看-alias" class="headerlink" title="查看 alias"></a>查看 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Ubuntu@DESKTOP-J51JGI8:~$ <span class="built_in">alias</span></span><br><span class="line"><span class="built_in">alias</span> alert=<span class="string">'notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$(history|tail -n1|sed -e '</span>\<span class="string">''</span>s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//<span class="string">'\'</span><span class="string">')"'</span></span><br><span class="line"><span class="built_in">alias</span> egrep=<span class="string">'egrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> fgrep=<span class="string">'fgrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> grep=<span class="string">'grep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> l=<span class="string">'ls -CF'</span></span><br><span class="line"><span class="built_in">alias</span> la=<span class="string">'ls -A'</span></span><br><span class="line"><span class="built_in">alias</span> ll=<span class="string">'ls -alF'</span></span><br><span class="line"><span class="built_in">alias</span> ls=<span class="string">'ls --color=auto'</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="临时定义-alias"><a href="#临时定义-alias" class="headerlink" title="临时定义 alias"></a>临时定义 alias</h2><p>使用 <code>ll</code> 代替 <code>ls -al</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="持久定义-alias"><a href="#持久定义-alias" class="headerlink" title="持久定义 alias"></a>持久定义 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure>
-
-<p>shell 启动的时候会读取配置文件，~/.bashrc 或者 ～/.zshrc。在配置文件中加入 alias 定义的命令就可以在每次启动 shell 后都存在定义好的 alias</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># custom aliases are listed below</span></span><br><span class="line">$ <span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy93d3cudGVjbWludC5jb20vY3JlYXRlLWFsaWFzLWluLWxpbnV4Lw==">https://www.tecmint.com/create-alias-in-linux/<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-]]></content>
-      <categories>
-        <category>WSL2</category>
-      </categories>
-      <tags>
-        <tag>Notebook - Bash - Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -3319,31 +3324,26 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2020/03/29/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo<i class="fa fa-external-link-alt"></i></span>! This is your very first post. Check <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv">documentation<i class="fa fa-external-link-alt"></i></span> for more info. If you get any problems when using Hexo, you can find the answer in <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdHJvdWJsZXNob290aW5nLmh0bWw=">troubleshooting<i class="fa fa-external-link-alt"></i></span> or you can ask me on <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL2lzc3Vlcw==">GitHub<i class="fa fa-external-link-alt"></i></span>.</p>
+    <title>File Hash Verification</title>
+    <url>/2020/06/10/File-Hash-Verification/</url>
+    <content><![CDATA[<p><strong>摘要：</strong>利用PowerShell以及win10自带Hash工具，对文件进行hash验证，添加到右击菜单中。</p>
 <a id="more"></a>
 
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p><strong>思路：</strong>直接利用<code>.reg</code>文件的方式添加注册表信息。</p>
+<p><strong>文件内容（添加）：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\*\shell\File Hash Verification]</span><br><span class="line"></span><br><span class="line">&quot;SubCommands&quot;&#x3D;&quot;MACTripleDES;MD5;RIPEMD160;SHA1;SHA256;SHA384;SHA512&quot;</span><br><span class="line"></span><br><span class="line">&quot;MUIVerb&quot;&#x3D;&quot;File Hash Verification&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MACTripleDES&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MACTripleDES \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;RIPEMD160&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm RIPEMD160 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA1&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA1 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA256&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA256 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA384&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA384 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA512&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA512 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvd3JpdGluZy5odG1s">Writing<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<p><strong>删除</strong>只需要在<code>[]</code>中最前面加<code>-</code>, 例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 以MD5删除为例：</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvc2VydmVyLmh0bWw=">Server<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZ2VuZXJhdGluZy5odG1s">Generating<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvb25lLWNvbW1hbmQtZGVwbG95bWVudC5odG1s">Deployment<i class="fa fa-external-link-alt"></i></span></p>
 ]]></content>
       <categories>
-        <category>Demo</category>
+        <category>Regedit</category>
       </categories>
       <tags>
-        <tag>Studying</tag>
-        <tag>Test</tag>
-        <tag>Share</tag>
+        <tag>win10</tag>
+        <tag>Right click on the menu</tag>
+        <tag>PowerShell</tag>
       </tags>
   </entry>
 </search>
