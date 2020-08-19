@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://bwchen1223.xyz/2020/06/10/File-Hash-Verification/</loc>
+    
+    <lastmod>2020-08-19T03:42:16.442Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://bwchen1223.xyz/2020/06/04/Time-Series-Pandas/</loc>
+    
+    <lastmod>2020-08-17T08:42:05.261Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://bwchen1223.xyz/2020/06/05/Cluster-Analysis/</loc>
+    
+    <lastmod>2020-08-17T08:41:43.566Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://bwchen1223.xyz/2020/08/10/hmCrawler-01-intrada/</loc>
+    
+    <lastmod>2020-08-11T04:03:29.457Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://bwchen1223.xyz/2020/06/26/jupyter-env/</loc>
     
     <lastmod>2020-07-12T10:17:51.309Z</lastmod>
@@ -9,23 +37,9 @@
   </url>
   
   <url>
-    <loc>https://bwchen1223.xyz/2020/06/10/File-Hash-Verification/</loc>
-    
-    <lastmod>2020-07-12T10:05:52.847Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://bwchen1223.xyz/2020/03/29/hello-world/</loc>
     
     <lastmod>2020-06-10T12:54:24.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bwchen1223.xyz/2020/06/05/Cluster-Analysis/</loc>
-    
-    <lastmod>2020-06-10T08:46:01.547Z</lastmod>
     
   </url>
   
@@ -40,13 +54,6 @@
     <loc>https://bwchen1223.xyz/2020/05/30/wsl2_access_windows_proxy/</loc>
     
     <lastmod>2020-06-06T07:19:49.982Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bwchen1223.xyz/2020/06/04/Time-Series-Pandas/</loc>
-    
-    <lastmod>2020-06-05T09:17:05.463Z</lastmod>
     
   </url>
   
