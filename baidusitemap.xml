@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://bwchen1223.xyz/2020/08/26/task/</loc>
+    <lastmod>2020-08-26</lastmod>
+  </url>  <url>
+    <loc>https://bwchen1223.xyz/2020/08/10/hmCrawler-01-intrada/</loc>
+    <lastmod>2020-08-19</lastmod>
+  </url>  <url>
     <loc>https://bwchen1223.xyz/2020/06/10/File-Hash-Verification/</loc>
     <lastmod>2020-08-19</lastmod>
   </url>  <url>
@@ -9,9 +15,6 @@
   </url>  <url>
     <loc>https://bwchen1223.xyz/2020/06/05/Cluster-Analysis/</loc>
     <lastmod>2020-08-17</lastmod>
-  </url>  <url>
-    <loc>https://bwchen1223.xyz/2020/08/10/hmCrawler-01-intrada/</loc>
-    <lastmod>2020-08-11</lastmod>
   </url>  <url>
     <loc>https://bwchen1223.xyz/2020/06/26/jupyter-env/</loc>
     <lastmod>2020-07-12</lastmod>

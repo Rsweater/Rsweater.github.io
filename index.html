@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
   <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
 
@@ -196,6 +196,214 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bwchen1223.xyz/2020/08/26/task/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="一线毛衣">
+      <meta itemprop="description" content="这里有Python、GIS相关的小笔记！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rsweater's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/26/task/" class="post-title-link" itemprop="url">task</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-26 09:59:42 / 修改时间：10:02:30" itemprop="dateCreated datePublished" datetime="2020-08-26T09:59:42+08:00">2020-08-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9A%82%E6%97%B6%E5%B1%95%E7%A4%BA/" itemprop="url" rel="index"><span itemprop="name">暂时展示</span></a>
+                </span>
+            </span>
+
+          
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="a-郑州市建成区热岛效应时空演变特征"><a href="#a-郑州市建成区热岛效应时空演变特征" class="headerlink" title="a 郑州市建成区热岛效应时空演变特征"></a>a 郑州市建成区热岛效应时空演变特征</h1><h2 id="申请书内容："><a href="#申请书内容：" class="headerlink" title="申请书内容："></a>申请书内容：</h2><pre><code>a. 郑州市建成区热岛效应时空演变特征。基于2013~2019年度Landsat8数据，进行辐射定标、大气矫正，使用RS图像处理软件ENVI单窗算法计算像元亮度温度值，制作地表温度反演图，&lt;u&gt;**结合历年气象站点温度观测数据**&lt;/u&gt;，对反演结果进行验正；导入ArcGIS平台进行统计计算，将历年图像分别按照均值标准差方式进行重分类操作，分为**低温、次低温、中温、次高温、高温**5个类别，确定热岛强度指数；</code></pre><h2 id="大致流程："><a href="#大致流程：" class="headerlink" title="大致流程："></a>大致流程：</h2><ol>
+<li>下载 <code>Landsat 8</code> 数据；</li>
+<li><del>去云处理；</del></li>
+<li>地表温度反演；</li>
+<li>结合气象站数据验证并修正反演结果(没数据)；</li>
+<li>利用 <code>ArcGIS</code> 进行裁剪、重分类、确定热岛强度。</li>
+</ol>
+<h3 id="1-下载-Landsat-8-TIRS-OLSI-。"><a href="#1-下载-Landsat-8-TIRS-OLSI-。" class="headerlink" title="1. 下载 Landsat-8 TIRS\OLSI 。"></a>1. 下载 <code>Landsat-8 TIRS\OLSI</code> 。</h3><ul>
+<li>尽量选 云指数 小的数据，主要还是选择郑州行政区内云量小的（可以直接肉眼看）。</li>
+<li>下载方式有 <span class="exturl" data-url="aHR0cDovL3d3dy5nc2Nsb3VkLmNuLw==">地理数据空间云<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cDovL2VhcnRoZXhwbG9yZXIudXNncy5nb3Yv">USGS<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cDovL2lkcy5jZW9kZS5hYy5jbi9xdWVyeS5odG1s">Landsat 8下载共享系统<i class="fa fa-external-link-alt"></i></span>；</li>
+</ul>
+<h4 id="地理空间数据云"><a href="#地理空间数据云" class="headerlink" title="地理空间数据云"></a>地理空间数据云</h4><p><strong>网址：</strong><span class="exturl" data-url="aHR0cDovL3d3dy5nc2Nsb3VkLmNuLw==">http://www.gscloud.cn/<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>流程：</strong>登录 –&gt; 高级检索 –&gt; 选数据集（Landsat 8 OLI_TIRS卫星数据产品) –&gt; 选区域时间(河南郑州) –&gt; 点选中间那一景 –&gt; 找云量指数小的</p>
+<p><strong>GIF演示：</strong> <img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/gscloud_download_demo.gif" alt="gscloud_download_demo"></p>
+<p><strong>注意：</strong> </p>
+<ol>
+<li>数据云选择郑州之后，会展示所有有拍到郑州行政区内的影像，中间那景可以全覆盖，只需要这一景即可</li>
+<li>这个平台很多不能预览，没办法更好的选择郑州区域内云量少（有些云量多，但是不在郑州区域内），可以结合USGS预览，地理空间数据云下载。</li>
+</ol>
+<h4 id="USGS"><a href="#USGS" class="headerlink" title="USGS"></a>USGS</h4><p><strong>网址：</strong><span class="exturl" data-url="aHR0cDovL2VhcnRoZXhwbG9yZXIudXNncy5nb3Yv">http://earthexplorer.usgs.gov/<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>流程：</strong> </p>
+<ol>
+<li><p><code>Enter Search Criteria</code>, 其中要设置 <code>研究区(郑州)</code>、<code>时间</code> 。</p>
+<ul>
+<li><p><strong>研究区</strong>：点选 <code>World Features</code> 之后，在Feature Name 中填入 <code>zhengzhou</code> ，点击 <code>Show</code> , 最后点选第一个 <code>Zhengzhou</code> 。</p>
+<p>选过研究区、时间之后点击 <code>Data Sets</code> 选择数据集，选过研究区和时间之后的截图：</p>
+</li>
+</ul>
+</li>
+<li><p><code>Data Sets</code>:  Landsat –&gt; Landsat Collection 1 –&gt;  Landsat Collection 1 Level-1 –&gt; Landsat 8 LOI/TIRS C1 Level-1 –&gt; Results.</p>
+</li>
+<li><p>Results. </p>
+</li>
+</ol>
+<p><strong>Gif演示：</strong> </p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/usgs_download.gif" alt="usgs_download"></p>
+<p><strong>注意：</strong></p>
+<ol>
+<li>网速慢、需要梯子；</li>
+<li>时间筛选的后面有云量筛选，建议不要用，有些可能云量大，但是郑州行政区内云相比较是最少的。真的太多，可以找6月或者9月的。（数据有限，16天一景，云会影响地表温度，会给最后重分类造成麻烦）</li>
+<li>有云掩膜产品，点击下载之后的选项卡里面，倒数第二个就是云掩膜产品。</li>
+</ol>
+<h3 id="2-对云的影响进行处理-到时候口述，没有明显要求，但是对结果有好处"><a href="#2-对云的影响进行处理-到时候口述，没有明显要求，但是对结果有好处" class="headerlink" title="2. 对云的影响进行处理(到时候口述，没有明显要求，但是对结果有好处)"></a>2. 对云的影响进行处理(到时候口述，没有明显要求，但是对结果有好处)</h3><h3 id="3-利用-ENVI-进地表温度反演"><a href="#3-利用-ENVI-进地表温度反演" class="headerlink" title="3. 利用 ENVI 进地表温度反演"></a>3. 利用 ENVI 进地表温度反演</h3><pre><code>使用 [XXIN&apos;S  Blog](https://www.ixxin.cn/2017/10/29/envi_landsat8_lst_sw/) 发布的插件做地表温度反演。（插件有还没装的私聊我）</code></pre><p><strong>需要参数：</strong>多光谱数据、热红外数据、大气透过率（大气水汽数据）、大气平均作用温度（计算高程）</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200825220812775.png" alt="image-20200825220812775"></p>
+<p><strong>作者视频：</strong> <span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMUY3NDExNjd5WD9wPTY=">B站搜索“温度反演”找到作者为“wudixinxin”的视频<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>流程+Gif演示：</strong> </p>
+<ol>
+<li><p>打开<code>Landsat-8</code>数据集：File –&gt; Open As –&gt; Landsat – GeoTIFF  with Metadata –&gt; 选中 “_MTL.txt” 文件<img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/open_date_landsat-8.gif" alt="open_date_landsat-8"></p>
+</li>
+<li><p>打开<code>landsat8 LST SingleWindow</code>进行地表温度反演：<code>Extensions --&gt; Landsat8 LST SingleWindow</code>，其中</p>
+<ol>
+<li>多光谱数据(<strong>Multispectral Raster</strong>) 就是第一个(名字以<code>MultiSpectral</code>结尾)</li>
+<li>热红外数据(<strong>Brightness Raster</strong>) 就是第四个(名字以<code>Thermal</code>结尾)</li>
+<li>大气透过率(<strong>Atmospheric Water</strong>) 通过 <span class="exturl" data-url="aHR0cHM6Ly9hdG1jb3JyLmdzZmMubmFzYS5nb3Yv">NASA<i class="fa fa-external-link-alt"></i></span> 网站查表得到</li>
+<li>大气平均作用温度(<strong>Atmospheric temperature</strong>) 可以 <span class="exturl" data-url="aHR0cHM6Ly9hdG1jb3JyLmdzZmMubmFzYS5nb3Yv">NASA<i class="fa fa-external-link-alt"></i></span> 查表（需要借助envi的高程数据计算影像高程）或者直接百度当时的温度</li>
+</ol>
+<p> <strong>打开并选择多光谱与红外数据GIF:</strong>  </p>
+<p> <img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/lst_xinxin_open.gif" alt="lst_xinxin_open"></p>
+<p> <strong><code>NASA</code>查表读取大气透过率获取大气平均作用温度表</strong></p>
+<p> <img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/nasa_temp_ssss.gif" alt="nasa_temp_ssss"></p>
+<pre><code>**注：**需要知道影像**拍摄时间**还有**中心经纬**(这个都一样，Latitude: 34.61083、Longitude：113.4636)</code></pre><p> <strong>计算影像高程GIF（每幅影像应该一样，可以都做一下看看）</strong></p>
+<p> <strong>步骤：</strong> 打开世界高程数据：File –&gt; Open World Data – &gt; Elevation; </p>
+<pre><code>选择统计工具，Statistics --&gt; Compute Statistics;
+
+对待反演的数据集进行高程统计，将该数据集当作世界高程数据的子数据集去计算高成影像中该区域的平均高程</code></pre><p> <img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/envi_gaocheng.gif" alt="envi_gaocheng"></p>
+<p> <strong>最后</strong>补填上 大气透过率、平均作用温度、点选大气反演类型就ok了。</p>
+</li>
+</ol>
+<pre><code>**注：**
+
+1. 上面括号内黑色英文不是对应的英文，而是插件对应的位置，因为也可以用其他相关的参数代替；
+2. 大气透过率要以符号 &quot;-&quot; 开头，正值表示使用的是大气水汽产品
+3. Atmospheric Type 跟 FLASHH 大气校正时的气溶胶类型是一个意思
+
+
+
+### 5. 利用 `ArcGIS` 进行裁剪、重分类、确定热岛强度.
+
+ #### a. 裁剪
+
+**流程：** System Toolboxes --&gt; Spatial Analyst Tools.tbx --&gt; Extraction --&gt; Extract by Mask，进去之后有三个参数需要填 `Input raster`、 `Input raster or feature  mask data`、 `Output raster`，分别对应要裁剪的图像、保留的区域（也就是我们的行政区矢量图）、输出路径。
+
+![image-20200826085452766](https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826085452766.png)
+
+**注：**
+
+    这一步最好不要少，特别是对郑州行政区外有厚云的数据（会影响最小值，进而影响城市热岛指数），例如：![image-20200826085907150](https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826085907150.png)
+
+#### b. 重分类
+
+**流程：**  打开System Toolboxes --&gt; Spatial Analyst Tools.tbx --&gt; Reclass --&gt; Reclassify工具，需要填写或者修改的选项有`Input raster`、`Output raster`、还要打开`Classification`选项。
+
+![image-20200826090728378](https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826090728378.png)
+
+**注：** 
+
+1. 在`classification选项卡`中选过标准差，可能分类结果不是 正好就是5类，这个没关系，4-7类&lt;sup&gt;[1]&lt;/sup&gt;都是可以的.
+2. 可以统一下每个等级颜色。右击图层管理的色条就可以换。![image-20200826094056336](https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826094056336.png)
+
+#### c. 计算城市热岛强度指数
+
+**公式：** 
+
+  $$H_i = \frac{T_i - T_{min}}{T_{max} - T_{min}} ^{[2]}    \tag{1}$$
+
+式中：H&lt;sub&gt;i&lt;/sub&gt;为第 i 个像元所对应的热场强度指数，Ti 为第 i 个像元所对应的地表温度，T&lt;sub&gt;min&lt;/sub&gt;。为图像区域的有效最低地表温度，T&lt;sub&gt;max&lt;/sub&gt;为图像区域对应的有效最高地表温度。热场强度指数值越大，表明处于热岛范围的可能性越大。
+
+    简单说，就是对地表温度进行归一化处理。
+
+**ArcGIS操作：** 
+
+    在ArcToolBox中，打开Spatial Analyst-Overlay（叠加分析）-Fuzzy Membership（模糊隶属度），
+
+`System Toolboxes --&gt; Spatial Analyst Tools.tbx --&gt; Overlay --&gt; Fuzzy Membership`
+
+![image-20200826095500522](https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/image-20200826095500522.png)
+
+打开`Fuzzy Membership`之后，填写输入、输出路径，点选`Liner`类型![image-20200826095825062](https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/image-20200826095825062.png)
+
+
+
+**参考文献：**
+
+[1].[薛万蓉, 卢正, 但尚铭,等. 基于热红外遥感的四川省内江市城市热岛效应评价[J]. 测绘与空间地理信息, 2012(04):49-52.](https://xueshu.baidu.com/usercenter/paper/show?paperid=5eae86f6ba30b8230727059c364225f8&amp;site=xueshu_se&amp;hitarticle=1)
+
+[2].[叶彩华, 刘勇洪, 刘伟东,等. 城市地表热环境遥感监测指标研究及应用[J]. 气象科技, 2011(01):95-101.](https://xueshu.baidu.com/usercenter/paper/show?paperid=fade569aad173a72f0dc9b98762489b5&amp;site=xueshu_se)</code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://bwchen1223.xyz/2020/08/10/hmCrawler-01-intrada/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -227,7 +435,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-11 12:03:29" itemprop="dateModified" datetime="2020-08-11T12:03:29+08:00">2020-08-11</time>
+                <time title="修改时间：2020-08-19 11:42:47" itemprop="dateModified" datetime="2020-08-19T11:42:47+08:00">2020-08-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -585,103 +793,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://bwchen1223.xyz/2020/06/04/Time-Series-Pandas/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="一线毛衣">
-      <meta itemprop="description" content="这里有Python、GIS相关的小笔记！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Rsweater's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/04/Time-Series-Pandas/" class="post-title-link" itemprop="url">Time Series Pandas</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-04 09:34:15" itemprop="dateCreated datePublished" datetime="2020-06-04T09:34:15+08:00">2020-06-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-17 16:42:05" itemprop="dateModified" datetime="2020-08-17T16:42:05+08:00">2020-08-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
-                </span>
-            </span>
-
-          
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>利用Python进行时间序列分析,  主要记录ARIMA模型相关知识。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/04/Time-Series-Pandas/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -753,20 +864,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -818,13 +929,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">31k</span>
+    <span title="站点总字数">36k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">29 分钟</span>
+    <span title="站点阅读时长">32 分钟</span>
 </div>
   <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9tdXNlLw==">NexT.Muse</span> 强力驱动
   </div>
@@ -843,7 +954,7 @@
   </div>
 
   
-  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/next-theme/pjax@0/pjax.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/lozad.js/1.14.0/lozad.min.js"></script>
