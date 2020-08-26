@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Notes_02|Mysql Related Concept</title>
+    <url>/2020/05/14/MySQL/</url>
+    <content><![CDATA[<p>黑马授课视频笔记</p>
+<a id="more"></a>
+<h3 id="数据库特点"><a href="#数据库特点" class="headerlink" title="数据库特点"></a>数据库特点</h3><ul>
+<li>持久化存储</li>
+<li>读写速度极高</li>
+<li>保证数据的有效性</li>
+<li>对程序支持性非常好，容易扩展</li>
+</ul>
+<h2 id="关系型数据库的核心"><a href="#关系型数据库的核心" class="headerlink" title="关系型数据库的核心"></a>关系型数据库的核心</h2><ul>
+<li>数据行（记录）</li>
+<li>数据列（字段）</li>
+<li>数据表（数据行的集合）</li>
+<li>数据库（数据表的集合）</li>
+</ul>
+<p><strong>举例：</strong> Excel文件(数据库) —-&gt;  Sheet(数据表) —&gt; 行、列(数据行、列)  </p>
+<h2 id="MySQL、redis、MongoDB常用范围"><a href="#MySQL、redis、MongoDB常用范围" class="headerlink" title="MySQL、redis、MongoDB常用范围"></a>MySQL、redis、MongoDB常用范围</h2><ul>
+<li>MySQL常用于建设网站</li>
+<li>redis存贮缓存</li>
+<li>MongoDB用于存贮不相关的数据（例如不同网站信息的爬取）  </li>
+</ul>
+<h2 id="SQL语句、MySQL（数据库管理工具-数据库）"><a href="#SQL语句、MySQL（数据库管理工具-数据库）" class="headerlink" title="SQL语句、MySQL（数据库管理工具+数据库）"></a>SQL语句、MySQL（数据库管理工具+数据库）</h2><h3 id="SQL语句主要分为"><a href="#SQL语句主要分为" class="headerlink" title="SQL语句主要分为"></a>SQL语句主要分为</h3><ul>
+<li><strong>DQL：数据查询语句，用于对数据进行查询，如select</strong>  </li>
+<li><strong>DML：数据操作语句，对数据进行增加、删除、修改，如insert、update、delete</strong>  </li>
+<li>TPL：事务处理语言，对事物进行处理，包括begin transaction、commit、rollback  </li>
+<li>DCL：数据控制语言，进行授权与权限回收，如grant、revoke  </li>
+<li>DDL：数据定义语句，进行数据库、表的管理等，如create、drop  </li>
+<li>CCL：指针控制语句，通过控制指针完成表的操作，如declare cursor  </li>
+</ul>
+<p>对于web程序员来说，重点是数据的crud(增删改查)，必须熟练编辑DQL、DML，能够编写DDL完成数据库、表的操作，其他语言如TPL、DCL、CCL了解即可  </p>
+<p>不区分大小写</p>
+]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>Studying</tag>
+        <tag>Notebook</tag>
+        <tag>Data analysis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Cluster Analysis</title>
     <url>/2020/06/05/Cluster-Analysis/</url>
     <content><![CDATA[<p> K-Mean Clustering、DBSCAN Clustering、以及Python实现思路（包括空间聚类）。</p>
@@ -89,6 +132,57 @@
       </tags>
   </entry>
   <entry>
+    <title>图像融合质量评价指标</title>
+    <url>/2020/04/21/RS02-Evaluation_of_image_fusion/</url>
+    <content><![CDATA[<h2 id="1-图像融合"><a href="#1-图像融合" class="headerlink" title="1 图像融合"></a>1 图像融合</h2><p><strong>图像融合：</strong> 是指把对同一目标或同一场景经多个传感器的成像或单一传感器的多次成像进行一定的处理，生成一幅新的图像，这幅新的图像能够准确地综合反映源图像的信息，更适合于人眼观察或计算机处理。</p>
+<a id="more"></a>
+
+<h3 id="2-图像融合质量评价"><a href="#2-图像融合质量评价" class="headerlink" title="2 图像融合质量评价"></a>2 图像融合质量评价</h3><p>目前评定图像融合算法性能的方法可分为两类，即主观的评定方法和客观的评定方法。</p>
+<h4 id="2-1-主观评价方法"><a href="#2-1-主观评价方法" class="headerlink" title="2.1 主观评价方法"></a>2.1 主观评价方法</h4><p><strong>主观评价方法</strong>：<br>就是依靠人眼对融合图像效果进行主观判断。<br><strong>客观评价方法</strong>：<br>根据不同评定方法的条件不同，对客观评价指标做了以下分类研究8。</p>
+<ol>
+<li><p>无参考图像情况下的评价方法  </p>
+<p>  <strong>单一图像特征统计的评价方法</strong>  </p>
+<ul>
+<li><p>均值:图像中所有像素的灰度值的算术平均值，对人眼表现为图像的平均亮度。  </p>
+</li>
+<li><p>标准差:图像灰度相对于均值的离散情况，用于评价图像反差的大小。  </p>
+</li>
+<li><p>信息熵:熵值大小反映其包含信息量的多少，熵值越大融合效果越好。  </p>
+</li>
+<li><p>平均梯度:可灵敏地反映图像对微小细节反差表达的水平，用于评价图像的模糊程度。平均梯度值与图像清晰程度成正比关系。  </p>
+</li>
+<li><p>空间频率:反映图像在空间域的整体活跃程度，空间频率大小与图像融合效果成正比。  </p>
+<p><strong>源图像与融合图像之间关系的评价方法</strong>  </p>
+</li>
+<li><p>互信息之和:表示融合图像F从源图像A、B中获取的信息，互信息之和的值与融合效果成正比。  </p>
+</li>
+<li><p>交叉熵:反映了源图像和融合图像对应像素的差异。交叉熵越小，代表两幅图像的差异越小，即意味着该融合方法从源图像获取的信息量越多，融合效果越好。  </p>
+</li>
+<li><p>联合熵:源图像和融合图像之间相关性的量度,反映源图像和融合图像之间的联合信息。两幅图像联合熵的值与图像所包含的信息量的大小成正比关系。  </p>
+</li>
+<li><p>偏差与相对偏差:偏差表示两幅图像光谱特性变化的平均程度和光谱信息上的差异，值越小意味着两幅图像的差异越小;相对偏差反映两幅图像在光谱信息上的匹配程度,同时也反映该方法将原图像高空间的分辨率细节传递给融合图像的能力。  </p>
+</li>
+</ul>
+</li>
+<li><p>有参考图情况下的评价方法</p>
+<ul>
+<li>通过对比标准参考图像与融合图像之间的关系来分析融合图像的质量和融合效果的好坏。  </li>
+<li>均方根误差:显示了参考图像与融合图像之间的差异对比程度，其值与接近程度成反比，值越小代表融合效果越好。  </li>
+<li>信噪比和峰值信噪比:比值越高，融合质量越好。  </li>
+<li>信息熵差ER-EF:EF和ER分别为融合图像和参考图像的信息熵。  </li>
+<li>互信息:代表图像中包含的信息，互信息值越大，包含的信息越多，融合效果越好。  </li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>RS</category>
+      </categories>
+      <tags>
+        <tag>Image Processing</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>File Hash Verification</title>
     <url>/2020/06/10/File-Hash-Verification/</url>
     <content><![CDATA[<p>利用PowerShell以及win10自带Hash工具，对文件进行hash验证，添加到右击菜单中。</p>
@@ -110,206 +204,6 @@
         <tag>win10</tag>
         <tag>Right click on the menu</tag>
         <tag>PowerShell</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Notes_02|Mysql Related Concept</title>
-    <url>/2020/05/14/MySQL/</url>
-    <content><![CDATA[<p>黑马授课视频笔记</p>
-<a id="more"></a>
-<h3 id="数据库特点"><a href="#数据库特点" class="headerlink" title="数据库特点"></a>数据库特点</h3><ul>
-<li>持久化存储</li>
-<li>读写速度极高</li>
-<li>保证数据的有效性</li>
-<li>对程序支持性非常好，容易扩展</li>
-</ul>
-<h2 id="关系型数据库的核心"><a href="#关系型数据库的核心" class="headerlink" title="关系型数据库的核心"></a>关系型数据库的核心</h2><ul>
-<li>数据行（记录）</li>
-<li>数据列（字段）</li>
-<li>数据表（数据行的集合）</li>
-<li>数据库（数据表的集合）</li>
-</ul>
-<p><strong>举例：</strong> Excel文件(数据库) —-&gt;  Sheet(数据表) —&gt; 行、列(数据行、列)  </p>
-<h2 id="MySQL、redis、MongoDB常用范围"><a href="#MySQL、redis、MongoDB常用范围" class="headerlink" title="MySQL、redis、MongoDB常用范围"></a>MySQL、redis、MongoDB常用范围</h2><ul>
-<li>MySQL常用于建设网站</li>
-<li>redis存贮缓存</li>
-<li>MongoDB用于存贮不相关的数据（例如不同网站信息的爬取）  </li>
-</ul>
-<h2 id="SQL语句、MySQL（数据库管理工具-数据库）"><a href="#SQL语句、MySQL（数据库管理工具-数据库）" class="headerlink" title="SQL语句、MySQL（数据库管理工具+数据库）"></a>SQL语句、MySQL（数据库管理工具+数据库）</h2><h3 id="SQL语句主要分为"><a href="#SQL语句主要分为" class="headerlink" title="SQL语句主要分为"></a>SQL语句主要分为</h3><ul>
-<li><strong>DQL：数据查询语句，用于对数据进行查询，如select</strong>  </li>
-<li><strong>DML：数据操作语句，对数据进行增加、删除、修改，如insert、update、delete</strong>  </li>
-<li>TPL：事务处理语言，对事物进行处理，包括begin transaction、commit、rollback  </li>
-<li>DCL：数据控制语言，进行授权与权限回收，如grant、revoke  </li>
-<li>DDL：数据定义语句，进行数据库、表的管理等，如create、drop  </li>
-<li>CCL：指针控制语句，通过控制指针完成表的操作，如declare cursor  </li>
-</ul>
-<p>对于web程序员来说，重点是数据的crud(增删改查)，必须熟练编辑DQL、DML，能够编写DDL完成数据库、表的操作，其他语言如TPL、DCL、CCL了解即可  </p>
-<p>不区分大小写</p>
-]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>Studying</tag>
-        <tag>Notebook</tag>
-        <tag>Data analysis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>QG实验1——地理数据统计预处理</title>
-    <url>/2020/04/18/QG01-Geographic_data_preprocessing/</url>
-    <content><![CDATA[<h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><ol>
-<li>掌握用Excel、Python进行<strong>数据统计描述</strong>的方法；</li>
-<li>掌握用Excel、Python进行<strong>数据标准化</strong>的基本方法；</li>
-<li>掌握用Excel、Python进行<strong>常用数据可视化</strong>的方法；</li>
-<li>掌握用Excel、Python进行<strong>数据连接</strong>和<strong>数据透视</strong>的方法。<a id="more"></a>
-
-</li>
-</ol>
-<hr>
-<h2 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h2><blockquote>
-<h3 id="１-目录"><a href="#１-目录" class="headerlink" title="１.目录"></a>１.目录</h3><ol>
-<li>统计数据描述；  </li>
-<li>统计数据标准化；</li>
-<li>统计数据可视化；  </li>
-<li>数据连接(VLOOKUP)；  </li>
-<li>数据透视(Pivot)。  </li>
-</ol>
-</blockquote>
-<hr>
-<h3 id="2-统计数据描述"><a href="#2-统计数据描述" class="headerlink" title="2. 统计数据描述"></a>2. 统计数据描述</h3><p>1&gt;  集中趋势:  </p>
-<table>
-<thead>
-<tr>
-<th align="center">特征</th>
-<th align="center">Excel</th>
-<th align="center">Python</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">平均数</td>
-<td align="center">Average函数</td>
-<td align="center">np.mean(array)</td>
-</tr>
-<tr>
-<td align="center">中位数</td>
-<td align="center">Median函数</td>
-<td align="center">np.median(array)</td>
-</tr>
-<tr>
-<td align="center">众数</td>
-<td align="center">Mode函数</td>
-<td align="center">stats.mode(array)</td>
-</tr>
-<tr>
-<td align="center">2&gt;  离中趋势：</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="center">特征</th>
-<th align="center">Excel</th>
-<th align="center">Python</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">极差</td>
-<td align="center">Max-Min</td>
-<td align="center">np.ptp(array)</td>
-</tr>
-<tr>
-<td align="center">方差和标准差</td>
-<td align="center">Var和Stdev函数</td>
-<td align="center">np.std(array)和 np.var(array)</td>
-</tr>
-<tr>
-<td align="center">变异系数</td>
-<td align="center">Stdev/Average</td>
-<td align="center">std(array) / mean(array)</td>
-</tr>
-<tr>
-<td align="center">四分位差</td>
-<td align="center">Quartile3- Quartile1</td>
-<td align="center">np.percentile(array,75)-np.percentile(array,25))</td>
-</tr>
-</tbody></table>
-<p>3&gt; 数据分布特征：  </p>
-<table>
-<thead>
-<tr>
-<th align="center">特征</th>
-<th align="center">Excel</th>
-<th align="center">Python</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">偏度系数</td>
-<td align="center">Skew函数</td>
-<td align="center">st.skew(array)</td>
-</tr>
-<tr>
-<td align="center">峰度系数</td>
-<td align="center">Kurt函数</td>
-<td align="center">st.kurtosis(array)</td>
-</tr>
-</tbody></table>
-<h3 id="3-统计数据标准化"><a href="#3-统计数据标准化" class="headerlink" title="3. 统计数据标准化"></a>3. 统计数据标准化</h3><p>1&gt; 归一化法  </p>
-<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/normalization1.png" width="80%"/>  
-
-<p>2&gt; 线性比例法/相对值法</p>
-<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/normalization2.png" width="85%"/>
-3> 
-
-<p>3&gt; 极差法</p>
-<p>![Max-Min1](E:/bw_ch/Pictures/Saved Pictures/计量地理学/实验1/Max-Min1.png)</p>
-<p> <img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/Max-Min2.png" alt=""></p>
-<p>4&gt; 均值法  </p>
-<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/mean.png" alt="mean"></p>
-<p>5&gt; 标准差法  </p>
-<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/std1.png" alt="std1"></p>
-<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/std2.png" alt="std2"></p>
-<p>6&gt; 功效系数法</p>
-<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/ec.png" alt="ec"><br><strong>Python实现：</strong><br>以极差标准化为例：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据准备</span></span><br><span class="line">arr = np.random.randint(<span class="number">0</span>,<span class="number">100</span>,size=<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据处理</span></span><br><span class="line">arr_nor = (arr-np.min(arr))/(np.max(arr)-np.min(arr))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据展示</span></span><br><span class="line">print(<span class="string">"原始array：&#123;&#125;\n"</span>.format(arr))</span><br><span class="line">print(<span class="string">"归一化array：&#123;&#125;\n"</span>.format(arr_1))</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-统计数据可视化"><a href="#4-统计数据可视化" class="headerlink" title="4. 统计数据可视化"></a>4. 统计数据可视化</h3><ol>
-<li>描述数据<strong>分布</strong>：直方图、箱线图；</li>
-<li>描述数据<strong>构成</strong>：饼状图、雷达图；</li>
-<li>描述数据<strong>联系</strong>：散点图、相关系数矩阵；</li>
-<li>描述数据<strong>比较</strong>：柱状图/条形图、折线图。</li>
-</ol>
-<h4 id="Excel操作"><a href="#Excel操作" class="headerlink" title="Excel操作"></a>Excel操作</h4><p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/Excel.png" alt="Excel"></p>
-<h4 id="Python操作"><a href="#Python操作" class="headerlink" title="Python操作"></a>Python操作</h4><p>以直方图为例：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据准备</span></span><br><span class="line">np.random.seed(<span class="number">19680801</span>)</span><br><span class="line"></span><br><span class="line">mu, sigma = <span class="number">100</span>, <span class="number">15</span></span><br><span class="line">x = mu + sigma * np.random.randn(<span class="number">10000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置直方图参数以及展示</span></span><br><span class="line">n, bins, patches = plt.hist(x, <span class="number">50</span>, density=<span class="literal">True</span>, facecolor=<span class="string">'g'</span>, alpha=<span class="number">0.75</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'Smarts'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Probability'</span>)</span><br><span class="line">plt.title(<span class="string">'Histogram of IQ'</span>)</span><br><span class="line">plt.text(<span class="number">60</span>, <span class="number">.025</span>, <span class="string">r'$\mu=100,\ \sigma=15$'</span>)    <span class="comment"># 添加文本到（60，0.025）</span></span><br><span class="line">plt.axis([<span class="number">40</span>, <span class="number">160</span>, <span class="number">0</span>, <span class="number">0.03</span>])</span><br><span class="line">plt.grid(<span class="literal">True</span>)   <span class="comment"># 配置网格线</span></span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 箱线图：</span></span><br><span class="line">seaborn.boxplot() 或 plot.box()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 饼状图：</span></span><br><span class="line">matplotlib.pyplot.pie()</span><br><span class="line"><span class="comment"># 雷达图：</span></span><br><span class="line">matplotlib.pyplot.polar()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 散点图：</span></span><br><span class="line">matplotlib.pyplot.scatter()</span><br><span class="line"><span class="comment"># 热力图：</span></span><br><span class="line">seaborn.heatmap()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 条形图：</span></span><br><span class="line">matplotlib.pyplot.bar()   <span class="comment"># 水平</span></span><br><span class="line">matplotlib.pyplot.barh()  <span class="comment"># 垂直</span></span><br><span class="line"><span class="comment"># 折线图：</span></span><br><span class="line">matplotlib.pyplot.plot()</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-数据连接（vlookup"><a href="#5-数据连接（vlookup" class="headerlink" title="5.数据连接（vlookup)"></a>5.数据连接（vlookup)</h3><h4 id="Excel-操作"><a href="#Excel-操作" class="headerlink" title="Excel  操作"></a>Excel  操作</h4><p>直接使用 = VLOOKUP （你想要查找的内容，要查找的位置，包含要返回的值的区域中的列号，返回近似或精确匹配-表示为 1/TRUE 或 0/假）<br><strong>使用方式：</strong><br>1、选中要连接单元格；<br>2、点击 公式-查找和引用-VLOOKUP 或者 直接 键入=VLOOKUP( ；<br>3、点选要查找的值、包含要返回的值的区域中的列号、返回近似或精确匹配-表示为 1/TRUE 或 0/假。</p>
-<h4 id="Python-操作"><a href="#Python-操作" class="headerlink" title="Python 操作"></a>Python 操作</h4><p>这个方法就很多了。<br>举几个思路：  </p>
-<ol>
-<li>借助字典方法 dict.get()</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = &#123;<span class="string">'A'</span>:<span class="number">1</span>, <span class="string">'D'</span>:<span class="number">4</span>, <span class="string">'E'</span>:<span class="number">5</span>&#125;</span><br><span class="line">b = &#123;<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>&#125;</span><br><span class="line"></span><br><span class="line">c = &#123;k:a.get(k) <span class="keyword">for</span> k <span class="keyword">in</span> b&#125;</span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line">&#123;<span class="string">'A'</span>: <span class="number">1</span>, <span class="string">'E'</span>: <span class="number">5</span>, <span class="string">'C'</span>: <span class="literal">None</span>, <span class="string">'D'</span>: <span class="number">4</span>, <span class="string">'B'</span>: <span class="literal">None</span>&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>使用pandas空值填充dataframe.fillna()  </li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据准备</span></span><br><span class="line">frame1 = pd.DataFrame([[<span class="number">1</span>, <span class="number">5.1</span>],[<span class="number">2</span>, <span class="number">5.7</span>],[<span class="number">3</span>, np.nan]],columns=[<span class="string">'id'</span>,<span class="string">'num'</span>])</span><br><span class="line">frame2 = pd.DataFrame([[<span class="number">1</span>, <span class="number">5.1</span>],[<span class="number">2</span>, <span class="number">5.7</span>],[<span class="number">4</span>, <span class="number">9.9</span>],[<span class="number">3</span>,<span class="number">8.8</span>]],columns=[<span class="string">'id'</span>,<span class="string">'num'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 操作准备</span></span><br><span class="line">frame1 = frame1.set_index(<span class="string">'id'</span>)</span><br><span class="line">frame2 = frame2.set_index(<span class="string">'id'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据连接</span></span><br><span class="line">frame3 = frame1.fillna(frame2)</span><br></pre></td></tr></table></figure>
-
-<p>这里需要注意操作准备中设置索引是功能实现的关键，fillna是按索引来填充的。没有的话，对比下面6，7，8行输出：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">1</span>]: <span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">In [<span class="number">2</span>]: <span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: frame1 = pd.DataFrame([[<span class="number">1</span>, <span class="number">5.1</span>],[<span class="number">2</span>, <span class="number">5.7</span>],[<span class="number">3</span>, np.nan]],columns=[<span class="string">'id'</span>,<span class="string">'num'</span>])</span><br><span class="line">In [<span class="number">4</span>]: frame2 = pd.DataFrame([[<span class="number">1</span>, <span class="number">5.1</span>],[<span class="number">2</span>, <span class="number">5.7</span>],[<span class="number">4</span>, <span class="number">9.9</span>],[<span class="number">3</span>,<span class="number">8.8</span>]],columns=[<span class="string">'id'</span>,<span class="string">'num'</span>])</span><br><span class="line">In [<span class="number">5</span>]: frame3 = frame1.fillna(frame2)</span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: frame1</span><br><span class="line">Out[<span class="number">6</span>]:</span><br><span class="line">   id  num</span><br><span class="line"><span class="number">0</span>   <span class="number">1</span>  <span class="number">5.1</span></span><br><span class="line"><span class="number">1</span>   <span class="number">2</span>  <span class="number">5.7</span></span><br><span class="line"><span class="number">2</span>   <span class="number">3</span>  NaN</span><br><span class="line">In [<span class="number">7</span>]: frame2</span><br><span class="line">Out[<span class="number">7</span>]:</span><br><span class="line">   id  num</span><br><span class="line"><span class="number">0</span>   <span class="number">1</span>  <span class="number">5.1</span></span><br><span class="line"><span class="number">1</span>   <span class="number">2</span>  <span class="number">5.7</span></span><br><span class="line"><span class="number">2</span>   <span class="number">4</span>  <span class="number">9.9</span></span><br><span class="line"><span class="number">3</span>   <span class="number">3</span>  <span class="number">8.8</span></span><br><span class="line">In [<span class="number">8</span>]: frame3</span><br><span class="line">Out[<span class="number">8</span>]:</span><br><span class="line">   id  num</span><br><span class="line"><span class="number">0</span>   <span class="number">1</span>  <span class="number">5.1</span></span><br><span class="line"><span class="number">1</span>   <span class="number">2</span>  <span class="number">5.7</span></span><br><span class="line"><span class="number">2</span>   <span class="number">3</span>  <span class="number">9.9</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: frame1 = frame1.set_index(<span class="string">'id'</span>)</span><br><span class="line">In [<span class="number">10</span>]: frame2 = frame2.set_index(<span class="string">'id'</span>)</span><br><span class="line">In [<span class="number">11</span>]: frame3 = frame1.fillna(frame2)</span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: frame3</span><br><span class="line">Out[<span class="number">12</span>]:</span><br><span class="line">id   num</span><br><span class="line"><span class="number">1</span>    <span class="number">5.1</span></span><br><span class="line"><span class="number">2</span>    <span class="number">5.7</span></span><br><span class="line"><span class="number">3</span>    <span class="number">8.8</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="6-数据透视（pivot"><a href="#6-数据透视（pivot" class="headerlink" title="6.数据透视（pivot)"></a>6.数据透视（pivot)</h3><p>借助pandas中的pivot_table(dataframe)</p>
-]]></content>
-      <categories>
-        <category>计量地理学</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Excel</tag>
-        <tag>地理空间分析</tag>
-        <tag>数据分析</tag>
       </tags>
   </entry>
   <entry>
@@ -3027,61 +2921,10 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
         <category>计量地理学</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Excel</tag>
+        <tag>Python</tag>
         <tag>地理空间分析</tag>
         <tag>数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>图像融合质量评价指标</title>
-    <url>/2020/04/21/RS02-Evaluation_of_image_fusion/</url>
-    <content><![CDATA[<h2 id="1-图像融合"><a href="#1-图像融合" class="headerlink" title="1 图像融合"></a>1 图像融合</h2><p><strong>图像融合：</strong> 是指把对同一目标或同一场景经多个传感器的成像或单一传感器的多次成像进行一定的处理，生成一幅新的图像，这幅新的图像能够准确地综合反映源图像的信息，更适合于人眼观察或计算机处理。</p>
-<a id="more"></a>
-
-<h3 id="2-图像融合质量评价"><a href="#2-图像融合质量评价" class="headerlink" title="2 图像融合质量评价"></a>2 图像融合质量评价</h3><p>目前评定图像融合算法性能的方法可分为两类，即主观的评定方法和客观的评定方法。</p>
-<h4 id="2-1-主观评价方法"><a href="#2-1-主观评价方法" class="headerlink" title="2.1 主观评价方法"></a>2.1 主观评价方法</h4><p><strong>主观评价方法</strong>：<br>就是依靠人眼对融合图像效果进行主观判断。<br><strong>客观评价方法</strong>：<br>根据不同评定方法的条件不同，对客观评价指标做了以下分类研究8。</p>
-<ol>
-<li><p>无参考图像情况下的评价方法  </p>
-<p>  <strong>单一图像特征统计的评价方法</strong>  </p>
-<ul>
-<li><p>均值:图像中所有像素的灰度值的算术平均值，对人眼表现为图像的平均亮度。  </p>
-</li>
-<li><p>标准差:图像灰度相对于均值的离散情况，用于评价图像反差的大小。  </p>
-</li>
-<li><p>信息熵:熵值大小反映其包含信息量的多少，熵值越大融合效果越好。  </p>
-</li>
-<li><p>平均梯度:可灵敏地反映图像对微小细节反差表达的水平，用于评价图像的模糊程度。平均梯度值与图像清晰程度成正比关系。  </p>
-</li>
-<li><p>空间频率:反映图像在空间域的整体活跃程度，空间频率大小与图像融合效果成正比。  </p>
-<p><strong>源图像与融合图像之间关系的评价方法</strong>  </p>
-</li>
-<li><p>互信息之和:表示融合图像F从源图像A、B中获取的信息，互信息之和的值与融合效果成正比。  </p>
-</li>
-<li><p>交叉熵:反映了源图像和融合图像对应像素的差异。交叉熵越小，代表两幅图像的差异越小，即意味着该融合方法从源图像获取的信息量越多，融合效果越好。  </p>
-</li>
-<li><p>联合熵:源图像和融合图像之间相关性的量度,反映源图像和融合图像之间的联合信息。两幅图像联合熵的值与图像所包含的信息量的大小成正比关系。  </p>
-</li>
-<li><p>偏差与相对偏差:偏差表示两幅图像光谱特性变化的平均程度和光谱信息上的差异，值越小意味着两幅图像的差异越小;相对偏差反映两幅图像在光谱信息上的匹配程度,同时也反映该方法将原图像高空间的分辨率细节传递给融合图像的能力。  </p>
-</li>
-</ul>
-</li>
-<li><p>有参考图情况下的评价方法</p>
-<ul>
-<li>通过对比标准参考图像与融合图像之间的关系来分析融合图像的质量和融合效果的好坏。  </li>
-<li>均方根误差:显示了参考图像与融合图像之间的差异对比程度，其值与接近程度成反比，值越小代表融合效果越好。  </li>
-<li>信噪比和峰值信噪比:比值越高，融合质量越好。  </li>
-<li>信息熵差ER-EF:EF和ER分别为融合图像和参考图像的信息熵。  </li>
-<li>互信息:代表图像中包含的信息，互信息值越大，包含的信息越多，融合效果越好。  </li>
-</ul>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>RS</category>
-      </categories>
-      <tags>
-        <tag>Image Processing</tag>
       </tags>
   </entry>
   <entry>
@@ -3197,6 +3040,205 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2020/03/29/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo<i class="fa fa-external-link-alt"></i></span>! This is your very first post. Check <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv">documentation<i class="fa fa-external-link-alt"></i></span> for more info. If you get any problems when using Hexo, you can find the answer in <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdHJvdWJsZXNob290aW5nLmh0bWw=">troubleshooting<i class="fa fa-external-link-alt"></i></span> or you can ask me on <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL2lzc3Vlcw==">GitHub<i class="fa fa-external-link-alt"></i></span>.</p>
+<a id="more"></a>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvd3JpdGluZy5odG1s">Writing<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvc2VydmVyLmh0bWw=">Server<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZ2VuZXJhdGluZy5odG1s">Generating<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvb25lLWNvbW1hbmQtZGVwbG95bWVudC5odG1s">Deployment<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Demo</category>
+      </categories>
+      <tags>
+        <tag>Studying</tag>
+        <tag>Test</tag>
+        <tag>Share</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jupyter env</title>
+    <url>/2020/06/26/jupyter-env/</url>
+    <content><![CDATA[<p>​        记录jupyter notebook中使用conda 环境。</p>
+<a id="more"></a>
+
+<h2 id="jupyter-conda环境"><a href="#jupyter-conda环境" class="headerlink" title="jupyter conda环境"></a>jupyter conda环境</h2><p>​        只需要安装一个nb_conda</p>
+<p>da即可进行管理，然后重新启动jupyter notebook，在服务中找改变服务（en: kernel –&gt; change kernel）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">conda install nb_conda</span><br></pre></td></tr></table></figure>
+
+<p>​        如果在jupyter中没有找到已有的环境，需要激活已有环境(e.g <code>conda activate ee</code>)，然后在该环境中安装ipykernel即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">conda install ipykernel</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果图：</strong></p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/jupyter_env1.png" alt="image-20200626110902535"></p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/jupyter_env2.png" alt="image-20200626111035589"></p>
+]]></content>
+      <categories>
+        <category>jupyter</category>
+      </categories>
+      <tags>
+        <tag>env</tag>
+        <tag>themes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>task</title>
+    <url>/2020/08/26/task/</url>
+    <content><![CDATA[<h1 id="郑州市建成区热岛效应时空演变特征"><a href="#郑州市建成区热岛效应时空演变特征" class="headerlink" title="郑州市建成区热岛效应时空演变特征"></a>郑州市建成区热岛效应时空演变特征</h1><h2 id="申请书内容："><a href="#申请书内容：" class="headerlink" title="申请书内容："></a>申请书内容：</h2><p>​    <code>a. 郑州市建成区热岛效应时空演变特征。基于2013~2019年度Landsat8数据，进行辐射定标、大气矫正，使用RS图像处理软件ENVI单窗算法计算像元亮度温度值，制作地表温度反演图，&lt;u&gt;**结合历年气象站点温度观测数据**&lt;/u&gt;，对反演结果进行验正；导入ArcGIS平台进行统计计算，将历年图像分别按照均值标准差方式进行重分类操作，分为**低温、次低温、中温、次高温、高温**5个类别，确定热岛强度指数；</code></p>
+<a id="more"></a>
+
+<h2 id="大致流程："><a href="#大致流程：" class="headerlink" title="大致流程："></a>大致流程：</h2><ol>
+<li>下载 <code>Landsat 8</code> 数据；</li>
+<li><del>去云处理；</del></li>
+<li>地表温度反演；</li>
+<li>结合气象站数据验证并修正反演结果(没数据)；</li>
+<li>利用 <code>ArcGIS</code> 进行裁剪、重分类、确定热岛强度。</li>
+</ol>
+<h3 id="下载-Landsat-8-TIRS-OLSI-。"><a href="#下载-Landsat-8-TIRS-OLSI-。" class="headerlink" title="下载 Landsat-8 TIRS\OLSI 。"></a>下载 <code>Landsat-8 TIRS\OLSI</code> 。</h3><ul>
+<li>尽量选 云指数 小的数据，主要还是选择郑州行政区内云量小的（可以直接肉眼看）。</li>
+<li>下载方式有 <span class="exturl" data-url="aHR0cDovL3d3dy5nc2Nsb3VkLmNuLw==">地理数据空间云<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cDovL2VhcnRoZXhwbG9yZXIudXNncy5nb3Yv">USGS<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cDovL2lkcy5jZW9kZS5hYy5jbi9xdWVyeS5odG1s">Landsat 8下载共享系统<i class="fa fa-external-link-alt"></i></span>；</li>
+</ul>
+<h4 id="地理空间数据云"><a href="#地理空间数据云" class="headerlink" title="地理空间数据云"></a>地理空间数据云</h4><p><strong>网址：</strong><span class="exturl" data-url="aHR0cDovL3d3dy5nc2Nsb3VkLmNuLw==">http://www.gscloud.cn/<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>流程：</strong>登录 –&gt; 高级检索 –&gt; 选数据集（Landsat 8 OLI_TIRS卫星数据产品) –&gt; 选区域时间(河南郑州) –&gt; 点选中间那一景 –&gt; 找云量指数小的</p>
+<p><strong>GIF演示：</strong> <img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/gscloud_download_demo.gif" alt="gscloud_download_demo"></p>
+<p><strong>注意：</strong> </p>
+<ol>
+<li>数据云选择郑州之后，会展示所有有拍到郑州行政区内的影像，中间那景可以全覆盖，只需要这一景即可</li>
+<li>这个平台很多不能预览，没办法更好的选择郑州区域内云量少（有些云量多，但是不在郑州区域内），可以结合USGS预览，地理空间数据云下载。</li>
+</ol>
+<h4 id="USGS"><a href="#USGS" class="headerlink" title="USGS"></a>USGS</h4><p><strong>网址：</strong><span class="exturl" data-url="aHR0cDovL2VhcnRoZXhwbG9yZXIudXNncy5nb3Yv">http://earthexplorer.usgs.gov/<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>流程：</strong> </p>
+<ol>
+<li><p><code>Enter Search Criteria</code>, 其中要设置 <code>研究区(郑州)</code>、<code>时间</code> 。</p>
+<ul>
+<li><p><strong>研究区</strong>：点选 <code>World Features</code> 之后，在Feature Name 中填入 <code>zhengzhou</code> ，点击 <code>Show</code> , 最后点选第一个 <code>Zhengzhou</code> 。</p>
+<p>选过研究区、时间之后点击 <code>Data Sets</code> 选择数据集，选过研究区和时间之后的截图：</p>
+</li>
+</ul>
+</li>
+<li><p><code>Data Sets</code>:  Landsat –&gt; Landsat Collection 1 –&gt;  Landsat Collection 1 Level-1 –&gt; Landsat 8 LOI/TIRS C1 Level-1 –&gt; Results.</p>
+</li>
+<li><p>Results. </p>
+</li>
+</ol>
+<p><strong>Gif演示：</strong> </p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/usgs_download.gif" alt="usgs_download"></p>
+<p><strong>注意：</strong></p>
+<ol>
+<li>网速慢、需要梯子；</li>
+<li>时间筛选的后面有云量筛选，建议不要用，有些可能云量大，但是郑州行政区内云相比较是最少的。真的太多，可以找6月或者9月的。（数据有限，16天一景，云会影响地表温度，会给最后重分类造成麻烦）</li>
+<li>有云掩膜产品，点击下载之后的选项卡里面，倒数第二个就是云掩膜产品。</li>
+</ol>
+<h3 id="利用-ENVI-进地表温度反演"><a href="#利用-ENVI-进地表温度反演" class="headerlink" title="利用 ENVI 进地表温度反演"></a>利用 ENVI 进地表温度反演</h3><p><code>使用 [XXIN&#39;S  Blog](https://www.ixxin.cn/2017/10/29/envi_landsat8_lst_sw/) 发布的插件做地表温度反演。（插件有还没装的私聊我）</code></p>
+<p><strong>需要参数：</strong>多光谱数据、热红外数据、大气透过率（大气水汽数据）、大气平均作用温度（计算高程）</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200825220812775.png" alt="image-20200825220812775"></p>
+<p><strong>作者视频：</strong> <span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMUY3NDExNjd5WD9wPTY=">B站搜索“温度反演”找到作者为“wudixinxin”的视频<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>流程+Gif演示：</strong> </p>
+<ol>
+<li><p>打开<code>Landsat-8</code>数据集：File –&gt; Open As –&gt; Landsat – GeoTIFF  with Metadata –&gt; 选中 “_MTL.txt” 文件<img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/open_date_landsat-8.gif" alt="open_date_landsat-8"></p>
+</li>
+<li><p>打开<code>landsat8 LST SingleWindow</code>进行地表温度反演：<code>Extensions --&gt; Landsat8 LST SingleWindow</code>，其中</p>
+<ol>
+<li>多光谱数据(<strong>Multispectral Raster</strong>) 就是第一个(名字以<code>MultiSpectral</code>结尾)</li>
+<li>热红外数据(<strong>Brightness Raster</strong>) 就是第四个(名字以<code>Thermal</code>结尾)</li>
+<li>大气透过率(<strong>Atmospheric Water</strong>) 通过 <span class="exturl" data-url="aHR0cHM6Ly9hdG1jb3JyLmdzZmMubmFzYS5nb3Yv">NASA<i class="fa fa-external-link-alt"></i></span> 网站查表得到</li>
+<li>大气平均作用温度(<strong>Atmospheric temperature</strong>) 可以 <span class="exturl" data-url="aHR0cHM6Ly9hdG1jb3JyLmdzZmMubmFzYS5nb3Yv">NASA<i class="fa fa-external-link-alt"></i></span> 查表（需要借助envi的高程数据计算影像高程）或者直接百度当时的温度</li>
+</ol>
+<p> <strong>打开并选择多光谱与红外数据GIF:</strong>  </p>
+<p> <img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/lst_xinxin_open.gif" alt="lst_xinxin_open"></p>
+<p> <strong><code>NASA</code>查表读取大气透过率获取大气平均作用温度表</strong></p>
+<p> <img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/nasa_temp_ssss.gif" alt="nasa_temp_ssss"></p>
+<p> <strong>注：</strong>需要知道影像<strong>拍摄时间</strong>还有<strong>中心经纬</strong>(这个都一样，Latitude: 34.61083、Longitude：113.4636)</p>
+<p> <strong>计算影像高程GIF（每幅影像应该一样，可以都做一下看看）</strong></p>
+<p> <strong>步骤：</strong></p>
+<ol>
+<li>打开世界高程数据：File –&gt; Open World Data – &gt; Elevation; </li>
+<li>选择统计工具，Statistics –&gt; Compute Statistics;</li>
+<li>对待反演的数据集进行高程统计，将该数据集当作世界高程数据的子数据集去计算高成影像中该区域的平均高程</li>
+</ol>
+</li>
+</ol>
+<pre><code>![envi_gaocheng](https://cdn.jsdelivr.net/gh/Rsweater/images/img/envi_gaocheng.gif)
+
+**最后**补填上 大气透过率、平均作用温度、点选大气反演类型就ok了。
+
+**注：**
+
+1. 上面括号内黑色英文不是对应的英文，而是插件对应的位置，因为也可以用其他相关的参数代替；
+2. 大气透过率要以符号 &quot;-&quot; 开头，正值表示使用的是大气水汽产品
+3. Atmospheric Type 跟 FLASHH 大气校正时的气溶胶类型是一个意思</code></pre><h3 id="利用-ArcGIS-进行裁剪、重分类、确定热岛强度"><a href="#利用-ArcGIS-进行裁剪、重分类、确定热岛强度" class="headerlink" title="利用 ArcGIS 进行裁剪、重分类、确定热岛强度."></a>利用 <code>ArcGIS</code> 进行裁剪、重分类、确定热岛强度.</h3><h4 id="a-裁剪"><a href="#a-裁剪" class="headerlink" title="a. 裁剪"></a>a. 裁剪</h4><p><strong>流程：</strong> System Toolboxes –&gt; Spatial Analyst Tools.tbx –&gt; Extraction –&gt; Extract by Mask，进去之后有三个参数需要填 <code>Input raster</code>、 <code>Input raster or feature  mask data</code>、 <code>Output raster</code>，分别对应要裁剪的图像、保留的区域（也就是我们的行政区矢量图）、输出路径。</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826085452766.png" alt="image-20200826085452766"></p>
+<p><strong>注：</strong></p>
+<ol>
+<li>这一步最好不要少，特别是对郑州行政区外有厚云的数据（会影响最小值，进而影响城市热岛指数），例如：<img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826085907150.png" alt="image-20200826085907150"></li>
+<li>进行裁剪时，注意使用同一投影坐标系。我们下载的遥感影像应该都是<code>EPSG:32649</code>(WGS 84 / UTM zone 49N)，这里有<code>EPSG:32649</code>的郑州的shp<span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMUNIdTh3d1k0QlByUmtfdklhci1xZGc=">百度网盘，提取码0911<i class="fa fa-external-link-alt"></i></span>。</li>
+</ol>
+<h4 id="b-重分类"><a href="#b-重分类" class="headerlink" title="b. 重分类"></a>b. 重分类</h4><p><strong>流程：</strong>  打开System Toolboxes –&gt; Spatial Analyst Tools.tbx –&gt; Reclass –&gt; Reclassify工具，需要填写或者修改的选项有<code>Input raster</code>、<code>Output raster</code>、还要打开<code>Classification</code>选项。</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826090728378.png" alt="image-20200826090728378"></p>
+<p><strong>注：</strong> </p>
+<ol>
+<li>在<code>classification选项卡</code>中选过标准差，可能分类结果不是 正好就是5类，这个没关系，4-7类<sup>[1]</sup>都是可以的.</li>
+<li>可以统一下每个等级颜色。右击图层管理的色条就可以换。<img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826094056336.png" alt="image-20200826094056336"></li>
+</ol>
+<h4 id="c-计算城市热岛强度指数"><a href="#c-计算城市热岛强度指数" class="headerlink" title="c. 计算城市热岛强度指数"></a>c. 计算城市热岛强度指数</h4><p><strong>公式：</strong> </p>
+<p>  $$H_i = \frac{T_i - T_{min}}{T_{max} - T_{min}} ^{[2]}    \tag{1}$$</p>
+<p>式中：H<sub>i</sub>为第 i 个像元所对应的热场强度指数，Ti 为第 i 个像元所对应的地表温度，T<sub>min</sub>。为图像区域的有效最低地表温度，T<sub>max</sub>为图像区域对应的有效最高地表温度。热场强度指数值越大，表明处于热岛范围的可能性越大。</p>
+<pre><code>简单说，就是对地表温度进行归一化处理。</code></pre><p><strong>ArcGIS操作：</strong> </p>
+<pre><code>在ArcToolBox中，打开Spatial Analyst-Overlay（叠加分析）-Fuzzy Membership（模糊隶属度），</code></pre><p><code>System Toolboxes --&gt; Spatial Analyst Tools.tbx --&gt; Overlay --&gt; Fuzzy Membership</code></p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/image-20200826095500522.png" alt="image-20200826095500522"></p>
+<p>打开<code>Fuzzy Membership</code>之后，填写输入、输出路径，点选<code>Liner</code>类型<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/image-20200826095825062.png" alt="image-20200826095825062"></p>
+<p><strong>参考文献：</strong></p>
+<p>[1].<span class="exturl" data-url="aHR0cHM6Ly94dWVzaHUuYmFpZHUuY29tL3VzZXJjZW50ZXIvcGFwZXIvc2hvdz9wYXBlcmlkPTVlYWU4NmY2YmEzMGI4MjMwNzI3MDU5YzM2NDIyNWY4JnNpdGU9eHVlc2h1X3NlJmhpdGFydGljbGU9MQ==">薛万蓉, 卢正, 但尚铭,等. 基于热红外遥感的四川省内江市城市热岛效应评价[J]. 测绘与空间地理信息, 2012(04):49-52.<i class="fa fa-external-link-alt"></i></span></p>
+<p>[2].<span class="exturl" data-url="aHR0cHM6Ly94dWVzaHUuYmFpZHUuY29tL3VzZXJjZW50ZXIvcGFwZXIvc2hvdz9wYXBlcmlkPWZhZGU1NjlhYWQxNzNhNzJmMGRjOWI5ODc2MjQ4OWI1JnNpdGU9eHVlc2h1X3Nl">叶彩华, 刘勇洪, 刘伟东,等. 城市地表热环境遥感监测指标研究及应用[J]. 气象科技, 2011(01):95-101.<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>暂时展示</category>
+      </categories>
+      <tags>
+        <tag>ZhengZhou</tag>
+        <tag>Heat island effect</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Notes_01|&quot;alias&quot; Knowledge</title>
+    <url>/2020/05/30/alias/</url>
+    <content><![CDATA[<p>  转载自知乎：乃乎。因为 WSL2 Access Windows Proxy 中命令用到了alias方法，就在知乎找到乃乎的分享。</p>
+<a id="more"></a>
+
+<p>alias (别名)，一般用来用一个短的简单的命令来代替长的复杂的命令</p>
+<h2 id="查看-alias"><a href="#查看-alias" class="headerlink" title="查看 alias"></a>查看 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Ubuntu@DESKTOP-J51JGI8:~$ <span class="built_in">alias</span></span><br><span class="line"><span class="built_in">alias</span> alert=<span class="string">'notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$(history|tail -n1|sed -e '</span>\<span class="string">''</span>s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//<span class="string">'\'</span><span class="string">')"'</span></span><br><span class="line"><span class="built_in">alias</span> egrep=<span class="string">'egrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> fgrep=<span class="string">'fgrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> grep=<span class="string">'grep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> l=<span class="string">'ls -CF'</span></span><br><span class="line"><span class="built_in">alias</span> la=<span class="string">'ls -A'</span></span><br><span class="line"><span class="built_in">alias</span> ll=<span class="string">'ls -alF'</span></span><br><span class="line"><span class="built_in">alias</span> ls=<span class="string">'ls --color=auto'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="临时定义-alias"><a href="#临时定义-alias" class="headerlink" title="临时定义 alias"></a>临时定义 alias</h2><p>使用 <code>ll</code> 代替 <code>ls -al</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="持久定义-alias"><a href="#持久定义-alias" class="headerlink" title="持久定义 alias"></a>持久定义 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>shell 启动的时候会读取配置文件，~/.bashrc 或者 ～/.zshrc。在配置文件中加入 alias 定义的命令就可以在每次启动 shell 后都存在定义好的 alias</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># custom aliases are listed below</span></span><br><span class="line">$ <span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy93d3cudGVjbWludC5jb20vY3JlYXRlLWFsaWFzLWluLWxpbnV4Lw==">https://www.tecmint.com/create-alias-in-linux/<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>WSL2</category>
+      </categories>
+      <tags>
+        <tag>Notebook - Bash - Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Unit-6-Innovation(TF).md</title>
     <url>/2020/05/15/Unit-6-Innovation(TF)/</url>
     <content><![CDATA[<p><strong>Record the words and example sentences</strong>  </p>
@@ -3236,59 +3278,34 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
       </tags>
   </entry>
   <entry>
-    <title>Notes_01|&quot;alias&quot; Knowledge</title>
-    <url>/2020/05/30/alias/</url>
-    <content><![CDATA[<p>  转载自知乎：乃乎。因为 WSL2 Access Windows Proxy 中命令用到了alias方法，就在知乎找到乃乎的分享。</p>
+    <title>WSL2 Access Windows Proxy</title>
+    <url>/2020/05/30/wsl2_access_windows_proxy/</url>
+    <content><![CDATA[<h2 id="IP设置"><a href="#IP设置" class="headerlink" title="IP设置"></a>IP设置</h2><p>IP要使用主机局域网IP，例如192.168.123.176。127.0.0.1不行。再者，就是host.deocker.internal在安装docker的时候进行了重定向，所以使用这个也是可以的。</p>
 <a id="more"></a>
 
-<p>alias (别名)，一般用来用一个短的简单的命令来代替长的复杂的命令</p>
-<h2 id="查看-alias"><a href="#查看-alias" class="headerlink" title="查看 alias"></a>查看 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Ubuntu@DESKTOP-J51JGI8:~$ <span class="built_in">alias</span></span><br><span class="line"><span class="built_in">alias</span> alert=<span class="string">'notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$(history|tail -n1|sed -e '</span>\<span class="string">''</span>s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//<span class="string">'\'</span><span class="string">')"'</span></span><br><span class="line"><span class="built_in">alias</span> egrep=<span class="string">'egrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> fgrep=<span class="string">'fgrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> grep=<span class="string">'grep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> l=<span class="string">'ls -CF'</span></span><br><span class="line"><span class="built_in">alias</span> la=<span class="string">'ls -A'</span></span><br><span class="line"><span class="built_in">alias</span> ll=<span class="string">'ls -alF'</span></span><br><span class="line"><span class="built_in">alias</span> ls=<span class="string">'ls --color=auto'</span></span><br></pre></td></tr></table></figure>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ol>
+<li><p>使用<code>proxychains</code>。安装就是<code>sudo apt install proxychains</code>，然后再进去<code>/etc/proxychains.conf</code>进行ip设置，使用直接在命令前面加proxychains。<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxychains.conf.png" alt="image-20200606150558949">![image-20200606102952207](<span class="exturl" data-url="aHR0cHM6Ly9naXRlZS5jb20vUnN3ZWF0ZXJfYWRtaW4vQmxvZ19JbWFnZXMvcmF3L21hc3Rlci9pbWcvd3Ns">https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/wsl<i class="fa fa-external-link-alt"></i></span> proxy1.png)</p>
+<p>这个方法可能会出现dns无法解析的问题，要装依赖tor,使用<code>sudo apt install tor</code>即可。</p>
+</li>
+<li><p>使用修改<code>.bashrc</code>, 在<code>.bashrc</code>中写代理和取消代理函数, 使用直接输入proxy、noproxy即可。<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxy.bashrc.png" alt="image-20200606151542147"></p>
+</li>
+</ol>
+<figure class="highlight plain"><figcaption><span>>>> proxy setting >>></span></figcaption><table><tr><td class="code"><pre><span class="line">proxy () &#123;</span><br><span class="line">        export ALL_PROXY&#x3D;&quot;socks5:&#x2F;&#x2F;192.168.123.176:10808&quot;</span><br><span class="line">        export all_proxy&#x3D;&quot;socks5:&#x2F;&#x2F;192.168.123.176:10808&quot;</span><br><span class="line">        echo -e &quot;Acquire::http::Proxy \&quot;http:&#x2F;&#x2F;192.168.123.176:10809\&quot;;&quot; | sudo tee -a &#x2F;etc&#x2F;apt&#x2F;apt.c</span><br><span class="line">onf &gt; &#x2F;dev&#x2F;null</span><br><span class="line">        echo -e &quot;Acquire::https::Proxy \&quot;http:&#x2F;&#x2F;192.168.123.176:10809\&quot;;&quot; | sudo tee -a &#x2F;etc&#x2F;apt&#x2F;apt.</span><br><span class="line">conf &gt; &#x2F;dev&#x2F;null</span><br><span class="line">        curl myip.ipip.net</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="临时定义-alias"><a href="#临时定义-alias" class="headerlink" title="临时定义 alias"></a>临时定义 alias</h2><p>使用 <code>ll</code> 代替 <code>ls -al</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span><<< proxy setting <<<</span></figcaption><table><tr><td class="code"><pre><span class="line">noproxy () &#123;</span><br><span class="line">        unset ALL_PROXY</span><br><span class="line">        unset all_proxy</span><br><span class="line">        sudo sed -i -e &#39;&#x2F;Acquire::http::Proxy&#x2F;d&#39; &#x2F;etc&#x2F;apt&#x2F;apt.conf</span><br><span class="line">        sudo sed -i -e &#39;&#x2F;Acquire::https::Proxy&#x2F;d&#39; &#x2F;etc&#x2F;apt&#x2F;apt.conf</span><br><span class="line">        curl myip.ipip.net</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="持久定义-alias"><a href="#持久定义-alias" class="headerlink" title="持久定义 alias"></a>持久定义 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure>
-
-<p>shell 启动的时候会读取配置文件，~/.bashrc 或者 ～/.zshrc。在配置文件中加入 alias 定义的命令就可以在每次启动 shell 后都存在定义好的 alias</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># custom aliases are listed below</span></span><br><span class="line">$ <span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy93d3cudGVjbWludC5jb20vY3JlYXRlLWFsaWFzLWluLWxpbnV4Lw==">https://www.tecmint.com/create-alias-in-linux/<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
+<p><strong>效果图：</strong></p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxy_.bashrc.png" alt="image-20200606151800543"></p>
+<ol start="3">
+<li>就是使用<code>alias</code>将<code>export http_proxy=socks5://192.168.123.176:10808</code>做成段命令，直接在需要代理命令之前加别名即可。</li>
+</ol>
 ]]></content>
       <categories>
         <category>WSL2</category>
       </categories>
       <tags>
-        <tag>Notebook - Bash - Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2020/03/29/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo<i class="fa fa-external-link-alt"></i></span>! This is your very first post. Check <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv">documentation<i class="fa fa-external-link-alt"></i></span> for more info. If you get any problems when using Hexo, you can find the answer in <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdHJvdWJsZXNob290aW5nLmh0bWw=">troubleshooting<i class="fa fa-external-link-alt"></i></span> or you can ask me on <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL2lzc3Vlcw==">GitHub<i class="fa fa-external-link-alt"></i></span>.</p>
-<a id="more"></a>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvd3JpdGluZy5odG1s">Writing<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvc2VydmVyLmh0bWw=">Server<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZ2VuZXJhdGluZy5odG1s">Generating<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvb25lLWNvbW1hbmQtZGVwbG95bWVudC5odG1s">Deployment<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Demo</category>
-      </categories>
-      <tags>
-        <tag>Studying</tag>
-        <tag>Test</tag>
-        <tag>Share</tag>
+        <tag>Proxy</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -3374,165 +3391,160 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
       </tags>
   </entry>
   <entry>
-    <title>jupyter env</title>
-    <url>/2020/06/26/jupyter-env/</url>
-    <content><![CDATA[<p>​        记录jupyter notebook中使用conda 环境。</p>
-<a id="more"></a>
+    <title>QG实验1——地理数据统计预处理</title>
+    <url>/2020/04/18/QG01-Geographic_data_preprocessing/</url>
+    <content><![CDATA[<h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><ol>
+<li>掌握用Excel、Python进行<strong>数据统计描述</strong>的方法；</li>
+<li>掌握用Excel、Python进行<strong>数据标准化</strong>的基本方法；</li>
+<li>掌握用Excel、Python进行<strong>常用数据可视化</strong>的方法；</li>
+<li>掌握用Excel、Python进行<strong>数据连接</strong>和<strong>数据透视</strong>的方法。<a id="more"></a>
 
-<h2 id="jupyter-conda环境"><a href="#jupyter-conda环境" class="headerlink" title="jupyter conda环境"></a>jupyter conda环境</h2><p>​        只需要安装一个nb_conda</p>
-<p>da即可进行管理，然后重新启动jupyter notebook，在服务中找改变服务（en: kernel –&gt; change kernel）</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">conda install nb_conda</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h2 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h2><blockquote>
+<h3 id="１-目录"><a href="#１-目录" class="headerlink" title="１.目录"></a>１.目录</h3><ol>
+<li>统计数据描述；  </li>
+<li>统计数据标准化；</li>
+<li>统计数据可视化；  </li>
+<li>数据连接(VLOOKUP)；  </li>
+<li>数据透视(Pivot)。  </li>
+</ol>
+</blockquote>
+<hr>
+<h3 id="2-统计数据描述"><a href="#2-统计数据描述" class="headerlink" title="2. 统计数据描述"></a>2. 统计数据描述</h3><p>1&gt;  集中趋势:  </p>
+<table>
+<thead>
+<tr>
+<th align="center">特征</th>
+<th align="center">Excel</th>
+<th align="center">Python</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">平均数</td>
+<td align="center">Average函数</td>
+<td align="center">np.mean(array)</td>
+</tr>
+<tr>
+<td align="center">中位数</td>
+<td align="center">Median函数</td>
+<td align="center">np.median(array)</td>
+</tr>
+<tr>
+<td align="center">众数</td>
+<td align="center">Mode函数</td>
+<td align="center">stats.mode(array)</td>
+</tr>
+<tr>
+<td align="center">2&gt;  离中趋势：</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">特征</th>
+<th align="center">Excel</th>
+<th align="center">Python</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">极差</td>
+<td align="center">Max-Min</td>
+<td align="center">np.ptp(array)</td>
+</tr>
+<tr>
+<td align="center">方差和标准差</td>
+<td align="center">Var和Stdev函数</td>
+<td align="center">np.std(array)和 np.var(array)</td>
+</tr>
+<tr>
+<td align="center">变异系数</td>
+<td align="center">Stdev/Average</td>
+<td align="center">std(array) / mean(array)</td>
+</tr>
+<tr>
+<td align="center">四分位差</td>
+<td align="center">Quartile3- Quartile1</td>
+<td align="center">np.percentile(array,75)-np.percentile(array,25))</td>
+</tr>
+</tbody></table>
+<p>3&gt; 数据分布特征：  </p>
+<table>
+<thead>
+<tr>
+<th align="center">特征</th>
+<th align="center">Excel</th>
+<th align="center">Python</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">偏度系数</td>
+<td align="center">Skew函数</td>
+<td align="center">st.skew(array)</td>
+</tr>
+<tr>
+<td align="center">峰度系数</td>
+<td align="center">Kurt函数</td>
+<td align="center">st.kurtosis(array)</td>
+</tr>
+</tbody></table>
+<h3 id="3-统计数据标准化"><a href="#3-统计数据标准化" class="headerlink" title="3. 统计数据标准化"></a>3. 统计数据标准化</h3><p>1&gt; 归一化法  </p>
+<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/normalization1.png" width="80%"/>  
 
-<p>​        如果在jupyter中没有找到已有的环境，需要激活已有环境(e.g <code>conda activate ee</code>)，然后在该环境中安装ipykernel即可。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">conda install ipykernel</span><br></pre></td></tr></table></figure>
+<p>2&gt; 线性比例法/相对值法</p>
+<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/normalization2.png" width="85%"/>
+3> 
 
-<p><strong>效果图：</strong></p>
-<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/jupyter_env1.png" alt="image-20200626110902535"></p>
-<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/jupyter_env2.png" alt="image-20200626111035589"></p>
+<p>3&gt; 极差法</p>
+<p>![Max-Min1](E:/bw_ch/Pictures/Saved Pictures/计量地理学/实验1/Max-Min1.png)</p>
+<p> <img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/Max-Min2.png" alt=""></p>
+<p>4&gt; 均值法  </p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/mean.png" alt="mean"></p>
+<p>5&gt; 标准差法  </p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/std1.png" alt="std1"></p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/std2.png" alt="std2"></p>
+<p>6&gt; 功效系数法</p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/ec.png" alt="ec"><br><strong>Python实现：</strong><br>以极差标准化为例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据准备</span></span><br><span class="line">arr = np.random.randint(<span class="number">0</span>,<span class="number">100</span>,size=<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据处理</span></span><br><span class="line">arr_nor = (arr-np.min(arr))/(np.max(arr)-np.min(arr))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据展示</span></span><br><span class="line">print(<span class="string">"原始array：&#123;&#125;\n"</span>.format(arr))</span><br><span class="line">print(<span class="string">"归一化array：&#123;&#125;\n"</span>.format(arr_1))</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-统计数据可视化"><a href="#4-统计数据可视化" class="headerlink" title="4. 统计数据可视化"></a>4. 统计数据可视化</h3><ol>
+<li>描述数据<strong>分布</strong>：直方图、箱线图；</li>
+<li>描述数据<strong>构成</strong>：饼状图、雷达图；</li>
+<li>描述数据<strong>联系</strong>：散点图、相关系数矩阵；</li>
+<li>描述数据<strong>比较</strong>：柱状图/条形图、折线图。</li>
+</ol>
+<h4 id="Excel操作"><a href="#Excel操作" class="headerlink" title="Excel操作"></a>Excel操作</h4><p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/Excel.png" alt="Excel"></p>
+<h4 id="Python操作"><a href="#Python操作" class="headerlink" title="Python操作"></a>Python操作</h4><p>以直方图为例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据准备</span></span><br><span class="line">np.random.seed(<span class="number">19680801</span>)</span><br><span class="line"></span><br><span class="line">mu, sigma = <span class="number">100</span>, <span class="number">15</span></span><br><span class="line">x = mu + sigma * np.random.randn(<span class="number">10000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置直方图参数以及展示</span></span><br><span class="line">n, bins, patches = plt.hist(x, <span class="number">50</span>, density=<span class="literal">True</span>, facecolor=<span class="string">'g'</span>, alpha=<span class="number">0.75</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'Smarts'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Probability'</span>)</span><br><span class="line">plt.title(<span class="string">'Histogram of IQ'</span>)</span><br><span class="line">plt.text(<span class="number">60</span>, <span class="number">.025</span>, <span class="string">r'$\mu=100,\ \sigma=15$'</span>)    <span class="comment"># 添加文本到（60，0.025）</span></span><br><span class="line">plt.axis([<span class="number">40</span>, <span class="number">160</span>, <span class="number">0</span>, <span class="number">0.03</span>])</span><br><span class="line">plt.grid(<span class="literal">True</span>)   <span class="comment"># 配置网格线</span></span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 箱线图：</span></span><br><span class="line">seaborn.boxplot() 或 plot.box()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 饼状图：</span></span><br><span class="line">matplotlib.pyplot.pie()</span><br><span class="line"><span class="comment"># 雷达图：</span></span><br><span class="line">matplotlib.pyplot.polar()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 散点图：</span></span><br><span class="line">matplotlib.pyplot.scatter()</span><br><span class="line"><span class="comment"># 热力图：</span></span><br><span class="line">seaborn.heatmap()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 条形图：</span></span><br><span class="line">matplotlib.pyplot.bar()   <span class="comment"># 水平</span></span><br><span class="line">matplotlib.pyplot.barh()  <span class="comment"># 垂直</span></span><br><span class="line"><span class="comment"># 折线图：</span></span><br><span class="line">matplotlib.pyplot.plot()</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-数据连接（vlookup"><a href="#5-数据连接（vlookup" class="headerlink" title="5.数据连接（vlookup)"></a>5.数据连接（vlookup)</h3><h4 id="Excel-操作"><a href="#Excel-操作" class="headerlink" title="Excel  操作"></a>Excel  操作</h4><p>直接使用 = VLOOKUP （你想要查找的内容，要查找的位置，包含要返回的值的区域中的列号，返回近似或精确匹配-表示为 1/TRUE 或 0/假）<br><strong>使用方式：</strong><br>1、选中要连接单元格；<br>2、点击 公式-查找和引用-VLOOKUP 或者 直接 键入=VLOOKUP( ；<br>3、点选要查找的值、包含要返回的值的区域中的列号、返回近似或精确匹配-表示为 1/TRUE 或 0/假。</p>
+<h4 id="Python-操作"><a href="#Python-操作" class="headerlink" title="Python 操作"></a>Python 操作</h4><p>这个方法就很多了。<br>举几个思路：  </p>
+<ol>
+<li>借助字典方法 dict.get()</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = &#123;<span class="string">'A'</span>:<span class="number">1</span>, <span class="string">'D'</span>:<span class="number">4</span>, <span class="string">'E'</span>:<span class="number">5</span>&#125;</span><br><span class="line">b = &#123;<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>&#125;</span><br><span class="line"></span><br><span class="line">c = &#123;k:a.get(k) <span class="keyword">for</span> k <span class="keyword">in</span> b&#125;</span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line">&#123;<span class="string">'A'</span>: <span class="number">1</span>, <span class="string">'E'</span>: <span class="number">5</span>, <span class="string">'C'</span>: <span class="literal">None</span>, <span class="string">'D'</span>: <span class="number">4</span>, <span class="string">'B'</span>: <span class="literal">None</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>使用pandas空值填充dataframe.fillna()  </li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据准备</span></span><br><span class="line">frame1 = pd.DataFrame([[<span class="number">1</span>, <span class="number">5.1</span>],[<span class="number">2</span>, <span class="number">5.7</span>],[<span class="number">3</span>, np.nan]],columns=[<span class="string">'id'</span>,<span class="string">'num'</span>])</span><br><span class="line">frame2 = pd.DataFrame([[<span class="number">1</span>, <span class="number">5.1</span>],[<span class="number">2</span>, <span class="number">5.7</span>],[<span class="number">4</span>, <span class="number">9.9</span>],[<span class="number">3</span>,<span class="number">8.8</span>]],columns=[<span class="string">'id'</span>,<span class="string">'num'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 操作准备</span></span><br><span class="line">frame1 = frame1.set_index(<span class="string">'id'</span>)</span><br><span class="line">frame2 = frame2.set_index(<span class="string">'id'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据连接</span></span><br><span class="line">frame3 = frame1.fillna(frame2)</span><br></pre></td></tr></table></figure>
+
+<p>这里需要注意操作准备中设置索引是功能实现的关键，fillna是按索引来填充的。没有的话，对比下面6，7，8行输出：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">1</span>]: <span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">In [<span class="number">2</span>]: <span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: frame1 = pd.DataFrame([[<span class="number">1</span>, <span class="number">5.1</span>],[<span class="number">2</span>, <span class="number">5.7</span>],[<span class="number">3</span>, np.nan]],columns=[<span class="string">'id'</span>,<span class="string">'num'</span>])</span><br><span class="line">In [<span class="number">4</span>]: frame2 = pd.DataFrame([[<span class="number">1</span>, <span class="number">5.1</span>],[<span class="number">2</span>, <span class="number">5.7</span>],[<span class="number">4</span>, <span class="number">9.9</span>],[<span class="number">3</span>,<span class="number">8.8</span>]],columns=[<span class="string">'id'</span>,<span class="string">'num'</span>])</span><br><span class="line">In [<span class="number">5</span>]: frame3 = frame1.fillna(frame2)</span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: frame1</span><br><span class="line">Out[<span class="number">6</span>]:</span><br><span class="line">   id  num</span><br><span class="line"><span class="number">0</span>   <span class="number">1</span>  <span class="number">5.1</span></span><br><span class="line"><span class="number">1</span>   <span class="number">2</span>  <span class="number">5.7</span></span><br><span class="line"><span class="number">2</span>   <span class="number">3</span>  NaN</span><br><span class="line">In [<span class="number">7</span>]: frame2</span><br><span class="line">Out[<span class="number">7</span>]:</span><br><span class="line">   id  num</span><br><span class="line"><span class="number">0</span>   <span class="number">1</span>  <span class="number">5.1</span></span><br><span class="line"><span class="number">1</span>   <span class="number">2</span>  <span class="number">5.7</span></span><br><span class="line"><span class="number">2</span>   <span class="number">4</span>  <span class="number">9.9</span></span><br><span class="line"><span class="number">3</span>   <span class="number">3</span>  <span class="number">8.8</span></span><br><span class="line">In [<span class="number">8</span>]: frame3</span><br><span class="line">Out[<span class="number">8</span>]:</span><br><span class="line">   id  num</span><br><span class="line"><span class="number">0</span>   <span class="number">1</span>  <span class="number">5.1</span></span><br><span class="line"><span class="number">1</span>   <span class="number">2</span>  <span class="number">5.7</span></span><br><span class="line"><span class="number">2</span>   <span class="number">3</span>  <span class="number">9.9</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: frame1 = frame1.set_index(<span class="string">'id'</span>)</span><br><span class="line">In [<span class="number">10</span>]: frame2 = frame2.set_index(<span class="string">'id'</span>)</span><br><span class="line">In [<span class="number">11</span>]: frame3 = frame1.fillna(frame2)</span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: frame3</span><br><span class="line">Out[<span class="number">12</span>]:</span><br><span class="line">id   num</span><br><span class="line"><span class="number">1</span>    <span class="number">5.1</span></span><br><span class="line"><span class="number">2</span>    <span class="number">5.7</span></span><br><span class="line"><span class="number">3</span>    <span class="number">8.8</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-数据透视（pivot"><a href="#6-数据透视（pivot" class="headerlink" title="6.数据透视（pivot)"></a>6.数据透视（pivot)</h3><p>借助pandas中的pivot_table(dataframe)</p>
 ]]></content>
       <categories>
-        <category>jupyter</category>
+        <category>计量地理学</category>
       </categories>
       <tags>
-        <tag>env</tag>
-        <tag>themes</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>task</title>
-    <url>/2020/08/26/task/</url>
-    <content><![CDATA[<h1 id="郑州市建成区热岛效应时空演变特征"><a href="#郑州市建成区热岛效应时空演变特征" class="headerlink" title="郑州市建成区热岛效应时空演变特征"></a>郑州市建成区热岛效应时空演变特征</h1><h2 id="申请书内容："><a href="#申请书内容：" class="headerlink" title="申请书内容："></a>申请书内容：</h2><pre><code>a. 郑州市建成区热岛效应时空演变特征。基于2013~2019年度Landsat8数据，进行辐射定标、大气矫正，使用RS图像处理软件ENVI单窗算法计算像元亮度温度值，制作地表温度反演图，&lt;u&gt;**结合历年气象站点温度观测数据**&lt;/u&gt;，对反演结果进行验正；导入ArcGIS平台进行统计计算，将历年图像分别按照均值标准差方式进行重分类操作，分为**低温、次低温、中温、次高温、高温**5个类别，确定热岛强度指数；</code></pre><a id="more"></a>
-
-<h2 id="大致流程："><a href="#大致流程：" class="headerlink" title="大致流程："></a>大致流程：</h2><ol>
-<li>下载 <code>Landsat 8</code> 数据；</li>
-<li><del>去云处理；</del></li>
-<li>地表温度反演；</li>
-<li>结合气象站数据验证并修正反演结果(没数据)；</li>
-<li>利用 <code>ArcGIS</code> 进行裁剪、重分类、确定热岛强度。</li>
-</ol>
-<h3 id="下载-Landsat-8-TIRS-OLSI-。"><a href="#下载-Landsat-8-TIRS-OLSI-。" class="headerlink" title="下载 Landsat-8 TIRS\OLSI 。"></a>下载 <code>Landsat-8 TIRS\OLSI</code> 。</h3><ul>
-<li>尽量选 云指数 小的数据，主要还是选择郑州行政区内云量小的（可以直接肉眼看）。</li>
-<li>下载方式有 <span class="exturl" data-url="aHR0cDovL3d3dy5nc2Nsb3VkLmNuLw==">地理数据空间云<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cDovL2VhcnRoZXhwbG9yZXIudXNncy5nb3Yv">USGS<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cDovL2lkcy5jZW9kZS5hYy5jbi9xdWVyeS5odG1s">Landsat 8下载共享系统<i class="fa fa-external-link-alt"></i></span>；</li>
-</ul>
-<h4 id="地理空间数据云"><a href="#地理空间数据云" class="headerlink" title="地理空间数据云"></a>地理空间数据云</h4><p><strong>网址：</strong><span class="exturl" data-url="aHR0cDovL3d3dy5nc2Nsb3VkLmNuLw==">http://www.gscloud.cn/<i class="fa fa-external-link-alt"></i></span></p>
-<p><strong>流程：</strong>登录 –&gt; 高级检索 –&gt; 选数据集（Landsat 8 OLI_TIRS卫星数据产品) –&gt; 选区域时间(河南郑州) –&gt; 点选中间那一景 –&gt; 找云量指数小的</p>
-<p><strong>GIF演示：</strong> <img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/gscloud_download_demo.gif" alt="gscloud_download_demo"></p>
-<p><strong>注意：</strong> </p>
-<ol>
-<li>数据云选择郑州之后，会展示所有有拍到郑州行政区内的影像，中间那景可以全覆盖，只需要这一景即可</li>
-<li>这个平台很多不能预览，没办法更好的选择郑州区域内云量少（有些云量多，但是不在郑州区域内），可以结合USGS预览，地理空间数据云下载。</li>
-</ol>
-<h4 id="USGS"><a href="#USGS" class="headerlink" title="USGS"></a>USGS</h4><p><strong>网址：</strong><span class="exturl" data-url="aHR0cDovL2VhcnRoZXhwbG9yZXIudXNncy5nb3Yv">http://earthexplorer.usgs.gov/<i class="fa fa-external-link-alt"></i></span></p>
-<p><strong>流程：</strong> </p>
-<ol>
-<li><p><code>Enter Search Criteria</code>, 其中要设置 <code>研究区(郑州)</code>、<code>时间</code> 。</p>
-<ul>
-<li><p><strong>研究区</strong>：点选 <code>World Features</code> 之后，在Feature Name 中填入 <code>zhengzhou</code> ，点击 <code>Show</code> , 最后点选第一个 <code>Zhengzhou</code> 。</p>
-<p>选过研究区、时间之后点击 <code>Data Sets</code> 选择数据集，选过研究区和时间之后的截图：</p>
-</li>
-</ul>
-</li>
-<li><p><code>Data Sets</code>:  Landsat –&gt; Landsat Collection 1 –&gt;  Landsat Collection 1 Level-1 –&gt; Landsat 8 LOI/TIRS C1 Level-1 –&gt; Results.</p>
-</li>
-<li><p>Results. </p>
-</li>
-</ol>
-<p><strong>Gif演示：</strong> </p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/usgs_download.gif" alt="usgs_download"></p>
-<p><strong>注意：</strong></p>
-<ol>
-<li>网速慢、需要梯子；</li>
-<li>时间筛选的后面有云量筛选，建议不要用，有些可能云量大，但是郑州行政区内云相比较是最少的。真的太多，可以找6月或者9月的。（数据有限，16天一景，云会影响地表温度，会给最后重分类造成麻烦）</li>
-<li>有云掩膜产品，点击下载之后的选项卡里面，倒数第二个就是云掩膜产品。</li>
-</ol>
-<h3 id="利用-ENVI-进地表温度反演"><a href="#利用-ENVI-进地表温度反演" class="headerlink" title="利用 ENVI 进地表温度反演"></a>利用 ENVI 进地表温度反演</h3><pre><code>使用 [XXIN&apos;S  Blog](https://www.ixxin.cn/2017/10/29/envi_landsat8_lst_sw/) 发布的插件做地表温度反演。（插件有还没装的私聊我）</code></pre><p><strong>需要参数：</strong>多光谱数据、热红外数据、大气透过率（大气水汽数据）、大气平均作用温度（计算高程）</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200825220812775.png" alt="image-20200825220812775"></p>
-<p><strong>作者视频：</strong> <span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMUY3NDExNjd5WD9wPTY=">B站搜索“温度反演”找到作者为“wudixinxin”的视频<i class="fa fa-external-link-alt"></i></span></p>
-<p><strong>流程+Gif演示：</strong> </p>
-<ol>
-<li><p>打开<code>Landsat-8</code>数据集：File –&gt; Open As –&gt; Landsat – GeoTIFF  with Metadata –&gt; 选中 “_MTL.txt” 文件<img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/open_date_landsat-8.gif" alt="open_date_landsat-8"></p>
-</li>
-<li><p>打开<code>landsat8 LST SingleWindow</code>进行地表温度反演：<code>Extensions --&gt; Landsat8 LST SingleWindow</code>，其中</p>
-<ol>
-<li>多光谱数据(<strong>Multispectral Raster</strong>) 就是第一个(名字以<code>MultiSpectral</code>结尾)</li>
-<li>热红外数据(<strong>Brightness Raster</strong>) 就是第四个(名字以<code>Thermal</code>结尾)</li>
-<li>大气透过率(<strong>Atmospheric Water</strong>) 通过 <span class="exturl" data-url="aHR0cHM6Ly9hdG1jb3JyLmdzZmMubmFzYS5nb3Yv">NASA<i class="fa fa-external-link-alt"></i></span> 网站查表得到</li>
-<li>大气平均作用温度(<strong>Atmospheric temperature</strong>) 可以 <span class="exturl" data-url="aHR0cHM6Ly9hdG1jb3JyLmdzZmMubmFzYS5nb3Yv">NASA<i class="fa fa-external-link-alt"></i></span> 查表（需要借助envi的高程数据计算影像高程）或者直接百度当时的温度</li>
-</ol>
-<p> <strong>打开并选择多光谱与红外数据GIF:</strong>  </p>
-<p> <img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/lst_xinxin_open.gif" alt="lst_xinxin_open"></p>
-<p> <strong><code>NASA</code>查表读取大气透过率获取大气平均作用温度表</strong></p>
-<p> <img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/nasa_temp_ssss.gif" alt="nasa_temp_ssss"></p>
-<pre><code>**注：**需要知道影像**拍摄时间**还有**中心经纬**(这个都一样，Latitude: 34.61083、Longitude：113.4636)</code></pre><p> <strong>计算影像高程GIF（每幅影像应该一样，可以都做一下看看）</strong></p>
-<p> <strong>步骤：</strong> 打开世界高程数据：File –&gt; Open World Data – &gt; Elevation; </p>
-<pre><code>选择统计工具，Statistics --&gt; Compute Statistics;
-
-对待反演的数据集进行高程统计，将该数据集当作世界高程数据的子数据集去计算高成影像中该区域的平均高程</code></pre><p> <img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/envi_gaocheng.gif" alt="envi_gaocheng"></p>
-<p> <strong>最后</strong>补填上 大气透过率、平均作用温度、点选大气反演类型就ok了。</p>
-</li>
-</ol>
-<pre><code>**注：**
-
-1. 上面括号内黑色英文不是对应的英文，而是插件对应的位置，因为也可以用其他相关的参数代替；
-2. 大气透过率要以符号 &quot;-&quot; 开头，正值表示使用的是大气水汽产品
-3. Atmospheric Type 跟 FLASHH 大气校正时的气溶胶类型是一个意思</code></pre><h3 id="利用-ArcGIS-进行裁剪、重分类、确定热岛强度"><a href="#利用-ArcGIS-进行裁剪、重分类、确定热岛强度" class="headerlink" title="利用 ArcGIS 进行裁剪、重分类、确定热岛强度."></a>利用 <code>ArcGIS</code> 进行裁剪、重分类、确定热岛强度.</h3><h4 id="a-裁剪"><a href="#a-裁剪" class="headerlink" title="a. 裁剪"></a>a. 裁剪</h4><p><strong>流程：</strong> System Toolboxes –&gt; Spatial Analyst Tools.tbx –&gt; Extraction –&gt; Extract by Mask，进去之后有三个参数需要填 <code>Input raster</code>、 <code>Input raster or feature  mask data</code>、 <code>Output raster</code>，分别对应要裁剪的图像、保留的区域（也就是我们的行政区矢量图）、输出路径。</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826085452766.png" alt="image-20200826085452766"></p>
-<p><strong>注：</strong></p>
-<pre><code>这一步最好不要少，特别是对郑州行政区外有厚云的数据（会影响最小值，进而影响城市热岛指数），例如：![image-20200826085907150](https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826085907150.png)</code></pre><h4 id="b-重分类"><a href="#b-重分类" class="headerlink" title="b. 重分类"></a>b. 重分类</h4><p><strong>流程：</strong>  打开System Toolboxes –&gt; Spatial Analyst Tools.tbx –&gt; Reclass –&gt; Reclassify工具，需要填写或者修改的选项有<code>Input raster</code>、<code>Output raster</code>、还要打开<code>Classification</code>选项。</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826090728378.png" alt="image-20200826090728378"></p>
-<p><strong>注：</strong> </p>
-<ol>
-<li>在<code>classification选项卡</code>中选过标准差，可能分类结果不是 正好就是5类，这个没关系，4-7类<sup>[1]</sup>都是可以的.</li>
-<li>可以统一下每个等级颜色。右击图层管理的色条就可以换。<img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826094056336.png" alt="image-20200826094056336"></li>
-</ol>
-<h4 id="c-计算城市热岛强度指数"><a href="#c-计算城市热岛强度指数" class="headerlink" title="c. 计算城市热岛强度指数"></a>c. 计算城市热岛强度指数</h4><p><strong>公式：</strong> </p>
-<p>  $$H_i = \frac{T_i - T_{min}}{T_{max} - T_{min}} ^{[2]}    \tag{1}$$</p>
-<p>式中：H<sub>i</sub>为第 i 个像元所对应的热场强度指数，Ti 为第 i 个像元所对应的地表温度，T<sub>min</sub>。为图像区域的有效最低地表温度，T<sub>max</sub>为图像区域对应的有效最高地表温度。热场强度指数值越大，表明处于热岛范围的可能性越大。</p>
-<pre><code>简单说，就是对地表温度进行归一化处理。</code></pre><p><strong>ArcGIS操作：</strong> </p>
-<pre><code>在ArcToolBox中，打开Spatial Analyst-Overlay（叠加分析）-Fuzzy Membership（模糊隶属度），</code></pre><p><code>System Toolboxes --&gt; Spatial Analyst Tools.tbx --&gt; Overlay --&gt; Fuzzy Membership</code></p>
-<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/image-20200826095500522.png" alt="image-20200826095500522"></p>
-<p>打开<code>Fuzzy Membership</code>之后，填写输入、输出路径，点选<code>Liner</code>类型<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/image-20200826095825062.png" alt="image-20200826095825062"></p>
-<p><strong>参考文献：</strong></p>
-<p>[1].<span class="exturl" data-url="aHR0cHM6Ly94dWVzaHUuYmFpZHUuY29tL3VzZXJjZW50ZXIvcGFwZXIvc2hvdz9wYXBlcmlkPTVlYWU4NmY2YmEzMGI4MjMwNzI3MDU5YzM2NDIyNWY4JnNpdGU9eHVlc2h1X3NlJmhpdGFydGljbGU9MQ==">薛万蓉, 卢正, 但尚铭,等. 基于热红外遥感的四川省内江市城市热岛效应评价[J]. 测绘与空间地理信息, 2012(04):49-52.<i class="fa fa-external-link-alt"></i></span></p>
-<p>[2].<span class="exturl" data-url="aHR0cHM6Ly94dWVzaHUuYmFpZHUuY29tL3VzZXJjZW50ZXIvcGFwZXIvc2hvdz9wYXBlcmlkPWZhZGU1NjlhYWQxNzNhNzJmMGRjOWI5ODc2MjQ4OWI1JnNpdGU9eHVlc2h1X3Nl">叶彩华, 刘勇洪, 刘伟东,等. 城市地表热环境遥感监测指标研究及应用[J]. 气象科技, 2011(01):95-101.<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>暂时展示</category>
-      </categories>
-      <tags>
-        <tag>ZhengZhou</tag>
-        <tag>Heat island effect</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>WSL2 Access Windows Proxy</title>
-    <url>/2020/05/30/wsl2_access_windows_proxy/</url>
-    <content><![CDATA[<h2 id="IP设置"><a href="#IP设置" class="headerlink" title="IP设置"></a>IP设置</h2><p>IP要使用主机局域网IP，例如192.168.123.176。127.0.0.1不行。再者，就是host.deocker.internal在安装docker的时候进行了重定向，所以使用这个也是可以的。</p>
-<a id="more"></a>
-
-<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ol>
-<li><p>使用<code>proxychains</code>。安装就是<code>sudo apt install proxychains</code>，然后再进去<code>/etc/proxychains.conf</code>进行ip设置，使用直接在命令前面加proxychains。<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxychains.conf.png" alt="image-20200606150558949">![image-20200606102952207](<span class="exturl" data-url="aHR0cHM6Ly9naXRlZS5jb20vUnN3ZWF0ZXJfYWRtaW4vQmxvZ19JbWFnZXMvcmF3L21hc3Rlci9pbWcvd3Ns">https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/wsl<i class="fa fa-external-link-alt"></i></span> proxy1.png)</p>
-<p>这个方法可能会出现dns无法解析的问题，要装依赖tor,使用<code>sudo apt install tor</code>即可。</p>
-</li>
-<li><p>使用修改<code>.bashrc</code>, 在<code>.bashrc</code>中写代理和取消代理函数, 使用直接输入proxy、noproxy即可。<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxy.bashrc.png" alt="image-20200606151542147"></p>
-</li>
-</ol>
-<figure class="highlight plain"><figcaption><span>>>> proxy setting >>></span></figcaption><table><tr><td class="code"><pre><span class="line">proxy () &#123;</span><br><span class="line">        export ALL_PROXY&#x3D;&quot;socks5:&#x2F;&#x2F;192.168.123.176:10808&quot;</span><br><span class="line">        export all_proxy&#x3D;&quot;socks5:&#x2F;&#x2F;192.168.123.176:10808&quot;</span><br><span class="line">        echo -e &quot;Acquire::http::Proxy \&quot;http:&#x2F;&#x2F;192.168.123.176:10809\&quot;;&quot; | sudo tee -a &#x2F;etc&#x2F;apt&#x2F;apt.c</span><br><span class="line">onf &gt; &#x2F;dev&#x2F;null</span><br><span class="line">        echo -e &quot;Acquire::https::Proxy \&quot;http:&#x2F;&#x2F;192.168.123.176:10809\&quot;;&quot; | sudo tee -a &#x2F;etc&#x2F;apt&#x2F;apt.</span><br><span class="line">conf &gt; &#x2F;dev&#x2F;null</span><br><span class="line">        curl myip.ipip.net</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><figcaption><span><<< proxy setting <<<</span></figcaption><table><tr><td class="code"><pre><span class="line">noproxy () &#123;</span><br><span class="line">        unset ALL_PROXY</span><br><span class="line">        unset all_proxy</span><br><span class="line">        sudo sed -i -e &#39;&#x2F;Acquire::http::Proxy&#x2F;d&#39; &#x2F;etc&#x2F;apt&#x2F;apt.conf</span><br><span class="line">        sudo sed -i -e &#39;&#x2F;Acquire::https::Proxy&#x2F;d&#39; &#x2F;etc&#x2F;apt&#x2F;apt.conf</span><br><span class="line">        curl myip.ipip.net</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果图：</strong></p>
-<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxy_.bashrc.png" alt="image-20200606151800543"></p>
-<ol start="3">
-<li>就是使用<code>alias</code>将<code>export http_proxy=socks5://192.168.123.176:10808</code>做成段命令，直接在需要代理命令之前加别名即可。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>WSL2</category>
-      </categories>
-      <tags>
-        <tag>Proxy</tag>
-        <tag>Linux</tag>
+        <tag>Excel</tag>
+        <tag>Python</tag>
+        <tag>地理空间分析</tag>
+        <tag>数据分析</tag>
       </tags>
   </entry>
 </search>
