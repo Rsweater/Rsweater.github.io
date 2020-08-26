@@ -89,6 +89,30 @@
       </tags>
   </entry>
   <entry>
+    <title>File Hash Verification</title>
+    <url>/2020/06/10/File-Hash-Verification/</url>
+    <content><![CDATA[<p>利用PowerShell以及win10自带Hash工具，对文件进行hash验证，添加到右击菜单中。</p>
+<a id="more"></a>
+
+<p><strong>思路：</strong>直接利用<code>.reg</code>文件的方式添加注册表信息。</p>
+<p><strong>文件内容（添加）：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\*\shell\File Hash Verification]</span><br><span class="line"></span><br><span class="line">&quot;SubCommands&quot;&#x3D;&quot;MACTripleDES;MD5;RIPEMD160;SHA1;SHA256;SHA384;SHA512&quot;</span><br><span class="line"></span><br><span class="line">&quot;MUIVerb&quot;&#x3D;&quot;File Hash Verification&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MACTripleDES&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MACTripleDES \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;RIPEMD160&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm RIPEMD160 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA1&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA1 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA256&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA256 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA384&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA384 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA512&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA512 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>删除</strong>只需要在<code>[]</code>中最前面加<code>-</code>, 例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 以MD5删除为例：</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong> 包含中文一定记得编码，可以直接转成UTF-8，或者直接采用Unicode编码。直接转的话，notepad++上方菜单有<code>编码 -&gt; 转成UTF-8格式</code>。</p>
+]]></content>
+      <categories>
+        <category>Regedit</category>
+      </categories>
+      <tags>
+        <tag>win10</tag>
+        <tag>Right click on the menu</tag>
+        <tag>PowerShell</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Notes_02|Mysql Related Concept</title>
     <url>/2020/05/14/MySQL/</url>
     <content><![CDATA[<p>黑马授课视频笔记</p>
@@ -286,30 +310,6 @@
         <tag>Excel</tag>
         <tag>地理空间分析</tag>
         <tag>数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>File Hash Verification</title>
-    <url>/2020/06/10/File-Hash-Verification/</url>
-    <content><![CDATA[<p>利用PowerShell以及win10自带Hash工具，对文件进行hash验证，添加到右击菜单中。</p>
-<a id="more"></a>
-
-<p><strong>思路：</strong>直接利用<code>.reg</code>文件的方式添加注册表信息。</p>
-<p><strong>文件内容（添加）：</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\*\shell\File Hash Verification]</span><br><span class="line"></span><br><span class="line">&quot;SubCommands&quot;&#x3D;&quot;MACTripleDES;MD5;RIPEMD160;SHA1;SHA256;SHA384;SHA512&quot;</span><br><span class="line"></span><br><span class="line">&quot;MUIVerb&quot;&#x3D;&quot;File Hash Verification&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MACTripleDES&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MACTripleDES \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;RIPEMD160&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm RIPEMD160 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA1&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA1 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA256&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA256 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA384&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA384 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA512&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA512 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>删除</strong>只需要在<code>[]</code>中最前面加<code>-</code>, 例如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 以MD5删除为例：</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：</strong> 包含中文一定记得编码，可以直接转成UTF-8，或者直接采用Unicode编码。直接转的话，notepad++上方菜单有<code>编码 -&gt; 转成UTF-8格式</code>。</p>
-]]></content>
-      <categories>
-        <category>Regedit</category>
-      </categories>
-      <tags>
-        <tag>win10</tag>
-        <tag>Right click on the menu</tag>
-        <tag>PowerShell</tag>
       </tags>
   </entry>
   <entry>
@@ -3034,6 +3034,57 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
       </tags>
   </entry>
   <entry>
+    <title>图像融合质量评价指标</title>
+    <url>/2020/04/21/RS02-Evaluation_of_image_fusion/</url>
+    <content><![CDATA[<h2 id="1-图像融合"><a href="#1-图像融合" class="headerlink" title="1 图像融合"></a>1 图像融合</h2><p><strong>图像融合：</strong> 是指把对同一目标或同一场景经多个传感器的成像或单一传感器的多次成像进行一定的处理，生成一幅新的图像，这幅新的图像能够准确地综合反映源图像的信息，更适合于人眼观察或计算机处理。</p>
+<a id="more"></a>
+
+<h3 id="2-图像融合质量评价"><a href="#2-图像融合质量评价" class="headerlink" title="2 图像融合质量评价"></a>2 图像融合质量评价</h3><p>目前评定图像融合算法性能的方法可分为两类，即主观的评定方法和客观的评定方法。</p>
+<h4 id="2-1-主观评价方法"><a href="#2-1-主观评价方法" class="headerlink" title="2.1 主观评价方法"></a>2.1 主观评价方法</h4><p><strong>主观评价方法</strong>：<br>就是依靠人眼对融合图像效果进行主观判断。<br><strong>客观评价方法</strong>：<br>根据不同评定方法的条件不同，对客观评价指标做了以下分类研究8。</p>
+<ol>
+<li><p>无参考图像情况下的评价方法  </p>
+<p>  <strong>单一图像特征统计的评价方法</strong>  </p>
+<ul>
+<li><p>均值:图像中所有像素的灰度值的算术平均值，对人眼表现为图像的平均亮度。  </p>
+</li>
+<li><p>标准差:图像灰度相对于均值的离散情况，用于评价图像反差的大小。  </p>
+</li>
+<li><p>信息熵:熵值大小反映其包含信息量的多少，熵值越大融合效果越好。  </p>
+</li>
+<li><p>平均梯度:可灵敏地反映图像对微小细节反差表达的水平，用于评价图像的模糊程度。平均梯度值与图像清晰程度成正比关系。  </p>
+</li>
+<li><p>空间频率:反映图像在空间域的整体活跃程度，空间频率大小与图像融合效果成正比。  </p>
+<p><strong>源图像与融合图像之间关系的评价方法</strong>  </p>
+</li>
+<li><p>互信息之和:表示融合图像F从源图像A、B中获取的信息，互信息之和的值与融合效果成正比。  </p>
+</li>
+<li><p>交叉熵:反映了源图像和融合图像对应像素的差异。交叉熵越小，代表两幅图像的差异越小，即意味着该融合方法从源图像获取的信息量越多，融合效果越好。  </p>
+</li>
+<li><p>联合熵:源图像和融合图像之间相关性的量度,反映源图像和融合图像之间的联合信息。两幅图像联合熵的值与图像所包含的信息量的大小成正比关系。  </p>
+</li>
+<li><p>偏差与相对偏差:偏差表示两幅图像光谱特性变化的平均程度和光谱信息上的差异，值越小意味着两幅图像的差异越小;相对偏差反映两幅图像在光谱信息上的匹配程度,同时也反映该方法将原图像高空间的分辨率细节传递给融合图像的能力。  </p>
+</li>
+</ul>
+</li>
+<li><p>有参考图情况下的评价方法</p>
+<ul>
+<li>通过对比标准参考图像与融合图像之间的关系来分析融合图像的质量和融合效果的好坏。  </li>
+<li>均方根误差:显示了参考图像与融合图像之间的差异对比程度，其值与接近程度成反比，值越小代表融合效果越好。  </li>
+<li>信噪比和峰值信噪比:比值越高，融合质量越好。  </li>
+<li>信息熵差ER-EF:EF和ER分别为融合图像和参考图像的信息熵。  </li>
+<li>互信息:代表图像中包含的信息，互信息值越大，包含的信息越多，融合效果越好。  </li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>RS</category>
+      </categories>
+      <tags>
+        <tag>Image Processing</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Time Series Pandas</title>
     <url>/2020/06/04/Time-Series-Pandas/</url>
     <content><![CDATA[<p>利用Python进行时间序列分析,  主要记录ARIMA模型相关知识。</p>
@@ -3146,34 +3197,6 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
       </tags>
   </entry>
   <entry>
-    <title>Notes_01|&quot;alias&quot; Knowledge</title>
-    <url>/2020/05/30/alias/</url>
-    <content><![CDATA[<p>  转载自知乎：乃乎。因为 WSL2 Access Windows Proxy 中命令用到了alias方法，就在知乎找到乃乎的分享。</p>
-<a id="more"></a>
-
-<p>alias (别名)，一般用来用一个短的简单的命令来代替长的复杂的命令</p>
-<h2 id="查看-alias"><a href="#查看-alias" class="headerlink" title="查看 alias"></a>查看 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Ubuntu@DESKTOP-J51JGI8:~$ <span class="built_in">alias</span></span><br><span class="line"><span class="built_in">alias</span> alert=<span class="string">'notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$(history|tail -n1|sed -e '</span>\<span class="string">''</span>s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//<span class="string">'\'</span><span class="string">')"'</span></span><br><span class="line"><span class="built_in">alias</span> egrep=<span class="string">'egrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> fgrep=<span class="string">'fgrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> grep=<span class="string">'grep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> l=<span class="string">'ls -CF'</span></span><br><span class="line"><span class="built_in">alias</span> la=<span class="string">'ls -A'</span></span><br><span class="line"><span class="built_in">alias</span> ll=<span class="string">'ls -alF'</span></span><br><span class="line"><span class="built_in">alias</span> ls=<span class="string">'ls --color=auto'</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="临时定义-alias"><a href="#临时定义-alias" class="headerlink" title="临时定义 alias"></a>临时定义 alias</h2><p>使用 <code>ll</code> 代替 <code>ls -al</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="持久定义-alias"><a href="#持久定义-alias" class="headerlink" title="持久定义 alias"></a>持久定义 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure>
-
-<p>shell 启动的时候会读取配置文件，~/.bashrc 或者 ～/.zshrc。在配置文件中加入 alias 定义的命令就可以在每次启动 shell 后都存在定义好的 alias</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># custom aliases are listed below</span></span><br><span class="line">$ <span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy93d3cudGVjbWludC5jb20vY3JlYXRlLWFsaWFzLWluLWxpbnV4Lw==">https://www.tecmint.com/create-alias-in-linux/<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-]]></content>
-      <categories>
-        <category>WSL2</category>
-      </categories>
-      <tags>
-        <tag>Notebook - Bash - Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Unit-6-Innovation(TF).md</title>
     <url>/2020/05/15/Unit-6-Innovation(TF)/</url>
     <content><![CDATA[<p><strong>Record the words and example sentences</strong>  </p>
@@ -3213,6 +3236,34 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
       </tags>
   </entry>
   <entry>
+    <title>Notes_01|&quot;alias&quot; Knowledge</title>
+    <url>/2020/05/30/alias/</url>
+    <content><![CDATA[<p>  转载自知乎：乃乎。因为 WSL2 Access Windows Proxy 中命令用到了alias方法，就在知乎找到乃乎的分享。</p>
+<a id="more"></a>
+
+<p>alias (别名)，一般用来用一个短的简单的命令来代替长的复杂的命令</p>
+<h2 id="查看-alias"><a href="#查看-alias" class="headerlink" title="查看 alias"></a>查看 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Ubuntu@DESKTOP-J51JGI8:~$ <span class="built_in">alias</span></span><br><span class="line"><span class="built_in">alias</span> alert=<span class="string">'notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$(history|tail -n1|sed -e '</span>\<span class="string">''</span>s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//<span class="string">'\'</span><span class="string">')"'</span></span><br><span class="line"><span class="built_in">alias</span> egrep=<span class="string">'egrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> fgrep=<span class="string">'fgrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> grep=<span class="string">'grep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> l=<span class="string">'ls -CF'</span></span><br><span class="line"><span class="built_in">alias</span> la=<span class="string">'ls -A'</span></span><br><span class="line"><span class="built_in">alias</span> ll=<span class="string">'ls -alF'</span></span><br><span class="line"><span class="built_in">alias</span> ls=<span class="string">'ls --color=auto'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="临时定义-alias"><a href="#临时定义-alias" class="headerlink" title="临时定义 alias"></a>临时定义 alias</h2><p>使用 <code>ll</code> 代替 <code>ls -al</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="持久定义-alias"><a href="#持久定义-alias" class="headerlink" title="持久定义 alias"></a>持久定义 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>shell 启动的时候会读取配置文件，~/.bashrc 或者 ～/.zshrc。在配置文件中加入 alias 定义的命令就可以在每次启动 shell 后都存在定义好的 alias</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># custom aliases are listed below</span></span><br><span class="line">$ <span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy93d3cudGVjbWludC5jb20vY3JlYXRlLWFsaWFzLWluLWxpbnV4Lw==">https://www.tecmint.com/create-alias-in-linux/<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>WSL2</category>
+      </categories>
+      <tags>
+        <tag>Notebook - Bash - Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2020/03/29/hello-world/</url>
     <content><![CDATA[<p>Welcome to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo<i class="fa fa-external-link-alt"></i></span>! This is your very first post. Check <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv">documentation<i class="fa fa-external-link-alt"></i></span> for more info. If you get any problems when using Hexo, you can find the answer in <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdHJvdWJsZXNob290aW5nLmh0bWw=">troubleshooting<i class="fa fa-external-link-alt"></i></span> or you can ask me on <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL2lzc3Vlcw==">GitHub<i class="fa fa-external-link-alt"></i></span>.</p>
@@ -3238,57 +3289,6 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
         <tag>Studying</tag>
         <tag>Test</tag>
         <tag>Share</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>图像融合质量评价指标</title>
-    <url>/2020/04/21/RS02-Evaluation_of_image_fusion/</url>
-    <content><![CDATA[<h2 id="1-图像融合"><a href="#1-图像融合" class="headerlink" title="1 图像融合"></a>1 图像融合</h2><p><strong>图像融合：</strong> 是指把对同一目标或同一场景经多个传感器的成像或单一传感器的多次成像进行一定的处理，生成一幅新的图像，这幅新的图像能够准确地综合反映源图像的信息，更适合于人眼观察或计算机处理。</p>
-<a id="more"></a>
-
-<h3 id="2-图像融合质量评价"><a href="#2-图像融合质量评价" class="headerlink" title="2 图像融合质量评价"></a>2 图像融合质量评价</h3><p>目前评定图像融合算法性能的方法可分为两类，即主观的评定方法和客观的评定方法。</p>
-<h4 id="2-1-主观评价方法"><a href="#2-1-主观评价方法" class="headerlink" title="2.1 主观评价方法"></a>2.1 主观评价方法</h4><p><strong>主观评价方法</strong>：<br>就是依靠人眼对融合图像效果进行主观判断。<br><strong>客观评价方法</strong>：<br>根据不同评定方法的条件不同，对客观评价指标做了以下分类研究8。</p>
-<ol>
-<li><p>无参考图像情况下的评价方法  </p>
-<p>  <strong>单一图像特征统计的评价方法</strong>  </p>
-<ul>
-<li><p>均值:图像中所有像素的灰度值的算术平均值，对人眼表现为图像的平均亮度。  </p>
-</li>
-<li><p>标准差:图像灰度相对于均值的离散情况，用于评价图像反差的大小。  </p>
-</li>
-<li><p>信息熵:熵值大小反映其包含信息量的多少，熵值越大融合效果越好。  </p>
-</li>
-<li><p>平均梯度:可灵敏地反映图像对微小细节反差表达的水平，用于评价图像的模糊程度。平均梯度值与图像清晰程度成正比关系。  </p>
-</li>
-<li><p>空间频率:反映图像在空间域的整体活跃程度，空间频率大小与图像融合效果成正比。  </p>
-<p><strong>源图像与融合图像之间关系的评价方法</strong>  </p>
-</li>
-<li><p>互信息之和:表示融合图像F从源图像A、B中获取的信息，互信息之和的值与融合效果成正比。  </p>
-</li>
-<li><p>交叉熵:反映了源图像和融合图像对应像素的差异。交叉熵越小，代表两幅图像的差异越小，即意味着该融合方法从源图像获取的信息量越多，融合效果越好。  </p>
-</li>
-<li><p>联合熵:源图像和融合图像之间相关性的量度,反映源图像和融合图像之间的联合信息。两幅图像联合熵的值与图像所包含的信息量的大小成正比关系。  </p>
-</li>
-<li><p>偏差与相对偏差:偏差表示两幅图像光谱特性变化的平均程度和光谱信息上的差异，值越小意味着两幅图像的差异越小;相对偏差反映两幅图像在光谱信息上的匹配程度,同时也反映该方法将原图像高空间的分辨率细节传递给融合图像的能力。  </p>
-</li>
-</ul>
-</li>
-<li><p>有参考图情况下的评价方法</p>
-<ul>
-<li>通过对比标准参考图像与融合图像之间的关系来分析融合图像的质量和融合效果的好坏。  </li>
-<li>均方根误差:显示了参考图像与融合图像之间的差异对比程度，其值与接近程度成反比，值越小代表融合效果越好。  </li>
-<li>信噪比和峰值信噪比:比值越高，融合质量越好。  </li>
-<li>信息熵差ER-EF:EF和ER分别为融合图像和参考图像的信息熵。  </li>
-<li>互信息:代表图像中包含的信息，互信息值越大，包含的信息越多，融合效果越好。  </li>
-</ul>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>RS</category>
-      </categories>
-      <tags>
-        <tag>Image Processing</tag>
       </tags>
   </entry>
   <entry>
@@ -3401,7 +3401,7 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
   <entry>
     <title>task</title>
     <url>/2020/08/26/task/</url>
-    <content><![CDATA[<h1 id="郑州市建成区热岛效应时空演变特征"><a href="#郑州市建成区热岛效应时空演变特征" class="headerlink" title="郑州市建成区热岛效应时空演变特征"></a>郑州市建成区热岛效应时空演变特征</h1><h2 id="申请书内容："><a href="#申请书内容：" class="headerlink" title="申请书内容："></a>申请书内容：</h2><p>​    <code>a. 郑州市建成区热岛效应时空演变特征。基于2013~2019年度Landsat8数据，进行辐射定标、大气矫正，使用RS图像处理软件ENVI单窗算法计算像元亮度温度值，制作地表温度反演图，&lt;u&gt;**结合历年气象站点温度观测数据**&lt;/u&gt;，对反演结果进行验正；导入ArcGIS平台进行统计计算，将历年图像分别按照均值标准差方式进行重分类操作，分为**低温、次低温、中温、次高温、高温**5个类别，确定热岛强度指数；</code></p>
+    <content><![CDATA[<h1 id="郑州市建成区热岛效应时空演变特征"><a href="#郑州市建成区热岛效应时空演变特征" class="headerlink" title="郑州市建成区热岛效应时空演变特征"></a>郑州市建成区热岛效应时空演变特征</h1><h2 id="申请书内容："><a href="#申请书内容：" class="headerlink" title="申请书内容："></a>申请书内容：</h2><p>​        a. 郑州市建成区热岛效应时空演变特征。基于2013~2019年度Landsat8数据，进行辐射定标、大气矫正，使用RS图像处理软件ENVI单窗算法计算像元亮度温度值，制作地表温度反演图，<u><strong>结合历年气象站点温度观测数据</strong></u>，对反演结果进行验正；导入ArcGIS平台进行统计计算，将历年图像分别按照均值标准差方式进行重分类操作，分为<strong>低温、次低温、中温、次高温、高温</strong>5个类别，确定热岛强度指数；</p>
 <a id="more"></a>
 
 <h2 id="大致流程："><a href="#大致流程：" class="headerlink" title="大致流程："></a>大致流程：</h2><ol>
@@ -3445,7 +3445,7 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
 <li>时间筛选的后面有云量筛选，建议不要用，有些可能云量大，但是郑州行政区内云相比较是最少的。真的太多，可以找6月或者9月的。（数据有限，16天一景，云会影响地表温度，会给最后重分类造成麻烦）</li>
 <li>有云掩膜产品，点击下载之后的选项卡里面，倒数第二个就是云掩膜产品。</li>
 </ol>
-<h3 id="利用-ENVI-进地表温度反演"><a href="#利用-ENVI-进地表温度反演" class="headerlink" title="利用 ENVI 进地表温度反演"></a>利用 ENVI 进地表温度反演</h3><p><code>使用 [XXIN&#39;S  Blog](https://www.ixxin.cn/2017/10/29/envi_landsat8_lst_sw/) 发布的插件做地表温度反演。（插件有还没装的私聊我）</code></p>
+<h3 id="利用-ENVI-进地表温度反演"><a href="#利用-ENVI-进地表温度反演" class="headerlink" title="利用 ENVI 进地表温度反演"></a>利用 ENVI 进地表温度反演</h3><p>​        使用 <span class="exturl" data-url="aHR0cHM6Ly93d3cuaXh4aW4uY24vMjAxNy8xMC8yOS9lbnZpX2xhbmRzYXQ4X2xzdF9zdy8=">XXIN’S  Blog<i class="fa fa-external-link-alt"></i></span> 发布的插件做地表温度反演。（插件有还没装的私聊我）</p>
 <p><strong>需要参数：</strong>多光谱数据、热红外数据、大气透过率（大气水汽数据）、大气平均作用温度（计算高程）</p>
 <p><img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200825220812775.png" alt="image-20200825220812775"></p>
 <p><strong>作者视频：</strong> <span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMUY3NDExNjd5WD9wPTY=">B站搜索“温度反演”找到作者为“wudixinxin”的视频<i class="fa fa-external-link-alt"></i></span></p>
@@ -3470,28 +3470,30 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
 <ol>
 <li>打开世界高程数据：File –&gt; Open World Data – &gt; Elevation; </li>
 <li>选择统计工具，Statistics –&gt; Compute Statistics;</li>
-<li>对待反演的数据集进行高程统计，将该数据集当作世界高程数据的子数据集去计算高成影像中该区域的平均高程</li>
+<li>对待反演的数据集进行高程统计，将该数据集当作世界高程数据的子数据集去计算高成影像中该区域的平均高程<img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/envi_gaocheng.gif" alt="envi_gaocheng"></li>
+</ol>
+<p> <strong>最后</strong>补填上 大气透过率、平均作用温度、点选大气反演类型就ok了。</p>
+<p> <strong>注意：</strong></p>
+<ol>
+<li>上面括号内黑色英文不是对应的英文，而是插件对应的位置，因为也可以用其他相关的参数代替；</li>
+</ol>
+</li>
+<li><p>大气透过率要以符号 “-“ 开头，正值表示使用的是大气水汽产品</p>
+<ol start="3">
+<li>Atmospheric Type 跟 FLASHH 大气校正时的气溶胶类型是一个意思</li>
 </ol>
 </li>
 </ol>
-<pre><code>![envi_gaocheng](https://cdn.jsdelivr.net/gh/Rsweater/images/img/envi_gaocheng.gif)
-
-**最后**补填上 大气透过率、平均作用温度、点选大气反演类型就ok了。
-
-**注：**
-
-1. 上面括号内黑色英文不是对应的英文，而是插件对应的位置，因为也可以用其他相关的参数代替；
-2. 大气透过率要以符号 &quot;-&quot; 开头，正值表示使用的是大气水汽产品
-3. Atmospheric Type 跟 FLASHH 大气校正时的气溶胶类型是一个意思</code></pre><h3 id="利用-ArcGIS-进行裁剪、重分类、确定热岛强度"><a href="#利用-ArcGIS-进行裁剪、重分类、确定热岛强度" class="headerlink" title="利用 ArcGIS 进行裁剪、重分类、确定热岛强度."></a>利用 <code>ArcGIS</code> 进行裁剪、重分类、确定热岛强度.</h3><h4 id="a-裁剪"><a href="#a-裁剪" class="headerlink" title="a. 裁剪"></a>a. 裁剪</h4><p><strong>流程：</strong> System Toolboxes –&gt; Spatial Analyst Tools.tbx –&gt; Extraction –&gt; Extract by Mask，进去之后有三个参数需要填 <code>Input raster</code>、 <code>Input raster or feature  mask data</code>、 <code>Output raster</code>，分别对应要裁剪的图像、保留的区域（也就是我们的行政区矢量图）、输出路径。</p>
+<h3 id="利用-ArcGIS-进行裁剪、重分类、确定热岛强度"><a href="#利用-ArcGIS-进行裁剪、重分类、确定热岛强度" class="headerlink" title="利用 ArcGIS 进行裁剪、重分类、确定热岛强度."></a>利用 <code>ArcGIS</code> 进行裁剪、重分类、确定热岛强度.</h3><h4 id="a-裁剪"><a href="#a-裁剪" class="headerlink" title="a. 裁剪"></a>a. 裁剪</h4><p><strong>流程：</strong> System Toolboxes –&gt; Spatial Analyst Tools.tbx –&gt; Extraction –&gt; Extract by Mask，进去之后有三个参数需要填 <code>Input raster</code>、 <code>Input raster or feature  mask data</code>、 <code>Output raster</code>，分别对应要裁剪的图像、保留的区域（也就是我们的行政区矢量图）、输出路径。</p>
 <p><img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826085452766.png" alt="image-20200826085452766"></p>
-<p><strong>注：</strong></p>
+<p><strong>注意：</strong></p>
 <ol>
 <li>这一步最好不要少，特别是对郑州行政区外有厚云的数据（会影响最小值，进而影响城市热岛指数），例如：<img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826085907150.png" alt="image-20200826085907150"></li>
 <li>进行裁剪时，注意使用同一投影坐标系。我们下载的遥感影像应该都是<code>EPSG:32649</code>(WGS 84 / UTM zone 49N)，这里有<code>EPSG:32649</code>的郑州的shp<span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMUNIdTh3d1k0QlByUmtfdklhci1xZGc=">百度网盘，提取码0911<i class="fa fa-external-link-alt"></i></span>。</li>
 </ol>
 <h4 id="b-重分类"><a href="#b-重分类" class="headerlink" title="b. 重分类"></a>b. 重分类</h4><p><strong>流程：</strong>  打开System Toolboxes –&gt; Spatial Analyst Tools.tbx –&gt; Reclass –&gt; Reclassify工具，需要填写或者修改的选项有<code>Input raster</code>、<code>Output raster</code>、还要打开<code>Classification</code>选项。</p>
 <p><img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826090728378.png" alt="image-20200826090728378"></p>
-<p><strong>注：</strong> </p>
+<p><strong>注意：</strong> </p>
 <ol>
 <li>在<code>classification选项卡</code>中选过标准差，可能分类结果不是 正好就是5类，这个没关系，4-7类<sup>[1]</sup>都是可以的.</li>
 <li>可以统一下每个等级颜色。右击图层管理的色条就可以换。<img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826094056336.png" alt="image-20200826094056336"></li>
@@ -3500,9 +3502,9 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
 <p>  $$H_i = \frac{T_i - T_{min}}{T_{max} - T_{min}} ^{[2]}    \tag{1}$$</p>
 <p>式中：H<sub>i</sub>为第 i 个像元所对应的热场强度指数，Ti 为第 i 个像元所对应的地表温度，T<sub>min</sub>。为图像区域的有效最低地表温度，T<sub>max</sub>为图像区域对应的有效最高地表温度。热场强度指数值越大，表明处于热岛范围的可能性越大。</p>
 <pre><code>简单说，就是对地表温度进行归一化处理。</code></pre><p><strong>ArcGIS操作：</strong> </p>
-<pre><code>在ArcToolBox中，打开Spatial Analyst-Overlay（叠加分析）-Fuzzy Membership（模糊隶属度），</code></pre><p><code>System Toolboxes --&gt; Spatial Analyst Tools.tbx --&gt; Overlay --&gt; Fuzzy Membership</code></p>
+<p>​    在 <code>ArcToolBox</code> 中，打开<code>Spatial Analyst-Overlay</code>（叠加分析）-Fuzzy Membership（模糊隶属度），System Toolboxes –&gt; Spatial Analyst Tools.tbx –&gt; Overlay –&gt; Fuzzy Membership。</p>
 <p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/image-20200826095500522.png" alt="image-20200826095500522"></p>
-<p>打开<code>Fuzzy Membership</code>之后，填写输入、输出路径，点选<code>Liner</code>类型<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/image-20200826095825062.png" alt="image-20200826095825062"></p>
+<p>​    打开<code>Fuzzy Membership</code>之后，填写输入、输出路径，点选<code>Liner</code>类型<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/image-20200826095825062.png" alt="image-20200826095825062"></p>
 <p><strong>参考文献：</strong></p>
 <p>[1].<span class="exturl" data-url="aHR0cHM6Ly94dWVzaHUuYmFpZHUuY29tL3VzZXJjZW50ZXIvcGFwZXIvc2hvdz9wYXBlcmlkPTVlYWU4NmY2YmEzMGI4MjMwNzI3MDU5YzM2NDIyNWY4JnNpdGU9eHVlc2h1X3NlJmhpdGFydGljbGU9MQ==">薛万蓉, 卢正, 但尚铭,等. 基于热红外遥感的四川省内江市城市热岛效应评价[J]. 测绘与空间地理信息, 2012(04):49-52.<i class="fa fa-external-link-alt"></i></span></p>
 <p>[2].<span class="exturl" data-url="aHR0cHM6Ly94dWVzaHUuYmFpZHUuY29tL3VzZXJjZW50ZXIvcGFwZXIvc2hvdz9wYXBlcmlkPWZhZGU1NjlhYWQxNzNhNzJmMGRjOWI5ODc2MjQ4OWI1JnNpdGU9eHVlc2h1X3Nl">叶彩华, 刘勇洪, 刘伟东,等. 城市地表热环境遥感监测指标研究及应用[J]. 气象科技, 2011(01):95-101.<i class="fa fa-external-link-alt"></i></span></p>
