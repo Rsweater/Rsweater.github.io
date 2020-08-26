@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>File Hash Verification</title>
+    <url>/2020/06/10/File-Hash-Verification/</url>
+    <content><![CDATA[<p>利用PowerShell以及win10自带Hash工具，对文件进行hash验证，添加到右击菜单中。</p>
+<a id="more"></a>
+
+<p><strong>思路：</strong>直接利用<code>.reg</code>文件的方式添加注册表信息。</p>
+<p><strong>文件内容（添加）：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\*\shell\File Hash Verification]</span><br><span class="line"></span><br><span class="line">&quot;SubCommands&quot;&#x3D;&quot;MACTripleDES;MD5;RIPEMD160;SHA1;SHA256;SHA384;SHA512&quot;</span><br><span class="line"></span><br><span class="line">&quot;MUIVerb&quot;&#x3D;&quot;File Hash Verification&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MACTripleDES&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MACTripleDES \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;RIPEMD160&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm RIPEMD160 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA1&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA1 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA256&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA256 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA384&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA384 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA512&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA512 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>删除</strong>只需要在<code>[]</code>中最前面加<code>-</code>, 例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 以MD5删除为例：</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong> 包含中文一定记得编码，可以直接转成UTF-8，或者直接采用Unicode编码。直接转的话，notepad++上方菜单有<code>编码 -&gt; 转成UTF-8格式</code>。</p>
+]]></content>
+      <categories>
+        <category>Regedit</category>
+      </categories>
+      <tags>
+        <tag>win10</tag>
+        <tag>Right click on the menu</tag>
+        <tag>PowerShell</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Cluster Analysis</title>
     <url>/2020/06/05/Cluster-Analysis/</url>
     <content><![CDATA[<p> K-Mean Clustering、DBSCAN Clustering、以及Python实现思路（包括空间聚类）。</p>
@@ -86,30 +110,6 @@
       <tags>
         <tag>K-Mean Clustering</tag>
         <tag>Dbsacn Clustering</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>File Hash Verification</title>
-    <url>/2020/06/10/File-Hash-Verification/</url>
-    <content><![CDATA[<p>利用PowerShell以及win10自带Hash工具，对文件进行hash验证，添加到右击菜单中。</p>
-<a id="more"></a>
-
-<p><strong>思路：</strong>直接利用<code>.reg</code>文件的方式添加注册表信息。</p>
-<p><strong>文件内容（添加）：</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\*\shell\File Hash Verification]</span><br><span class="line"></span><br><span class="line">&quot;SubCommands&quot;&#x3D;&quot;MACTripleDES;MD5;RIPEMD160;SHA1;SHA256;SHA384;SHA512&quot;</span><br><span class="line"></span><br><span class="line">&quot;MUIVerb&quot;&#x3D;&quot;File Hash Verification&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MACTripleDES&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MACTripleDES \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;RIPEMD160&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm RIPEMD160 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA1&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA1 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA256&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA256 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA384&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA384 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA512&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA512 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>删除</strong>只需要在<code>[]</code>中最前面加<code>-</code>, 例如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 以MD5删除为例：</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：</strong> 包含中文一定记得编码，可以直接转成UTF-8，或者直接采用Unicode编码。直接转的话，notepad++上方菜单有<code>编码 -&gt; 转成UTF-8格式</code>。</p>
-]]></content>
-      <categories>
-        <category>Regedit</category>
-      </categories>
-      <tags>
-        <tag>win10</tag>
-        <tag>Right click on the menu</tag>
-        <tag>PowerShell</tag>
       </tags>
   </entry>
   <entry>
@@ -310,6 +310,57 @@
         <tag>Excel</tag>
         <tag>地理空间分析</tag>
         <tag>数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>图像融合质量评价指标</title>
+    <url>/2020/04/21/RS02-Evaluation_of_image_fusion/</url>
+    <content><![CDATA[<h2 id="1-图像融合"><a href="#1-图像融合" class="headerlink" title="1 图像融合"></a>1 图像融合</h2><p><strong>图像融合：</strong> 是指把对同一目标或同一场景经多个传感器的成像或单一传感器的多次成像进行一定的处理，生成一幅新的图像，这幅新的图像能够准确地综合反映源图像的信息，更适合于人眼观察或计算机处理。</p>
+<a id="more"></a>
+
+<h3 id="2-图像融合质量评价"><a href="#2-图像融合质量评价" class="headerlink" title="2 图像融合质量评价"></a>2 图像融合质量评价</h3><p>目前评定图像融合算法性能的方法可分为两类，即主观的评定方法和客观的评定方法。</p>
+<h4 id="2-1-主观评价方法"><a href="#2-1-主观评价方法" class="headerlink" title="2.1 主观评价方法"></a>2.1 主观评价方法</h4><p><strong>主观评价方法</strong>：<br>就是依靠人眼对融合图像效果进行主观判断。<br><strong>客观评价方法</strong>：<br>根据不同评定方法的条件不同，对客观评价指标做了以下分类研究8。</p>
+<ol>
+<li><p>无参考图像情况下的评价方法  </p>
+<p>  <strong>单一图像特征统计的评价方法</strong>  </p>
+<ul>
+<li><p>均值:图像中所有像素的灰度值的算术平均值，对人眼表现为图像的平均亮度。  </p>
+</li>
+<li><p>标准差:图像灰度相对于均值的离散情况，用于评价图像反差的大小。  </p>
+</li>
+<li><p>信息熵:熵值大小反映其包含信息量的多少，熵值越大融合效果越好。  </p>
+</li>
+<li><p>平均梯度:可灵敏地反映图像对微小细节反差表达的水平，用于评价图像的模糊程度。平均梯度值与图像清晰程度成正比关系。  </p>
+</li>
+<li><p>空间频率:反映图像在空间域的整体活跃程度，空间频率大小与图像融合效果成正比。  </p>
+<p><strong>源图像与融合图像之间关系的评价方法</strong>  </p>
+</li>
+<li><p>互信息之和:表示融合图像F从源图像A、B中获取的信息，互信息之和的值与融合效果成正比。  </p>
+</li>
+<li><p>交叉熵:反映了源图像和融合图像对应像素的差异。交叉熵越小，代表两幅图像的差异越小，即意味着该融合方法从源图像获取的信息量越多，融合效果越好。  </p>
+</li>
+<li><p>联合熵:源图像和融合图像之间相关性的量度,反映源图像和融合图像之间的联合信息。两幅图像联合熵的值与图像所包含的信息量的大小成正比关系。  </p>
+</li>
+<li><p>偏差与相对偏差:偏差表示两幅图像光谱特性变化的平均程度和光谱信息上的差异，值越小意味着两幅图像的差异越小;相对偏差反映两幅图像在光谱信息上的匹配程度,同时也反映该方法将原图像高空间的分辨率细节传递给融合图像的能力。  </p>
+</li>
+</ul>
+</li>
+<li><p>有参考图情况下的评价方法</p>
+<ul>
+<li>通过对比标准参考图像与融合图像之间的关系来分析融合图像的质量和融合效果的好坏。  </li>
+<li>均方根误差:显示了参考图像与融合图像之间的差异对比程度，其值与接近程度成反比，值越小代表融合效果越好。  </li>
+<li>信噪比和峰值信噪比:比值越高，融合质量越好。  </li>
+<li>信息熵差ER-EF:EF和ER分别为融合图像和参考图像的信息熵。  </li>
+<li>互信息:代表图像中包含的信息，互信息值越大，包含的信息越多，融合效果越好。  </li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>RS</category>
+      </categories>
+      <tags>
+        <tag>Image Processing</tag>
       </tags>
   </entry>
   <entry>
@@ -3034,54 +3085,42 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
       </tags>
   </entry>
   <entry>
-    <title>图像融合质量评价指标</title>
-    <url>/2020/04/21/RS02-Evaluation_of_image_fusion/</url>
-    <content><![CDATA[<h2 id="1-图像融合"><a href="#1-图像融合" class="headerlink" title="1 图像融合"></a>1 图像融合</h2><p><strong>图像融合：</strong> 是指把对同一目标或同一场景经多个传感器的成像或单一传感器的多次成像进行一定的处理，生成一幅新的图像，这幅新的图像能够准确地综合反映源图像的信息，更适合于人眼观察或计算机处理。</p>
+    <title>Unit-6-Innovation(TF).md</title>
+    <url>/2020/05/15/Unit-6-Innovation(TF)/</url>
+    <content><![CDATA[<p><strong>Record the words and example sentences</strong>  </p>
 <a id="more"></a>
 
-<h3 id="2-图像融合质量评价"><a href="#2-图像融合质量评价" class="headerlink" title="2 图像融合质量评价"></a>2 图像融合质量评价</h3><p>目前评定图像融合算法性能的方法可分为两类，即主观的评定方法和客观的评定方法。</p>
-<h4 id="2-1-主观评价方法"><a href="#2-1-主观评价方法" class="headerlink" title="2.1 主观评价方法"></a>2.1 主观评价方法</h4><p><strong>主观评价方法</strong>：<br>就是依靠人眼对融合图像效果进行主观判断。<br><strong>客观评价方法</strong>：<br>根据不同评定方法的条件不同，对客观评价指标做了以下分类研究8。</p>
 <ol>
-<li><p>无参考图像情况下的评价方法  </p>
-<p>  <strong>单一图像特征统计的评价方法</strong>  </p>
-<ul>
-<li><p>均值:图像中所有像素的灰度值的算术平均值，对人眼表现为图像的平均亮度。  </p>
+<li><p><strong>word：</strong><br>urban planner(城市规划师)<br><strong>sentences:</strong><br>An urban planner is a person who works on the efficient organization of a city’s features.</p>
 </li>
-<li><p>标准差:图像灰度相对于均值的离散情况，用于评价图像反差的大小。  </p>
+<li><p><strong>word：</strong><br>interrelated<br>adj. 相关的；互相联系的；v. 使相互联系（interrelate的过去式）<br>interact<br>v. 互相影响；互相作用<br><strong>sentences:</strong><br>All things are interrelated and interact with each other.<br>一切事物都是相互联系、相互作用的。</p>
 </li>
-<li><p>信息熵:熵值大小反映其包含信息量的多少，熵值越大融合效果越好。  </p>
+<li><p><strong>word：</strong><br>commuter<br>n. 通勤者，经常乘公共车辆往返者；[交] 月季票乘客<br><strong>sentences：</strong><br>A commuter is someone who travels a long distance to work every day.<br>通勤族是指每天都要长途跋涉去上班的人。 </p>
 </li>
-<li><p>平均梯度:可灵敏地反映图像对微小细节反差表达的水平，用于评价图像的模糊程度。平均梯度值与图像清晰程度成正比关系。  </p>
+<li><p><strong>word:</strong><br>imprisonment　　监禁　　　　　　　　　option　　选项<br>fine　　n. 罚款    　<br>adj. 好的；优良的；细小的，精美的；健康的；晴朗的<br><strong>sentences:</strong><br>He was given one month’s imprisonment without the option of a fine.  他被判处一个月徒刑，没有罚款的选择。  </p>
 </li>
-<li><p>空间频率:反映图像在空间域的整体活跃程度，空间频率大小与图像融合效果成正比。  </p>
-<p><strong>源图像与融合图像之间关系的评价方法</strong>  </p>
+<li><p><strong>word:</strong><br>stationary<br>adj. 固定的；静止的；定居的；常备军的<br>n. 不动的人；驻军<br><strong>sentences:</strong><br>A traffic jam is a long line of vehicles that is either stationary or moving very slowly.<br>交通堵塞就是指一排排固定不动或行驶缓慢的车辆。  </p>
 </li>
-<li><p>互信息之和:表示融合图像F从源图像A、B中获取的信息，互信息之和的值与融合效果成正比。  </p>
+<li><p><strong>drop</strong><br>v.When someone drops you off, he or she lets you alight from the vehicle.（让⋯）下车，卸下（乘客） </p>
 </li>
-<li><p>交叉熵:反映了源图像和融合图像对应像素的差异。交叉熵越小，代表两幅图像的差异越小，即意味着该融合方法从源图像获取的信息量越多，融合效果越好。  </p>
+<li><p><strong>for one thing</strong><br>When you say “for one thing,” you indicate that you are talking about one of the factors involved in the situation. 首先，一则  </p>
 </li>
-<li><p>联合熵:源图像和融合图像之间相关性的量度,反映源图像和融合图像之间的联合信息。两幅图像联合熵的值与图像所包含的信息量的大小成正比关系。  </p>
+<li><p><strong>not to mention</strong><br>You will use “not to mention” when you want to indicate that you’re about to provide additional information to support your point. 更不用说，此外  </p>
 </li>
-<li><p>偏差与相对偏差:偏差表示两幅图像光谱特性变化的平均程度和光谱信息上的差异，值越小意味着两幅图像的差异越小;相对偏差反映两幅图像在光谱信息上的匹配程度,同时也反映该方法将原图像高空间的分辨率细节传递给融合图像的能力。  </p>
+<li><p><strong>conference</strong><br>n.A conference is a meeting, usually held over the course of a few days, where a particular subject is discussed. （正式）会议  </p>
 </li>
-</ul>
+<li><p><strong>demonstrate</strong><br>v.To demonstrate is to show how something works, or how something should be done. 示范操作，演示  </p>
 </li>
-<li><p>有参考图情况下的评价方法</p>
-<ul>
-<li>通过对比标准参考图像与融合图像之间的关系来分析融合图像的质量和融合效果的好坏。  </li>
-<li>均方根误差:显示了参考图像与融合图像之间的差异对比程度，其值与接近程度成反比，值越小代表融合效果越好。  </li>
-<li>信噪比和峰值信噪比:比值越高，融合质量越好。  </li>
-<li>信息熵差ER-EF:EF和ER分别为融合图像和参考图像的信息熵。  </li>
-<li>互信息:代表图像中包含的信息，互信息值越大，包含的信息越多，融合效果越好。  </li>
-</ul>
+<li><p><strong>revolution</strong><br>n.A revolution refers to a swift and dramatic change in society. 重大变革  </p>
 </li>
 </ol>
 ]]></content>
       <categories>
-        <category>RS</category>
+        <category>Studying-English</category>
       </categories>
       <tags>
-        <tag>Image Processing</tag>
+        <tag>Notebook</tag>
+        <tag>English Though Films</tag>
       </tags>
   </entry>
   <entry>
@@ -3194,45 +3233,6 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
         <tag>Time Series</tag>
         <tag>Data Analysis</tag>
         <tag>Pandas</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Unit-6-Innovation(TF).md</title>
-    <url>/2020/05/15/Unit-6-Innovation(TF)/</url>
-    <content><![CDATA[<p><strong>Record the words and example sentences</strong>  </p>
-<a id="more"></a>
-
-<ol>
-<li><p><strong>word：</strong><br>urban planner(城市规划师)<br><strong>sentences:</strong><br>An urban planner is a person who works on the efficient organization of a city’s features.</p>
-</li>
-<li><p><strong>word：</strong><br>interrelated<br>adj. 相关的；互相联系的；v. 使相互联系（interrelate的过去式）<br>interact<br>v. 互相影响；互相作用<br><strong>sentences:</strong><br>All things are interrelated and interact with each other.<br>一切事物都是相互联系、相互作用的。</p>
-</li>
-<li><p><strong>word：</strong><br>commuter<br>n. 通勤者，经常乘公共车辆往返者；[交] 月季票乘客<br><strong>sentences：</strong><br>A commuter is someone who travels a long distance to work every day.<br>通勤族是指每天都要长途跋涉去上班的人。 </p>
-</li>
-<li><p><strong>word:</strong><br>imprisonment　　监禁　　　　　　　　　option　　选项<br>fine　　n. 罚款    　<br>adj. 好的；优良的；细小的，精美的；健康的；晴朗的<br><strong>sentences:</strong><br>He was given one month’s imprisonment without the option of a fine.  他被判处一个月徒刑，没有罚款的选择。  </p>
-</li>
-<li><p><strong>word:</strong><br>stationary<br>adj. 固定的；静止的；定居的；常备军的<br>n. 不动的人；驻军<br><strong>sentences:</strong><br>A traffic jam is a long line of vehicles that is either stationary or moving very slowly.<br>交通堵塞就是指一排排固定不动或行驶缓慢的车辆。  </p>
-</li>
-<li><p><strong>drop</strong><br>v.When someone drops you off, he or she lets you alight from the vehicle.（让⋯）下车，卸下（乘客） </p>
-</li>
-<li><p><strong>for one thing</strong><br>When you say “for one thing,” you indicate that you are talking about one of the factors involved in the situation. 首先，一则  </p>
-</li>
-<li><p><strong>not to mention</strong><br>You will use “not to mention” when you want to indicate that you’re about to provide additional information to support your point. 更不用说，此外  </p>
-</li>
-<li><p><strong>conference</strong><br>n.A conference is a meeting, usually held over the course of a few days, where a particular subject is discussed. （正式）会议  </p>
-</li>
-<li><p><strong>demonstrate</strong><br>v.To demonstrate is to show how something works, or how something should be done. 示范操作，演示  </p>
-</li>
-<li><p><strong>revolution</strong><br>n.A revolution refers to a swift and dramatic change in society. 重大变革  </p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Studying-English</category>
-      </categories>
-      <tags>
-        <tag>Notebook</tag>
-        <tag>English Though Films</tag>
       </tags>
   </entry>
   <entry>
@@ -3371,31 +3371,6 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
       <tags>
         <tag>Python</tag>
         <tag>Crawler basics</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>jupyter env</title>
-    <url>/2020/06/26/jupyter-env/</url>
-    <content><![CDATA[<p>​        记录jupyter notebook中使用conda 环境。</p>
-<a id="more"></a>
-
-<h2 id="jupyter-conda环境"><a href="#jupyter-conda环境" class="headerlink" title="jupyter conda环境"></a>jupyter conda环境</h2><p>​        只需要安装一个nb_conda</p>
-<p>da即可进行管理，然后重新启动jupyter notebook，在服务中找改变服务（en: kernel –&gt; change kernel）</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">conda install nb_conda</span><br></pre></td></tr></table></figure>
-
-<p>​        如果在jupyter中没有找到已有的环境，需要激活已有环境(e.g <code>conda activate ee</code>)，然后在该环境中安装ipykernel即可。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">conda install ipykernel</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果图：</strong></p>
-<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/jupyter_env1.png" alt="image-20200626110902535"></p>
-<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/jupyter_env2.png" alt="image-20200626111035589"></p>
-]]></content>
-      <categories>
-        <category>jupyter</category>
-      </categories>
-      <tags>
-        <tag>env</tag>
-        <tag>themes</tag>
       </tags>
   </entry>
   <entry>
@@ -3546,6 +3521,31 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
       <tags>
         <tag>Proxy</tag>
         <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jupyter env</title>
+    <url>/2020/06/26/jupyter-env/</url>
+    <content><![CDATA[<p>​        记录jupyter notebook中使用conda 环境。</p>
+<a id="more"></a>
+
+<h2 id="jupyter-conda环境"><a href="#jupyter-conda环境" class="headerlink" title="jupyter conda环境"></a>jupyter conda环境</h2><p>​        只需要安装一个nb_conda</p>
+<p>da即可进行管理，然后重新启动jupyter notebook，在服务中找改变服务（en: kernel –&gt; change kernel）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">conda install nb_conda</span><br></pre></td></tr></table></figure>
+
+<p>​        如果在jupyter中没有找到已有的环境，需要激活已有环境(e.g <code>conda activate ee</code>)，然后在该环境中安装ipykernel即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">conda install ipykernel</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果图：</strong></p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/jupyter_env1.png" alt="image-20200626110902535"></p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/jupyter_env2.png" alt="image-20200626111035589"></p>
+]]></content>
+      <categories>
+        <category>jupyter</category>
+      </categories>
+      <tags>
+        <tag>env</tag>
+        <tag>themes</tag>
       </tags>
   </entry>
 </search>
