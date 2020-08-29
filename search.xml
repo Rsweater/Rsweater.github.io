@@ -1,6 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>File Hash Verification</title>
+    <url>/2020/06/10/File-Hash-Verification/</url>
+    <content><![CDATA[<p><strong>摘要：</strong>利用PowerShell以及win10自带Hash工具，对文件进行hash验证，添加到右击菜单中。</p>
+<a id="more"></a>
+
+<p><strong>思路：</strong>直接利用<code>.reg</code>文件的方式添加注册表信息。</p>
+<p><strong>文件内容（添加）：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\*\shell\File Hash Verification]</span><br><span class="line"></span><br><span class="line">&quot;SubCommands&quot;&#x3D;&quot;MACTripleDES;MD5;RIPEMD160;SHA1;SHA256;SHA384;SHA512&quot;</span><br><span class="line"></span><br><span class="line">&quot;MUIVerb&quot;&#x3D;&quot;File Hash Verification&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MACTripleDES&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MACTripleDES \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;RIPEMD160&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm RIPEMD160 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA1&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA1 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA256&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA256 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA384&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA384 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA512&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA512 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>删除</strong>只需要在<code>[]</code>中最前面加<code>-</code>, 例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 以MD5删除为例：</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Regedit</category>
+      </categories>
+      <tags>
+        <tag>win10</tag>
+        <tag>Right click on the menu</tag>
+        <tag>PowerShell</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Notes_02|Mysql Related Concept</title>
+    <url>/2020/05/14/MySQL/</url>
+    <content><![CDATA[<p>黑马授课视频笔记</p>
+<a id="more"></a>
+<h3 id="数据库特点"><a href="#数据库特点" class="headerlink" title="数据库特点"></a>数据库特点</h3><ul>
+<li>持久化存储</li>
+<li>读写速度极高</li>
+<li>保证数据的有效性</li>
+<li>对程序支持性非常好，容易扩展</li>
+</ul>
+<h2 id="关系型数据库的核心"><a href="#关系型数据库的核心" class="headerlink" title="关系型数据库的核心"></a>关系型数据库的核心</h2><ul>
+<li>数据行（记录）</li>
+<li>数据列（字段）</li>
+<li>数据表（数据行的集合）</li>
+<li>数据库（数据表的集合）</li>
+</ul>
+<p><strong>举例：</strong> Excel文件(数据库) —-&gt;  Sheet(数据表) —&gt; 行、列(数据行、列)  </p>
+<h2 id="MySQL、redis、MongoDB常用范围"><a href="#MySQL、redis、MongoDB常用范围" class="headerlink" title="MySQL、redis、MongoDB常用范围"></a>MySQL、redis、MongoDB常用范围</h2><ul>
+<li>MySQL常用于建设网站</li>
+<li>redis存贮缓存</li>
+<li>MongoDB用于存贮不相关的数据（例如不同网站信息的爬取）  </li>
+</ul>
+<h2 id="SQL语句、MySQL（数据库管理工具-数据库）"><a href="#SQL语句、MySQL（数据库管理工具-数据库）" class="headerlink" title="SQL语句、MySQL（数据库管理工具+数据库）"></a>SQL语句、MySQL（数据库管理工具+数据库）</h2><h3 id="SQL语句主要分为"><a href="#SQL语句主要分为" class="headerlink" title="SQL语句主要分为"></a>SQL语句主要分为</h3><ul>
+<li><strong>DQL：数据查询语句，用于对数据进行查询，如select</strong>  </li>
+<li><strong>DML：数据操作语句，对数据进行增加、删除、修改，如insert、update、delete</strong>  </li>
+<li>TPL：事务处理语言，对事物进行处理，包括begin transaction、commit、rollback  </li>
+<li>DCL：数据控制语言，进行授权与权限回收，如grant、revoke  </li>
+<li>DDL：数据定义语句，进行数据库、表的管理等，如create、drop  </li>
+<li>CCL：指针控制语句，通过控制指针完成表的操作，如declare cursor  </li>
+</ul>
+<p>对于web程序员来说，重点是数据的crud(增删改查)，必须熟练编辑DQL、DML，能够编写DDL完成数据库、表的操作，其他语言如TPL、DCL、CCL了解即可  </p>
+<p>不区分大小写</p>
+]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>Studying</tag>
+        <tag>Notebook</tag>
+        <tag>Data analysis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Cluster Analysis</title>
     <url>/2020/06/05/Cluster-Analysis/</url>
     <content><![CDATA[<p><strong>摘要：</strong> K-Mean Clustering、DBSCAN Clustering、以及Python实现思路（包括空间聚类）。</p>
@@ -86,471 +152,6 @@
       <tags>
         <tag>K-Mean Clustering</tag>
         <tag>Dbsacn Clustering</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>File Hash Verification</title>
-    <url>/2020/06/10/File-Hash-Verification/</url>
-    <content><![CDATA[<p><strong>摘要：</strong>利用PowerShell以及win10自带Hash工具，对文件进行hash验证，添加到右击菜单中。</p>
-<a id="more"></a>
-
-<p><strong>思路：</strong>直接利用<code>.reg</code>文件的方式添加注册表信息。</p>
-<p><strong>文件内容（添加）：</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\*\shell\File Hash Verification]</span><br><span class="line"></span><br><span class="line">&quot;SubCommands&quot;&#x3D;&quot;MACTripleDES;MD5;RIPEMD160;SHA1;SHA256;SHA384;SHA512&quot;</span><br><span class="line"></span><br><span class="line">&quot;MUIVerb&quot;&#x3D;&quot;File Hash Verification&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MACTripleDES&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MACTripleDES \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;RIPEMD160&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm RIPEMD160 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA1&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA1 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA256&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA256 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA384&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA384 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA512&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA512 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>删除</strong>只需要在<code>[]</code>中最前面加<code>-</code>, 例如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 以MD5删除为例：</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Regedit</category>
-      </categories>
-      <tags>
-        <tag>win10</tag>
-        <tag>Right click on the menu</tag>
-        <tag>PowerShell</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>图像融合质量评价指标</title>
-    <url>/2020/04/21/RS02-Evaluation_of_image_fusion/</url>
-    <content><![CDATA[<h2 id="1-图像融合"><a href="#1-图像融合" class="headerlink" title="1 图像融合"></a>1 图像融合</h2><p><strong>图像融合：</strong> 是指把对同一目标或同一场景经多个传感器的成像或单一传感器的多次成像进行一定的处理，生成一幅新的图像，这幅新的图像能够准确地综合反映源图像的信息，更适合于人眼观察或计算机处理。</p>
-<a id="more"></a>
-
-<h3 id="2-图像融合质量评价"><a href="#2-图像融合质量评价" class="headerlink" title="2 图像融合质量评价"></a>2 图像融合质量评价</h3><p>目前评定图像融合算法性能的方法可分为两类，即主观的评定方法和客观的评定方法。</p>
-<h4 id="2-1-主观评价方法"><a href="#2-1-主观评价方法" class="headerlink" title="2.1 主观评价方法"></a>2.1 主观评价方法</h4><p><strong>主观评价方法</strong>：<br>就是依靠人眼对融合图像效果进行主观判断。<br><strong>客观评价方法</strong>：<br>根据不同评定方法的条件不同，对客观评价指标做了以下分类研究8。</p>
-<ol>
-<li><p>无参考图像情况下的评价方法  </p>
-<p>  <strong>单一图像特征统计的评价方法</strong>  </p>
-<ul>
-<li><p>均值:图像中所有像素的灰度值的算术平均值，对人眼表现为图像的平均亮度。  </p>
-</li>
-<li><p>标准差:图像灰度相对于均值的离散情况，用于评价图像反差的大小。  </p>
-</li>
-<li><p>信息熵:熵值大小反映其包含信息量的多少，熵值越大融合效果越好。  </p>
-</li>
-<li><p>平均梯度:可灵敏地反映图像对微小细节反差表达的水平，用于评价图像的模糊程度。平均梯度值与图像清晰程度成正比关系。  </p>
-</li>
-<li><p>空间频率:反映图像在空间域的整体活跃程度，空间频率大小与图像融合效果成正比。  </p>
-<p><strong>源图像与融合图像之间关系的评价方法</strong>  </p>
-</li>
-<li><p>互信息之和:表示融合图像F从源图像A、B中获取的信息，互信息之和的值与融合效果成正比。  </p>
-</li>
-<li><p>交叉熵:反映了源图像和融合图像对应像素的差异。交叉熵越小，代表两幅图像的差异越小，即意味着该融合方法从源图像获取的信息量越多，融合效果越好。  </p>
-</li>
-<li><p>联合熵:源图像和融合图像之间相关性的量度,反映源图像和融合图像之间的联合信息。两幅图像联合熵的值与图像所包含的信息量的大小成正比关系。  </p>
-</li>
-<li><p>偏差与相对偏差:偏差表示两幅图像光谱特性变化的平均程度和光谱信息上的差异，值越小意味着两幅图像的差异越小;相对偏差反映两幅图像在光谱信息上的匹配程度,同时也反映该方法将原图像高空间的分辨率细节传递给融合图像的能力。  </p>
-</li>
-</ul>
-</li>
-<li><p>有参考图情况下的评价方法</p>
-<ul>
-<li>通过对比标准参考图像与融合图像之间的关系来分析融合图像的质量和融合效果的好坏。  </li>
-<li>均方根误差:显示了参考图像与融合图像之间的差异对比程度，其值与接近程度成反比，值越小代表融合效果越好。  </li>
-<li>信噪比和峰值信噪比:比值越高，融合质量越好。  </li>
-<li>信息熵差ER-EF:EF和ER分别为融合图像和参考图像的信息熵。  </li>
-<li>互信息:代表图像中包含的信息，互信息值越大，包含的信息越多，融合效果越好。  </li>
-</ul>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>RS</category>
-      </categories>
-      <tags>
-        <tag>Image Processing</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Notes_02|Mysql Related Concept</title>
-    <url>/2020/05/14/MySQL/</url>
-    <content><![CDATA[<p>黑马授课视频笔记</p>
-<a id="more"></a>
-<h3 id="数据库特点"><a href="#数据库特点" class="headerlink" title="数据库特点"></a>数据库特点</h3><ul>
-<li>持久化存储</li>
-<li>读写速度极高</li>
-<li>保证数据的有效性</li>
-<li>对程序支持性非常好，容易扩展</li>
-</ul>
-<h2 id="关系型数据库的核心"><a href="#关系型数据库的核心" class="headerlink" title="关系型数据库的核心"></a>关系型数据库的核心</h2><ul>
-<li>数据行（记录）</li>
-<li>数据列（字段）</li>
-<li>数据表（数据行的集合）</li>
-<li>数据库（数据表的集合）</li>
-</ul>
-<p><strong>举例：</strong> Excel文件(数据库) —-&gt;  Sheet(数据表) —&gt; 行、列(数据行、列)  </p>
-<h2 id="MySQL、redis、MongoDB常用范围"><a href="#MySQL、redis、MongoDB常用范围" class="headerlink" title="MySQL、redis、MongoDB常用范围"></a>MySQL、redis、MongoDB常用范围</h2><ul>
-<li>MySQL常用于建设网站</li>
-<li>redis存贮缓存</li>
-<li>MongoDB用于存贮不相关的数据（例如不同网站信息的爬取）  </li>
-</ul>
-<h2 id="SQL语句、MySQL（数据库管理工具-数据库）"><a href="#SQL语句、MySQL（数据库管理工具-数据库）" class="headerlink" title="SQL语句、MySQL（数据库管理工具+数据库）"></a>SQL语句、MySQL（数据库管理工具+数据库）</h2><h3 id="SQL语句主要分为"><a href="#SQL语句主要分为" class="headerlink" title="SQL语句主要分为"></a>SQL语句主要分为</h3><ul>
-<li><strong>DQL：数据查询语句，用于对数据进行查询，如select</strong>  </li>
-<li><strong>DML：数据操作语句，对数据进行增加、删除、修改，如insert、update、delete</strong>  </li>
-<li>TPL：事务处理语言，对事物进行处理，包括begin transaction、commit、rollback  </li>
-<li>DCL：数据控制语言，进行授权与权限回收，如grant、revoke  </li>
-<li>DDL：数据定义语句，进行数据库、表的管理等，如create、drop  </li>
-<li>CCL：指针控制语句，通过控制指针完成表的操作，如declare cursor  </li>
-</ul>
-<p>对于web程序员来说，重点是数据的crud(增删改查)，必须熟练编辑DQL、DML，能够编写DDL完成数据库、表的操作，其他语言如TPL、DCL、CCL了解即可  </p>
-<p>不区分大小写</p>
-]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>Studying</tag>
-        <tag>Notebook</tag>
-        <tag>Data analysis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Time Series Pandas</title>
-    <url>/2020/06/04/Time-Series-Pandas/</url>
-    <content><![CDATA[<p><strong>摘要：</strong>利用Python进行时间序列分析,  主要记录ARIMA模型相关知识。</p>
-<a id="more"></a>
-
-
-
-<h2 id="生成时间序列"><a href="#生成时间序列" class="headerlink" title="生成时间序列"></a>生成时间序列</h2><ol>
-<li>pd.date_range()</li>
-<li>truncate()过滤</li>
-<li>pd.Timestamp()时间戳</li>
-<li>pd.Period()时间周期</li>
-<li>pd.datelta()间隔</li>
-</ol>
-<h2 id="差分法"><a href="#差分法" class="headerlink" title="差分法"></a>差分法</h2><p>​    改进数据平稳性</p>
-<p><code>.diff(num)</code>: num阶差分，一般一阶就可以了。</p>
-<h2 id="ARIMA模型"><a href="#ARIMA模型" class="headerlink" title="ARIMA模型"></a>ARIMA模型</h2><p>​        <strong>ARIMA模型</strong>（英语：<strong>A</strong>uto<strong>r</strong>egressive <strong>I</strong>ntegrated <strong>M</strong>oving <strong>A</strong>verage model），差分整合移动平均自回归模型，又称整合移动平均自回归模型（移动也可称作滑动），是<span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS/ml7bpl7Tluo/liJc=">时间序列<i class="fa fa-external-link-alt"></i></span>预测分析方法之一。</p>
-<p>​        ARIMA(p，d，q)中，AR是“自回归模型”，p为自回归项数；MA为“滑动平均模型”，q为滑动平均项数，d为使之成为平稳序列所做的差分次数（阶数）。“差分”一词虽未出现在ARIMA的英文名称中，却是关键步骤。</p>
-<h3 id="AR模型"><a href="#AR模型" class="headerlink" title="AR模型"></a>AR模型</h3><ul>
-<li><p>描述当前值与历史值之间的关系，用变量自身的历史时间数据对自身进行预测</p>
-</li>
-<li><p>p阶自回归过程的公式定义：$y_t = \mu + \sum^{p}<em>{i=1}{\gamma_iy</em>{t-i}} + \epsilon_t$, </p>
-</li>
-<li><p>其中 $y_t$ 是当前值、$\mu$ 是常数项、p 是阶数、 $\gamma_i$ 是自相关系数、 $\epsilon_t$ 是误差</p>
-</li>
-</ul>
-<ul>
-<li><p>自回归模型是用自身的数据来进行预测</p>
-</li>
-<li><p>必须具有平稳性</p>
-</li>
-<li><p>必须具有自相关，如果自相关系数小于0.5，则不宜采用</p>
-</li>
-<li><p>自回归只适用于预测与自身前期相关的现象</p>
-</li>
-</ul>
-<h3 id="MA模型"><a href="#MA模型" class="headerlink" title="MA模型"></a>MA模型</h3><ul>
-<li>移动平均模型关注的是自回归模型中误差项的累加</li>
-<li>q阶移动平均模型：$y_t = \mu + \epsilon_t + \sum^q_{i=1}{\theta_i\epsilon_{t-i}}$ </li>
-<li>移动平均模型能够消除预测中的随机波动</li>
-</ul>
-<ul>
-<li><code>ARMA = AR + MA</code> 、<code>ARMA + 差分 = ARIMA</code></li>
-</ul>
-<h3 id="ARIMA模型原理"><a href="#ARIMA模型原理" class="headerlink" title="ARIMA模型原理"></a>ARIMA模型原理</h3><p>​        将非平稳时间序列转化为平稳时间序列，然后将因变量对它的滞后值以及随机误差项的现值和滞后值进行回归所建立的模型</p>
-<h3 id="p、q值的确定"><a href="#p、q值的确定" class="headerlink" title="p、q值的确定"></a>p、q值的确定</h3><p>自相关系数ACF、偏相关系数PACF</p>
-<table>
-<thead>
-<tr>
-<th>模型</th>
-<th>ACF</th>
-<th>PACF</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>AR(p)</td>
-<td>衰减趋于零（几何型或振荡型）</td>
-<td>p阶后截尾</td>
-</tr>
-<tr>
-<td>MA(q)</td>
-<td>q阶后截尾</td>
-<td>衰减趋于零（几何型或振荡型）</td>
-</tr>
-<tr>
-<td>ARMA(p, q)</td>
-<td>q阶后衰减趋于零（几何型或振荡型）</td>
-<td>p阶后衰减趋于零（几何型或振荡型）</td>
-</tr>
-</tbody></table>
-<ul>
-<li><p>截尾：落在置信区间内（95%的点都符合该规则）</p>
-</li>
-<li><p>Python方法：</p>
-  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> statsmodels.graphocs.tsaplots <span class="keyword">import</span> plot_acf, plot_pacf</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h2 id="数据重采样"><a href="#数据重采样" class="headerlink" title="数据重采样"></a>数据重采样</h2><ol>
-<li><code>.resample(freq)</code> 例如：</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rng = pd.date_range(<span class="string">'1/1/2020'</span>, periods=<span class="number">90</span>, freq=<span class="string">'D'</span>)</span><br><span class="line">ts = pd.Series(np.random.randn(len(rng)), index=rng)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 降采样</span></span><br><span class="line">ts = resample(<span class="string">'M'</span>).mean()</span><br><span class="line">ts = resmaple(<span class="string">'M'</span>).sum()</span><br><span class="line">ts = resmaple(<span class="string">'3D'</span>).sum()</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>升采样插值<ul>
-<li><code>.fill(位数)</code>，向后填充，空值取前面的值</li>
-<li><code>.bfill()</code>, 向前填充</li>
-<li><code>.interpolate()</code>, 线性填充</li>
-</ul>
-</li>
-</ol>
-<h2 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h2><p>在较长时间区间上，用来观测某个时间点、区间相关情况的方法。</p>
-<p>使用<code>.rolling(windowSize)</code></p>
-<h2 id="额外收获"><a href="#额外收获" class="headerlink" title="额外收获"></a>额外收获</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B5ZGF0YS9wYW5kYXMtZGF0YXJlYWRlcg==">pandasdatareade<i class="fa fa-external-link-alt"></i></span>: 直接获取网络上的数据到<code>dataframe</code></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2JsdWUteW9uZGVyL3RzZnJlc2g=">tsfresh<i class="fa fa-external-link-alt"></i></span>: 提取时间序列的特征</p>
-<h2 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h2><ol>
-<li>时间序列分类</li>
-<li>EDA</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Machine Learning</category>
-      </categories>
-      <tags>
-        <tag>Time Series</tag>
-        <tag>Data Analysis</tag>
-        <tag>Pandas</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Unit-6-Innovation(TF).md</title>
-    <url>/2020/05/15/Unit-6-Innovation(TF)/</url>
-    <content><![CDATA[<p><strong>Record the words and example sentences</strong>  </p>
-<a id="more"></a>
-
-<ol>
-<li><p><strong>word：</strong><br>urban planner(城市规划师)<br><strong>sentences:</strong><br>An urban planner is a person who works on the efficient organization of a city’s features.</p>
-</li>
-<li><p><strong>word：</strong><br>interrelated<br>adj. 相关的；互相联系的；v. 使相互联系（interrelate的过去式）<br>interact<br>v. 互相影响；互相作用<br><strong>sentences:</strong><br>All things are interrelated and interact with each other.<br>一切事物都是相互联系、相互作用的。</p>
-</li>
-<li><p><strong>word：</strong><br>commuter<br>n. 通勤者，经常乘公共车辆往返者；[交] 月季票乘客<br><strong>sentences：</strong><br>A commuter is someone who travels a long distance to work every day.<br>通勤族是指每天都要长途跋涉去上班的人。 </p>
-</li>
-<li><p><strong>word:</strong><br>imprisonment　　监禁　　　　　　　　　option　　选项<br>fine　　n. 罚款    　<br>adj. 好的；优良的；细小的，精美的；健康的；晴朗的<br><strong>sentences:</strong><br>He was given one month’s imprisonment without the option of a fine.  他被判处一个月徒刑，没有罚款的选择。  </p>
-</li>
-<li><p><strong>word:</strong><br>stationary<br>adj. 固定的；静止的；定居的；常备军的<br>n. 不动的人；驻军<br><strong>sentences:</strong><br>A traffic jam is a long line of vehicles that is either stationary or moving very slowly.<br>交通堵塞就是指一排排固定不动或行驶缓慢的车辆。  </p>
-</li>
-<li><p><strong>drop</strong><br>v.When someone drops you off, he or she lets you alight from the vehicle.（让⋯）下车，卸下（乘客） </p>
-</li>
-<li><p><strong>for one thing</strong><br>When you say “for one thing,” you indicate that you are talking about one of the factors involved in the situation. 首先，一则  </p>
-</li>
-<li><p><strong>not to mention</strong><br>You will use “not to mention” when you want to indicate that you’re about to provide additional information to support your point. 更不用说，此外  </p>
-</li>
-<li><p><strong>conference</strong><br>n.A conference is a meeting, usually held over the course of a few days, where a particular subject is discussed. （正式）会议  </p>
-</li>
-<li><p><strong>demonstrate</strong><br>v.To demonstrate is to show how something works, or how something should be done. 示范操作，演示  </p>
-</li>
-<li><p><strong>revolution</strong><br>n.A revolution refers to a swift and dramatic change in society. 重大变革  </p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Studying-English</category>
-      </categories>
-      <tags>
-        <tag>Notebook</tag>
-        <tag>English Though Films</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>WSL2 Access Windows Proxy</title>
-    <url>/2020/05/30/wsl2_access_windows_proxy/</url>
-    <content><![CDATA[<h2 id="IP设置"><a href="#IP设置" class="headerlink" title="IP设置"></a>IP设置</h2><p>IP要使用主机局域网IP，例如192.168.123.176。127.0.0.1不行。再者，就是host.deocker.internal在安装docker的时候进行了重定向，所以使用这个也是可以的。</p>
-<a id="more"></a>
-
-<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ol>
-<li><p>使用<code>proxychains</code>。安装就是<code>sudo apt install proxychains</code>，然后再进去<code>/etc/proxychains.conf</code>进行ip设置，使用直接在命令前面加proxychains。<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxychains.conf.png" alt="image-20200606150558949">![image-20200606102952207](<span class="exturl" data-url="aHR0cHM6Ly9naXRlZS5jb20vUnN3ZWF0ZXJfYWRtaW4vQmxvZ19JbWFnZXMvcmF3L21hc3Rlci9pbWcvd3Ns">https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/wsl<i class="fa fa-external-link-alt"></i></span> proxy1.png)</p>
-<p>这个方法可能会出现dns无法解析的问题，要装依赖tor,使用<code>sudo apt install tor</code>即可。</p>
-</li>
-<li><p>使用修改<code>.bashrc</code>, 在<code>.bashrc</code>中写代理和取消代理函数, 使用直接输入proxy、noproxy即可。<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxy.bashrc.png" alt="image-20200606151542147"></p>
-</li>
-</ol>
-<figure class="highlight plain"><figcaption><span>>>> proxy setting >>></span></figcaption><table><tr><td class="code"><pre><span class="line">proxy () &#123;</span><br><span class="line">        export ALL_PROXY&#x3D;&quot;socks5:&#x2F;&#x2F;192.168.123.176:10808&quot;</span><br><span class="line">        export all_proxy&#x3D;&quot;socks5:&#x2F;&#x2F;192.168.123.176:10808&quot;</span><br><span class="line">        echo -e &quot;Acquire::http::Proxy \&quot;http:&#x2F;&#x2F;192.168.123.176:10809\&quot;;&quot; | sudo tee -a &#x2F;etc&#x2F;apt&#x2F;apt.c</span><br><span class="line">onf &gt; &#x2F;dev&#x2F;null</span><br><span class="line">        echo -e &quot;Acquire::https::Proxy \&quot;http:&#x2F;&#x2F;192.168.123.176:10809\&quot;;&quot; | sudo tee -a &#x2F;etc&#x2F;apt&#x2F;apt.</span><br><span class="line">conf &gt; &#x2F;dev&#x2F;null</span><br><span class="line">        curl myip.ipip.net</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><figcaption><span><<< proxy setting <<<</span></figcaption><table><tr><td class="code"><pre><span class="line">noproxy () &#123;</span><br><span class="line">        unset ALL_PROXY</span><br><span class="line">        unset all_proxy</span><br><span class="line">        sudo sed -i -e &#39;&#x2F;Acquire::http::Proxy&#x2F;d&#39; &#x2F;etc&#x2F;apt&#x2F;apt.conf</span><br><span class="line">        sudo sed -i -e &#39;&#x2F;Acquire::https::Proxy&#x2F;d&#39; &#x2F;etc&#x2F;apt&#x2F;apt.conf</span><br><span class="line">        curl myip.ipip.net</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果图：</strong></p>
-<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxy_.bashrc.png" alt="image-20200606151800543"></p>
-<ol start="3">
-<li>就是使用<code>alias</code>将<code>export http_proxy=socks5://192.168.123.176:10808</code>做成段命令，直接在需要代理命令之前加别名即可。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>WSL2</category>
-      </categories>
-      <tags>
-        <tag>Proxy</tag>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Notes_01|&quot;alias&quot; Knowledge</title>
-    <url>/2020/05/30/alias/</url>
-    <content><![CDATA[<p>  转载自知乎：乃乎。因为 WSL2 Access Windows Proxy 中命令用到了alias方法，就在知乎找到乃乎的分享。</p>
-<a id="more"></a>
-
-<p>alias (别名)，一般用来用一个短的简单的命令来代替长的复杂的命令</p>
-<h2 id="查看-alias"><a href="#查看-alias" class="headerlink" title="查看 alias"></a>查看 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Ubuntu@DESKTOP-J51JGI8:~$ <span class="built_in">alias</span></span><br><span class="line"><span class="built_in">alias</span> alert=<span class="string">'notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$(history|tail -n1|sed -e '</span>\<span class="string">''</span>s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//<span class="string">'\'</span><span class="string">')"'</span></span><br><span class="line"><span class="built_in">alias</span> egrep=<span class="string">'egrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> fgrep=<span class="string">'fgrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> grep=<span class="string">'grep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> l=<span class="string">'ls -CF'</span></span><br><span class="line"><span class="built_in">alias</span> la=<span class="string">'ls -A'</span></span><br><span class="line"><span class="built_in">alias</span> ll=<span class="string">'ls -alF'</span></span><br><span class="line"><span class="built_in">alias</span> ls=<span class="string">'ls --color=auto'</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="临时定义-alias"><a href="#临时定义-alias" class="headerlink" title="临时定义 alias"></a>临时定义 alias</h2><p>使用 <code>ll</code> 代替 <code>ls -al</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="持久定义-alias"><a href="#持久定义-alias" class="headerlink" title="持久定义 alias"></a>持久定义 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure>
-
-<p>shell 启动的时候会读取配置文件，~/.bashrc 或者 ～/.zshrc。在配置文件中加入 alias 定义的命令就可以在每次启动 shell 后都存在定义好的 alias</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># custom aliases are listed below</span></span><br><span class="line">$ <span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy93d3cudGVjbWludC5jb20vY3JlYXRlLWFsaWFzLWluLWxpbnV4Lw==">https://www.tecmint.com/create-alias-in-linux/<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-]]></content>
-      <categories>
-        <category>WSL2</category>
-      </categories>
-      <tags>
-        <tag>Notebook - Bash - Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>郑州市建成区热岛效应时空演变特征 </title>
-    <url>/2020/08/29/%E9%83%91%E5%B7%9E%E5%B8%82%E5%BB%BA%E6%88%90%E5%8C%BA%E7%83%AD%E5%B2%9B%E6%95%88%E5%BA%94%E6%97%B6%E7%A9%BA%E6%BC%94%E5%8F%98%E7%89%B9%E5%BE%81%20/</url>
-    <content><![CDATA[<h1 id="郑州市建成区热岛效应时空演变特征"><a href="#郑州市建成区热岛效应时空演变特征" class="headerlink" title="郑州市建成区热岛效应时空演变特征"></a>郑州市建成区热岛效应时空演变特征</h1><h2 id="申请书内容"><a href="#申请书内容" class="headerlink" title="申请书内容"></a>申请书内容</h2><p>​  a. 郑州市建成区热岛效应时空演变特征。基于2013~2019年度Landsat8数据，进行辐射定标、大气矫正，使用RS图像处理软件ENVI单窗算法计算像元亮度温度值，制作地表温度反演图，<u><strong>结合历年气象站点温度观测数据</strong></u>，对反演结果进行验正；导入ArcGIS平台进行统计计算，将历年图像分别按照均值标准差方式进行重分类操作，分为<strong>低温、次低温、中温、次高温、高温</strong>5个类别，确定热岛强度指数；</p>
-<a id="more"></a>
-
-<h2 id="大致流程"><a href="#大致流程" class="headerlink" title="大致流程"></a>大致流程</h2><ol>
-<li>下载 <code>Landsat 8</code> 数据；</li>
-<li><del>去云处理；</del></li>
-<li>地表温度反演；</li>
-<li>结合气象站数据验证并修正反演结果(没数据)；</li>
-<li>利用 <code>ArcGIS</code> 进行裁剪、重分类、确定热岛强度。</li>
-</ol>
-<h3 id="下载-Landsat-8-TIRS-OLSI"><a href="#下载-Landsat-8-TIRS-OLSI" class="headerlink" title="下载 Landsat-8 TIRS\OLSI"></a>下载 <code>Landsat-8 TIRS\OLSI</code></h3><ul>
-<li>尽量选 云指数 小的数据，主要还是选择郑州行政区内云量小的（可以直接肉眼看）。</li>
-<li>下载方式有 <span class="exturl" data-url="aHR0cDovL3d3dy5nc2Nsb3VkLmNuLw==">地理数据空间云<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cDovL2VhcnRoZXhwbG9yZXIudXNncy5nb3Yv">USGS<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cDovL2lkcy5jZW9kZS5hYy5jbi9xdWVyeS5odG1s">Landsat 8下载共享系统<i class="fa fa-external-link-alt"></i></span>；</li>
-</ul>
-<h4 id="地理空间数据云"><a href="#地理空间数据云" class="headerlink" title="地理空间数据云"></a>地理空间数据云</h4><p><strong>网址：</strong><span class="exturl" data-url="aHR0cDovL3d3dy5nc2Nsb3VkLmNuLw==">http://www.gscloud.cn/<i class="fa fa-external-link-alt"></i></span></p>
-<p><strong>流程：</strong>登录 –&gt; 高级检索 –&gt; 选数据集（Landsat 8 OLI_TIRS卫星数据产品) –&gt; 选区域时间(河南郑州) –&gt; 点选中间那一景 –&gt; 找云量指数小的</p>
-<p><strong>GIF演示：</strong> <img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/gscloud_download_demo.gif" alt="gscloud_download_demo"></p>
-<p><strong>注意：</strong></p>
-<ol>
-<li>数据云选择郑州之后，会展示所有有拍到郑州行政区内的影像，中间那景可以全覆盖，只需要这一景即可</li>
-<li>这个平台很多不能预览，没办法更好的选择郑州区域内云量少（有些云量多，但是不在郑州区域内），可以结合USGS预览，地理空间数据云下载。</li>
-</ol>
-<h4 id="USGS"><a href="#USGS" class="headerlink" title="USGS"></a>USGS</h4><p><strong>网址：</strong><span class="exturl" data-url="aHR0cDovL2VhcnRoZXhwbG9yZXIudXNncy5nb3Yv">http://earthexplorer.usgs.gov/<i class="fa fa-external-link-alt"></i></span></p>
-<p><strong>流程：</strong> </p>
-<ol>
-<li><p><code>Enter Search Criteria</code>, 其中要设置 <code>研究区(郑州)</code>、<code>时间</code> 。</p>
-<ul>
-<li><p><strong>研究区</strong>：点选 <code>World Features</code> 之后，在Feature Name 中填入 <code>zhengzhou</code> ，点击 <code>Show</code> , 最后点选第一个 <code>Zhengzhou</code> 。</p>
-<p>选过研究区、时间之后点击 <code>Data Sets</code> 选择数据集，选过研究区和时间之后的截图：</p>
-</li>
-</ul>
-</li>
-<li><p><code>Data Sets</code>:  Landsat –&gt; Landsat Collection 1 –&gt;  Landsat Collection 1 Level-1 –&gt; Landsat 8 LOI/TIRS C1 Level-1 –&gt; Results.</p>
-</li>
-<li><p>Results. </p>
-</li>
-</ol>
-<p><strong>Gif演示：</strong> <img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/usgs_download.gif" alt="usgs_download"></p>
-<p><strong>注意：</strong></p>
-<ol>
-<li>网速慢、需要梯子；</li>
-<li>时间筛选的后面有云量筛选，建议不要用，有些可能云量大，但是郑州行政区内云相比较是最少的。真的太多，可以找6月或者9月的。（数据有限，16天一景，云会影响地表温度，会给最后重分类造成麻烦）</li>
-<li>有云掩膜产品，点击下载之后的选项卡里面，倒数第二个就是云掩膜产品。</li>
-</ol>
-<h3 id="利用-ENVI-进地表温度反演"><a href="#利用-ENVI-进地表温度反演" class="headerlink" title="利用 ENVI 进地表温度反演"></a>利用 ENVI 进地表温度反演</h3><p>​ 使用 <span class="exturl" data-url="aHR0cHM6Ly93d3cuaXh4aW4uY24vMjAxNy8xMC8yOS9lbnZpX2xhbmRzYXQ4X2xzdF9zdy8=">XXIN’S  Blog<i class="fa fa-external-link-alt"></i></span> 发布的插件做地表温度反演。（插件有还没装的私聊我）</p>
-<p><strong>需要参数：</strong>多光谱数据、热红外数据、大气透过率（大气水汽数据）、大气平均作用温度（计算高程）</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200825220812775.png" alt="image-20200825220812775"></p>
-<p><strong>作者视频：</strong> <span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMUY3NDExNjd5WD9wPTY=">B站搜索“温度反演”找到作者为“wudixinxin”的视频<i class="fa fa-external-link-alt"></i></span></p>
-<p><strong>流程+Gif演示：</strong></p>
-<ol>
-<li><p>打开<code>Landsat-8</code>数据集：File –&gt; Open As –&gt; Landsat – GeoTIFF  with Metadata –&gt; 选中 “_MTL.txt” 文件<img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/open_date_landsat-8.gif" alt="open_date_landsat-8"></p>
-</li>
-<li><p>打开<code>landsat8 LST SingleWindow</code>进行地表温度反演：<code>Extensions --&gt; Landsat8 LST SingleWindow</code>，其中</p>
-<ol>
-<li>多光谱数据(<strong>Multispectral Raster</strong>) 就是第一个(名字以<code>MultiSpectral</code>结尾)</li>
-<li>热红外数据(<strong>Brightness Raster</strong>) 就是第四个(名字以<code>Thermal</code>结尾)</li>
-<li>大气透过率(<strong>Atmospheric Water</strong>) 通过 <span class="exturl" data-url="aHR0cHM6Ly9hdG1jb3JyLmdzZmMubmFzYS5nb3Yv">NASA<i class="fa fa-external-link-alt"></i></span> 网站查表得到</li>
-<li>大气平均作用温度(<strong>Atmospheric temperature</strong>) 可以 <span class="exturl" data-url="aHR0cHM6Ly9hdG1jb3JyLmdzZmMubmFzYS5nb3Yv">NASA<i class="fa fa-external-link-alt"></i></span> 查表（需要借助envi的高程数据计算影像高程）或者直接百度当时的温度</li>
-</ol>
-<p> <strong>打开并选择多光谱与红外数据GIF:</strong>  </p>
-<p> <img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/lst_xinxin_open.gif" alt="lst_xinxin_open"></p>
-<p> <strong><code>NASA</code>查表读取大气透过率获取大气平均作用温度表</strong></p>
-<p> <img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/nasa_temp_ssss.gif" alt="nasa_temp_ssss"></p>
-<p> <strong>注：</strong>需要知道影像<strong>拍摄时间</strong>还有<strong>中心经纬</strong>(这个都一样，Latitude: 34.61083、Longitude：113.4636)</p>
-<p> <strong>计算影像高程GIF(每幅影像应该一样，可以都做一下看看)</strong></p>
-<p> <strong>步骤：</strong></p>
-<ol>
-<li>打开世界高程数据：File –&gt; Open World Data – &gt; Elevation; </li>
-<li>选择统计工具，Statistics –&gt; Compute Statistics;</li>
-<li>对待反演的数据集进行高程统计，将该数据集当作世界高程数据的子数据集去计算高成影像中该区域的平均高程<img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/envi_gaocheng.gif" alt="envi_gaocheng"></li>
-</ol>
-<p> <strong>最后</strong>补填上 大气透过率、平均作用温度、点选大气反演类型就ok了。</p>
-<p> <strong>注意：</strong></p>
-<ol>
-<li>上面括号内黑色英文不是对应的英文，而是插件对应的位置，因为也可以用其他相关的参数代替；</li>
-<li>大气透过率要以符号 “-“ 开头，正值表示使用的是大气水汽产品</li>
-<li>Atmospheric Type 跟 FLASHH 大气校正时的气溶胶类型是一个意思</li>
-</ol>
-</li>
-</ol>
-<h3 id="利用-ArcGIS-进行裁剪、重分类、确定热岛强度"><a href="#利用-ArcGIS-进行裁剪、重分类、确定热岛强度" class="headerlink" title="利用 ArcGIS 进行裁剪、重分类、确定热岛强度"></a>利用 <code>ArcGIS</code> 进行裁剪、重分类、确定热岛强度</h3><h4 id="a-裁剪"><a href="#a-裁剪" class="headerlink" title="a. 裁剪"></a>a. 裁剪</h4><p><strong>流程：</strong> System Toolboxes –&gt; Spatial Analyst Tools.tbx –&gt; Extraction –&gt; Extract by Mask，进去之后有三个参数需要填 <code>Input raster</code>、 <code>Input raster or feature  mask data</code>、 <code>Output raster</code>，分别对应要裁剪的图像、保留的区域（也就是我们的行政区矢量图）、输出路径。</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826085452766.png" alt="image-20200826085452766"></p>
-<p><strong>注意：</strong></p>
-<ol>
-<li>这一步最好不要少，特别是对郑州行政区外有厚云的数据（会影响最小值，进而影响城市热岛指数），例如：<img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826085907150.png" alt="image-20200826085907150"></li>
-<li>进行裁剪时，注意使用同一投影坐标系。我们下载的遥感影像应该都是<code>EPSG:32649</code>(WGS 84 / UTM zone 49N)，这里有<code>EPSG:32649</code>的郑州的shp<span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMUNIdTh3d1k0QlByUmtfdklhci1xZGc=">百度网盘，提取码0911<i class="fa fa-external-link-alt"></i></span>。</li>
-</ol>
-<h4 id="b-重分类"><a href="#b-重分类" class="headerlink" title="b. 重分类"></a>b. 重分类</h4><p><strong>流程：</strong>  打开System Toolboxes –&gt; Spatial Analyst Tools.tbx –&gt; Reclass –&gt; Reclassify工具，需要填写或者修改的选项有<code>Input raster</code>、<code>Output raster</code>、还要打开<code>Classification</code>选项。</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826090728378.png" alt="image-20200826090728378"></p>
-<p><strong>注意：</strong> </p>
-<ol>
-<li>在<code>classification选项卡</code>中选过标准差，可能分类结果不是 正好就是5类，这个没关系，4-7类<sup>[1]</sup>都是可以的.</li>
-<li>可以统一下每个等级颜色。右击图层管理的色条就可以换。<img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826094056336.png" alt="image-20200826094056336"></li>
-</ol>
-<h4 id="c-计算城市热岛强度指数"><a href="#c-计算城市热岛强度指数" class="headerlink" title="c. 计算城市热岛强度指数"></a>c. 计算城市热岛强度指数</h4><p><strong>公式：</strong> </p>
-<p>  $$H_i = \frac{T_i - T_{min}}{T_{max} - T_{min}} ^{[2]}    \tag{1}$$</p>
-<p>式中：H<sub>i</sub>为第 i 个像元所对应的热场强度指数，Ti 为第 i 个像元所对应的地表温度，T<sub>min</sub>。为图像区域的有效最低地表温度，T<sub>max</sub>为图像区域对应的有效最高地表温度。热场强度指数值越大，表明处于热岛范围的可能性越大。</p>
-<p> 简单说，就是对地表温度进行归一化处理。</p>
-<p><strong>ArcGIS操作：</strong></p>
-<p>​ 在 <code>ArcToolBox</code> 中，打开<code>Spatial Analyst-Overlay</code>（叠加分析）-Fuzzy Membership（模糊隶属度），System Toolboxes –&gt; Spatial Analyst Tools.tbx –&gt; Overlay –&gt; Fuzzy Membership。</p>
-<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/image-20200826095500522.png" alt="image-20200826095500522"></p>
-<p>​ 打开<code>Fuzzy Membership</code>之后，填写输入、输出路径，点选<code>Liner</code>类型<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/image-20200826095825062.png" alt="image-20200826095825062"></p>
-<p><strong>参考文献：</strong></p>
-<p>[1].<span class="exturl" data-url="aHR0cHM6Ly94dWVzaHUuYmFpZHUuY29tL3VzZXJjZW50ZXIvcGFwZXIvc2hvdz9wYXBlcmlkPTVlYWU4NmY2YmEzMGI4MjMwNzI3MDU5YzM2NDIyNWY4JnNpdGU9eHVlc2h1X3NlJmhpdGFydGljbGU9MQ==">薛万蓉, 卢正, 但尚铭,等. 基于热红外遥感的四川省内江市城市热岛效应评价[J]. 测绘与空间地理信息, 2012(04):49-52.<i class="fa fa-external-link-alt"></i></span></p>
-<p>[2].<span class="exturl" data-url="aHR0cHM6Ly94dWVzaHUuYmFpZHUuY29tL3VzZXJjZW50ZXIvcGFwZXIvc2hvdz9wYXBlcmlkPWZhZGU1NjlhYWQxNzNhNzJmMGRjOWI5ODc2MjQ4OWI1JnNpdGU9eHVlc2h1X3Nl">叶彩华, 刘勇洪, 刘伟东,等. 城市地表热环境遥感监测指标研究及应用[J]. 气象科技, 2011(01):95-101.<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2020/03/29/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo<i class="fa fa-external-link-alt"></i></span>! This is your very first post. Check <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv">documentation<i class="fa fa-external-link-alt"></i></span> for more info. If you get any problems when using Hexo, you can find the answer in <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdHJvdWJsZXNob290aW5nLmh0bWw=">troubleshooting<i class="fa fa-external-link-alt"></i></span> or you can ask me on <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL2lzc3Vlcw==">GitHub<i class="fa fa-external-link-alt"></i></span>.</p>
-<a id="more"></a>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvd3JpdGluZy5odG1s">Writing<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvc2VydmVyLmh0bWw=">Server<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZ2VuZXJhdGluZy5odG1s">Generating<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvb25lLWNvbW1hbmQtZGVwbG95bWVudC5odG1s">Deployment<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Demo</category>
-      </categories>
-      <tags>
-        <tag>Studying</tag>
-        <tag>Test</tag>
-        <tag>Share</tag>
       </tags>
   </entry>
   <entry>
@@ -708,6 +309,169 @@
         <tag>Python</tag>
         <tag>地理空间分析</tag>
         <tag>数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Time Series Pandas</title>
+    <url>/2020/06/04/Time-Series-Pandas/</url>
+    <content><![CDATA[<p><strong>摘要：</strong>利用Python进行时间序列分析,  主要记录ARIMA模型相关知识。</p>
+<a id="more"></a>
+
+
+
+<h2 id="生成时间序列"><a href="#生成时间序列" class="headerlink" title="生成时间序列"></a>生成时间序列</h2><ol>
+<li>pd.date_range()</li>
+<li>truncate()过滤</li>
+<li>pd.Timestamp()时间戳</li>
+<li>pd.Period()时间周期</li>
+<li>pd.datelta()间隔</li>
+</ol>
+<h2 id="差分法"><a href="#差分法" class="headerlink" title="差分法"></a>差分法</h2><p>​    改进数据平稳性</p>
+<p><code>.diff(num)</code>: num阶差分，一般一阶就可以了。</p>
+<h2 id="ARIMA模型"><a href="#ARIMA模型" class="headerlink" title="ARIMA模型"></a>ARIMA模型</h2><p>​        <strong>ARIMA模型</strong>（英语：<strong>A</strong>uto<strong>r</strong>egressive <strong>I</strong>ntegrated <strong>M</strong>oving <strong>A</strong>verage model），差分整合移动平均自回归模型，又称整合移动平均自回归模型（移动也可称作滑动），是<span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS/ml7bpl7Tluo/liJc=">时间序列<i class="fa fa-external-link-alt"></i></span>预测分析方法之一。</p>
+<p>​        ARIMA(p，d，q)中，AR是“自回归模型”，p为自回归项数；MA为“滑动平均模型”，q为滑动平均项数，d为使之成为平稳序列所做的差分次数（阶数）。“差分”一词虽未出现在ARIMA的英文名称中，却是关键步骤。</p>
+<h3 id="AR模型"><a href="#AR模型" class="headerlink" title="AR模型"></a>AR模型</h3><ul>
+<li><p>描述当前值与历史值之间的关系，用变量自身的历史时间数据对自身进行预测</p>
+</li>
+<li><p>p阶自回归过程的公式定义：$y_t = \mu + \sum^{p}<em>{i=1}{\gamma_iy</em>{t-i}} + \epsilon_t$, </p>
+</li>
+<li><p>其中 $y_t$ 是当前值、$\mu$ 是常数项、p 是阶数、 $\gamma_i$ 是自相关系数、 $\epsilon_t$ 是误差</p>
+</li>
+</ul>
+<ul>
+<li><p>自回归模型是用自身的数据来进行预测</p>
+</li>
+<li><p>必须具有平稳性</p>
+</li>
+<li><p>必须具有自相关，如果自相关系数小于0.5，则不宜采用</p>
+</li>
+<li><p>自回归只适用于预测与自身前期相关的现象</p>
+</li>
+</ul>
+<h3 id="MA模型"><a href="#MA模型" class="headerlink" title="MA模型"></a>MA模型</h3><ul>
+<li>移动平均模型关注的是自回归模型中误差项的累加</li>
+<li>q阶移动平均模型：$y_t = \mu + \epsilon_t + \sum^q_{i=1}{\theta_i\epsilon_{t-i}}$ </li>
+<li>移动平均模型能够消除预测中的随机波动</li>
+</ul>
+<ul>
+<li><code>ARMA = AR + MA</code> 、<code>ARMA + 差分 = ARIMA</code></li>
+</ul>
+<h3 id="ARIMA模型原理"><a href="#ARIMA模型原理" class="headerlink" title="ARIMA模型原理"></a>ARIMA模型原理</h3><p>​        将非平稳时间序列转化为平稳时间序列，然后将因变量对它的滞后值以及随机误差项的现值和滞后值进行回归所建立的模型</p>
+<h3 id="p、q值的确定"><a href="#p、q值的确定" class="headerlink" title="p、q值的确定"></a>p、q值的确定</h3><p>自相关系数ACF、偏相关系数PACF</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>ACF</th>
+<th>PACF</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AR(p)</td>
+<td>衰减趋于零（几何型或振荡型）</td>
+<td>p阶后截尾</td>
+</tr>
+<tr>
+<td>MA(q)</td>
+<td>q阶后截尾</td>
+<td>衰减趋于零（几何型或振荡型）</td>
+</tr>
+<tr>
+<td>ARMA(p, q)</td>
+<td>q阶后衰减趋于零（几何型或振荡型）</td>
+<td>p阶后衰减趋于零（几何型或振荡型）</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>截尾：落在置信区间内（95%的点都符合该规则）</p>
+</li>
+<li><p>Python方法：</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> statsmodels.graphocs.tsaplots <span class="keyword">import</span> plot_acf, plot_pacf</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h2 id="数据重采样"><a href="#数据重采样" class="headerlink" title="数据重采样"></a>数据重采样</h2><ol>
+<li><code>.resample(freq)</code> 例如：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rng = pd.date_range(<span class="string">'1/1/2020'</span>, periods=<span class="number">90</span>, freq=<span class="string">'D'</span>)</span><br><span class="line">ts = pd.Series(np.random.randn(len(rng)), index=rng)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 降采样</span></span><br><span class="line">ts = resample(<span class="string">'M'</span>).mean()</span><br><span class="line">ts = resmaple(<span class="string">'M'</span>).sum()</span><br><span class="line">ts = resmaple(<span class="string">'3D'</span>).sum()</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>升采样插值<ul>
+<li><code>.fill(位数)</code>，向后填充，空值取前面的值</li>
+<li><code>.bfill()</code>, 向前填充</li>
+<li><code>.interpolate()</code>, 线性填充</li>
+</ul>
+</li>
+</ol>
+<h2 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h2><p>在较长时间区间上，用来观测某个时间点、区间相关情况的方法。</p>
+<p>使用<code>.rolling(windowSize)</code></p>
+<h2 id="额外收获"><a href="#额外收获" class="headerlink" title="额外收获"></a>额外收获</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B5ZGF0YS9wYW5kYXMtZGF0YXJlYWRlcg==">pandasdatareade<i class="fa fa-external-link-alt"></i></span>: 直接获取网络上的数据到<code>dataframe</code></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2JsdWUteW9uZGVyL3RzZnJlc2g=">tsfresh<i class="fa fa-external-link-alt"></i></span>: 提取时间序列的特征</p>
+<h2 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h2><ol>
+<li>时间序列分类</li>
+<li>EDA</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Machine Learning</category>
+      </categories>
+      <tags>
+        <tag>Time Series</tag>
+        <tag>Data Analysis</tag>
+        <tag>Pandas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>图像融合质量评价指标</title>
+    <url>/2020/04/21/RS02-Evaluation_of_image_fusion/</url>
+    <content><![CDATA[<h2 id="1-图像融合"><a href="#1-图像融合" class="headerlink" title="1 图像融合"></a>1 图像融合</h2><p><strong>图像融合：</strong> 是指把对同一目标或同一场景经多个传感器的成像或单一传感器的多次成像进行一定的处理，生成一幅新的图像，这幅新的图像能够准确地综合反映源图像的信息，更适合于人眼观察或计算机处理。</p>
+<a id="more"></a>
+
+<h3 id="2-图像融合质量评价"><a href="#2-图像融合质量评价" class="headerlink" title="2 图像融合质量评价"></a>2 图像融合质量评价</h3><p>目前评定图像融合算法性能的方法可分为两类，即主观的评定方法和客观的评定方法。</p>
+<h4 id="2-1-主观评价方法"><a href="#2-1-主观评价方法" class="headerlink" title="2.1 主观评价方法"></a>2.1 主观评价方法</h4><p><strong>主观评价方法</strong>：<br>就是依靠人眼对融合图像效果进行主观判断。<br><strong>客观评价方法</strong>：<br>根据不同评定方法的条件不同，对客观评价指标做了以下分类研究8。</p>
+<ol>
+<li><p>无参考图像情况下的评价方法  </p>
+<p>  <strong>单一图像特征统计的评价方法</strong>  </p>
+<ul>
+<li><p>均值:图像中所有像素的灰度值的算术平均值，对人眼表现为图像的平均亮度。  </p>
+</li>
+<li><p>标准差:图像灰度相对于均值的离散情况，用于评价图像反差的大小。  </p>
+</li>
+<li><p>信息熵:熵值大小反映其包含信息量的多少，熵值越大融合效果越好。  </p>
+</li>
+<li><p>平均梯度:可灵敏地反映图像对微小细节反差表达的水平，用于评价图像的模糊程度。平均梯度值与图像清晰程度成正比关系。  </p>
+</li>
+<li><p>空间频率:反映图像在空间域的整体活跃程度，空间频率大小与图像融合效果成正比。  </p>
+<p><strong>源图像与融合图像之间关系的评价方法</strong>  </p>
+</li>
+<li><p>互信息之和:表示融合图像F从源图像A、B中获取的信息，互信息之和的值与融合效果成正比。  </p>
+</li>
+<li><p>交叉熵:反映了源图像和融合图像对应像素的差异。交叉熵越小，代表两幅图像的差异越小，即意味着该融合方法从源图像获取的信息量越多，融合效果越好。  </p>
+</li>
+<li><p>联合熵:源图像和融合图像之间相关性的量度,反映源图像和融合图像之间的联合信息。两幅图像联合熵的值与图像所包含的信息量的大小成正比关系。  </p>
+</li>
+<li><p>偏差与相对偏差:偏差表示两幅图像光谱特性变化的平均程度和光谱信息上的差异，值越小意味着两幅图像的差异越小;相对偏差反映两幅图像在光谱信息上的匹配程度,同时也反映该方法将原图像高空间的分辨率细节传递给融合图像的能力。  </p>
+</li>
+</ul>
+</li>
+<li><p>有参考图情况下的评价方法</p>
+<ul>
+<li>通过对比标准参考图像与融合图像之间的关系来分析融合图像的质量和融合效果的好坏。  </li>
+<li>均方根误差:显示了参考图像与融合图像之间的差异对比程度，其值与接近程度成反比，值越小代表融合效果越好。  </li>
+<li>信噪比和峰值信噪比:比值越高，融合质量越好。  </li>
+<li>信息熵差ER-EF:EF和ER分别为融合图像和参考图像的信息熵。  </li>
+<li>互信息:代表图像中包含的信息，互信息值越大，包含的信息越多，融合效果越好。  </li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>RS</category>
+      </categories>
+      <tags>
+        <tag>Image Processing</tag>
       </tags>
   </entry>
   <entry>
@@ -3429,6 +3193,249 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
         <tag>Python</tag>
         <tag>地理空间分析</tag>
         <tag>数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Unit-6-Innovation(TF).md</title>
+    <url>/2020/05/15/Unit-6-Innovation(TF)/</url>
+    <content><![CDATA[<p><strong>Record the words and example sentences</strong>  </p>
+<a id="more"></a>
+
+<ol>
+<li><p><strong>word：</strong><br>urban planner(城市规划师)<br><strong>sentences:</strong><br>An urban planner is a person who works on the efficient organization of a city’s features.</p>
+</li>
+<li><p><strong>word：</strong><br>interrelated<br>adj. 相关的；互相联系的；v. 使相互联系（interrelate的过去式）<br>interact<br>v. 互相影响；互相作用<br><strong>sentences:</strong><br>All things are interrelated and interact with each other.<br>一切事物都是相互联系、相互作用的。</p>
+</li>
+<li><p><strong>word：</strong><br>commuter<br>n. 通勤者，经常乘公共车辆往返者；[交] 月季票乘客<br><strong>sentences：</strong><br>A commuter is someone who travels a long distance to work every day.<br>通勤族是指每天都要长途跋涉去上班的人。 </p>
+</li>
+<li><p><strong>word:</strong><br>imprisonment　　监禁　　　　　　　　　option　　选项<br>fine　　n. 罚款    　<br>adj. 好的；优良的；细小的，精美的；健康的；晴朗的<br><strong>sentences:</strong><br>He was given one month’s imprisonment without the option of a fine.  他被判处一个月徒刑，没有罚款的选择。  </p>
+</li>
+<li><p><strong>word:</strong><br>stationary<br>adj. 固定的；静止的；定居的；常备军的<br>n. 不动的人；驻军<br><strong>sentences:</strong><br>A traffic jam is a long line of vehicles that is either stationary or moving very slowly.<br>交通堵塞就是指一排排固定不动或行驶缓慢的车辆。  </p>
+</li>
+<li><p><strong>drop</strong><br>v.When someone drops you off, he or she lets you alight from the vehicle.（让⋯）下车，卸下（乘客） </p>
+</li>
+<li><p><strong>for one thing</strong><br>When you say “for one thing,” you indicate that you are talking about one of the factors involved in the situation. 首先，一则  </p>
+</li>
+<li><p><strong>not to mention</strong><br>You will use “not to mention” when you want to indicate that you’re about to provide additional information to support your point. 更不用说，此外  </p>
+</li>
+<li><p><strong>conference</strong><br>n.A conference is a meeting, usually held over the course of a few days, where a particular subject is discussed. （正式）会议  </p>
+</li>
+<li><p><strong>demonstrate</strong><br>v.To demonstrate is to show how something works, or how something should be done. 示范操作，演示  </p>
+</li>
+<li><p><strong>revolution</strong><br>n.A revolution refers to a swift and dramatic change in society. 重大变革  </p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Studying-English</category>
+      </categories>
+      <tags>
+        <tag>Notebook</tag>
+        <tag>English Though Films</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Notes_01|&quot;alias&quot; Knowledge</title>
+    <url>/2020/05/30/alias/</url>
+    <content><![CDATA[<p>  转载自知乎：乃乎。因为 WSL2 Access Windows Proxy 中命令用到了alias方法，就在知乎找到乃乎的分享。</p>
+<a id="more"></a>
+
+<p>alias (别名)，一般用来用一个短的简单的命令来代替长的复杂的命令</p>
+<h2 id="查看-alias"><a href="#查看-alias" class="headerlink" title="查看 alias"></a>查看 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Ubuntu@DESKTOP-J51JGI8:~$ <span class="built_in">alias</span></span><br><span class="line"><span class="built_in">alias</span> alert=<span class="string">'notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$(history|tail -n1|sed -e '</span>\<span class="string">''</span>s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//<span class="string">'\'</span><span class="string">')"'</span></span><br><span class="line"><span class="built_in">alias</span> egrep=<span class="string">'egrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> fgrep=<span class="string">'fgrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> grep=<span class="string">'grep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> l=<span class="string">'ls -CF'</span></span><br><span class="line"><span class="built_in">alias</span> la=<span class="string">'ls -A'</span></span><br><span class="line"><span class="built_in">alias</span> ll=<span class="string">'ls -alF'</span></span><br><span class="line"><span class="built_in">alias</span> ls=<span class="string">'ls --color=auto'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="临时定义-alias"><a href="#临时定义-alias" class="headerlink" title="临时定义 alias"></a>临时定义 alias</h2><p>使用 <code>ll</code> 代替 <code>ls -al</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="持久定义-alias"><a href="#持久定义-alias" class="headerlink" title="持久定义 alias"></a>持久定义 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>shell 启动的时候会读取配置文件，~/.bashrc 或者 ～/.zshrc。在配置文件中加入 alias 定义的命令就可以在每次启动 shell 后都存在定义好的 alias</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># custom aliases are listed below</span></span><br><span class="line">$ <span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy93d3cudGVjbWludC5jb20vY3JlYXRlLWFsaWFzLWluLWxpbnV4Lw==">https://www.tecmint.com/create-alias-in-linux/<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>WSL2</category>
+      </categories>
+      <tags>
+        <tag>Notebook - Bash - Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/03/29/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo<i class="fa fa-external-link-alt"></i></span>! This is your very first post. Check <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv">documentation<i class="fa fa-external-link-alt"></i></span> for more info. If you get any problems when using Hexo, you can find the answer in <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdHJvdWJsZXNob290aW5nLmh0bWw=">troubleshooting<i class="fa fa-external-link-alt"></i></span> or you can ask me on <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL2lzc3Vlcw==">GitHub<i class="fa fa-external-link-alt"></i></span>.</p>
+<a id="more"></a>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvd3JpdGluZy5odG1s">Writing<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvc2VydmVyLmh0bWw=">Server<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZ2VuZXJhdGluZy5odG1s">Generating<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvb25lLWNvbW1hbmQtZGVwbG95bWVudC5odG1s">Deployment<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Demo</category>
+      </categories>
+      <tags>
+        <tag>Studying</tag>
+        <tag>Test</tag>
+        <tag>Share</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WSL2 Access Windows Proxy</title>
+    <url>/2020/05/30/wsl2_access_windows_proxy/</url>
+    <content><![CDATA[<h2 id="IP设置"><a href="#IP设置" class="headerlink" title="IP设置"></a>IP设置</h2><p>IP要使用主机局域网IP，例如192.168.123.176。127.0.0.1不行。再者，就是host.deocker.internal在安装docker的时候进行了重定向，所以使用这个也是可以的。</p>
+<a id="more"></a>
+
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ol>
+<li><p>使用<code>proxychains</code>。安装就是<code>sudo apt install proxychains</code>，然后再进去<code>/etc/proxychains.conf</code>进行ip设置，使用直接在命令前面加proxychains。<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxychains.conf.png" alt="image-20200606150558949">![image-20200606102952207](<span class="exturl" data-url="aHR0cHM6Ly9naXRlZS5jb20vUnN3ZWF0ZXJfYWRtaW4vQmxvZ19JbWFnZXMvcmF3L21hc3Rlci9pbWcvd3Ns">https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/wsl<i class="fa fa-external-link-alt"></i></span> proxy1.png)</p>
+<p>这个方法可能会出现dns无法解析的问题，要装依赖tor,使用<code>sudo apt install tor</code>即可。</p>
+</li>
+<li><p>使用修改<code>.bashrc</code>, 在<code>.bashrc</code>中写代理和取消代理函数, 使用直接输入proxy、noproxy即可。<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxy.bashrc.png" alt="image-20200606151542147"></p>
+</li>
+</ol>
+<figure class="highlight plain"><figcaption><span>>>> proxy setting >>></span></figcaption><table><tr><td class="code"><pre><span class="line">proxy () &#123;</span><br><span class="line">        export ALL_PROXY&#x3D;&quot;socks5:&#x2F;&#x2F;192.168.123.176:10808&quot;</span><br><span class="line">        export all_proxy&#x3D;&quot;socks5:&#x2F;&#x2F;192.168.123.176:10808&quot;</span><br><span class="line">        echo -e &quot;Acquire::http::Proxy \&quot;http:&#x2F;&#x2F;192.168.123.176:10809\&quot;;&quot; | sudo tee -a &#x2F;etc&#x2F;apt&#x2F;apt.c</span><br><span class="line">onf &gt; &#x2F;dev&#x2F;null</span><br><span class="line">        echo -e &quot;Acquire::https::Proxy \&quot;http:&#x2F;&#x2F;192.168.123.176:10809\&quot;;&quot; | sudo tee -a &#x2F;etc&#x2F;apt&#x2F;apt.</span><br><span class="line">conf &gt; &#x2F;dev&#x2F;null</span><br><span class="line">        curl myip.ipip.net</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><figcaption><span><<< proxy setting <<<</span></figcaption><table><tr><td class="code"><pre><span class="line">noproxy () &#123;</span><br><span class="line">        unset ALL_PROXY</span><br><span class="line">        unset all_proxy</span><br><span class="line">        sudo sed -i -e &#39;&#x2F;Acquire::http::Proxy&#x2F;d&#39; &#x2F;etc&#x2F;apt&#x2F;apt.conf</span><br><span class="line">        sudo sed -i -e &#39;&#x2F;Acquire::https::Proxy&#x2F;d&#39; &#x2F;etc&#x2F;apt&#x2F;apt.conf</span><br><span class="line">        curl myip.ipip.net</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果图：</strong></p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxy_.bashrc.png" alt="image-20200606151800543"></p>
+<ol start="3">
+<li>就是使用<code>alias</code>将<code>export http_proxy=socks5://192.168.123.176:10808</code>做成段命令，直接在需要代理命令之前加别名即可。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>WSL2</category>
+      </categories>
+      <tags>
+        <tag>Proxy</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>task</title>
+    <url>/2020/08/29/task/</url>
+    <content><![CDATA[<h1 id="郑州市建成区热岛效应时空演变特征"><a href="#郑州市建成区热岛效应时空演变特征" class="headerlink" title="郑州市建成区热岛效应时空演变特征"></a>郑州市建成区热岛效应时空演变特征</h1><h2 id="申请书内容"><a href="#申请书内容" class="headerlink" title="申请书内容"></a>申请书内容</h2><p>  a. 郑州市建成区热岛效应时空演变特征。基于2013~2019年度Landsat8数据，进行辐射定标、大气矫正，使用RS图像处理软件ENVI单窗算法计算像元亮度温度值，制作地表温度反演图，<u><strong>结合历年气象站点温度观测数据</strong></u>，对反演结果进行验正；导入ArcGIS平台进行统计计算，将历年图像分别按照均值标准差方式进行重分类操作，分为<strong>低温、次低温、中温、次高温、高温</strong>5个类别，确定热岛强度指数；</p>
+<a id="more"></a>
+
+<h2 id="大致流程"><a href="#大致流程" class="headerlink" title="大致流程"></a>大致流程</h2><ol>
+<li>下载 <code>Landsat 8</code> 数据；</li>
+<li><del>去云处理；</del></li>
+<li>地表温度反演；</li>
+<li>结合气象站数据验证并修正反演结果(没数据)；</li>
+<li>利用 <code>ArcGIS</code> 进行裁剪、重分类、确定热岛强度。</li>
+</ol>
+<h3 id="下载-Landsat-8-TIRS-OLSI"><a href="#下载-Landsat-8-TIRS-OLSI" class="headerlink" title="下载 Landsat-8 TIRS\OLSI"></a>下载 <code>Landsat-8 TIRS\OLSI</code></h3><ul>
+<li>尽量选 云指数 小的数据，主要还是选择郑州行政区内云量小的（可以直接肉眼看）。</li>
+<li>下载方式有 <span class="exturl" data-url="aHR0cDovL3d3dy5nc2Nsb3VkLmNuLw==">地理数据空间云<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cDovL2VhcnRoZXhwbG9yZXIudXNncy5nb3Yv">USGS<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cDovL2lkcy5jZW9kZS5hYy5jbi9xdWVyeS5odG1s">Landsat 8下载共享系统<i class="fa fa-external-link-alt"></i></span>；</li>
+</ul>
+<h4 id="地理空间数据云"><a href="#地理空间数据云" class="headerlink" title="地理空间数据云"></a>地理空间数据云</h4><p><strong>网址：</strong><span class="exturl" data-url="aHR0cDovL3d3dy5nc2Nsb3VkLmNuLw==">http://www.gscloud.cn/<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>流程：</strong>登录 –&gt; 高级检索 –&gt; 选数据集（Landsat 8 OLI_TIRS卫星数据产品) –&gt; 选区域时间(河南郑州) –&gt; 点选中间那一景 –&gt; 找云量指数小的</p>
+<p><strong>GIF演示：</strong> <img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/gscloud_download_demo.gif" alt="gscloud_download_demo"></p>
+<p><strong>注意：</strong></p>
+<ol>
+<li>数据云选择郑州之后，会展示所有有拍到郑州行政区内的影像，中间那景可以全覆盖，只需要这一景即可</li>
+<li>这个平台很多不能预览，没办法更好的选择郑州区域内云量少（有些云量多，但是不在郑州区域内），可以结合USGS预览，地理空间数据云下载。</li>
+</ol>
+<h4 id="USGS"><a href="#USGS" class="headerlink" title="USGS"></a>USGS</h4><p><strong>网址：</strong><span class="exturl" data-url="aHR0cDovL2VhcnRoZXhwbG9yZXIudXNncy5nb3Yv">http://earthexplorer.usgs.gov/<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>流程：</strong> </p>
+<ol>
+<li><p><code>Enter Search Criteria</code>, 其中要设置 <code>研究区(郑州)</code>、<code>时间</code> 。</p>
+<ul>
+<li><p><strong>研究区</strong>：点选 <code>World Features</code> 之后，在Feature Name 中填入 <code>zhengzhou</code> ，点击 <code>Show</code> , 最后点选第一个 <code>Zhengzhou</code> 。</p>
+<p>选过研究区、时间之后点击 <code>Data Sets</code> 选择数据集，选过研究区和时间之后的截图：</p>
+</li>
+</ul>
+</li>
+<li><p><code>Data Sets</code>:  Landsat –&gt; Landsat Collection 1 –&gt;  Landsat Collection 1 Level-1 –&gt; Landsat 8 LOI/TIRS C1 Level-1 –&gt; Results.</p>
+</li>
+<li><p>Results. </p>
+</li>
+</ol>
+<p><strong>Gif演示：</strong> <img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/usgs_download.gif" alt="usgs_download"></p>
+<p><strong>注意：</strong></p>
+<ol>
+<li>网速慢、需要梯子；</li>
+<li>时间筛选的后面有云量筛选，建议不要用，有些可能云量大，但是郑州行政区内云相比较是最少的。真的太多，可以找6月或者9月的。（数据有限，16天一景，云会影响地表温度，会给最后重分类造成麻烦）</li>
+<li>有云掩膜产品，点击下载之后的选项卡里面，倒数第二个就是云掩膜产品。</li>
+</ol>
+<h3 id="利用-ENVI-进地表温度反演"><a href="#利用-ENVI-进地表温度反演" class="headerlink" title="利用 ENVI 进地表温度反演"></a>利用 ENVI 进地表温度反演</h3><p> 使用 <span class="exturl" data-url="aHR0cHM6Ly93d3cuaXh4aW4uY24vMjAxNy8xMC8yOS9lbnZpX2xhbmRzYXQ4X2xzdF9zdy8=">XXIN’S  Blog<i class="fa fa-external-link-alt"></i></span> 发布的插件做地表温度反演。（插件有还没装的私聊我）</p>
+<p><strong>需要参数：</strong>多光谱数据、热红外数据、大气透过率（大气水汽数据）、大气平均作用温度（计算高程）</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200825220812775.png" alt="image-20200825220812775"></p>
+<p><strong>作者视频：</strong> <span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMUY3NDExNjd5WD9wPTY=">B站搜索“温度反演”找到作者为“wudixinxin”的视频<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>流程+Gif演示：</strong></p>
+<ol>
+<li><p>打开<code>Landsat-8</code>数据集：File –&gt; Open As –&gt; Landsat – GeoTIFF  with Metadata –&gt; 选中 “_MTL.txt” 文件<img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/open_date_landsat-8.gif" alt="open_date_landsat-8"></p>
+</li>
+<li><p>打开<code>landsat8 LST SingleWindow</code>进行地表温度反演：<code>Extensions --&gt; Landsat8 LST SingleWindow</code>，其中</p>
+<ol>
+<li>多光谱数据(<strong>Multispectral Raster</strong>) 就是第一个(名字以<code>MultiSpectral</code>结尾)</li>
+<li>热红外数据(<strong>Brightness Raster</strong>) 就是第四个(名字以<code>Thermal</code>结尾)</li>
+<li>大气透过率(<strong>Atmospheric Water</strong>) 通过 <span class="exturl" data-url="aHR0cHM6Ly9hdG1jb3JyLmdzZmMubmFzYS5nb3Yv">NASA<i class="fa fa-external-link-alt"></i></span> 网站查表得到</li>
+<li>大气平均作用温度(<strong>Atmospheric temperature</strong>) 可以 <span class="exturl" data-url="aHR0cHM6Ly9hdG1jb3JyLmdzZmMubmFzYS5nb3Yv">NASA<i class="fa fa-external-link-alt"></i></span> 查表（需要借助envi的高程数据计算影像高程）或者直接百度当时的温度</li>
+</ol>
+<p> <strong>打开并选择多光谱与红外数据GIF:</strong>  </p>
+<p> <img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/lst_xinxin_open.gif" alt="lst_xinxin_open"></p>
+<p> <strong><code>NASA</code>查表读取大气透过率获取大气平均作用温度表</strong></p>
+<p> <img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/nasa_temp_ssss.gif" alt="nasa_temp_ssss"></p>
+<p> <strong>注：</strong>需要知道影像<strong>拍摄时间</strong>还有<strong>中心经纬</strong>(这个都一样，Latitude: 34.61083、Longitude：113.4636)</p>
+<p> <strong>计算影像高程GIF(每幅影像应该一样，可以都做一下看看)</strong></p>
+<p> <strong>步骤：</strong></p>
+<ol>
+<li>打开世界高程数据：File –&gt; Open World Data – &gt; Elevation; </li>
+<li>选择统计工具，Statistics –&gt; Compute Statistics;</li>
+<li>对待反演的数据集进行高程统计，将该数据集当作世界高程数据的子数据集去计算高成影像中该区域的平均高程<img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/envi_gaocheng.gif" alt="envi_gaocheng"></li>
+</ol>
+<p> <strong>最后</strong>补填上 大气透过率、平均作用温度、点选大气反演类型就ok了。</p>
+<p> <strong>注意：</strong></p>
+<ol>
+<li>上面括号内黑色英文不是对应的英文，而是插件对应的位置，因为也可以用其他相关的参数代替；</li>
+<li>大气透过率要以符号 “-“ 开头，正值表示使用的是大气水汽产品</li>
+<li>Atmospheric Type 跟 FLASHH 大气校正时的气溶胶类型是一个意思</li>
+</ol>
+</li>
+</ol>
+<h3 id="利用-ArcGIS-进行裁剪、重分类、确定热岛强度"><a href="#利用-ArcGIS-进行裁剪、重分类、确定热岛强度" class="headerlink" title="利用 ArcGIS 进行裁剪、重分类、确定热岛强度"></a>利用 <code>ArcGIS</code> 进行裁剪、重分类、确定热岛强度</h3><h4 id="a-裁剪"><a href="#a-裁剪" class="headerlink" title="a. 裁剪"></a>a. 裁剪</h4><p><strong>流程：</strong> System Toolboxes –&gt; Spatial Analyst Tools.tbx –&gt; Extraction –&gt; Extract by Mask，进去之后有三个参数需要填 <code>Input raster</code>、 <code>Input raster or feature  mask data</code>、 <code>Output raster</code>，分别对应要裁剪的图像、保留的区域（也就是我们的行政区矢量图）、输出路径。</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826085452766.png" alt="image-20200826085452766"></p>
+<p><strong>注意：</strong></p>
+<ol>
+<li>这一步最好不要少，特别是对郑州行政区外有厚云的数据（会影响最小值，进而影响城市热岛指数），例如：<img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826085907150.png" alt="image-20200826085907150"></li>
+<li>进行裁剪时，注意使用同一投影坐标系。我们下载的遥感影像应该都是<code>EPSG:32649</code>(WGS 84 / UTM zone 49N)，这里有<code>EPSG:32649</code>的郑州的shp<span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMUNIdTh3d1k0QlByUmtfdklhci1xZGc=">百度网盘，提取码0911<i class="fa fa-external-link-alt"></i></span>。</li>
+</ol>
+<h4 id="b-重分类"><a href="#b-重分类" class="headerlink" title="b. 重分类"></a>b. 重分类</h4><p><strong>流程：</strong>  打开System Toolboxes –&gt; Spatial Analyst Tools.tbx –&gt; Reclass –&gt; Reclassify工具，需要填写或者修改的选项有<code>Input raster</code>、<code>Output raster</code>、还要打开<code>Classification</code>选项。</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826090728378.png" alt="image-20200826090728378"></p>
+<p><strong>注意：</strong> </p>
+<ol>
+<li>在<code>classification选项卡</code>中选过标准差，可能分类结果不是 正好就是5类，这个没关系，4-7类<sup>[1]</sup>都是可以的.</li>
+<li>可以统一下每个等级颜色。右击图层管理的色条就可以换。<img data-src="https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200826094056336.png" alt="image-20200826094056336"></li>
+</ol>
+<h4 id="c-计算城市热岛强度指数"><a href="#c-计算城市热岛强度指数" class="headerlink" title="c. 计算城市热岛强度指数"></a>c. 计算城市热岛强度指数</h4><p><strong>公式：</strong> </p>
+<p>  $$H_i = \frac{T_i - T_{min}}{T_{max} - T_{min}} ^{[2]}    \tag{1}$$</p>
+<p>式中：H<sub>i</sub>为第 i 个像元所对应的热场强度指数，Ti 为第 i 个像元所对应的地表温度，T<sub>min</sub>。为图像区域的有效最低地表温度，T<sub>max</sub>为图像区域对应的有效最高地表温度。热场强度指数值越大，表明处于热岛范围的可能性越大。</p>
+<p> 简单说，就是对地表温度进行归一化处理。</p>
+<p><strong>ArcGIS操作：</strong></p>
+<p> 在 <code>ArcToolBox</code> 中，打开<code>Spatial Analyst-Overlay</code>（叠加分析）-Fuzzy Membership（模糊隶属度），System Toolboxes –&gt; Spatial Analyst Tools.tbx –&gt; Overlay –&gt; Fuzzy Membership。</p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/image-20200826095500522.png" alt="image-20200826095500522"></p>
+<p> 打开<code>Fuzzy Membership</code>之后，填写输入、输出路径，点选<code>Liner</code>类型<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/image-20200826095825062.png" alt="image-20200826095825062"></p>
+<p><strong>参考文献：</strong></p>
+<p>[1].<span class="exturl" data-url="aHR0cHM6Ly94dWVzaHUuYmFpZHUuY29tL3VzZXJjZW50ZXIvcGFwZXIvc2hvdz9wYXBlcmlkPTVlYWU4NmY2YmEzMGI4MjMwNzI3MDU5YzM2NDIyNWY4JnNpdGU9eHVlc2h1X3NlJmhpdGFydGljbGU9MQ==">薛万蓉, 卢正, 但尚铭,等. 基于热红外遥感的四川省内江市城市热岛效应评价[J]. 测绘与空间地理信息, 2012(04):49-52.<i class="fa fa-external-link-alt"></i></span></p>
+<p>[2].<span class="exturl" data-url="aHR0cHM6Ly94dWVzaHUuYmFpZHUuY29tL3VzZXJjZW50ZXIvcGFwZXIvc2hvdz9wYXBlcmlkPWZhZGU1NjlhYWQxNzNhNzJmMGRjOWI5ODc2MjQ4OWI1JnNpdGU9eHVlc2h1X3Nl">叶彩华, 刘勇洪, 刘伟东,等. 城市地表热环境遥感监测指标研究及应用[J]. 气象科技, 2011(01):95-101.<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>暂时展示</category>
+      </categories>
+      <tags>
+        <tag>Urban heat island</tag>
+        <tag>ZhengZhou</tag>
       </tags>
   </entry>
 </search>
