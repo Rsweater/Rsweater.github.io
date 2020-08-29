@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://bwchen1223.xyz/2020/08/26/task/</loc>
-    <lastmod>2020-08-26</lastmod>
-  </url>  <url>
-    <loc>https://bwchen1223.xyz/2020/08/10/hmCrawler-01-intrada/</loc>
-    <lastmod>2020-08-19</lastmod>
+    <loc>https://bwchen1223.xyz/2020/06/04/Time-Series-Pandas/</loc>
+    <lastmod>2020-08-29</lastmod>
   </url>  <url>
     <loc>https://bwchen1223.xyz/2020/06/10/File-Hash-Verification/</loc>
-    <lastmod>2020-08-19</lastmod>
-  </url>  <url>
-    <loc>https://bwchen1223.xyz/2020/06/04/Time-Series-Pandas/</loc>
-    <lastmod>2020-08-17</lastmod>
+    <lastmod>2020-08-29</lastmod>
   </url>  <url>
     <loc>https://bwchen1223.xyz/2020/06/05/Cluster-Analysis/</loc>
-    <lastmod>2020-08-17</lastmod>
+    <lastmod>2020-08-29</lastmod>
   </url>  <url>
-    <loc>https://bwchen1223.xyz/2020/06/26/jupyter-env/</loc>
-    <lastmod>2020-07-12</lastmod>
+    <loc>https://bwchen1223.xyz/2020/08/29/%E9%83%91%E5%B7%9E%E5%B8%82%E5%BB%BA%E6%88%90%E5%8C%BA%E7%83%AD%E5%B2%9B%E6%95%88%E5%BA%94%E6%97%B6%E7%A9%BA%E6%BC%94%E5%8F%98%E7%89%B9%E5%BE%81%20/</loc>
+    <lastmod>2020-08-26</lastmod>
   </url>  <url>
     <loc>https://bwchen1223.xyz/2020/03/29/hello-world/</loc>
     <lastmod>2020-06-10</lastmod>
