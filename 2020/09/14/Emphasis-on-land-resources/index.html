@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="ldO35SQfctgFBF_4YWDeSfdS80zngpp5RipOUOWXKtY">
+  <meta name="msvalidate.01" content="49D31365176B2E4D0D1BA7E809F665E0">
+  <meta name="baidu-site-verification" content="Qu82x3LWJM">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"bwchen1223.xyz","root":"/","scheme":"Muse","version":"8.0.0-rc.3","exturl":true,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":true,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="土地资源学重点​    我们的期末重点，书是王秋兵主编的第二版。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Emphasis on land resources">
+<meta property="og:url" content="https://bwchen1223.xyz/2020/09/14/Emphasis-on-land-resources/index.html">
+<meta property="og:site_name" content="Rsweater&#39;s Blog">
+<meta property="og:description" content="土地资源学重点​    我们的期末重点，书是王秋兵主编的第二版。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/image-20200912170149986.png">
+<meta property="article:published_time" content="2020-09-14T09:00:45.000Z">
+<meta property="article:modified_time" content="2020-09-14T09:02:47.474Z">
+<meta property="article:author" content="一线毛衣">
+<meta property="article:tag" content="Python GiS GDAL 爬虫 数据分析 机器学习 日常笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/image-20200912170149986.png">
+
+<link rel="canonical" href="https://bwchen1223.xyz/2020/09/14/Emphasis-on-land-resources/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Emphasis on land resources | Rsweater's Blog</title>
+  
+
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e2c701b7194c8cece405996462a08694";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Rsweater's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">最好的状态来源于好的作息！最高的效率来源于好的资源配置！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bwchen1223.xyz/2020/09/14/Emphasis-on-land-resources/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="一线毛衣">
+      <meta itemprop="description" content="这里有Python、GIS相关的小笔记！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rsweater's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Emphasis on land resources
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-14 17:00:45 / 修改时间：17:02:47" itemprop="dateCreated datePublished" datetime="2020-09-14T17:00:45+08:00">2020-09-14</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/09/14/Emphasis-on-land-resources/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/14/Emphasis-on-land-resources/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="土地资源学重点"><a href="#土地资源学重点" class="headerlink" title="土地资源学重点"></a>土地资源学重点</h2><p>​    我们的期末重点，书是王秋兵主编的第二版。</p>
+<a id="more"></a>
+
+<h3 id="题型"><a href="#题型" class="headerlink" title="题型"></a>题型</h3><ul>
+<li>名词解释</li>
+<li>判断</li>
+<li>选择</li>
+<li>简答</li>
+<li>论述</li>
+</ul>
+<h3 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h3><h4 id="1-1-土地的概念"><a href="#1-1-土地的概念" class="headerlink" title="1. 1 土地的概念"></a>1. 1 土地的概念</h4><pre><code>土地是地球陆地表面由气候、土壤、水文、地形、地质、生物及人类活动结果所组成的一个复杂的自然经济综合体。</code></pre><h4 id="1-2-土地资源的概念"><a href="#1-2-土地资源的概念" class="headerlink" title="1.2 土地资源的概念"></a>1.2 土地资源的概念</h4><p>土地资源是指当前和可预见将来的技术经济条件下，能为人类所利用的土地。</p>
+<h4 id="1-3-土地属性"><a href="#1-3-土地属性" class="headerlink" title="1.3 土地属性"></a>1.3 土地属性</h4><p>自然属性、经济属性（也称，资源特性、资产特性）</p>
+<ol>
+<li>自然属性：生产性、整体性、面积有限性、位置固定性和区域差异性、 时间变化性、土地资源再生性与非再生性、多用途性</li>
+<li>经济社会属性：社会性、资产性、权籍性，其中资产性包括供给稀缺性、位置固定性和个体的异质性、使用的永久性和增值性、土地价格和价格的二重性、流通的特殊性</li>
+</ol>
+<h4 id="1-4-土地的功能"><a href="#1-4-土地的功能" class="headerlink" title="1.4 土地的功能"></a>1.4 土地的功能</h4><pre><code>养育、支撑、资源、资产、环境净化、土地景观、土地社会保障、土地调控</code></pre><h3 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h3><pre><code>**土地资源的自然要素构成**有气候、地质、地貌、土壤、水文、生物（**定义**）等五方面。</code></pre><h4 id="2-1-气候"><a href="#2-1-气候" class="headerlink" title="2.1 气候"></a>2.1 气候</h4><pre><code>气候是土地资源的重要组成部分，影响土地地资源特征的气候主要要素是光、热量、降水。</code></pre><h5 id="2-1-1-光照长度"><a href="#2-1-1-光照长度" class="headerlink" title="2.1.1 光照长度"></a>2.1.1 光照长度</h5><pre><code>光照长度对农作物影响较大，大多数农作物生长都需要足够的光照长度。而光照质量的好坏则影响作物质量的高低，对农业均有影响。</code></pre><h5 id="2-1-2-热量"><a href="#2-1-2-热量" class="headerlink" title="2.1.2 热量"></a>2.1.2 热量</h5><pre><code>热量受到气候、地形等的影响，一个地区积温的大小、年温差、日温差决定了这个地区的种植制度及适宜生长的作物。</code></pre><h5 id="2-1-3-降水"><a href="#2-1-3-降水" class="headerlink" title="2.1.3 降水"></a>2.1.3 降水</h5><pre><code>降水决定土地资源的水文条件，降水的时间分布和空间分布对土地利用有着重要的影响。</code></pre><h4 id="2-2-土壤"><a href="#2-2-土壤" class="headerlink" title="2.2 土壤"></a>2.2 土壤</h4><pre><code>土壤是在生物、气候、地形、母质、时间等五大成土因素综合作用下形成的历史自然体。土壤资源的种类制约了土地资源的利用方向，土壤的理化性质也制约着土地资源的利用方向，土壤对城市土地的利用中，除作为城市绿地的部分，作为地基需要有着较大的承载力，而承载力小的土壤则予以开挖清除。</code></pre><h4 id="2-3-地质"><a href="#2-3-地质" class="headerlink" title="2.3 地质"></a>2.3 地质</h4><p>·地质制约着土地资源的利用及其生产力，地表的岩性、矿物质组成及风化母质具有显著的影响。它还从影响地下水储存条件及水质来制约着土地利用。</p>
+<h4 id="2-4-地形地貌"><a href="#2-4-地形地貌" class="headerlink" title="2.4 地形地貌"></a>2.4 地形地貌</h4><pre><code>主要从海拔高度、地面坡度、地貌类型来影响土地利用。</code></pre><h5 id="2-4-1-海拔高度"><a href="#2-4-1-海拔高度" class="headerlink" title="2.4.1 海拔高度"></a>2.4.1 海拔高度</h5><pre><code>影响着气温和降水，随着海拔高度的增加气温逐渐降低，而且自然环境越加恶劣，越加制约着人类活动。</code></pre><h5 id="2-4-2-地面坡度"><a href="#2-4-2-地面坡度" class="headerlink" title="2.4.2 地面坡度"></a>2.4.2 地面坡度</h5><pre><code>地势起伏对农业生产的影响主要表现在地表侵蚀程度和农田基本建设条件、灌溉条件、机耕等方面。建设用地一般需要地势平坦、排水良好，这样工程量少，可以节省开发投资。</code></pre><h5 id="2-4-3-地形"><a href="#2-4-3-地形" class="headerlink" title="2.4.3 地形"></a>2.4.3 地形</h5><pre><code>坡度小于7度的地形适合作为农用地；5到25度的坡度的地形可以农用，但一般需要具有工程和保水设施；而坡度大于25度的地形易产生滑坡等重力侵蚀，不适合农用。冲积平原一般作为主要农用区，山地适合发展林业。</code></pre><h4 id="2-5-水文"><a href="#2-5-水文" class="headerlink" title="2.5 水文"></a>2.5 水文</h4><pre><code>土地资源的水文条件，包括地表水资源和地下水水文地质。</code></pre><h5 id="2-5-1-地表水资源"><a href="#2-5-1-地表水资源" class="headerlink" title="2.5.1 地表水资源"></a>2.5.1 地表水资源</h5><pre><code>地表水资源是土地资源中水的重要组成部分，它的质量、多少、分布及其季节变化与土地利用关系密切。地表水资源的丰缺状况与农业灌溉用水以及干旱、洪涝灾害关系密切。地表水的冲刷作用会引起不同程度的水土流失。</code></pre><h5 id="2-5-2-地下水"><a href="#2-5-2-地下水" class="headerlink" title="2.5.2 地下水"></a>2.5.2 地下水</h5><pre><code>地下水是水资源的重要组成部分，对农业的影响主要从水量、水质和埋藏深度几个方面来进行评价，直接决定供给的保证率，使用范围与开发成本。</code></pre><h4 id="2-6-生物"><a href="#2-6-生物" class="headerlink" title="2.6 生物"></a>2.6 生物</h4><pre><code>生物要素对土地资源利用的影响是多方面的，区域生物物种或生态系统或生物多样性的变化直接引起土地利用方式的变化。</code></pre><h5 id="2-6-1-生态系统多样性"><a href="#2-6-1-生态系统多样性" class="headerlink" title="2.6.1 生态系统多样性"></a>2.6.1 生态系统多样性</h5><pre><code>生态系统多样性是形成景观多样性的直接原因，也是土地利用类型或土地资源类型划分的主要依据。</code></pre><h5 id="2-6-2植被"><a href="#2-6-2植被" class="headerlink" title="2.6.2植被"></a>2.6.2植被</h5><pre><code>植被是土地资源的重要组成要素，土地资源质量又是其综合特征反映，并指示出土地演替历史。有机物质以植物残体的形态回归到陆地表面的土壤中，对增加土壤有机质含量，提高土壤肥力具有十分重要的作用，植被还具有生态调节功能。土地资源的区域性随植被的覆盖特征，在不同气候、水、土等特征的综合作用下，使农业土地利用也表现出明显的地域差异。</code></pre><h3 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h3><p>了解人地关系</p>
+<h3 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h3><h4 id="4-1-概念"><a href="#4-1-概念" class="headerlink" title="4.1 概念"></a>4.1 概念</h4><p><strong>土地类型</strong>是在土地分级的基础上，依据一定的原则和指标，将相同等级的土地单位按其相似性进行类群归并的产物。</p>
+<p><strong>土地类型划分</strong>是通过土地分级和土地分类完成的，土地类型是土地分级和分类单元的统称。土地分级是对土地个体形态单元组织水平，级自然环境结构层次的确定。土地分类是各个土地个体形态单元土地属性或特征共性的归纳</p>
+<p><strong>土地分级：</strong>对土地组成要素进行综合分析基础上，通过自下而上合并或自上而下划分，产生一些等级由高低、复杂程序有差异的土地单位。</p>
+<p><strong>土地分类</strong>：对一个自然区域或行政区范围内的土地进行类型的划分</p>
+<p><strong>土地分级与分类的关系：</strong>土地分级是土地分类的前据，为土地分类服务。 土地分级是对土地地段的个体研究，它采用系统研究法划分不同级别的具体土地地段或逐级合并为更高一级的土地单位。 土地分类则是采用系统分类研究法。对同等级土地单位进行分类，得出级别高低不同的各种土地类型。因此，土地分级是土地分类的基础，在多数情况下，只有完成了土地分级才能开展土地分类研究。土地分级是对土地的纵向划分，土地分类则是对土地的横向类群归并。土地分级是多级的，因而土地分类也是多系列的。</p>
+<p><strong>土地类型结构：</strong>某一个区域内，各种土地类型在质和量上的对比及其组合而成的一定格局或图式。</p>
+<p><strong>土地类型演替：</strong> 是指在一定时段内，一种土地类型向另一种土地类型转化的过程。</p>
+<p><strong>类型空间结构</strong></p>
+<p>河流阶地属于（   C   ）土地空间结构类型。</p>
+<p>A、 成层状结构           B、 条带树枝状结构 </p>
+<p>C、 对称阶梯式组合结构       D、 水平镶嵌结构 </p>
+<h3 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h3><h4 id="5-1-土地资源调查的概念、基本内容方法、一般程序"><a href="#5-1-土地资源调查的概念、基本内容方法、一般程序" class="headerlink" title="5.1 土地资源调查的概念、基本内容方法、一般程序"></a>5.1 土地资源调查的概念、基本内容方法、一般程序</h4><h5 id="5-1-1-土地资源调查的概念"><a href="#5-1-1-土地资源调查的概念" class="headerlink" title="5.1.1 土地资源调查的概念"></a>5.1.1 土地资源调查的概念</h5><pre><code>是以土地资源学知识为基础，借助遥感和测绘制图等技术手段，查清土地资源的类型、数量、质量、空间分布及其相互关系和发展变化规律的系列过程。</code></pre><h5 id="5-1-2-基本内容"><a href="#5-1-2-基本内容" class="headerlink" title="5.1.2 基本内容"></a>5.1.2 基本内容</h5><pre><code>土地资源调查一般分为土地条件调查和土地利用现状调查。</code></pre><h5 id="5-1-3-基本方法"><a href="#5-1-3-基本方法" class="headerlink" title="5.1.3 基本方法"></a>5.1.3 基本方法</h5><p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/image-20200912170149986.png" alt="image-20200912170149986"></p>
+<h5 id="5-1-4-一般程序"><a href="#5-1-4-一般程序" class="headerlink" title="5.1.4 一般程序"></a>5.1.4 一般程序</h5><pre><code>一般分为四个阶段：准备阶段、外业调绘、内业工作、检查验收。</code></pre><ul>
+<li>准备阶段：明确调查任务、组织专业队伍、制订工作计划、资料准备、用品准备</li>
+<li><strong>外业调绘（核心）</strong>：调绘前准备工作、调绘阶段</li>
+<li>内业工作：转绘工作、量算面积、编图与图面整饰、成果整理 </li>
+<li>检查验收：外业调绘和补测底物、内业工作检查</li>
+</ul>
+<h4 id="5-2-土地资源条件调查的概念、八个条件"><a href="#5-2-土地资源条件调查的概念、八个条件" class="headerlink" title="5.2 土地资源条件调查的概念、八个条件"></a>5.2 土地资源条件调查的概念、八个条件</h4><h5 id="5-2-1-概念"><a href="#5-2-1-概念" class="headerlink" title="5.2.1 概念"></a>5.2.1 概念</h5><pre><code>指的是进行土地自然条件调查和社会经济条件调查，但更强调的是以土地的自然属性为主体的调查，是广义的、基础性的土地调查。</code></pre><h5 id="八个条件"><a href="#八个条件" class="headerlink" title="八个条件"></a>八个条件</h5><pre><code>土地的位置、气候、地形与地貌、水资源、土壤、植被、土地类型、经济社会。![![](https://cdn.jsdelivr.net/gh/Rsweater/images/img/image-20200912170958725.png)</code></pre><h4 id="5-3-土地利用现状调查的概念、土地利用现状调查与变更调查的关系"><a href="#5-3-土地利用现状调查的概念、土地利用现状调查与变更调查的关系" class="headerlink" title="5.3 土地利用现状调查的概念、土地利用现状调查与变更调查的关系"></a>5.3 土地利用现状调查的概念、土地利用现状调查与变更调查的关系</h4><h5 id="5-3-1-土地利用现状调查的概念"><a href="#5-3-1-土地利用现状调查的概念" class="headerlink" title="5.3.1 土地利用现状调查的概念"></a>5.3.1 土地利用现状调查的概念</h5><pre><code>是以一定行政区域或自然区域（或流域）为单位，查清区内各种土地利用类型面积、分布和利用状况，并自下而上、逐级汇总为省级、全国的土地总面积及土地利用分类面积而进行的调查。</code></pre><h5 id="5-3-2-现状调查与变更调查的关系"><a href="#5-3-2-现状调查与变更调查的关系" class="headerlink" title="5.3.2 现状调查与变更调查的关系"></a>5.3.2 现状调查与变更调查的关系</h5><pre><code>区别:现状（更新）调查是一种普遍的性的调查，在此之前没有进行过此类调查或很久以前进行过，通过这次调查建立起土地资料档案，是一次基础性的调查;变更调查则是对已有土地资料进行更新为目的的调查。
+
+关联:现状调查是整个土地资源调查的开端，变更调查是进一步的延续。开展变更调查是更新上一次调查成果，实现土地资源数据的现势性、同步性的一项工作。</code></pre><h4 id="5-4-三调-分类体系、坐标系、主要任务-（6）、工作系统"><a href="#5-4-三调-分类体系、坐标系、主要任务-（6）、工作系统" class="headerlink" title="5.4 三调  分类体系、坐标系、主要任务 （6）、工作系统"></a>5.4 <strong>三调</strong>  分类体系、坐标系、主要任务 （6）、工作系统</h4><ul>
+<li><strong>分类体系</strong>：采用《第三次全国土地调查工作分类》</li>
+<li><strong>坐标系：</strong>第三次全国国土调查采用2000国家大地坐标系，1985国家高程基准。</li>
+<li><strong>主要任务：</strong> 按照国家统一<strong>标准</strong>，在全国范围内利用遥感、测绘、地理信息、互联网等<strong>技术</strong>，统筹利用现有<strong>资料</strong>，以正射影像图为<strong>基础</strong>，<ul>
+<li>实地调查<strong>土地的地类、面积和权属</strong>，全面掌握全国各地类分布及利用状况；</li>
+<li><strong>细化耕地调查</strong>，全面掌握耕地数量、质量、分布和构成；</li>
+<li>开展<strong>低效闲置</strong>土地调查，全面摸清城镇及开发区范围内的土地利用状况；</li>
+<li><strong>同步推进相关自然资源专业调查</strong>，整合相关自然资源专业信息；</li>
+<li><strong>建立互联共享的</strong>覆盖国家、省、地、县四级的集影像、地类、范围、面积、权属和相关自然资源信息为一体的<strong>国土调查数据库</strong>，<strong>完善各级互联共享的网络化管理系统</strong>；</li>
+<li><strong>健全</strong>国土及森林、草原、水、湿地等<strong>自然资源变化信息的调查、统计和全天候、全覆盖遥感监测与快速更新机制</strong>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h3><h4 id="6-1-土地资源评价的含义"><a href="#6-1-土地资源评价的含义" class="headerlink" title="6.1 土地资源评价的含义"></a>6.1 土地资源评价的含义</h4><pre><code>即土地评价，是根据特定的目的对土地性能进行鉴定的过程。</code></pre><h4 id="6-2-土地资源评价单元、划分的方法（6种）"><a href="#6-2-土地资源评价单元、划分的方法（6种）" class="headerlink" title="6.2 土地资源评价单元、划分的方法（6种）"></a>6.2 土地资源评价单元、划分的方法（6种）</h4><h5 id="6-2-1-土地资源评价单元"><a href="#6-2-1-土地资源评价单元" class="headerlink" title="6.2.1 土地资源评价单元"></a>6.2.1 土地资源评价单元</h5><pre><code>也称土地资源评价对象，是土地资源评价的最小单位，它具有明显的界线，是由影响土地质量的诸因素所组成的一个空间实体。同一个土地资源评价单元的土地基本属性具有一致性，即土地自然属性、土地利用方式、生产水平和管理特点是相同的，不同的土地资源评价单元都应具有自己独特的自然属性。</code></pre><h5 id="6-2-2-土地评价单元划分方法"><a href="#6-2-2-土地评价单元划分方法" class="headerlink" title="6.2.2 土地评价单元划分方法"></a>6.2.2 土地评价单元划分方法</h5><ul>
+<li>以土壤图为基础确定土地评价单元。</li>
+<li>以土地类型图为基础确定土地评价单元。</li>
+<li>以土地利用现状图为基础确定土地评价单元。</li>
+<li>以地理网格为土地评价单元。</li>
+<li>以土地资源类型图为基础确定土地评价单元。</li>
+<li>综合方法划分土地评价单元，就是用土地类型图、土壤图和土地利用现状图的图斑等来综合确定土地评价单元。</li>
+</ul>
+<h4 id="6-3-评价因素选择的原则（4个）-举例评价因素（6类）"><a href="#6-3-评价因素选择的原则（4个）-举例评价因素（6类）" class="headerlink" title="6.3 评价因素选择的原则（4个）    举例评价因素（6类）"></a>6.3 评价因素选择的原则（4个）    举例评价因素（6类）</h4><p>常用的土地资源评价因素和因子主要包括</p>
+<p>1）气候因素、2）地质地貌因素、3）土壤因素、4）地表水和地下水因素、5）植被因素、6）社会经济因素。</p>
+<p>选择的原则包括</p>
+<p>1）主导因素原则、2）差异性原则、3）稳定性原则、4）现实性原则。</p>
+<p>解析：P167-168</p>
+<h4 id="6-4-土地资源调查与评价关系（题库）"><a href="#6-4-土地资源调查与评价关系（题库）" class="headerlink" title="6.4 土地资源调查与评价关系（题库）"></a>6.4 土地资源调查与评价关系（题库）</h4><p>土地资源调查是土地资源评价的基础，土地资源评价是土地资源调查成果的应用.</p>
+<p>只有查清各类土地资源的数量、质量、分布状况、组合方式，才能客观地评价土地适宜性、限制性及其生产潜力，总结土地利用的经验，揭示土地利用中存在的问题，才为科学的土地利用和管理提供基础和依据.</p>
+<h4 id="6-5-土地资源潜力、土地资源人口承载力-含义-土地潜力评价系统（美国8级，判断）"><a href="#6-5-土地资源潜力、土地资源人口承载力-含义-土地潜力评价系统（美国8级，判断）" class="headerlink" title="6.5 土地资源潜力、土地资源人口承载力 含义   土地潜力评价系统（美国8级，判断）"></a>6.5 土地资源潜力、土地资源人口承载力 含义   土地潜力评价系统（美国8级，判断）</h4><h5 id="6-5-1-土地潜力"><a href="#6-5-1-土地潜力" class="headerlink" title="6.5.1 土地潜力"></a>6.5.1 土地潜力</h5><pre><code>是指土地用于一定方式或在使用一定管理实践方面的潜在能力。</code></pre><h5 id="6-5-2-土地潜力评价"><a href="#6-5-2-土地潜力评价" class="headerlink" title="6.5.2 土地潜力评价"></a>6.5.2 土地潜力评价</h5><pre><code>在特定目的下对土地的自然、经济及其生产性能进行综合评价和分类定级的过程，优势也称潜力分类。</code></pre><h5 id="6-5-5-土地资源人口承载力"><a href="#6-5-5-土地资源人口承载力" class="headerlink" title="6.5.5 土地资源人口承载力"></a>6.5.5 土地资源人口承载力</h5><pre><code>即土地承载力，实质上是考察一定区域内，特定的土地生产潜力和投入水平条件下可能生产的食物总量与人均消耗量的总和之比的一个动态估算。</code></pre><h5 id="6-5-4-潜力评价系统"><a href="#6-5-4-潜力评价系统" class="headerlink" title="6.5.4 潜力评价系统"></a>6.5.4 潜力评价系统</h5><pre><code>美国土地潜力分类中，潜力级是潜力分类中最高的单位，它把所有土地按限制性强度统一划分为8个潜力级，用罗马数字表示。从I级到Ⅷ级，土地在利用时受到的限制逐级增强，而利用潜力则逐级减小。其中I～V级土地在良好的管理下，可生产适宜的农作物。(×）
+ 解析：美国土地潜力分类中，潜力级是潜力分类中最高的单位，它把所有土地按限制性强度统一划分为8个潜力级，用罗马数字表示。从I级到Ⅷ级，土地在利用时受到的限制逐级增强，而利用潜力则逐级减小。其中I～IV级土地在良好的管理下，可生产适宜的农作物。</code></pre><h4 id="6-6-土地适宜性评价含义、了解怎么选择，适宜性、限制性"><a href="#6-6-土地适宜性评价含义、了解怎么选择，适宜性、限制性" class="headerlink" title="6.6 土地适宜性评价含义、了解怎么选择，适宜性、限制性"></a>6.6 土地适宜性评价含义、了解怎么选择，适宜性、限制性</h4><h5 id="6-6-1-土地适宜性评价"><a href="#6-6-1-土地适宜性评价" class="headerlink" title="6.6.1 土地适宜性评价"></a>6.6.1 土地适宜性评价</h5><pre><code>是指评价土地对特定利用类型的适宜程度的过程</code></pre><p>题库：土地适宜性评价的依据是土地的适宜性。(×）<br> 解析：土地适宜性评价的依据是土地的适宜性和限制性。</p>
+<h4 id="6-7-持续土地利用管理评价概念、原则"><a href="#6-7-持续土地利用管理评价概念、原则" class="headerlink" title="6.7 持续土地利用管理评价概念、原则"></a>6.7 持续土地利用管理评价概念、原则</h4><h5 id="6-7-1-持续土地利用管理评价"><a href="#6-7-1-持续土地利用管理评价" class="headerlink" title="6.7.1 持续土地利用管理评价"></a>6.7.1 持续土地利用管理评价</h5><pre><code>是将与土地利用和土地管理有关的自然环境、经济和社会各个方面的因素联系起来，通过一系列的科学分析，指出土地利用管理的可持续性。</code></pre><h5 id="6-7-2-简述持续土地利用管理的五大基本原则。"><a href="#6-7-2-简述持续土地利用管理的五大基本原则。" class="headerlink" title="6.7.2 简述持续土地利用管理的五大基本原则。"></a>6.7.2 简述持续土地利用管理的五大基本原则。</h5><p>答案：持续土地管理是将技术、政策和能够使社会经济原则与环境考虑融为一体的行为结合起来，以便同时实现保持或提高生产与服务(生产性)、降低生产风险(安全性)、保护自然资源潜力及防止土壤退化(保护性)、经济上可行(可行性)和社会可接受(可接受性)。解析：也可以直接写出：生产性、安全性、保护性、可行性和可接受性。</p>
+<h4 id="6-8-分等定级关系-分等（全国）、定级（县级）"><a href="#6-8-分等定级关系-分等（全国）、定级（县级）" class="headerlink" title="6.8 分等定级关系    分等（全国）、定级（县级）"></a>6.8 分等定级关系    分等（全国）、定级（县级）</h4><pre><code>农用地的分等建立在**全国**统一的标准上。农用地定级建立在**县域**统一的标准上。</code></pre><h3 id="第七章"><a href="#第七章" class="headerlink" title="第七章"></a>第七章</h3><h4 id="7-1-土地利用概念"><a href="#7-1-土地利用概念" class="headerlink" title="7.1 土地利用概念"></a>7.1 土地利用概念</h4><pre><code>是指人类通过与土地结合获得物质产品和服务的经济活动过程。</code></pre><h4 id="7-2-土地利用系统"><a href="#7-2-土地利用系统" class="headerlink" title="7.2 土地利用系统"></a>7.2 土地利用系统</h4><pre><code>是一定时间和一定空间的具有相对独立的土地利用单元所构成的系统。</code></pre><h4 id="7-3-土地资源可持续利用的含义与原则"><a href="#7-3-土地资源可持续利用的含义与原则" class="headerlink" title="7.3 土地资源可持续利用的含义与原则"></a>7.3 土地资源可持续利用的含义与原则</h4><p><strong>含义：</strong>存在形式的可持续性、物质生产能力的可持续性、经济效益的可持续性、生态环境的可持续性。</p>
+<p><strong>原则：</strong>生产性原则、稳定性原则、保护性原则、可行性原则、可承受性原则。</p>
+<h4 id="7-4-土地资源优化配置的内涵和目标"><a href="#7-4-土地资源优化配置的内涵和目标" class="headerlink" title="7.4 土地资源优化配置的内涵和目标"></a>7.4 土地资源优化配置的内涵和目标</h4><p><strong>内涵：</strong>实质上是一种以政府的管理或干预所产生维护公众利益的社会力量，是一个对既定目标不断修正、对影响土地利用发展演变的各种因素和不同利益集团不断进行协调的过程</p>
+<p><strong>目标：</strong>使有限的土地资源产生最大的效益，为取得预定的效益尽可能少地利用土地资源。</p>
+<h4 id="7-5-土地节约、集约的区别、联系"><a href="#7-5-土地节约、集约的区别、联系" class="headerlink" title="7.5 土地节约、集约的区别、联系"></a>7.5 土地节约、集约的区别、联系</h4><pre><code>土地节约利用是相对于土地浪费而言的，土地集约利用是相对于土地粗放而言的。土地节约强调土地利用结果，土地集约强调的是土地利用方式。但好歹利用方式是为了达到好的利用结果，所以二者的内涵是统一的。土地集约和土地节约的基本含义就是通过增加土地投入，获得较高的报酬。</code></pre><h4 id="7-6-开发、复垦、整理区别"><a href="#7-6-开发、复垦、整理区别" class="headerlink" title="7.6 开发、复垦、整理区别"></a>7.6 开发、复垦、整理区别</h4><p>土地开发：土地利用范围的扩大和土地利用深度的开发两方面含义</p>
+<p>土地复垦：指对破坏或退化土地的再生利用及其生态系统恢复的综合性技术过程</p>
+<p>土地整理:对土地权属和土地用途、布局、结构等的调整。</p>
+<p><strong>三者区别;</strong></p>
+<p>土地开发: 侧重于对未利用土地的开发。</p>
+<p>土地复垦: 侧重于使因各种自然和人为因素造成破坏的土地使其恢复到可利用状态的活动，是综合性的利用和技术过程。</p>
+<p>土地整理: 它是一项对土地权属和土地的用途、布局、结构等进行全面调整的综合措施。</p>
+<h4 id="7-7-整理含义、目标、主要任务"><a href="#7-7-整理含义、目标、主要任务" class="headerlink" title="7.7 整理含义、目标、主要任务"></a>7.7 整理含义、目标、主要任务</h4><p>土地整理：它是一项对土地权属和土地的用途、布局、结构等进行全面调整的综合措施。</p>
+<p>土地整理目标：形成合理、高效、集约的土地利用结构，提高土地利用效率，适应经济社会发展对土地的需求。</p>
+<p>土地整理任务：1.增加耕地面积，提高土地利用率2.调整土地关系，是土地关系适应土地生产力提高的要求3.提高土地综合生产能力和土地产出率4.实现土地资源景观功能。</p>
+<h4 id="7-8-综合整治内涵、内容"><a href="#7-8-综合整治内涵、内容" class="headerlink" title="7.8 综合整治内涵、内容"></a>7.8 综合整治内涵、内容</h4><p><strong>概念：</strong>土地综合整治是在一定区域内，按照土地利用总体规划确定的目标和用途，采取行政、经济、法律和工程技术手段，对土地利用结构和布局进行调整改造，以增加有效耕地面积，提高土地利用率和产出率，促进耕地规模经营、人口集中居住、产业集聚发展和改善生态环境的过程。关键在于形成建设合力</p>
+<p><strong>内容：</strong>农村土地整理复垦、农村土地整治、农村环境综合整治</p>
+<h4 id="7-9-土地生态系统的概念"><a href="#7-9-土地生态系统的概念" class="headerlink" title="7.9 土地生态系统的概念"></a>7.9 土地生态系统的概念</h4><pre><code>是由土地各自然要素构成的，并包括过去和现在人类活动的影响在内，而组成的复杂的物质和能量交换系统。</code></pre><h3 id="第八章"><a href="#第八章" class="headerlink" title="第八章"></a>第八章</h3><h4 id="8-1-土地退化的类型以及防护措施（7种）"><a href="#8-1-土地退化的类型以及防护措施（7种）" class="headerlink" title="8.1 土地退化的类型以及防护措施（7种）"></a>8.1 土地退化的类型以及防护措施（7种）</h4><h5 id="8-1-1-退化的主要形式"><a href="#8-1-1-退化的主要形式" class="headerlink" title="8.1.1 退化的主要形式"></a>8.1.1 退化的主要形式</h5><ol>
+<li>土地侵蚀（水土流失）。由自 然界发生风力、洪水（水力）和机械重力及人为滥垦、滥伐、滥 牧等原因所致。</li>
+<li>土地沙漠化。主要发生在干旱、半干旱地区。</li>
+<li>土地盐碱化。主要由灌溉不当和排水不畅引起。</li>
+<li>土地次生潜育 化。是水田土地的退化形式，主要由排灌不当和不合理耕作制度所造成。</li>
+<li>土地污染。主要是由工业“三废”污染、化肥农药污染 和生物污染（种子、产品污染）所造成。</li>
+<li>此外，还有对土地的不合理利用造成的土地质量退化等。土地退化严重制约着农业生产的</li>
+</ol>
+<h4 id="8-2-土地保护的内容和保护措施"><a href="#8-2-土地保护的内容和保护措施" class="headerlink" title="8.2 土地保护的内容和保护措施"></a>8.2 土地保护的内容和保护措施</h4><pre><code>土地保护内容：(1)数量保护(2)质量保护(3)生态环境保护(4)文化景观保护</code></pre><p>措施：①科学编制土地保护规划；②优化结构，实行土地生态保护；③加强土地综合整治，保护、提升和重塑生态景观；④建立土地保护动态监控系统；⑤严格执行土地保护法律法规；⑥增强全民“惜土”意识</p>
+<h3 id="第九章"><a href="#第九章" class="headerlink" title="第九章"></a>第九章</h3><h4 id="9-1-耕地利用的特点"><a href="#9-1-耕地利用的特点" class="headerlink" title="9.1 耕地利用的特点"></a>9.1 耕地利用的特点</h4><pre><code>自然性，社会性，稀缺性，区域差异性，生态景观性</code></pre><h4 id="9-2-耕地合理利用与保护措施"><a href="#9-2-耕地合理利用与保护措施" class="headerlink" title="9.2 耕地合理利用与保护措施"></a>9.2 耕地合理利用与保护措施</h4><ol>
+<li>保持耕地生态系统稳定性：</li>
+<li>提高耕地利用集约度；</li>
+<li>加大耕地开发整理力度；</li>
+<li>耕地后备资源开发要以生态环境保护为前提；</li>
+<li>建立和完善耕地利用与保护的法规、法律保障体系；</li>
+<li>严格实施基本农田保护制度</li>
+</ol>
+<h4 id="9-3-设施农业用地特点、合理利用、保护措施"><a href="#9-3-设施农业用地特点、合理利用、保护措施" class="headerlink" title="9.3 设施农业用地特点、合理利用、保护措施"></a>9.3 设施农业用地特点、合理利用、保护措施</h4><h3 id="第十章"><a href="#第十章" class="headerlink" title="第十章"></a>第十章</h3><h4 id="10-1-建设用地特征"><a href="#10-1-建设用地特征" class="headerlink" title="10.1 建设用地特征"></a>10.1 建设用地特征</h4><ol>
+<li>承载性与非生态利用性；</li>
+<li>土地利用逆转的相对困难性；</li>
+<li>土地利用的高度集约性；</li>
+<li>区位选择的重要性；</li>
+<li>供需的矛盾性</li>
+</ol>
+<h4 id="10-2（学习通）建设用地管理原则、内容"><a href="#10-2（学习通）建设用地管理原则、内容" class="headerlink" title="10.2（学习通）建设用地管理原则、内容"></a>10.2（学习通）建设用地管理原则、内容</h4><p><strong>管理原则：</strong> </p>
+<pre><code>实行统一管理的原则；规划总体控制的原则；建设用地优先的原则；节约集约用地原则；有偿有限期使用原则</code></pre><p><strong>内容：</strong></p>
+<pre><code>建设用地的规划和计划管理；建设用地的供应管理；建设用地的征收征用管理；农村建设用地管理</code></pre><h4 id="10-3（学习通）供地方式（划拨、有偿（出让（年期）、国家租赁、国家作价入股））"><a href="#10-3（学习通）供地方式（划拨、有偿（出让（年期）、国家租赁、国家作价入股））" class="headerlink" title="10.3（学习通）供地方式（划拨、有偿（出让（年期）、国家租赁、国家作价入股））"></a>10.3（学习通）供地方式（划拨、有偿（出让<strong>（年期）</strong>、国家租赁、国家作价入股））</h4><pre><code>出让方式:招、拍、挂、协议
+
+出让年期:工业50年、住宅70年、商业40年、科教文卫</code></pre><p>体50年、综合50年</p>
+<h4 id="10-4（学习通）其他用地-–-gt-建设用地-方案（4种）"><a href="#10-4（学习通）其他用地-–-gt-建设用地-方案（4种）" class="headerlink" title="10.4（学习通）其他用地 –&gt; 建设用地  方案（4种）"></a>10.4（学习通）其他用地 –&gt; 建设用地  方案（4种）</h4><h5 id="10-4-1-占用国有农业用地要办理农地转用手续转化为国有建设用地"><a href="#10-4-1-占用国有农业用地要办理农地转用手续转化为国有建设用地" class="headerlink" title="10.4.1 占用国有农业用地要办理农地转用手续转化为国有建设用地"></a>10.4.1 占用国有农业用地要办理农地转用手续转化为国有建设用地</h5><pre><code>预拟定农地转用方案、补充耕地方案、供地方案</code></pre><h5 id="10-4-2-占有集体建设用地办理征地手续"><a href="#10-4-2-占有集体建设用地办理征地手续" class="headerlink" title="10.4.2 占有集体建设用地办理征地手续"></a>10.4.2 占有集体建设用地办理征地手续</h5><pre><code>拟定征收方案、供地方案</code></pre><h5 id="10-4-3-占用国有利用地办理供地手续转化为国有建设用地"><a href="#10-4-3-占用国有利用地办理供地手续转化为国有建设用地" class="headerlink" title="10.4.3 占用国有利用地办理供地手续转化为国有建设用地"></a>10.4.3 占用国有利用地办理供地手续转化为国有建设用地</h5><pre><code>仅须拟定供地方案</code></pre><h5 id="10-4-4-占用集体农业用地转用为集体建设用地后征收为国有建设用地"><a href="#10-4-4-占用集体农业用地转用为集体建设用地后征收为国有建设用地" class="headerlink" title="10.4.4 占用集体农业用地转用为集体建设用地后征收为国有建设用地"></a>10.4.4 占用集体农业用地转用为集体建设用地后征收为国有建设用地</h5><pre><code>须拟定农地转用方案、补充耕地方案、征收方案、供地方案</code></pre><h4 id="10-5（学习通）基本农田划定范围"><a href="#10-5（学习通）基本农田划定范围" class="headerlink" title="10.5（学习通）基本农田划定范围"></a>10.5（学习通）基本农田划定范围</h4><p>①粮、棉、油生产基地内的耕地②有良好的水利与水土保护设施的耕地③城市蔬菜生产基地④农业科研、教学试验田</p>
+<h4 id="10-6-征收、征用概念、异同-征收特点"><a href="#10-6-征收、征用概念、异同-征收特点" class="headerlink" title="10.6 征收、征用概念、异同    征收特点"></a>10.6 征收、征用概念、异同    征收特点</h4><p><strong>征收的概念</strong>：集体土地征收是指国家为公共利益的需要，通过法定程序，将原属于农民集体所有的土地征为国有的行为。</p>
+<p><strong>征收的特点</strong>：1、是政府行为2、必须依法批准3、要依法补偿4、具有强制性</p>
+<p><strong>征收与征用的异同</strong></p>
+<p>相同点：1、都是为了公共利益;2、都要经过法定程序;3、都要依法进行补偿</p>
+<p>不同点：征收是所有权的改变，而征用只是使用权的改变</p>
+<h4 id="10-7-征地补偿费用（简答）"><a href="#10-7-征地补偿费用（简答）" class="headerlink" title="10.7 征地补偿费用（简答）"></a>10.7 征地补偿费用（简答）</h4><p>(一）土地补偿费</p>
+<p>1.土地补偿费的概念</p>
+<p>是支付土地所有权的费用。</p>
+<p>2.上地补偿费的计算</p>
+<p>为该耕地征收前三年平均年产值的6-10倍。</p>
+<p>(二）安置补助费</p>
+<p>1.安置补助费的概念</p>
+<p>是指用地单位对被征地单位安置因征地所造成的多余劳动力所需费用而支付的补助金额。</p>
+<p>2.安置补助费的计算</p>
+<p>每一个需要安置的农业人口的安置补助费为该耕地征收前三年平均年产值的4-6倍。</p>
+<p>(三）地上附着物的补偿</p>
+<p>1．地上附着物补偿的概念主要是指对房屋及其它附着物的补偿。</p>
+<p>2.地上附着物的计算</p>
+<p>依据评估值或当地政府制定的补偿标准。</p>
+<p>(四）青苗费</p>
+<p>1．青苗费的概念</p>
+<p>对已播种尚未到收获期的农作物进行的补偿</p>
+<p>2．青苗费的计算</p>
+<p>一般为该耕地征收前三年平均年产值的一半</p>
+<h3 id="第十一、十二、十三章"><a href="#第十一、十二、十三章" class="headerlink" title="第十一、十二、十三章"></a>第十一、十二、十三章</h3><h4 id="1-后备土地资源利用与保护措施"><a href="#1-后备土地资源利用与保护措施" class="headerlink" title="1 后备土地资源利用与保护措施"></a>1 后备土地资源利用与保护措施</h4><p>1.在保护生态环境前提下，适度开发部分耕地后备资源</p>
+<p>2.合理利用水土资源，科学制定后备土地资源开发规划</p>
+<p>3.优化土地利用布局</p>
+<p>4.建立土地开发利用项目管理制度，实行土地开发利用的科学管理</p>
+<p>5.建立湿地分层管理的管理模式</p>
+<h4 id="2-中国土地资源特点、优势及不利因素分析"><a href="#2-中国土地资源特点、优势及不利因素分析" class="headerlink" title="2 中国土地资源特点、优势及不利因素分析"></a>2 中国土地资源特点、优势及不利因素分析</h4><p><strong>特点：</strong>人多地少，人均土地不均世界平均的三分之一；山地多，平地少，耕地、林地比重低。</p>
+<h4 id="3-土地资源分区（12个分区任意一个的土地利用特点）"><a href="#3-土地资源分区（12个分区任意一个的土地利用特点）" class="headerlink" title="3 土地资源分区（12个分区任意一个的土地利用特点）"></a>3 土地资源分区（12个分区任意一个的土地利用特点）</h4><h3 id="论述题"><a href="#论述题" class="headerlink" title="论述题"></a>论述题</h3><h4 id="土地资源学研究的是什么？"><a href="#土地资源学研究的是什么？" class="headerlink" title="土地资源学研究的是什么？"></a>土地资源学研究的是什么？</h4><pre><code>土地资源学是研究土地各组成要素产生的特征及其与开发利用的关系的学科。由于土地是气候、地质、地貌、土壤、植被和水文等自然要素以及人的活动结果所组成的综合体，因此它是众多学科研究的对象。土地资源学不是从土地的单一组成因素（如土壤、地貌）来研究土地，而是主要研究各组成要素相互作用下形成的影响土地利用的特征、分布规律和合理利用途径。</code></pre><p>  土地资源学研究的主要内容包括：</p>
+<ul>
+<li>土地组成要素及其不同组合对土地利用的作用；</li>
+<li>土地资源分类体系及其划分方法；</li>
+<li>土地资源的调查和评价；</li>
+<li>土地资源社会生产力分析；</li>
+<li>区域土地资源的保护和开发利用。</li>
+</ul>
+<h4 id="节约集约"><a href="#节约集约" class="headerlink" title="节约集约"></a>节约集约</h4><p>土地节约集约面临的严峻挑战是什么？</p>
+<p>①、土地投入产出效益低；②、用地布局不合理，区域间用地水平差异大；③、建设用地内部比例结构不合理；④、土地利用整体效益下降；⑤、低效、闲置的存量土地量大面广；⑥、农村建设用地效益低、腾退难；⑦、非建设用地集约利用水平低。</p>
+<h4 id="耕地保护"><a href="#耕地保护" class="headerlink" title="耕地保护"></a>耕地保护</h4><pre><code>耕地保护是指运用法律、行政、经济、技术等手段和措施，对耕地的数量和质量进行的保护。耕地保护是关系我国经济和社会可持续发展的全局性战略问题。“十分珍惜、合理利用土地和切实保护耕地”是必须长期坚持的一项基本国策。</code></pre><p><strong>耕地保护的目的：</strong> 实现耕地的总量动态平衡</p>
+<p><strong>耕地的数量保护具体措施包括以下几方面：</strong> </p>
+<ol>
+<li>严格控制耕地转为非耕地；</li>
+<li>国家实行占用<span class="exturl" data-url="aHR0cHM6Ly93d3cudHVsaXUuY29tL3RhZ3MvMTcuaHRtbA==">耕地补偿<i class="fa fa-external-link-alt"></i></span>制度；</li>
+<li>国家实行基本农田保护制度；</li>
+<li>推进土地开发、复垦、整理。</li>
+</ol>
+<p><strong>耕地的质量保护具体措施包括以下几方面：</strong></p>
+<ol>
+<li>国家制定耕地质量保护措施，如：防止水土流失、耕地沙化、盐碱化、贫瘠化等；</li>
+<li>实现耕地环境保护。</li>
+</ol>
+<p><strong>加强耕地资源保护的政策建议:</strong></p>
+<ol>
+<li>增强国人“耕地危机”意识。</li>
+<li>加大保护力度，完善耕地保护制度。</li>
+<li>创新保护方式，深化<span class="exturl" data-url="aHR0cHM6Ly93d3cudHVsaXUuY29tL3RhZ3MvMzcuaHRtbA==">农村土地<i class="fa fa-external-link-alt"></i></span>整治。<span class="exturl" data-url="aHR0cHM6Ly93d3cudHVsaXUuY29tL3RhZ3MvMzM1Lmh0bWw=">城镇化<i class="fa fa-external-link-alt"></i></span>过程中保护耕地资源，是一个保护耕地与开发耕地相结合的过程。要将深化农村土地整治作为新时期耕地资源保护的重中之重。</li>
+</ol>
+<h4 id="国土空间规划"><a href="#国土空间规划" class="headerlink" title="国土空间规划"></a>国土空间规划</h4><hr>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>一线毛衣
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://bwchen1223.xyz/2020/09/14/Emphasis-on-land-resources/" title="Emphasis on land resources">https://bwchen1223.xyz/2020/09/14/Emphasis-on-land-resources/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://zhuanlan.zhihu.com/Rsweater-Python">
+            <span class="icon">
+              <i class="fab fa-zhihu"></i>
+            </span>
+
+            <span class="label">Zhihu</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/29/task/" rel="prev" title="task">
+      <i class="fa fa-chevron-left"></i> task
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#土地资源学重点"><span class="nav-number">1.</span> <span class="nav-text">土地资源学重点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题型"><span class="nav-number">1.1.</span> <span class="nav-text">题型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第一章"><span class="nav-number">1.2.</span> <span class="nav-text">第一章</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-土地的概念"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 1 土地的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-土地资源的概念"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2 土地资源的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-土地属性"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.3 土地属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-土地的功能"><span class="nav-number">1.2.4.</span> <span class="nav-text">1.4 土地的功能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二章"><span class="nav-number">1.3.</span> <span class="nav-text">第二章</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-气候"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.1 气候</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-1-光照长度"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">2.1.1 光照长度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-2-热量"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">2.1.2 热量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-3-降水"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">2.1.3 降水</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-土壤"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.2 土壤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-地质"><span class="nav-number">1.3.3.</span> <span class="nav-text">2.3 地质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-地形地貌"><span class="nav-number">1.3.4.</span> <span class="nav-text">2.4 地形地貌</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-1-海拔高度"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">2.4.1 海拔高度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-2-地面坡度"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">2.4.2 地面坡度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-3-地形"><span class="nav-number">1.3.4.3.</span> <span class="nav-text">2.4.3 地形</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-水文"><span class="nav-number">1.3.5.</span> <span class="nav-text">2.5 水文</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-5-1-地表水资源"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">2.5.1 地表水资源</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-5-2-地下水"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">2.5.2 地下水</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-生物"><span class="nav-number">1.3.6.</span> <span class="nav-text">2.6 生物</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-6-1-生态系统多样性"><span class="nav-number">1.3.6.1.</span> <span class="nav-text">2.6.1 生态系统多样性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-6-2植被"><span class="nav-number">1.3.6.2.</span> <span class="nav-text">2.6.2植被</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三章"><span class="nav-number">1.4.</span> <span class="nav-text">第三章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四章"><span class="nav-number">1.5.</span> <span class="nav-text">第四章</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-概念"><span class="nav-number">1.5.1.</span> <span class="nav-text">4.1 概念</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第五章"><span class="nav-number">1.6.</span> <span class="nav-text">第五章</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-土地资源调查的概念、基本内容方法、一般程序"><span class="nav-number">1.6.1.</span> <span class="nav-text">5.1 土地资源调查的概念、基本内容方法、一般程序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-1-土地资源调查的概念"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">5.1.1 土地资源调查的概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-2-基本内容"><span class="nav-number">1.6.1.2.</span> <span class="nav-text">5.1.2 基本内容</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-3-基本方法"><span class="nav-number">1.6.1.3.</span> <span class="nav-text">5.1.3 基本方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-4-一般程序"><span class="nav-number">1.6.1.4.</span> <span class="nav-text">5.1.4 一般程序</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-土地资源条件调查的概念、八个条件"><span class="nav-number">1.6.2.</span> <span class="nav-text">5.2 土地资源条件调查的概念、八个条件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-2-1-概念"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">5.2.1 概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#八个条件"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">八个条件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-土地利用现状调查的概念、土地利用现状调查与变更调查的关系"><span class="nav-number">1.6.3.</span> <span class="nav-text">5.3 土地利用现状调查的概念、土地利用现状调查与变更调查的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-3-1-土地利用现状调查的概念"><span class="nav-number">1.6.3.1.</span> <span class="nav-text">5.3.1 土地利用现状调查的概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-3-2-现状调查与变更调查的关系"><span class="nav-number">1.6.3.2.</span> <span class="nav-text">5.3.2 现状调查与变更调查的关系</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-4-三调-分类体系、坐标系、主要任务-（6）、工作系统"><span class="nav-number">1.6.4.</span> <span class="nav-text">5.4 三调  分类体系、坐标系、主要任务 （6）、工作系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第六章"><span class="nav-number">1.7.</span> <span class="nav-text">第六章</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-土地资源评价的含义"><span class="nav-number">1.7.1.</span> <span class="nav-text">6.1 土地资源评价的含义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-土地资源评价单元、划分的方法（6种）"><span class="nav-number">1.7.2.</span> <span class="nav-text">6.2 土地资源评价单元、划分的方法（6种）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#6-2-1-土地资源评价单元"><span class="nav-number">1.7.2.1.</span> <span class="nav-text">6.2.1 土地资源评价单元</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-2-2-土地评价单元划分方法"><span class="nav-number">1.7.2.2.</span> <span class="nav-text">6.2.2 土地评价单元划分方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-评价因素选择的原则（4个）-举例评价因素（6类）"><span class="nav-number">1.7.3.</span> <span class="nav-text">6.3 评价因素选择的原则（4个）    举例评价因素（6类）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-4-土地资源调查与评价关系（题库）"><span class="nav-number">1.7.4.</span> <span class="nav-text">6.4 土地资源调查与评价关系（题库）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-5-土地资源潜力、土地资源人口承载力-含义-土地潜力评价系统（美国8级，判断）"><span class="nav-number">1.7.5.</span> <span class="nav-text">6.5 土地资源潜力、土地资源人口承载力 含义   土地潜力评价系统（美国8级，判断）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#6-5-1-土地潜力"><span class="nav-number">1.7.5.1.</span> <span class="nav-text">6.5.1 土地潜力</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-5-2-土地潜力评价"><span class="nav-number">1.7.5.2.</span> <span class="nav-text">6.5.2 土地潜力评价</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-5-5-土地资源人口承载力"><span class="nav-number">1.7.5.3.</span> <span class="nav-text">6.5.5 土地资源人口承载力</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-5-4-潜力评价系统"><span class="nav-number">1.7.5.4.</span> <span class="nav-text">6.5.4 潜力评价系统</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-6-土地适宜性评价含义、了解怎么选择，适宜性、限制性"><span class="nav-number">1.7.6.</span> <span class="nav-text">6.6 土地适宜性评价含义、了解怎么选择，适宜性、限制性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#6-6-1-土地适宜性评价"><span class="nav-number">1.7.6.1.</span> <span class="nav-text">6.6.1 土地适宜性评价</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-7-持续土地利用管理评价概念、原则"><span class="nav-number">1.7.7.</span> <span class="nav-text">6.7 持续土地利用管理评价概念、原则</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#6-7-1-持续土地利用管理评价"><span class="nav-number">1.7.7.1.</span> <span class="nav-text">6.7.1 持续土地利用管理评价</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-7-2-简述持续土地利用管理的五大基本原则。"><span class="nav-number">1.7.7.2.</span> <span class="nav-text">6.7.2 简述持续土地利用管理的五大基本原则。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-8-分等定级关系-分等（全国）、定级（县级）"><span class="nav-number">1.7.8.</span> <span class="nav-text">6.8 分等定级关系    分等（全国）、定级（县级）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第七章"><span class="nav-number">1.8.</span> <span class="nav-text">第七章</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-1-土地利用概念"><span class="nav-number">1.8.1.</span> <span class="nav-text">7.1 土地利用概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-2-土地利用系统"><span class="nav-number">1.8.2.</span> <span class="nav-text">7.2 土地利用系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-土地资源可持续利用的含义与原则"><span class="nav-number">1.8.3.</span> <span class="nav-text">7.3 土地资源可持续利用的含义与原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-4-土地资源优化配置的内涵和目标"><span class="nav-number">1.8.4.</span> <span class="nav-text">7.4 土地资源优化配置的内涵和目标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-5-土地节约、集约的区别、联系"><span class="nav-number">1.8.5.</span> <span class="nav-text">7.5 土地节约、集约的区别、联系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-6-开发、复垦、整理区别"><span class="nav-number">1.8.6.</span> <span class="nav-text">7.6 开发、复垦、整理区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-7-整理含义、目标、主要任务"><span class="nav-number">1.8.7.</span> <span class="nav-text">7.7 整理含义、目标、主要任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-8-综合整治内涵、内容"><span class="nav-number">1.8.8.</span> <span class="nav-text">7.8 综合整治内涵、内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-9-土地生态系统的概念"><span class="nav-number">1.8.9.</span> <span class="nav-text">7.9 土地生态系统的概念</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第八章"><span class="nav-number">1.9.</span> <span class="nav-text">第八章</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-1-土地退化的类型以及防护措施（7种）"><span class="nav-number">1.9.1.</span> <span class="nav-text">8.1 土地退化的类型以及防护措施（7种）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#8-1-1-退化的主要形式"><span class="nav-number">1.9.1.1.</span> <span class="nav-text">8.1.1 退化的主要形式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-2-土地保护的内容和保护措施"><span class="nav-number">1.9.2.</span> <span class="nav-text">8.2 土地保护的内容和保护措施</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第九章"><span class="nav-number">1.10.</span> <span class="nav-text">第九章</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-1-耕地利用的特点"><span class="nav-number">1.10.1.</span> <span class="nav-text">9.1 耕地利用的特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-2-耕地合理利用与保护措施"><span class="nav-number">1.10.2.</span> <span class="nav-text">9.2 耕地合理利用与保护措施</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-设施农业用地特点、合理利用、保护措施"><span class="nav-number">1.10.3.</span> <span class="nav-text">9.3 设施农业用地特点、合理利用、保护措施</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第十章"><span class="nav-number">1.11.</span> <span class="nav-text">第十章</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#10-1-建设用地特征"><span class="nav-number">1.11.1.</span> <span class="nav-text">10.1 建设用地特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-2（学习通）建设用地管理原则、内容"><span class="nav-number">1.11.2.</span> <span class="nav-text">10.2（学习通）建设用地管理原则、内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-3（学习通）供地方式（划拨、有偿（出让（年期）、国家租赁、国家作价入股））"><span class="nav-number">1.11.3.</span> <span class="nav-text">10.3（学习通）供地方式（划拨、有偿（出让（年期）、国家租赁、国家作价入股））</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4（学习通）其他用地-–-gt-建设用地-方案（4种）"><span class="nav-number">1.11.4.</span> <span class="nav-text">10.4（学习通）其他用地 –&gt; 建设用地  方案（4种）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#10-4-1-占用国有农业用地要办理农地转用手续转化为国有建设用地"><span class="nav-number">1.11.4.1.</span> <span class="nav-text">10.4.1 占用国有农业用地要办理农地转用手续转化为国有建设用地</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10-4-2-占有集体建设用地办理征地手续"><span class="nav-number">1.11.4.2.</span> <span class="nav-text">10.4.2 占有集体建设用地办理征地手续</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10-4-3-占用国有利用地办理供地手续转化为国有建设用地"><span class="nav-number">1.11.4.3.</span> <span class="nav-text">10.4.3 占用国有利用地办理供地手续转化为国有建设用地</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10-4-4-占用集体农业用地转用为集体建设用地后征收为国有建设用地"><span class="nav-number">1.11.4.4.</span> <span class="nav-text">10.4.4 占用集体农业用地转用为集体建设用地后征收为国有建设用地</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-5（学习通）基本农田划定范围"><span class="nav-number">1.11.5.</span> <span class="nav-text">10.5（学习通）基本农田划定范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-6-征收、征用概念、异同-征收特点"><span class="nav-number">1.11.6.</span> <span class="nav-text">10.6 征收、征用概念、异同    征收特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-7-征地补偿费用（简答）"><span class="nav-number">1.11.7.</span> <span class="nav-text">10.7 征地补偿费用（简答）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第十一、十二、十三章"><span class="nav-number">1.12.</span> <span class="nav-text">第十一、十二、十三章</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-后备土地资源利用与保护措施"><span class="nav-number">1.12.1.</span> <span class="nav-text">1 后备土地资源利用与保护措施</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-中国土地资源特点、优势及不利因素分析"><span class="nav-number">1.12.2.</span> <span class="nav-text">2 中国土地资源特点、优势及不利因素分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-土地资源分区（12个分区任意一个的土地利用特点）"><span class="nav-number">1.12.3.</span> <span class="nav-text">3 土地资源分区（12个分区任意一个的土地利用特点）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#论述题"><span class="nav-number">1.13.</span> <span class="nav-text">论述题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#土地资源学研究的是什么？"><span class="nav-number">1.13.1.</span> <span class="nav-text">土地资源学研究的是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#节约集约"><span class="nav-number">1.13.2.</span> <span class="nav-text">节约集约</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#耕地保护"><span class="nav-number">1.13.3.</span> <span class="nav-text">耕地保护</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#国土空间规划"><span class="nav-number">1.13.4.</span> <span class="nav-text">国土空间规划</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="一线毛衣"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">一线毛衣</p>
+  <div class="site-description" itemprop="description">这里有Python、GIS相关的小笔记！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Jzd2VhdGVy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;rsweater"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmJ3X2NoZW4xMjIzQGZveG1haWwuY29t" title="E-Mail → mailto:bw_chen1223@foxmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一线毛衣</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">41k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">37 分钟</span>
+</div>
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9tdXNlLw==">NexT.Muse</span> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/next-theme/pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lozad.js/1.14.0/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="//cdn.jsdelivr.net/gh/next-theme/theme-next-three@1/three.min.js"></script>
+    <script defer src="//cdn.jsdelivr.net/gh/next-theme/theme-next-three@1/three-waves.min.js"></script>
+
+
+  
+  <script data-pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el         : '#valine-comments',
+      path       : location.pathname,
+    }, {"enable":true,"appId":"n0m507S9Q3hGB7na3rXQO8bH-gzGzoHsz","appKey":"nBz9lyUQ5ooRmJcE8qaIVUym","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"language":"zh-cn","visitor":false,"comment_count":false,"recordIP":false,"serverURLs":null}
+    ));
+  }, window.Valine);
+});
+</script>
+
+    </div>
+</body>
+</html>
