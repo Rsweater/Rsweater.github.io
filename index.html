@@ -196,6 +196,224 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bwchen1223.xyz/2020/10/10/Estimating-surface-soil-moisture-from-satellite-observations-using-a-generalized-regression-neural-network-trained-on-sparse-ground-based-measurements-in-the-continental-U-S/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="一线毛衣">
+      <meta itemprop="description" content="这里有Python、GIS相关的小笔记！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rsweater's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/10/Estimating-surface-soil-moisture-from-satellite-observations-using-a-generalized-regression-neural-network-trained-on-sparse-ground-based-measurements-in-the-continental-U-S/" class="post-title-link" itemprop="url">Estimating surface soil moisture from satellite observations using a generalized regression neural network trained on sparse ground-based measurements in the continental U.S</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-10-10 10:05:30" itemprop="dateCreated datePublished" datetime="2020-10-10T10:05:30+08:00">2020-10-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-12 16:40:19" itemprop="dateModified" datetime="2020-10-12T16:40:19+08:00">2020-10-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Journal-of-Hydrology-s-Paper/" itemprop="url" rel="index"><span itemprop="name">Journal of Hydrology's Paper</span></a>
+                </span>
+            </span>
+
+          
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>Autor:</strong>  Qiangqiang Yuan<sup>a,b</sup> , Hongzhang Xu<sup>a,b</sup> , Tongwen Li<sup>c</sup> , Huanfeng Shen<sup>b,c,d,⁎</sup> , Liangpei Zhang<sup>b,e</sup></p>
+<blockquote>
+<p>a. School of Geodesy and Geomatics, Wuhan University, Wuhan 430079, Hubei, China </p>
+<p>b. The Collaborative Innovation Center for Geospatial Technology, Wuhan 430079, Hubei, China </p>
+<p>c. School of Resource and Environmental Sciences, Wuhan University, Wuhan 430079, Hubei, China </p>
+<p>d. The Key Laboratory of Geographic Information System, Ministry of Education, Wuhan University, Wuhan 430079, Hubei, China </p>
+<p>e. The State Key Laboratory of Information Engineering in Surveying, Mapping and Remote Sensing, Wuhan University, Wuhan 430079, Hubei, China</p>
+</blockquote>
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract:"></a><strong>Abstract:</strong></h2><p><strong>原文：</strong>This study attempted to develop a <strong><u>point-surface collaborative inversion</u></strong> (PSCI) method for the estimation of regional <strong><u>surface soil moisture</u></strong> (SSM) using a <u><strong>generalized regression neural network</strong></u>  (GRNN) Trained on sparse ground-based measurements. Specifically, GRNN was employed  to establish a nonlinear relationship between ground-based measurements from <u><strong>sparse network stations</strong></u> (SNSs) and passive microwave observations from the <u><strong>Soil Moisture Active Passive</strong></u> (SMAP) satellite in the continental U.S for April 2015 to March 2018. More importantly, the <strong><u>extended triple collection</u></strong> technique was applied to address the scale mismatch issue resulting from the small spatial support of ground-based measurements, whereby individual SNSs’ reliability at the SMAP coarse footprint scale could be determined before fed into GRNN. The 10-fold cross-validation result showed that the GRNN model trained on reliable SNSs obtained a satisfactory performance –the cross-validated R and unbiased RMSE values were 0.88 and 0.050 cm<sup>-3</sup>, respectively, which outperformed the back-propagation neural network (BPNN) and the other GRNN  model trained on all SNSs. Furthermore, temporal and spatial comparisons between the PSCI-based SSM retrievals and other SSM datasets indicated the former agreed the best with ground measurements both in time and space, suggesting the proposed PSCI method had shown great potential in estimating reliable regional SSM climate records. </p>
+<p><strong>剖析：</strong> </p>
+<ol>
+<li>Specifically, GRNN was employed to establish a nonlinear relationship between <u>ground-based measurements from sparse network stations (SNSs)</u> and <u>passive microwave observations from the Soil Moisture Active Passive (SMAP)</u> satellite in the continental U.S for April 2015 to March 2018。– &gt; 训练数据为 SMAP、目标数据SNSs的地面数据；算法为GRNN；</li>
+<li><u>the extended triple collection</u> technique was applied to address the scale mismatch issue resulting from the small spatial support of ground-based measurements – &gt; ETC解决数据集尺度不同的问题。</li>
+<li>创新点：精度相比BPNN、GRNN高。</li>
+</ol>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>The research history of SSM global retrieval.</p>
+<ol>
+<li>Recently, the global retrieval (检索) of SSM for both SMOS and SMAP using ANNs are accomplished by <u>RodriguezFernandez et al. (2015) and Kolassa et al. (2018)</u>, <strong>taking the wellknown European Centre for Medium-Range Weather Forecasts (ECMWF) model and the Goddard Earth Observing System version 5 (GEOS-5) model as references to train the algorithms</strong>, respectively (分别).  – &gt; 数据 ECMWF、GEOS-5训练ANN.</li>
+<li>In addition, there are also studies focusing on <strong>using ANNs to test the a priori merging of active and passive instruments</strong>, such as ASCAT and AMSR-E (<u>Kolassa et al., 2016, 2017</u>). It was found that such synergy strategy  (协同策略) could give much better results than the a posteriori merging of the individual retrievals from each sensor。– &gt; 对ASCAT 和 AMSR-E 采用<strong>先验(从原因到结果)融合效果会好与后验(结果进行反馈调节)融合</strong>。</li>
+<li>However, the problem to train an ANN with LSM simulations (模拟) is that every LSM is affected by significant uncertainties (不确定性) due to the errors of model parameter estimates, since soil processes are extremely difficult to parameterize (参数化) (Vereecken et al., 2016). Then arises the question: is there any possibility <u>to use sparse ground-based <!--they are primarily served for the calibration/validation of satellite SSM products as the site distribution is too sparse to produce soil moisture maps at regional to global scales.--></u> instead of LSM simulations as references to train an ANN for the large-scale SSM retrieval? </li>
+</ol>
+<h2 id="数据："><a href="#数据：" class="headerlink" title="数据："></a>数据：</h2><ol>
+<li>Satellite-based SSM retrievals from SMAP</li>
+<li>Ground-based SSM measurements from sparse network sites (SNSs)</li>
+<li>Model-based SSM simulations from ERA-Interim</li>
+</ol>
+<h2 id="主要方法："><a href="#主要方法：" class="headerlink" title="主要方法："></a>主要方法：</h2><p>point-surface collaborative inversion (PSCI)</p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/20201012161930.png" alt=""></p>
+<h2 id="结论："><a href="#结论：" class="headerlink" title="结论："></a>结论：</h2><p><strong>创新点：</strong> </p>
+<ol>
+<li>使用高精度的地面观测站的数据代替 难以参数化的LSM模拟 作为训练参数。</li>
+<li>ETC筛选的SNS数据结果要好于在所有SNS上进行训练的GRNN模型。</li>
+</ol>
+<p><strong>展望：</strong> </p>
+<ol>
+<li>使用其他方法或者改进ETC派生的相关系数，来选择更合适的SNS数据；</li>
+<li>使用更好的神经网络模型代替GRNN。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bwchen1223.xyz/2020/10/02/Learn-about-deep-learning-for-the-first-time/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="一线毛衣">
+      <meta itemprop="description" content="这里有Python、GIS相关的小笔记！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rsweater's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/02/Learn-about-deep-learning-for-the-first-time/" class="post-title-link" itemprop="url">Learn about deep learning for the first time</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-10-02 11:31:19 / 修改时间：12:33:54" itemprop="dateCreated datePublished" datetime="2020-10-02T11:31:19+08:00">2020-10-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Deep-Learning-Notes/" itemprop="url" rel="index"><span itemprop="name">Deep Learning Notes</span></a>
+                </span>
+            </span>
+
+          
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>249</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>学习深度学习的第一次总结，回忆、汇总相关概述、基础知识以及原理。</strong></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/02/Learn-about-deep-learning-for-the-first-time/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://bwchen1223.xyz/2020/09/14/Emphasis-on-land-resources/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -415,7 +633,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-29 14:49:07" itemprop="dateModified" datetime="2020-08-29T14:49:07+08:00">2020-08-29</time>
+                <time title="修改时间：2020-10-12 16:41:24" itemprop="dateModified" datetime="2020-10-12T16:41:24+08:00">2020-10-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -454,204 +672,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>摘要：</strong>利用PowerShell以及win10自带Hash工具，对文件进行hash验证，添加到右击菜单中。</p>
+          <p>利用PowerShell以及win10自带Hash工具，对文件进行hash验证，添加到右击菜单中。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/06/10/File-Hash-Verification/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://bwchen1223.xyz/2020/06/05/Cluster-Analysis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="一线毛衣">
-      <meta itemprop="description" content="这里有Python、GIS相关的小笔记！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Rsweater's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/05/Cluster-Analysis/" class="post-title-link" itemprop="url">Cluster Analysis</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-05 17:14:52" itemprop="dateCreated datePublished" datetime="2020-06-05T17:14:52+08:00">2020-06-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-29 14:29:24" itemprop="dateModified" datetime="2020-08-29T14:29:24+08:00">2020-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
-                </span>
-            </span>
-
-          
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>摘要：</strong> K-Mean Clustering、DBSCAN Clustering、以及Python实现思路（包括空间聚类）。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/05/Cluster-Analysis/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://bwchen1223.xyz/2020/06/04/Time-Series-Pandas/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="一线毛衣">
-      <meta itemprop="description" content="这里有Python、GIS相关的小笔记！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Rsweater's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/04/Time-Series-Pandas/" class="post-title-link" itemprop="url">Time Series Pandas</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-04 09:34:15" itemprop="dateCreated datePublished" datetime="2020-06-04T09:34:15+08:00">2020-06-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-29 14:29:24" itemprop="dateModified" datetime="2020-08-29T14:29:24+08:00">2020-08-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
-                </span>
-            </span>
-
-          
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>摘要：</strong>利用Python进行时间序列分析,  主要记录ARIMA模型相关知识。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/04/Time-Series-Pandas/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -742,20 +766,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -807,13 +831,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">41k</span>
+    <span title="站点总字数">45k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">37 分钟</span>
+    <span title="站点阅读时长">41 分钟</span>
 </div>
   <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9tdXNlLw==">NexT.Muse</span> 强力驱动
   </div>
