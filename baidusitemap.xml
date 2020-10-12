@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://bwchen1223.xyz/2020/05/30/wsl2_access_windows_proxy/</loc>
+    <loc>https://bwchen1223.xyz/2020/05/15/Unit-6-Innovation(TF)/</loc>
+    <lastmod>2020-10-12</lastmod>
+  </url>  <url>
+    <loc>https://bwchen1223.xyz/2020/06/06/wsl2_access_windows_proxy/</loc>
+    <lastmod>2020-10-12</lastmod>
+  </url>  <url>
+    <loc>https://bwchen1223.xyz/2020/10/10/Estimating-surface-soil-moisture-from-satellite-observations-using-a-generalized-regression-neural-network-trained-on-sparse-ground-based-measurements-in-the-continental-U-S/</loc>
     <lastmod>2020-10-12</lastmod>
   </url>  <url>
     <loc>https://bwchen1223.xyz/2020/06/04/Time-Series-Pandas/</loc>
@@ -12,12 +18,6 @@
   </url>  <url>
     <loc>https://bwchen1223.xyz/2020/06/05/Cluster-Analysis/</loc>
     <lastmod>2020-10-12</lastmod>
-  </url>  <url>
-    <loc>https://bwchen1223.xyz/2020/10/10/Estimating-surface-soil-moisture-from-satellite-observations-using-a-generalized-regression-neural-network-trained-on-sparse-ground-based-measurements-in-the-continental-U-S/</loc>
-    <lastmod>2020-10-12</lastmod>
-  </url>  <url>
-    <loc>https://bwchen1223.xyz/2020/10/02/Learn-about-deep-learning-for-the-first-time/</loc>
-    <lastmod>2020-10-02</lastmod>
   </url>  <url>
     <loc>https://bwchen1223.xyz/2020/09/14/Emphasis-on-land-resources/</loc>
     <lastmod>2020-09-17</lastmod>
@@ -32,9 +32,6 @@
     <lastmod>2020-06-06</lastmod>
   </url>  <url>
     <loc>https://bwchen1223.xyz/2020/04/21/RS02-Evaluation_of_image_fusion/</loc>
-    <lastmod>2020-06-02</lastmod>
-  </url>  <url>
-    <loc>https://bwchen1223.xyz/2020/05/15/Unit-6-Innovation(TF)/</loc>
     <lastmod>2020-06-02</lastmod>
   </url>  <url>
     <loc>https://bwchen1223.xyz/2020/05/12/QG2-Classical_statistical_analysis/</loc>

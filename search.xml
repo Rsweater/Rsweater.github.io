@@ -89,102 +89,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Estimating surface soil moisture from satellite observations using a generalized regression neural network trained on sparse ground-based measurements in the continental U.S</title>
-    <url>/2020/10/10/Estimating-surface-soil-moisture-from-satellite-observations-using-a-generalized-regression-neural-network-trained-on-sparse-ground-based-measurements-in-the-continental-U-S/</url>
-    <content><![CDATA[<p><strong>Autor:</strong>  Qiangqiang Yuan<sup>a,b</sup> , Hongzhang Xu<sup>a,b</sup> , Tongwen Li<sup>c</sup> , Huanfeng Shen<sup>b,c,d,⁎</sup> , Liangpei Zhang<sup>b,e</sup></p>
-<blockquote>
-<p>a. School of Geodesy and Geomatics, Wuhan University, Wuhan 430079, Hubei, China </p>
-<p>b. The Collaborative Innovation Center for Geospatial Technology, Wuhan 430079, Hubei, China </p>
-<p>c. School of Resource and Environmental Sciences, Wuhan University, Wuhan 430079, Hubei, China </p>
-<p>d. The Key Laboratory of Geographic Information System, Ministry of Education, Wuhan University, Wuhan 430079, Hubei, China </p>
-<p>e. The State Key Laboratory of Information Engineering in Surveying, Mapping and Remote Sensing, Wuhan University, Wuhan 430079, Hubei, China</p>
-</blockquote>
-<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract:"></a><strong>Abstract:</strong></h2><p><strong>原文：</strong>This study attempted to develop a <strong><u>point-surface collaborative inversion</u></strong> (PSCI) method for the estimation of regional <strong><u>surface soil moisture</u></strong> (SSM) using a <u><strong>generalized regression neural network</strong></u>  (GRNN) Trained on sparse ground-based measurements. Specifically, GRNN was employed  to establish a nonlinear relationship between ground-based measurements from <u><strong>sparse network stations</strong></u> (SNSs) and passive microwave observations from the <u><strong>Soil Moisture Active Passive</strong></u> (SMAP) satellite in the continental U.S for April 2015 to March 2018. More importantly, the <strong><u>extended triple collection</u></strong> technique was applied to address the scale mismatch issue resulting from the small spatial support of ground-based measurements, whereby individual SNSs’ reliability at the SMAP coarse footprint scale could be determined before fed into GRNN. The 10-fold cross-validation result showed that the GRNN model trained on reliable SNSs obtained a satisfactory performance –the cross-validated R and unbiased RMSE values were 0.88 and 0.050 cm<sup>-3</sup>, respectively, which outperformed the back-propagation neural network (BPNN) and the other GRNN  model trained on all SNSs. Furthermore, temporal and spatial comparisons between the PSCI-based SSM retrievals and other SSM datasets indicated the former agreed the best with ground measurements both in time and space, suggesting the proposed PSCI method had shown great potential in estimating reliable regional SSM climate records. </p>
-<p><strong>剖析：</strong> </p>
-<ol>
-<li>Specifically, GRNN was employed to establish a nonlinear relationship between <u>ground-based measurements from sparse network stations (SNSs)</u> and <u>passive microwave observations from the Soil Moisture Active Passive (SMAP)</u> satellite in the continental U.S for April 2015 to March 2018。– &gt; 训练数据为 SMAP、目标数据SNSs的地面数据；算法为GRNN；</li>
-<li><u>the extended triple collection</u> technique was applied to address the scale mismatch issue resulting from the small spatial support of ground-based measurements – &gt; ETC解决数据集尺度不同的问题。</li>
-<li>创新点：精度相比BPNN、GRNN高。</li>
-</ol>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>The research history of SSM global retrieval.</p>
-<ol>
-<li>Recently, the global retrieval (检索) of SSM for both SMOS and SMAP using ANNs are accomplished by <u>RodriguezFernandez et al. (2015) and Kolassa et al. (2018)</u>, <strong>taking the wellknown European Centre for Medium-Range Weather Forecasts (ECMWF) model and the Goddard Earth Observing System version 5 (GEOS-5) model as references to train the algorithms</strong>, respectively (分别).  – &gt; 数据 ECMWF、GEOS-5训练ANN.</li>
-<li>In addition, there are also studies focusing on <strong>using ANNs to test the a priori merging of active and passive instruments</strong>, such as ASCAT and AMSR-E (<u>Kolassa et al., 2016, 2017</u>). It was found that such synergy strategy  (协同策略) could give much better results than the a posteriori merging of the individual retrievals from each sensor。– &gt; 对ASCAT 和 AMSR-E 采用<strong>先验(从原因到结果)融合效果会好与后验(结果进行反馈调节)融合</strong>。</li>
-<li>However, the problem to train an ANN with LSM simulations (模拟) is that every LSM is affected by significant uncertainties (不确定性) due to the errors of model parameter estimates, since soil processes are extremely difficult to parameterize (参数化) (Vereecken et al., 2016). Then arises the question: is there any possibility <u>to use sparse ground-based <!--they are primarily served for the calibration/validation of satellite SSM products as the site distribution is too sparse to produce soil moisture maps at regional to global scales.--></u> instead of LSM simulations as references to train an ANN for the large-scale SSM retrieval? </li>
-</ol>
-<h2 id="数据："><a href="#数据：" class="headerlink" title="数据："></a>数据：</h2><ol>
-<li>Satellite-based SSM retrievals from SMAP</li>
-<li>Ground-based SSM measurements from sparse network sites (SNSs)</li>
-<li>Model-based SSM simulations from ERA-Interim</li>
-</ol>
-<h2 id="主要方法："><a href="#主要方法：" class="headerlink" title="主要方法："></a>主要方法：</h2><p>point-surface collaborative inversion (PSCI)</p>
-<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/20201012161930.png" alt=""></p>
-<h2 id="结论："><a href="#结论：" class="headerlink" title="结论："></a>结论：</h2><p><strong>创新点：</strong> </p>
-<ol>
-<li>使用高精度的地面观测站的数据代替 难以参数化的LSM模拟 作为训练参数。</li>
-<li>ETC筛选的SNS数据结果要好于在所有SNS上进行训练的GRNN模型。</li>
-</ol>
-<p><strong>展望：</strong> </p>
-<ol>
-<li>使用其他方法或者改进ETC派生的相关系数，来选择更合适的SNS数据；</li>
-<li>使用更好的神经网络模型代替GRNN。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Journal of Hydrology&#39;s Paper</category>
-      </categories>
-      <tags>
-        <tag>Paper analyzes</tag>
-        <tag>Soil moisture</tag>
-        <tag>GRNN</tag>
-        <tag>Data fusion</tag>
-        <tag>Extended triple collection(ETC)</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Notes_02|Mysql Related Concept</title>
-    <url>/2020/05/14/MySQL/</url>
-    <content><![CDATA[<p>黑马授课视频笔记</p>
-<a id="more"></a>
-<h3 id="数据库特点"><a href="#数据库特点" class="headerlink" title="数据库特点"></a>数据库特点</h3><ul>
-<li>持久化存储</li>
-<li>读写速度极高</li>
-<li>保证数据的有效性</li>
-<li>对程序支持性非常好，容易扩展</li>
-</ul>
-<h2 id="关系型数据库的核心"><a href="#关系型数据库的核心" class="headerlink" title="关系型数据库的核心"></a>关系型数据库的核心</h2><ul>
-<li>数据行（记录）</li>
-<li>数据列（字段）</li>
-<li>数据表（数据行的集合）</li>
-<li>数据库（数据表的集合）</li>
-</ul>
-<p><strong>举例：</strong> Excel文件(数据库) —-&gt;  Sheet(数据表) —&gt; 行、列(数据行、列)  </p>
-<h2 id="MySQL、redis、MongoDB常用范围"><a href="#MySQL、redis、MongoDB常用范围" class="headerlink" title="MySQL、redis、MongoDB常用范围"></a>MySQL、redis、MongoDB常用范围</h2><ul>
-<li>MySQL常用于建设网站</li>
-<li>redis存贮缓存</li>
-<li>MongoDB用于存贮不相关的数据（例如不同网站信息的爬取）  </li>
-</ul>
-<h2 id="SQL语句、MySQL（数据库管理工具-数据库）"><a href="#SQL语句、MySQL（数据库管理工具-数据库）" class="headerlink" title="SQL语句、MySQL（数据库管理工具+数据库）"></a>SQL语句、MySQL（数据库管理工具+数据库）</h2><h3 id="SQL语句主要分为"><a href="#SQL语句主要分为" class="headerlink" title="SQL语句主要分为"></a>SQL语句主要分为</h3><ul>
-<li><strong>DQL：数据查询语句，用于对数据进行查询，如select</strong>  </li>
-<li><strong>DML：数据操作语句，对数据进行增加、删除、修改，如insert、update、delete</strong>  </li>
-<li>TPL：事务处理语言，对事物进行处理，包括begin transaction、commit、rollback  </li>
-<li>DCL：数据控制语言，进行授权与权限回收，如grant、revoke  </li>
-<li>DDL：数据定义语句，进行数据库、表的管理等，如create、drop  </li>
-<li>CCL：指针控制语句，通过控制指针完成表的操作，如declare cursor  </li>
-</ul>
-<p>对于web程序员来说，重点是数据的crud(增删改查)，必须熟练编辑DQL、DML，能够编写DDL完成数据库、表的操作，其他语言如TPL、DCL、CCL了解即可  </p>
-<p>不区分大小写</p>
-]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>Studying</tag>
-        <tag>Notebook</tag>
-        <tag>Data analysis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Emphasis on land resources</title>
     <url>/2020/09/14/Emphasis-on-land-resources/</url>
     <content><![CDATA[<h2 id="土地资源学重点"><a href="#土地资源学重点" class="headerlink" title="土地资源学重点"></a>土地资源学重点</h2><p>​    我们的期末重点，书是王秋兵主编的第二版。</p>
@@ -418,28 +322,82 @@
       </tags>
   </entry>
   <entry>
-    <title>Learn about deep learning for the first time</title>
-    <url>/2020/10/02/Learn-about-deep-learning-for-the-first-time/</url>
-    <content><![CDATA[<p><strong>学习深度学习的第一次总结，回忆、汇总相关概述、基础知识以及原理。</strong></p>
-<a id="more"></a>
-
-<h2 id="什么是深度学习"><a href="#什么是深度学习" class="headerlink" title="什么是深度学习"></a>什么是深度学习</h2><h2 id="神经网络的输入、输出、以及中间过程"><a href="#神经网络的输入、输出、以及中间过程" class="headerlink" title="神经网络的输入、输出、以及中间过程"></a>神经网络的输入、输出、以及中间过程</h2><h2 id="神经网络入门"><a href="#神经网络入门" class="headerlink" title="神经网络入门"></a>神经网络入门</h2><p>​    了解核心组件，即层、网络、目标函数和优化器；学习配置Python的深度学习环境 (Keras、TensorFlow)；运用神经网络解决实际问题，主要这对三种三种使用场景：</p>
-<pre><code>- 二分类问题
-- 多分类问题
-- 标量回归问题</code></pre><h3 id="神经网络核心组件"><a href="#神经网络核心组件" class="headerlink" title="神经网络核心组件"></a>神经网络核心组件</h3><p>训练神经网络主要围绕四个方面：</p>
-<ul>
-<li><strong>层</strong>，多个层组合成<strong>网络</strong>（或<strong>模型</strong>）。</li>
-<li><strong>输入数据</strong>和相应的<strong>目标数据</strong>。</li>
-<li><strong>损失函数</strong>，即用于学习的反馈信号。</li>
-<li><strong>优化器</strong>，决定学习过程如何进行。</li>
-</ul>
+    <title>Estimating surface soil moisture from satellite observations using a generalized regression neural network trained on sparse ground-based measurements in the continental U.S</title>
+    <url>/2020/10/10/Estimating-surface-soil-moisture-from-satellite-observations-using-a-generalized-regression-neural-network-trained-on-sparse-ground-based-measurements-in-the-continental-U-S/</url>
+    <content><![CDATA[<p><strong>Autor:</strong>  Qiangqiang Yuan<sup>a,b</sup> , Hongzhang Xu<sup>a,b</sup> , Tongwen Li<sup>c</sup> , Huanfeng Shen<sup>b,c,d,⁎</sup> , Liangpei Zhang<sup>b,e</sup></p>
+<blockquote>
+<p>a. School of Geodesy and Geomatics, Wuhan University, Wuhan 430079, Hubei, China </p>
+<p>b. The Collaborative Innovation Center for Geospatial Technology, Wuhan 430079, Hubei, China </p>
+<p>c. School of Resource and Environmental Sciences, Wuhan University, Wuhan 430079, Hubei, China </p>
+<p>d. The Key Laboratory of Geographic Information System, Ministry of Education, Wuhan University, Wuhan 430079, Hubei, China </p>
+<p>e. The State Key Laboratory of Information Engineering in Surveying, Mapping and Remote Sensing, Wuhan University, Wuhan 430079, Hubei, China</p>
+</blockquote>
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract:"></a><strong>Abstract:</strong></h2><p><strong>原文：</strong>This study attempted to develop a <strong><u>point-surface collaborative inversion</u></strong> (PSCI) method for the estimation of regional <strong><u>surface soil moisture</u></strong> (SSM) using a <u><strong>generalized regression neural network</strong></u>  (GRNN) Trained on sparse ground-based measurements. Specifically, GRNN was employed  to establish a nonlinear relationship between ground-based measurements from <u><strong>sparse network stations</strong></u> (SNSs) and passive microwave observations from the <u><strong>Soil Moisture Active Passive</strong></u> (SMAP) satellite in the continental U.S for April 2015 to March 2018. More importantly, the <strong><u>extended triple collection</u></strong> technique was applied to address the scale mismatch issue resulting from the small spatial support of ground-based measurements, whereby individual SNSs’ reliability at the SMAP coarse footprint scale could be determined before fed into GRNN. The 10-fold cross-validation result showed that the GRNN model trained on reliable SNSs obtained a satisfactory performance –the cross-validated R and unbiased RMSE values were 0.88 and 0.050 cm<sup>-3</sup>, respectively, which outperformed the back-propagation neural network (BPNN) and the other GRNN  model trained on all SNSs. Furthermore, temporal and spatial comparisons between the PSCI-based SSM retrievals and other SSM datasets indicated the former agreed the best with ground measurements both in time and space, suggesting the proposed PSCI method had shown great potential in estimating reliable regional SSM climate records. </p>
+<p><strong>剖析：</strong> </p>
+<ol>
+<li>Specifically, GRNN was employed to establish a nonlinear relationship between <u>ground-based measurements from sparse network stations (SNSs)</u> and <u>passive microwave observations from the Soil Moisture Active Passive (SMAP)</u> satellite in the continental U.S for April 2015 to March 2018。– &gt; 训练数据为 SMAP、目标数据SNSs的地面数据；算法为GRNN；</li>
+<li><u>the extended triple collection</u> technique was applied to address the scale mismatch issue resulting from the small spatial support of ground-based measurements – &gt; ETC解决数据集尺度不同的问题。</li>
+<li>创新点：精度相比BPNN、GRNN高。</li>
+</ol>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>The research history of SSM global retrieval.</p>
+<ol>
+<li>Recently, the global retrieval (检索) of SSM for both SMOS and SMAP using ANNs are accomplished by <u>RodriguezFernandez et al. (2015) and Kolassa et al. (2018)</u>, <strong>taking the wellknown European Centre for Medium-Range Weather Forecasts (ECMWF) model and the Goddard Earth Observing System version 5 (GEOS-5) model as references to train the algorithms</strong>, respectively (分别).  – &gt; 数据 ECMWF、GEOS-5训练ANN.</li>
+<li>In addition, there are also studies focusing on <strong>using ANNs to test the a priori merging of active and passive instruments</strong>, such as ASCAT and AMSR-E (<u>Kolassa et al., 2016, 2017</u>). It was found that such synergy strategy  (协同策略) could give much better results than the a posteriori merging of the individual retrievals from each sensor。– &gt; 对ASCAT 和 AMSR-E 采用<strong>先验(从原因到结果)融合效果会好与后验(结果进行反馈调节)融合</strong>。</li>
+<li>However, the problem to train an ANN with LSM simulations (模拟) is that every LSM is affected by significant uncertainties (不确定性) due to the errors of model parameter estimates, since soil processes are extremely difficult to parameterize (参数化) (Vereecken et al., 2016). Then arises the question: is there any possibility <u>to use sparse ground-based <!--they are primarily served for the calibration/validation of satellite SSM products as the site distribution is too sparse to produce soil moisture maps at regional to global scales.--></u> instead of LSM simulations as references to train an ANN for the large-scale SSM retrieval? </li>
+</ol>
+<h2 id="数据："><a href="#数据：" class="headerlink" title="数据："></a>数据：</h2><ol>
+<li>Satellite-based SSM retrievals from SMAP</li>
+<li>Ground-based SSM measurements from sparse network sites (SNSs)</li>
+<li>Model-based SSM simulations from ERA-Interim</li>
+</ol>
+<h2 id="主要方法："><a href="#主要方法：" class="headerlink" title="主要方法："></a>主要方法：</h2><p>point-surface collaborative inversion (PSCI)</p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/20201012161930.png" alt=""></p>
+<h2 id="结论："><a href="#结论：" class="headerlink" title="结论："></a>结论：</h2><p><strong>创新点：</strong> </p>
+<ol>
+<li>使用高精度的地面观测站的数据代替 难以参数化的LSM模拟 作为训练参数。</li>
+<li>ETC筛选的SNS数据结果要好于在所有SNS上进行训练的GRNN模型。</li>
+</ol>
+<p><strong>效果：</strong></p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/image-20201012172447190.png" alt="image-20201012172447190"></p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/image-20201012172538828.png" alt="image-20201012172538828"></p>
+<p><strong>展望：</strong> </p>
+<ol>
+<li>使用其他方法或者改进ETC派生的相关系数，来选择更合适的SNS数据；</li>
+<li>使用更好的神经网络模型代替GRNN。</li>
+</ol>
 ]]></content>
       <categories>
-        <category>Deep Learning Notes</category>
+        <category>Journal of Hydrology&#39;s Paper</category>
       </categories>
       <tags>
-        <tag>basic knowledge</tag>
-        <tag>outline</tag>
+        <tag>Paper analyzes</tag>
+        <tag>Soil moisture</tag>
+        <tag>GRNN</tag>
+        <tag>Data fusion</tag>
+        <tag>Extended triple collection(ETC)</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>File Hash Verification</title>
+    <url>/2020/06/10/File-Hash-Verification/</url>
+    <content><![CDATA[<p>利用PowerShell以及win10自带Hash工具，对文件进行hash验证，添加到右击菜单中。</p>
+<a id="more"></a>
+
+<p><strong>思路：</strong>直接利用<code>.reg</code>文件的方式添加注册表信息。</p>
+<p><strong>文件内容（添加）：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\*\shell\File Hash Verification]</span><br><span class="line"></span><br><span class="line">&quot;SubCommands&quot;&#x3D;&quot;MACTripleDES;MD5;RIPEMD160;SHA1;SHA256;SHA384;SHA512&quot;</span><br><span class="line"></span><br><span class="line">&quot;MUIVerb&quot;&#x3D;&quot;File Hash Verification&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MACTripleDES&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MACTripleDES \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;RIPEMD160&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm RIPEMD160 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA1&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA1 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA256&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA256 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA384&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA384 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA512&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA512 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>删除</strong>只需要在<code>[]</code>中最前面加<code>-</code>, 例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 以MD5删除为例：</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Regedit</category>
+      </categories>
+      <tags>
+        <tag>win10</tag>
+        <tag>Right click on the menu</tag>
+        <tag>PowerShell</tag>
       </tags>
   </entry>
   <entry>
@@ -600,284 +558,46 @@
       </tags>
   </entry>
   <entry>
-    <title>图像融合质量评价指标</title>
-    <url>/2020/04/21/RS02-Evaluation_of_image_fusion/</url>
-    <content><![CDATA[<h2 id="1-图像融合"><a href="#1-图像融合" class="headerlink" title="1 图像融合"></a>1 图像融合</h2><p><strong>图像融合：</strong> 是指把对同一目标或同一场景经多个传感器的成像或单一传感器的多次成像进行一定的处理，生成一幅新的图像，这幅新的图像能够准确地综合反映源图像的信息，更适合于人眼观察或计算机处理。</p>
+    <title>Notes_02|Mysql Related Concept</title>
+    <url>/2020/05/14/MySQL/</url>
+    <content><![CDATA[<p>黑马授课视频笔记</p>
 <a id="more"></a>
-
-<h3 id="2-图像融合质量评价"><a href="#2-图像融合质量评价" class="headerlink" title="2 图像融合质量评价"></a>2 图像融合质量评价</h3><p>目前评定图像融合算法性能的方法可分为两类，即主观的评定方法和客观的评定方法。</p>
-<h4 id="2-1-主观评价方法"><a href="#2-1-主观评价方法" class="headerlink" title="2.1 主观评价方法"></a>2.1 主观评价方法</h4><p><strong>主观评价方法</strong>：<br>就是依靠人眼对融合图像效果进行主观判断。<br><strong>客观评价方法</strong>：<br>根据不同评定方法的条件不同，对客观评价指标做了以下分类研究8。</p>
-<ol>
-<li><p>无参考图像情况下的评价方法  </p>
-<p>  <strong>单一图像特征统计的评价方法</strong>  </p>
-<ul>
-<li><p>均值:图像中所有像素的灰度值的算术平均值，对人眼表现为图像的平均亮度。  </p>
-</li>
-<li><p>标准差:图像灰度相对于均值的离散情况，用于评价图像反差的大小。  </p>
-</li>
-<li><p>信息熵:熵值大小反映其包含信息量的多少，熵值越大融合效果越好。  </p>
-</li>
-<li><p>平均梯度:可灵敏地反映图像对微小细节反差表达的水平，用于评价图像的模糊程度。平均梯度值与图像清晰程度成正比关系。  </p>
-</li>
-<li><p>空间频率:反映图像在空间域的整体活跃程度，空间频率大小与图像融合效果成正比。  </p>
-<p><strong>源图像与融合图像之间关系的评价方法</strong>  </p>
-</li>
-<li><p>互信息之和:表示融合图像F从源图像A、B中获取的信息，互信息之和的值与融合效果成正比。  </p>
-</li>
-<li><p>交叉熵:反映了源图像和融合图像对应像素的差异。交叉熵越小，代表两幅图像的差异越小，即意味着该融合方法从源图像获取的信息量越多，融合效果越好。  </p>
-</li>
-<li><p>联合熵:源图像和融合图像之间相关性的量度,反映源图像和融合图像之间的联合信息。两幅图像联合熵的值与图像所包含的信息量的大小成正比关系。  </p>
-</li>
-<li><p>偏差与相对偏差:偏差表示两幅图像光谱特性变化的平均程度和光谱信息上的差异，值越小意味着两幅图像的差异越小;相对偏差反映两幅图像在光谱信息上的匹配程度,同时也反映该方法将原图像高空间的分辨率细节传递给融合图像的能力。  </p>
-</li>
+<h3 id="数据库特点"><a href="#数据库特点" class="headerlink" title="数据库特点"></a>数据库特点</h3><ul>
+<li>持久化存储</li>
+<li>读写速度极高</li>
+<li>保证数据的有效性</li>
+<li>对程序支持性非常好，容易扩展</li>
 </ul>
-</li>
-<li><p>有参考图情况下的评价方法</p>
-<ul>
-<li>通过对比标准参考图像与融合图像之间的关系来分析融合图像的质量和融合效果的好坏。  </li>
-<li>均方根误差:显示了参考图像与融合图像之间的差异对比程度，其值与接近程度成反比，值越小代表融合效果越好。  </li>
-<li>信噪比和峰值信噪比:比值越高，融合质量越好。  </li>
-<li>信息熵差ER-EF:EF和ER分别为融合图像和参考图像的信息熵。  </li>
-<li>互信息:代表图像中包含的信息，互信息值越大，包含的信息越多，融合效果越好。  </li>
+<h2 id="关系型数据库的核心"><a href="#关系型数据库的核心" class="headerlink" title="关系型数据库的核心"></a>关系型数据库的核心</h2><ul>
+<li>数据行（记录）</li>
+<li>数据列（字段）</li>
+<li>数据表（数据行的集合）</li>
+<li>数据库（数据表的集合）</li>
 </ul>
-</li>
-</ol>
+<p><strong>举例：</strong> Excel文件(数据库) —-&gt;  Sheet(数据表) —&gt; 行、列(数据行、列)  </p>
+<h2 id="MySQL、redis、MongoDB常用范围"><a href="#MySQL、redis、MongoDB常用范围" class="headerlink" title="MySQL、redis、MongoDB常用范围"></a>MySQL、redis、MongoDB常用范围</h2><ul>
+<li>MySQL常用于建设网站</li>
+<li>redis存贮缓存</li>
+<li>MongoDB用于存贮不相关的数据（例如不同网站信息的爬取）  </li>
+</ul>
+<h2 id="SQL语句、MySQL（数据库管理工具-数据库）"><a href="#SQL语句、MySQL（数据库管理工具-数据库）" class="headerlink" title="SQL语句、MySQL（数据库管理工具+数据库）"></a>SQL语句、MySQL（数据库管理工具+数据库）</h2><h3 id="SQL语句主要分为"><a href="#SQL语句主要分为" class="headerlink" title="SQL语句主要分为"></a>SQL语句主要分为</h3><ul>
+<li><strong>DQL：数据查询语句，用于对数据进行查询，如select</strong>  </li>
+<li><strong>DML：数据操作语句，对数据进行增加、删除、修改，如insert、update、delete</strong>  </li>
+<li>TPL：事务处理语言，对事物进行处理，包括begin transaction、commit、rollback  </li>
+<li>DCL：数据控制语言，进行授权与权限回收，如grant、revoke  </li>
+<li>DDL：数据定义语句，进行数据库、表的管理等，如create、drop  </li>
+<li>CCL：指针控制语句，通过控制指针完成表的操作，如declare cursor  </li>
+</ul>
+<p>对于web程序员来说，重点是数据的crud(增删改查)，必须熟练编辑DQL、DML，能够编写DDL完成数据库、表的操作，其他语言如TPL、DCL、CCL了解即可  </p>
+<p>不区分大小写</p>
 ]]></content>
       <categories>
-        <category>RS</category>
-      </categories>
-      <tags>
-        <tag>Image Processing</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>File Hash Verification</title>
-    <url>/2020/06/10/File-Hash-Verification/</url>
-    <content><![CDATA[<p>利用PowerShell以及win10自带Hash工具，对文件进行hash验证，添加到右击菜单中。</p>
-<a id="more"></a>
-
-<p><strong>思路：</strong>直接利用<code>.reg</code>文件的方式添加注册表信息。</p>
-<p><strong>文件内容（添加）：</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\*\shell\File Hash Verification]</span><br><span class="line"></span><br><span class="line">&quot;SubCommands&quot;&#x3D;&quot;MACTripleDES;MD5;RIPEMD160;SHA1;SHA256;SHA384;SHA512&quot;</span><br><span class="line"></span><br><span class="line">&quot;MUIVerb&quot;&#x3D;&quot;File Hash Verification&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MACTripleDES&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MACTripleDES\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MACTripleDES \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;RIPEMD160&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\RIPEMD160\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm RIPEMD160 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA1&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA1\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA1 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA256&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA256\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA256 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA384&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA384\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA384 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;SHA512&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\SHA512\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm SHA512 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>删除</strong>只需要在<code>[]</code>中最前面加<code>-</code>, 例如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 以MD5删除为例：</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;MD5&quot;</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\MD5\command]</span><br><span class="line"></span><br><span class="line">@&#x3D;&quot;PowerShell Get-FileHash -Algorithm MD5 \\\&quot;%1\\\&quot; | format-list;“按任意键退出...”;[Console]::Readkey() | Out-Null;exit&quot;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Regedit</category>
-      </categories>
-      <tags>
-        <tag>win10</tag>
-        <tag>Right click on the menu</tag>
-        <tag>PowerShell</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Unit-6-Innovation(TF).md</title>
-    <url>/2020/05/15/Unit-6-Innovation(TF)/</url>
-    <content><![CDATA[<p><strong>Record the words and example sentences</strong>  </p>
-<a id="more"></a>
-
-<ol>
-<li><p><strong>word：</strong><br>urban planner(城市规划师)<br><strong>sentences:</strong><br>An urban planner is a person who works on the efficient organization of a city’s features.</p>
-</li>
-<li><p><strong>word：</strong><br>interrelated<br>adj. 相关的；互相联系的；v. 使相互联系（interrelate的过去式）<br>interact<br>v. 互相影响；互相作用<br><strong>sentences:</strong><br>All things are interrelated and interact with each other.<br>一切事物都是相互联系、相互作用的。</p>
-</li>
-<li><p><strong>word：</strong><br>commuter<br>n. 通勤者，经常乘公共车辆往返者；[交] 月季票乘客<br><strong>sentences：</strong><br>A commuter is someone who travels a long distance to work every day.<br>通勤族是指每天都要长途跋涉去上班的人。 </p>
-</li>
-<li><p><strong>word:</strong><br>imprisonment　　监禁　　　　　　　　　option　　选项<br>fine　　n. 罚款    　<br>adj. 好的；优良的；细小的，精美的；健康的；晴朗的<br><strong>sentences:</strong><br>He was given one month’s imprisonment without the option of a fine.  他被判处一个月徒刑，没有罚款的选择。  </p>
-</li>
-<li><p><strong>word:</strong><br>stationary<br>adj. 固定的；静止的；定居的；常备军的<br>n. 不动的人；驻军<br><strong>sentences:</strong><br>A traffic jam is a long line of vehicles that is either stationary or moving very slowly.<br>交通堵塞就是指一排排固定不动或行驶缓慢的车辆。  </p>
-</li>
-<li><p><strong>drop</strong><br>v.When someone drops you off, he or she lets you alight from the vehicle.（让⋯）下车，卸下（乘客） </p>
-</li>
-<li><p><strong>for one thing</strong><br>When you say “for one thing,” you indicate that you are talking about one of the factors involved in the situation. 首先，一则  </p>
-</li>
-<li><p><strong>not to mention</strong><br>You will use “not to mention” when you want to indicate that you’re about to provide additional information to support your point. 更不用说，此外  </p>
-</li>
-<li><p><strong>conference</strong><br>n.A conference is a meeting, usually held over the course of a few days, where a particular subject is discussed. （正式）会议  </p>
-</li>
-<li><p><strong>demonstrate</strong><br>v.To demonstrate is to show how something works, or how something should be done. 示范操作，演示  </p>
-</li>
-<li><p><strong>revolution</strong><br>n.A revolution refers to a swift and dramatic change in society. 重大变革  </p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Studying-English</category>
+        <category>MySQL</category>
       </categories>
       <tags>
         <tag>Notebook</tag>
-        <tag>English Though Films</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Time Series Pandas</title>
-    <url>/2020/06/04/Time-Series-Pandas/</url>
-    <content><![CDATA[<p>利用Python进行时间序列分析,  主要记录ARIMA模型相关知识。</p>
-<a id="more"></a>
-
-
-
-<h2 id="生成时间序列"><a href="#生成时间序列" class="headerlink" title="生成时间序列"></a>生成时间序列</h2><ol>
-<li>pd.date_range()</li>
-<li>truncate()过滤</li>
-<li>pd.Timestamp()时间戳</li>
-<li>pd.Period()时间周期</li>
-<li>pd.datelta()间隔</li>
-</ol>
-<h2 id="差分法"><a href="#差分法" class="headerlink" title="差分法"></a>差分法</h2><p>​    改进数据平稳性</p>
-<p><code>.diff(num)</code>: num阶差分，一般一阶就可以了。</p>
-<h2 id="ARIMA模型"><a href="#ARIMA模型" class="headerlink" title="ARIMA模型"></a>ARIMA模型</h2><p>​        <strong>ARIMA模型</strong>（英语：<strong>A</strong>uto<strong>r</strong>egressive <strong>I</strong>ntegrated <strong>M</strong>oving <strong>A</strong>verage model），差分整合移动平均自回归模型，又称整合移动平均自回归模型（移动也可称作滑动），是<span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS/ml7bpl7Tluo/liJc=">时间序列<i class="fa fa-external-link-alt"></i></span>预测分析方法之一。</p>
-<p>​        ARIMA(p，d，q)中，AR是“自回归模型”，p为自回归项数；MA为“滑动平均模型”，q为滑动平均项数，d为使之成为平稳序列所做的差分次数（阶数）。“差分”一词虽未出现在ARIMA的英文名称中，却是关键步骤。</p>
-<h3 id="AR模型"><a href="#AR模型" class="headerlink" title="AR模型"></a>AR模型</h3><ul>
-<li><p>描述当前值与历史值之间的关系，用变量自身的历史时间数据对自身进行预测</p>
-</li>
-<li><p>p阶自回归过程的公式定义：$y_t = \mu + \sum^{p}<em>{i=1}{\gamma_iy</em>{t-i}} + \epsilon_t$, </p>
-</li>
-<li><p>其中 $y_t$ 是当前值、$\mu$ 是常数项、p 是阶数、 $\gamma_i$ 是自相关系数、 $\epsilon_t$ 是误差</p>
-</li>
-</ul>
-<ul>
-<li><p>自回归模型是用自身的数据来进行预测</p>
-</li>
-<li><p>必须具有平稳性</p>
-</li>
-<li><p>必须具有自相关，如果自相关系数小于0.5，则不宜采用</p>
-</li>
-<li><p>自回归只适用于预测与自身前期相关的现象</p>
-</li>
-</ul>
-<h3 id="MA模型"><a href="#MA模型" class="headerlink" title="MA模型"></a>MA模型</h3><ul>
-<li>移动平均模型关注的是自回归模型中误差项的累加</li>
-<li>q阶移动平均模型：$y_t = \mu + \epsilon_t + \sum^q_{i=1}{\theta_i\epsilon_{t-i}}$ </li>
-<li>移动平均模型能够消除预测中的随机波动</li>
-</ul>
-<ul>
-<li><code>ARMA = AR + MA</code> 、<code>ARMA + 差分 = ARIMA</code></li>
-</ul>
-<h3 id="ARIMA模型原理"><a href="#ARIMA模型原理" class="headerlink" title="ARIMA模型原理"></a>ARIMA模型原理</h3><p>​        将非平稳时间序列转化为平稳时间序列，然后将因变量对它的滞后值以及随机误差项的现值和滞后值进行回归所建立的模型</p>
-<h3 id="p、q值的确定"><a href="#p、q值的确定" class="headerlink" title="p、q值的确定"></a>p、q值的确定</h3><p>自相关系数ACF、偏相关系数PACF</p>
-<table>
-<thead>
-<tr>
-<th>模型</th>
-<th>ACF</th>
-<th>PACF</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>AR(p)</td>
-<td>衰减趋于零（几何型或振荡型）</td>
-<td>p阶后截尾</td>
-</tr>
-<tr>
-<td>MA(q)</td>
-<td>q阶后截尾</td>
-<td>衰减趋于零（几何型或振荡型）</td>
-</tr>
-<tr>
-<td>ARMA(p, q)</td>
-<td>q阶后衰减趋于零（几何型或振荡型）</td>
-<td>p阶后衰减趋于零（几何型或振荡型）</td>
-</tr>
-</tbody></table>
-<ul>
-<li><p>截尾：落在置信区间内（95%的点都符合该规则）</p>
-</li>
-<li><p>Python方法：</p>
-  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> statsmodels.graphocs.tsaplots <span class="keyword">import</span> plot_acf, plot_pacf</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h2 id="数据重采样"><a href="#数据重采样" class="headerlink" title="数据重采样"></a>数据重采样</h2><ol>
-<li><code>.resample(freq)</code> 例如：</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rng = pd.date_range(<span class="string">'1/1/2020'</span>, periods=<span class="number">90</span>, freq=<span class="string">'D'</span>)</span><br><span class="line">ts = pd.Series(np.random.randn(len(rng)), index=rng)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 降采样</span></span><br><span class="line">ts = resample(<span class="string">'M'</span>).mean()</span><br><span class="line">ts = resmaple(<span class="string">'M'</span>).sum()</span><br><span class="line">ts = resmaple(<span class="string">'3D'</span>).sum()</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>升采样插值<ul>
-<li><code>.fill(位数)</code>，向后填充，空值取前面的值</li>
-<li><code>.bfill()</code>, 向前填充</li>
-<li><code>.interpolate()</code>, 线性填充</li>
-</ul>
-</li>
-</ol>
-<h2 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h2><p>在较长时间区间上，用来观测某个时间点、区间相关情况的方法。</p>
-<p>使用<code>.rolling(windowSize)</code></p>
-<h2 id="额外收获"><a href="#额外收获" class="headerlink" title="额外收获"></a>额外收获</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B5ZGF0YS9wYW5kYXMtZGF0YXJlYWRlcg==">pandasdatareade<i class="fa fa-external-link-alt"></i></span>: 直接获取网络上的数据到<code>dataframe</code></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2JsdWUteW9uZGVyL3RzZnJlc2g=">tsfresh<i class="fa fa-external-link-alt"></i></span>: 提取时间序列的特征</p>
-<h2 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h2><ol>
-<li>时间序列分类</li>
-<li>EDA</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Machine Learning</category>
-      </categories>
-      <tags>
-        <tag>Time Series</tag>
-        <tag>Data Analysis</tag>
-        <tag>Pandas</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Notes_01|&quot;alias&quot; Knowledge</title>
-    <url>/2020/05/30/alias/</url>
-    <content><![CDATA[<p>  转载自知乎：乃乎。因为 WSL2 Access Windows Proxy 中命令用到了alias方法，就在知乎找到乃乎的分享。</p>
-<a id="more"></a>
-
-<p>alias (别名)，一般用来用一个短的简单的命令来代替长的复杂的命令</p>
-<h2 id="查看-alias"><a href="#查看-alias" class="headerlink" title="查看 alias"></a>查看 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Ubuntu@DESKTOP-J51JGI8:~$ <span class="built_in">alias</span></span><br><span class="line"><span class="built_in">alias</span> alert=<span class="string">'notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$(history|tail -n1|sed -e '</span>\<span class="string">''</span>s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//<span class="string">'\'</span><span class="string">')"'</span></span><br><span class="line"><span class="built_in">alias</span> egrep=<span class="string">'egrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> fgrep=<span class="string">'fgrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> grep=<span class="string">'grep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> l=<span class="string">'ls -CF'</span></span><br><span class="line"><span class="built_in">alias</span> la=<span class="string">'ls -A'</span></span><br><span class="line"><span class="built_in">alias</span> ll=<span class="string">'ls -alF'</span></span><br><span class="line"><span class="built_in">alias</span> ls=<span class="string">'ls --color=auto'</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="临时定义-alias"><a href="#临时定义-alias" class="headerlink" title="临时定义 alias"></a>临时定义 alias</h2><p>使用 <code>ll</code> 代替 <code>ls -al</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="持久定义-alias"><a href="#持久定义-alias" class="headerlink" title="持久定义 alias"></a>持久定义 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure>
-
-<p>shell 启动的时候会读取配置文件，~/.bashrc 或者 ～/.zshrc。在配置文件中加入 alias 定义的命令就可以在每次启动 shell 后都存在定义好的 alias</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># custom aliases are listed below</span></span><br><span class="line">$ <span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy93d3cudGVjbWludC5jb20vY3JlYXRlLWFsaWFzLWluLWxpbnV4Lw==">https://www.tecmint.com/create-alias-in-linux/<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-]]></content>
-      <categories>
-        <category>WSL2</category>
-      </categories>
-      <tags>
-        <tag>Notebook - Bash - Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2020/03/29/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo<i class="fa fa-external-link-alt"></i></span>! This is your very first post. Check <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv">documentation<i class="fa fa-external-link-alt"></i></span> for more info. If you get any problems when using Hexo, you can find the answer in <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdHJvdWJsZXNob290aW5nLmh0bWw=">troubleshooting<i class="fa fa-external-link-alt"></i></span> or you can ask me on <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL2lzc3Vlcw==">GitHub<i class="fa fa-external-link-alt"></i></span>.</p>
-<a id="more"></a>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvd3JpdGluZy5odG1s">Writing<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvc2VydmVyLmh0bWw=">Server<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZ2VuZXJhdGluZy5odG1s">Generating<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvb25lLWNvbW1hbmQtZGVwbG95bWVudC5odG1s">Deployment<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Demo</category>
-      </categories>
-      <tags>
         <tag>Studying</tag>
-        <tag>Test</tag>
-        <tag>Share</tag>
+        <tag>Data analysis</tag>
       </tags>
   </entry>
   <entry>
@@ -3602,34 +3322,261 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
       </tags>
   </entry>
   <entry>
-    <title>WSL2 Access Windows Proxy</title>
-    <url>/2020/05/30/wsl2_access_windows_proxy/</url>
-    <content><![CDATA[<h2 id="IP设置"><a href="#IP设置" class="headerlink" title="IP设置"></a>IP设置</h2><p>IP要使用主机局域网IP，例如192.168.123.176。127.0.0.1不行。再者，就是host.deocker.internal在安装docker的时候进行了重定向，所以使用这个也是可以的。</p>
+    <title>图像融合质量评价指标</title>
+    <url>/2020/04/21/RS02-Evaluation_of_image_fusion/</url>
+    <content><![CDATA[<h2 id="1-图像融合"><a href="#1-图像融合" class="headerlink" title="1 图像融合"></a>1 图像融合</h2><p><strong>图像融合：</strong> 是指把对同一目标或同一场景经多个传感器的成像或单一传感器的多次成像进行一定的处理，生成一幅新的图像，这幅新的图像能够准确地综合反映源图像的信息，更适合于人眼观察或计算机处理。</p>
 <a id="more"></a>
 
-<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ol>
-<li><p>使用<code>proxychains</code>。安装就是<code>sudo apt install proxychains</code>，然后再进去<code>/etc/proxychains.conf</code>进行ip设置，使用直接在命令前面加proxychains。<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxychains.conf.png" alt="image-20200606150558949">![image-20200606102952207](<span class="exturl" data-url="aHR0cHM6Ly9naXRlZS5jb20vUnN3ZWF0ZXJfYWRtaW4vQmxvZ19JbWFnZXMvcmF3L21hc3Rlci9pbWcvd3Ns">https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/wsl<i class="fa fa-external-link-alt"></i></span> proxy1.png)</p>
-<p>这个方法可能会出现dns无法解析的问题，要装依赖tor,使用<code>sudo apt install tor</code>即可。</p>
+<h3 id="2-图像融合质量评价"><a href="#2-图像融合质量评价" class="headerlink" title="2 图像融合质量评价"></a>2 图像融合质量评价</h3><p>目前评定图像融合算法性能的方法可分为两类，即主观的评定方法和客观的评定方法。</p>
+<h4 id="2-1-主观评价方法"><a href="#2-1-主观评价方法" class="headerlink" title="2.1 主观评价方法"></a>2.1 主观评价方法</h4><p><strong>主观评价方法</strong>：<br>就是依靠人眼对融合图像效果进行主观判断。<br><strong>客观评价方法</strong>：<br>根据不同评定方法的条件不同，对客观评价指标做了以下分类研究8。</p>
+<ol>
+<li><p>无参考图像情况下的评价方法  </p>
+<p>  <strong>单一图像特征统计的评价方法</strong>  </p>
+<ul>
+<li><p>均值:图像中所有像素的灰度值的算术平均值，对人眼表现为图像的平均亮度。  </p>
 </li>
-<li><p>使用修改<code>.bashrc</code>, 在<code>.bashrc</code>中写代理和取消代理函数, 使用直接输入proxy、noproxy即可。<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxy.bashrc.png" alt="image-20200606151542147"></p>
+<li><p>标准差:图像灰度相对于均值的离散情况，用于评价图像反差的大小。  </p>
+</li>
+<li><p>信息熵:熵值大小反映其包含信息量的多少，熵值越大融合效果越好。  </p>
+</li>
+<li><p>平均梯度:可灵敏地反映图像对微小细节反差表达的水平，用于评价图像的模糊程度。平均梯度值与图像清晰程度成正比关系。  </p>
+</li>
+<li><p>空间频率:反映图像在空间域的整体活跃程度，空间频率大小与图像融合效果成正比。  </p>
+<p><strong>源图像与融合图像之间关系的评价方法</strong>  </p>
+</li>
+<li><p>互信息之和:表示融合图像F从源图像A、B中获取的信息，互信息之和的值与融合效果成正比。  </p>
+</li>
+<li><p>交叉熵:反映了源图像和融合图像对应像素的差异。交叉熵越小，代表两幅图像的差异越小，即意味着该融合方法从源图像获取的信息量越多，融合效果越好。  </p>
+</li>
+<li><p>联合熵:源图像和融合图像之间相关性的量度,反映源图像和融合图像之间的联合信息。两幅图像联合熵的值与图像所包含的信息量的大小成正比关系。  </p>
+</li>
+<li><p>偏差与相对偏差:偏差表示两幅图像光谱特性变化的平均程度和光谱信息上的差异，值越小意味着两幅图像的差异越小;相对偏差反映两幅图像在光谱信息上的匹配程度,同时也反映该方法将原图像高空间的分辨率细节传递给融合图像的能力。  </p>
+</li>
+</ul>
+</li>
+<li><p>有参考图情况下的评价方法</p>
+<ul>
+<li>通过对比标准参考图像与融合图像之间的关系来分析融合图像的质量和融合效果的好坏。  </li>
+<li>均方根误差:显示了参考图像与融合图像之间的差异对比程度，其值与接近程度成反比，值越小代表融合效果越好。  </li>
+<li>信噪比和峰值信噪比:比值越高，融合质量越好。  </li>
+<li>信息熵差ER-EF:EF和ER分别为融合图像和参考图像的信息熵。  </li>
+<li>互信息:代表图像中包含的信息，互信息值越大，包含的信息越多，融合效果越好。  </li>
+</ul>
 </li>
 </ol>
-<figure class="highlight plain"><figcaption><span>>>> proxy setting >>></span></figcaption><table><tr><td class="code"><pre><span class="line">proxy () &#123;</span><br><span class="line">        export ALL_PROXY&#x3D;&quot;socks5:&#x2F;&#x2F;192.168.123.176:10808&quot;</span><br><span class="line">        export all_proxy&#x3D;&quot;socks5:&#x2F;&#x2F;192.168.123.176:10808&quot;</span><br><span class="line">        echo -e &quot;Acquire::http::Proxy \&quot;http:&#x2F;&#x2F;192.168.123.176:10809\&quot;;&quot; | sudo tee -a &#x2F;etc&#x2F;apt&#x2F;apt.c</span><br><span class="line">onf &gt; &#x2F;dev&#x2F;null</span><br><span class="line">        echo -e &quot;Acquire::https::Proxy \&quot;http:&#x2F;&#x2F;192.168.123.176:10809\&quot;;&quot; | sudo tee -a &#x2F;etc&#x2F;apt&#x2F;apt.</span><br><span class="line">conf &gt; &#x2F;dev&#x2F;null</span><br><span class="line">        curl myip.ipip.net</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>RS</category>
+      </categories>
+      <tags>
+        <tag>Image Processing</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Time Series Pandas</title>
+    <url>/2020/06/04/Time-Series-Pandas/</url>
+    <content><![CDATA[<p>利用Python进行时间序列分析,  主要记录ARIMA模型相关知识。</p>
+<a id="more"></a>
 
-<figure class="highlight plain"><figcaption><span><<< proxy setting <<<</span></figcaption><table><tr><td class="code"><pre><span class="line">noproxy () &#123;</span><br><span class="line">        unset ALL_PROXY</span><br><span class="line">        unset all_proxy</span><br><span class="line">        sudo sed -i -e &#39;&#x2F;Acquire::http::Proxy&#x2F;d&#39; &#x2F;etc&#x2F;apt&#x2F;apt.conf</span><br><span class="line">        sudo sed -i -e &#39;&#x2F;Acquire::https::Proxy&#x2F;d&#39; &#x2F;etc&#x2F;apt&#x2F;apt.conf</span><br><span class="line">        curl myip.ipip.net</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>效果图：</strong></p>
-<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxy_.bashrc.png" alt="image-20200606151800543"></p>
-<ol start="3">
-<li>就是使用<code>alias</code>将<code>export http_proxy=socks5://192.168.123.176:10808</code>做成段命令，直接在需要代理命令之前加别名即可。</li>
+
+<h2 id="生成时间序列"><a href="#生成时间序列" class="headerlink" title="生成时间序列"></a>生成时间序列</h2><ol>
+<li>pd.date_range()</li>
+<li>truncate()过滤</li>
+<li>pd.Timestamp()时间戳</li>
+<li>pd.Period()时间周期</li>
+<li>pd.datelta()间隔</li>
 </ol>
+<h2 id="差分法"><a href="#差分法" class="headerlink" title="差分法"></a>差分法</h2><p>​    改进数据平稳性</p>
+<p><code>.diff(num)</code>: num阶差分，一般一阶就可以了。</p>
+<h2 id="ARIMA模型"><a href="#ARIMA模型" class="headerlink" title="ARIMA模型"></a>ARIMA模型</h2><p>​        <strong>ARIMA模型</strong>（英语：<strong>A</strong>uto<strong>r</strong>egressive <strong>I</strong>ntegrated <strong>M</strong>oving <strong>A</strong>verage model），差分整合移动平均自回归模型，又称整合移动平均自回归模型（移动也可称作滑动），是<span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS/ml7bpl7Tluo/liJc=">时间序列<i class="fa fa-external-link-alt"></i></span>预测分析方法之一。</p>
+<p>​        ARIMA(p，d，q)中，AR是“自回归模型”，p为自回归项数；MA为“滑动平均模型”，q为滑动平均项数，d为使之成为平稳序列所做的差分次数（阶数）。“差分”一词虽未出现在ARIMA的英文名称中，却是关键步骤。</p>
+<h3 id="AR模型"><a href="#AR模型" class="headerlink" title="AR模型"></a>AR模型</h3><ul>
+<li><p>描述当前值与历史值之间的关系，用变量自身的历史时间数据对自身进行预测</p>
+</li>
+<li><p>p阶自回归过程的公式定义：$y_t = \mu + \sum^{p}<em>{i=1}{\gamma_iy</em>{t-i}} + \epsilon_t$, </p>
+</li>
+<li><p>其中 $y_t$ 是当前值、$\mu$ 是常数项、p 是阶数、 $\gamma_i$ 是自相关系数、 $\epsilon_t$ 是误差</p>
+</li>
+</ul>
+<ul>
+<li><p>自回归模型是用自身的数据来进行预测</p>
+</li>
+<li><p>必须具有平稳性</p>
+</li>
+<li><p>必须具有自相关，如果自相关系数小于0.5，则不宜采用</p>
+</li>
+<li><p>自回归只适用于预测与自身前期相关的现象</p>
+</li>
+</ul>
+<h3 id="MA模型"><a href="#MA模型" class="headerlink" title="MA模型"></a>MA模型</h3><ul>
+<li>移动平均模型关注的是自回归模型中误差项的累加</li>
+<li>q阶移动平均模型：$y_t = \mu + \epsilon_t + \sum^q_{i=1}{\theta_i\epsilon_{t-i}}$ </li>
+<li>移动平均模型能够消除预测中的随机波动</li>
+</ul>
+<ul>
+<li><code>ARMA = AR + MA</code> 、<code>ARMA + 差分 = ARIMA</code></li>
+</ul>
+<h3 id="ARIMA模型原理"><a href="#ARIMA模型原理" class="headerlink" title="ARIMA模型原理"></a>ARIMA模型原理</h3><p>​        将非平稳时间序列转化为平稳时间序列，然后将因变量对它的滞后值以及随机误差项的现值和滞后值进行回归所建立的模型</p>
+<h3 id="p、q值的确定"><a href="#p、q值的确定" class="headerlink" title="p、q值的确定"></a>p、q值的确定</h3><p>自相关系数ACF、偏相关系数PACF</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>ACF</th>
+<th>PACF</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AR(p)</td>
+<td>衰减趋于零（几何型或振荡型）</td>
+<td>p阶后截尾</td>
+</tr>
+<tr>
+<td>MA(q)</td>
+<td>q阶后截尾</td>
+<td>衰减趋于零（几何型或振荡型）</td>
+</tr>
+<tr>
+<td>ARMA(p, q)</td>
+<td>q阶后衰减趋于零（几何型或振荡型）</td>
+<td>p阶后衰减趋于零（几何型或振荡型）</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>截尾：落在置信区间内（95%的点都符合该规则）</p>
+</li>
+<li><p>Python方法：</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> statsmodels.graphocs.tsaplots <span class="keyword">import</span> plot_acf, plot_pacf</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h2 id="数据重采样"><a href="#数据重采样" class="headerlink" title="数据重采样"></a>数据重采样</h2><ol>
+<li><code>.resample(freq)</code> 例如：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rng = pd.date_range(<span class="string">'1/1/2020'</span>, periods=<span class="number">90</span>, freq=<span class="string">'D'</span>)</span><br><span class="line">ts = pd.Series(np.random.randn(len(rng)), index=rng)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 降采样</span></span><br><span class="line">ts = resample(<span class="string">'M'</span>).mean()</span><br><span class="line">ts = resmaple(<span class="string">'M'</span>).sum()</span><br><span class="line">ts = resmaple(<span class="string">'3D'</span>).sum()</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>升采样插值<ul>
+<li><code>.fill(位数)</code>，向后填充，空值取前面的值</li>
+<li><code>.bfill()</code>, 向前填充</li>
+<li><code>.interpolate()</code>, 线性填充</li>
+</ul>
+</li>
+</ol>
+<h2 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h2><p>在较长时间区间上，用来观测某个时间点、区间相关情况的方法。</p>
+<p>使用<code>.rolling(windowSize)</code></p>
+<h2 id="额外收获"><a href="#额外收获" class="headerlink" title="额外收获"></a>额外收获</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B5ZGF0YS9wYW5kYXMtZGF0YXJlYWRlcg==">pandasdatareade<i class="fa fa-external-link-alt"></i></span>: 直接获取网络上的数据到<code>dataframe</code></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2JsdWUteW9uZGVyL3RzZnJlc2g=">tsfresh<i class="fa fa-external-link-alt"></i></span>: 提取时间序列的特征</p>
+<h2 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h2><ol>
+<li>时间序列分类</li>
+<li>EDA</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Machine Learning</category>
+      </categories>
+      <tags>
+        <tag>Time Series</tag>
+        <tag>Data Analysis</tag>
+        <tag>Pandas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Unit-6-Innovation(TF).md</title>
+    <url>/2020/05/15/Unit-6-Innovation(TF)/</url>
+    <content><![CDATA[<p><strong>Record the words and example sentences</strong>  </p>
+<a id="more"></a>
+
+<ol>
+<li><p><strong>word：</strong><br>urban planner(城市规划师)<br><strong>sentences:</strong><br>An urban planner is a person who works on the efficient organization of a city’s features.</p>
+</li>
+<li><p><strong>word：</strong><br>interrelated<br>adj. 相关的；互相联系的；v. 使相互联系（interrelate的过去式）<br>interact<br>v. 互相影响；互相作用<br><strong>sentences:</strong><br>All things are interrelated and interact with each other.<br> 一切事物都是相互联系、相互作用的。</p>
+</li>
+<li><p><strong>word：</strong><br>commuter<br>n. 通勤者，经常乘公共车辆往返者；[交] 月季票乘客<br><strong>sentences：</strong><br>A commuter is someone who travels a long distance to work every day.<br>通勤族是指每天都要长途跋涉去上班的人。 </p>
+</li>
+<li><p><strong>word:</strong><br>imprisonment　　监禁　　　　　　　　　option　　选项<br>fine　　n. 罚款    　<br>adj. 好的；优良的；细小的，精美的；健康的；晴朗的<br><strong>sentences:</strong><br>He was given one month’s imprisonment without the option of a fine.  他被判处一个月徒刑，没有罚款的选择。  </p>
+</li>
+<li><p><strong>word:</strong><br>stationary<br>adj. 固定的；静止的；定居的；常备军的<br>n. 不动的人；驻军<br><strong>sentences:</strong><br>A traffic jam is a long line of vehicles that is either stationary or moving very slowly.<br>交通堵塞就是指一排排固定不动或行驶缓慢的车辆。  </p>
+</li>
+<li><p><strong>drop</strong><br>v.When someone drops you off, he or she lets you alight from the vehicle.（让⋯）下车，卸下（乘客） </p>
+</li>
+<li><p><strong>for one thing</strong><br>When you say “for one thing,” you indicate that you are talking about one of the factors involved in the situation. 首先，一则  </p>
+</li>
+<li><p><strong>not to mention</strong><br>You will use “not to mention” when you want to indicate that you’re about to provide additional information to support your point. 更不用说，此外  </p>
+</li>
+<li><p><strong>conference</strong><br>n.A conference is a meeting, usually held over the course of a few days, where a particular subject is discussed. （正式）会议  </p>
+</li>
+<li><p><strong>demonstrate</strong><br>v.To demonstrate is to show how something works, or how something should be done. 示范操作，演示  </p>
+</li>
+<li><p><strong>revolution</strong><br>n.A revolution refers to a swift and dramatic change in society. 重大变革  </p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Studying-English</category>
+      </categories>
+      <tags>
+        <tag>English Though Films</tag>
+        <tag>Notebook</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Notes_01|&quot;alias&quot; Knowledge</title>
+    <url>/2020/05/30/alias/</url>
+    <content><![CDATA[<p>  转载自知乎：乃乎。因为 WSL2 Access Windows Proxy 中命令用到了alias方法，就在知乎找到乃乎的分享。</p>
+<a id="more"></a>
+
+<p>alias (别名)，一般用来用一个短的简单的命令来代替长的复杂的命令</p>
+<h2 id="查看-alias"><a href="#查看-alias" class="headerlink" title="查看 alias"></a>查看 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Ubuntu@DESKTOP-J51JGI8:~$ <span class="built_in">alias</span></span><br><span class="line"><span class="built_in">alias</span> alert=<span class="string">'notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$(history|tail -n1|sed -e '</span>\<span class="string">''</span>s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//<span class="string">'\'</span><span class="string">')"'</span></span><br><span class="line"><span class="built_in">alias</span> egrep=<span class="string">'egrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> fgrep=<span class="string">'fgrep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> grep=<span class="string">'grep --color=auto'</span></span><br><span class="line"><span class="built_in">alias</span> l=<span class="string">'ls -CF'</span></span><br><span class="line"><span class="built_in">alias</span> la=<span class="string">'ls -A'</span></span><br><span class="line"><span class="built_in">alias</span> ll=<span class="string">'ls -alF'</span></span><br><span class="line"><span class="built_in">alias</span> ls=<span class="string">'ls --color=auto'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="临时定义-alias"><a href="#临时定义-alias" class="headerlink" title="临时定义 alias"></a>临时定义 alias</h2><p>使用 <code>ll</code> 代替 <code>ls -al</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="持久定义-alias"><a href="#持久定义-alias" class="headerlink" title="持久定义 alias"></a>持久定义 alias</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>shell 启动的时候会读取配置文件，~/.bashrc 或者 ～/.zshrc。在配置文件中加入 alias 定义的命令就可以在每次启动 shell 后都存在定义好的 alias</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># custom aliases are listed below</span></span><br><span class="line">$ <span class="built_in">alias</span> ll=<span class="string">"ls -al"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9saW5rLnpoaWh1LmNvbS8/dGFyZ2V0PWh0dHBzJTNBLy93d3cudGVjbWludC5jb20vY3JlYXRlLWFsaWFzLWluLWxpbnV4Lw==">https://www.tecmint.com/create-alias-in-linux/<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
 ]]></content>
       <categories>
         <category>WSL2</category>
       </categories>
       <tags>
-        <tag>Proxy</tag>
-        <tag>Linux</tag>
+        <tag>Notebook - Bash - Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/03/29/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo<i class="fa fa-external-link-alt"></i></span>! This is your very first post. Check <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv">documentation<i class="fa fa-external-link-alt"></i></span> for more info. If you get any problems when using Hexo, you can find the answer in <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdHJvdWJsZXNob290aW5nLmh0bWw=">troubleshooting<i class="fa fa-external-link-alt"></i></span> or you can ask me on <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL2lzc3Vlcw==">GitHub<i class="fa fa-external-link-alt"></i></span>.</p>
+<a id="more"></a>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvd3JpdGluZy5odG1s">Writing<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvc2VydmVyLmh0bWw=">Server<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZ2VuZXJhdGluZy5odG1s">Generating<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvb25lLWNvbW1hbmQtZGVwbG95bWVudC5odG1s">Deployment<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Demo</category>
+      </categories>
+      <tags>
+        <tag>Studying</tag>
+        <tag>Test</tag>
+        <tag>Share</tag>
       </tags>
   </entry>
   <entry>
@@ -3747,6 +3694,38 @@ r-squared: 0.8163651594029047</code></pre><p><strong>补充：</strong><br>Pytho
       <tags>
         <tag>Urban heat island</tag>
         <tag>ZhengZhou</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WSL2 Access Windows Proxy</title>
+    <url>/2020/06/06/wsl2_access_windows_proxy/</url>
+    <content><![CDATA[<p>文章在知乎持续更新。见文末知乎入口。</p>
+<h2 id="IP设置"><a href="#IP设置" class="headerlink" title="IP设置"></a>IP设置</h2><p>IP要使用主机局域网IP，例如192.168.123.176。再者，就是host.deocker.internal在安装docker的时候进行了重定向，所以使用这个也是可以的。</p>
+<a id="more"></a>
+
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ol>
+<li><p>使用<code>proxychains</code>。安装就是<code>sudo apt install proxychains</code>，然后再进去<code>/etc/proxychains.conf</code>进行ip设置，使用直接在命令前面加proxychains。<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxychains.conf.png" alt="image-20200606150558949">![image-20200606102952207](<span class="exturl" data-url="aHR0cHM6Ly9naXRlZS5jb20vUnN3ZWF0ZXJfYWRtaW4vQmxvZ19JbWFnZXMvcmF3L21hc3Rlci9pbWcvd3Ns">https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/wsl<i class="fa fa-external-link-alt"></i></span> proxy1.png)</p>
+<p>这个方法可能会出现dns无法解析的问题，要装依赖tor,使用<code>sudo apt install tor</code>即可。</p>
+</li>
+<li><p>使用修改<code>.bashrc</code>, 在<code>.bashrc</code>中写代理和取消代理函数, 使用直接输入proxy、noproxy即可。<img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxy.bashrc.png" alt="image-20200606151542147"></p>
+</li>
+</ol>
+<figure class="highlight plain"><figcaption><span>>>> proxy setting >>></span></figcaption><table><tr><td class="code"><pre><span class="line">proxy () &#123;</span><br><span class="line">        export ALL_PROXY&#x3D;&quot;socks5:&#x2F;&#x2F;192.168.123.176:10808&quot;</span><br><span class="line">        export all_proxy&#x3D;&quot;socks5:&#x2F;&#x2F;192.168.123.176:10808&quot;</span><br><span class="line">        echo -e &quot;Acquire::http::Proxy \&quot;http:&#x2F;&#x2F;192.168.123.176:10809\&quot;;&quot; | sudo tee -a &#x2F;etc&#x2F;apt&#x2F;apt.c</span><br><span class="line">onf &gt; &#x2F;dev&#x2F;null</span><br><span class="line">        echo -e &quot;Acquire::https::Proxy \&quot;http:&#x2F;&#x2F;192.168.123.176:10809\&quot;;&quot; | sudo tee -a &#x2F;etc&#x2F;apt&#x2F;apt.</span><br><span class="line">conf &gt; &#x2F;dev&#x2F;null</span><br><span class="line">        curl myip.ipip.net</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><figcaption><span><<< proxy setting <<<</span></figcaption><table><tr><td class="code"><pre><span class="line">noproxy () &#123;</span><br><span class="line">        unset ALL_PROXY</span><br><span class="line">        unset all_proxy</span><br><span class="line">        sudo sed -i -e &#39;&#x2F;Acquire::http::Proxy&#x2F;d&#39; &#x2F;etc&#x2F;apt&#x2F;apt.conf</span><br><span class="line">        sudo sed -i -e &#39;&#x2F;Acquire::https::Proxy&#x2F;d&#39; &#x2F;etc&#x2F;apt&#x2F;apt.conf</span><br><span class="line">        curl myip.ipip.net</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果图：</strong></p>
+<p><img data-src="https://gitee.com/Rsweater_admin/Blog_Images/raw/master/img/proxy_.bashrc.png" alt="image-20200606151800543"></p>
+<ol start="3">
+<li>就是使用<code>alias</code>将<code>export http_proxy=socks5://192.168.123.176:10808</code>做成段命令，直接在需要代理命令之前加别名即可。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>WSL2</category>
+      </categories>
+      <tags>
+        <tag>Proxy</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
 </search>
